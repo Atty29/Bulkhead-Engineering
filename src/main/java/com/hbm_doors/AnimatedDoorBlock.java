@@ -18,7 +18,7 @@ import java.util.*;
 public class AnimatedDoorBlock extends BaseEntityBlock {
  public static final DirectionProperty FACING=BlockStateProperties.HORIZONTAL_FACING;
  public final String id;
- public AnimatedDoorBlock(String id){super(Properties.copy(Blocks.IRON_BLOCK).strength(10,1000).requiresCorrectToolForDrops().noOcclusion().dynamicShape().isViewBlocking((s,l,p)->false));this.id=id;registerDefaultState(stateDefinition.any().setValue(FACING,Direction.NORTH));}
+ public AnimatedDoorBlock(String id){super(Properties.copy(Blocks.IRON_BLOCK).strength(id.equals("modular_blast_door")?250:10,id.equals("modular_blast_door")?18000:1000).requiresCorrectToolForDrops().noOcclusion().dynamicShape().isViewBlocking((s,l,p)->false));this.id=id;registerDefaultState(stateDefinition.any().setValue(FACING,Direction.NORTH));}
  public DoorDecl decl(){return DoorDeclRegistry.getById(id);}
  protected void createBlockStateDefinition(StateDefinition.Builder<Block,BlockState>b){b.add(FACING);}
  public RenderShape getRenderShape(BlockState s){return RenderShape.ENTITYBLOCK_ANIMATED;}
@@ -50,6 +50,7 @@ public class AnimatedDoorBlock extends BaseEntityBlock {
   // before its old block entity and linked parts finish being detached.
   if(!(s.getBlock() instanceof AnimatedDoorBlock))return Shapes.empty();
   if(!(l.getBlockEntity(p) instanceof DoorBlockEntity be))return Shapes.block();
+  if(be.isModularBlastDoor())return ModularBlastDoorDecl.shape(be,offset);
   DoorDecl d=be.getDoorDecl();boolean open=be.state==1;
   VoxelShape shape=(open?d.getStructureDefinition().getOpenShapes():d.getStructureDefinition().getClosedShapes()).getOrDefault(offset,Shapes.empty());
   final VoxelShape[] result={Shapes.empty()};Direction f=facing(s);

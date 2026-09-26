@@ -1,0 +1,12 @@
+Additional upstream: https://github.com/Hamster-Systems/Hbm-s-Nuclear-Tech-GIT/
+Commit: 87a24d529eac2c97b3dca5ed7a7bfef6ed832036
+Ported feature: blast_door (the vertical, adjoining modular Sliding Blast Door).
+Inspected: blocks/machine/BlastDoor.java, DummyBlockBlast.java,
+tileentity/machine/TileEntityBlastDoor.java, render/tileentity/RenderBlastDoor.java,
+main/ResourceManager.java, lib/HBMSoundHandler.java and block/item registration.
+Assets retained: models/blast_door_{base,block,tooth,slider}.obj and corresponding
+textures/models/*.png; block.reactorStart and block.reactorStop sound files.
+OBJ groups are combined/repeated under new names; vertex positions/UVs preserved.
+Code adapted to standalone Forge 1.20.1 infrastructure. Original code/assets
+credited to HBM contributors and Hamster-Systems. GPL-3.0; upstream license copies
+are in licenses/HBM-112-LICENSE and licenses/HBM-112-LICENSE.LESSER.

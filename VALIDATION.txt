@@ -1,28 +1,24 @@
-Release validation — 2026-09-26
+Release 1.1.0 validation — 2026-09-27
 Minecraft 1.20.1 / Forge 47.4.20 / Java 17 / Windows x64
 
-PASS: clean build, production JAR reobfuscation, separate GameTest source set.
-PASS: all 2 required dedicated-server GameTests.
-  lifecycle: all 13 animated doors x 4 directions = 52 combinations;
-  controller/part creation, open/close timing and state, NBT round trips,
-  removal without orphan parts.
-  redstoneAndPartRemoval: powered open, unpowered close, part removal.
-PASS: final client loads 45 original model/skin variants.
-PASS: final client renders all 13 default animated inventory models.
-PASS: default-model gallery visually inspected; no missing textures observed.
-PASS: offline asset references and 20 recipe files.
-PASS: shipped JAR contains no test classes or original com.hbm_m classes.
+PASS: build and production reobfuscation.
+PASS: all 4 dedicated-server GameTests:
+  lifecycle: 14 animated types x 4 orientations = 56 lifecycle combinations;
+  redstoneAndPartRemoval: original-door redstone and structure regression;
+  linkedWallAndStagedCollision: three modular columns in all four orientations,
+    every collision stage, 100-tick opening/closing, mid-motion saving,
+    adjoining-column removal isolation;
+  risingEdgeToggleAtTopAndBase: top/base redstone inputs, falling-edge hold.
+PASS: client loaded 46 model/skin variants and rendered 14 inventory models.
+PASS: client rendered a three-section modular wall closed, half-open and open;
+      saved screenshot visually inspected.
+PASS: offline model/texture/sound references and 21 recipe files.
 
-Commands: gradlew.bat clean build runGameTestServer
+Commands: gradlew.bat build
+          gradlew.bat runGameTestServer
           gradlew.bat build runClient -PdoorSmokeTest
           python tools/verify_assets.py
 
-The first sandboxed Forge setup failed on Java ZIP filesystem access.
-An allowed unrestricted build resolved that environment issue.
-An initial client launch exited during resource loading; the subsequent
-client smoke test completed. A final server rerun exposed a stale-controller
-collision query during removal; it was fixed and the tests passed again.
-
-Not validated: full in-world visual/animation comparison with upstream,
-multiplayer sessions, external shader packs, long-duration chunk reloads.
-See DEPENDENCY-REPORT.md for functional simplifications.
+Test classes and run directories are excluded from the production JAR.
+Not tested: full multiplayer sessions, long-duration survival gameplay, external
+shader packs. See PORT-112.md for unsupported HBM lock/radiation/control systems.

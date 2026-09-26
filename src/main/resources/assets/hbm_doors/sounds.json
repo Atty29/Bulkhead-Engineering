@@ -88,5 +88,23 @@
     "sounds": [
       "hbm_doors:block/door/garage_stop"
     ]
+  },
+  "block.modular_start": {
+    "subtitle": "sounds.hbm_doors.modular_start",
+    "sounds": [
+      {
+        "name": "hbm_doors:block/reactorstart",
+        "stream": false
+      }
+    ]
+  },
+  "block.modular_stop": {
+    "subtitle": "sounds.hbm_doors.modular_stop",
+    "sounds": [
+      {
+        "name": "hbm_doors:block/reactorstop",
+        "stream": false
+      }
+    ]
   }
 }

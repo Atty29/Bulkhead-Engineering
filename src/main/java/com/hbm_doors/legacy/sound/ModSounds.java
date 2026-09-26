@@ -19,4 +19,6 @@ public static final RegistryObject<SoundEvent> VAULT_THUD=REG.register("block.va
 public static final RegistryObject<SoundEvent> WGH_STOP=REG.register("block.wgh_stop",()->SoundEvent.createVariableRangeEvent(new ResourceLocation("hbm_doors","block.wgh_stop")));
 public static final RegistryObject<SoundEvent> SLIDING_DOOR_OPENED=REG.register("block.sliding_door_opened",()->SoundEvent.createVariableRangeEvent(new ResourceLocation("hbm_doors","block.sliding_door_opened")));
 public static final RegistryObject<SoundEvent> GARAGE_STOP=REG.register("block.garage_stop",()->SoundEvent.createVariableRangeEvent(new ResourceLocation("hbm_doors","block.garage_stop")));
+public static final RegistryObject<SoundEvent> MODULAR_START=REG.register("block.modular_start",()->SoundEvent.createVariableRangeEvent(new ResourceLocation("hbm_doors","block.modular_start")));
+public static final RegistryObject<SoundEvent> MODULAR_STOP=REG.register("block.modular_stop",()->SoundEvent.createVariableRangeEvent(new ResourceLocation("hbm_doors","block.modular_stop")));
 }

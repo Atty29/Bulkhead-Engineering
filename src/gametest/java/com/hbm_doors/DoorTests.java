@@ -29,7 +29,7 @@ public class DoorTests {
     count++;
    }
   }
-  h.assertTrue(count==52,"all 13 doors in four orientations");h.succeed();
+  h.assertTrue(count==56,"all 14 doors in four orientations");h.succeed();
  }
  @GameTest(template="empty",timeoutTicks=200)
  public static void redstoneAndPartRemoval(GameTestHelper h){

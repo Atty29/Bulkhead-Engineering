@@ -36,6 +36,10 @@
     "sha256": "542e9fb8843d100534c176220086c3ea9a550ce2675f157bf7bcc7ca17fada9d"
   },
   {
+    "path": "src/main/resources/assets/hbm_doors/blockstates/modular_blast_door.json",
+    "sha256": "cd25ac6ba1c3420dac6c47cb67b13ae84dee7a26cb9bf5bdf1fe28299da04b9d"
+  },
+  {
     "path": "src/main/resources/assets/hbm_doors/blockstates/qe_containment_door.json",
     "sha256": "cd25ac6ba1c3420dac6c47cb67b13ae84dee7a26cb9bf5bdf1fe28299da04b9d"
   },
@@ -149,7 +153,7 @@
   },
   {
     "path": "src/main/resources/assets/hbm_doors/lang/en_us.json",
-    "sha256": "2738a91d6c12587a89d95482f6120ea04385129abde7ad0ac6956c2b6bb4bfd2"
+    "sha256": "0656e5b2a5b280652162e59f917419b51ecb2e4a49c6867665384ffbdbf6a050"
   },
   {
     "path": "src/main/resources/assets/hbm_doors/lang/eo_uy.json",
@@ -636,6 +640,14 @@
     "sha256": "adcbebac9eff9b64f64a2376025a59b8cd6c0b046a8981d96a753fb14d6b9be9"
   },
   {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/modular_blast_door.json",
+    "sha256": "e6da61198c1e21645cd6e02e66fd741d13a3f6772fafd2f4d0f926ad35e06d40"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/modular_blast_door.obj",
+    "sha256": "22284d25e0b18d604cb9b66e440172c1f8e5d96267c26f4bf15c327127bd5363"
+  },
+  {
     "path": "src/main/resources/assets/hbm_doors/models/block/doors/qe_containment_door.json",
     "sha256": "4b8d1df85dea86d2099e1aff8c47999ae59c4cfc76424b793185d9adcc36ee81"
   },
@@ -1024,6 +1036,10 @@
     "sha256": "4862441222bb023dbb932d7f98f0140e10afcdbed108f97f699abb0195b64f8e"
   },
   {
+    "path": "src/main/resources/assets/hbm_doors/models/item/modular_blast_door.json",
+    "sha256": "3931e2e2b9201f5192a5ad55c227cf1ecda3d9f5bb826bff0498e795d98fdb8b"
+  },
+  {
     "path": "src/main/resources/assets/hbm_doors/models/item/qe_containment_door.json",
     "sha256": "973a8b17752f4ec8e7777f4d3a8ada7937a25af28a5c98b1d1462c6325bde718"
   },
@@ -1132,8 +1148,16 @@
     "sha256": "1deb845e5b81b2980a58998b8a779c58954ccd9b59c37bb9aada80da23602ce7"
   },
   {
+    "path": "src/main/resources/assets/hbm_doors/sounds/block/reactorstart.ogg",
+    "sha256": "8fb909aebb12e7043e7e8167435eb291faaae2f5a75f80598c828dbb09481ca5"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/sounds/block/reactorstop.ogg",
+    "sha256": "839d975e0488006038881f24f2a0a0f3b188e0439041042fe2d3fc62daa32617"
+  },
+  {
     "path": "src/main/resources/assets/hbm_doors/sounds.json",
-    "sha256": "408ab56a98f6d0254af4f611f10943d2dedd333e91ef1f04e603c378c9b3d4a7"
+    "sha256": "3bf13f9c47cacf6bc7ba8b61b302fc768f6be04b04fd6ea682ba67befc881172"
   },
   {
     "path": "src/main/resources/assets/hbm_doors/textures/block/blast_door.png",
@@ -1254,6 +1278,22 @@
   {
     "path": "src/main/resources/assets/hbm_doors/textures/block/doors/large_vehicle_door_skin_rad.png",
     "sha256": "90bb4cb59757834d6a8bb07bff6639c5cfec7e38c4726baf0ae254d42fd19666"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/modular_blast/blast_door_base.png",
+    "sha256": "bfa25a252b42f15b8d1495c741e86994c73dcad72408e2933d6dba375e89276f"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/modular_blast/blast_door_block.png",
+    "sha256": "fa6f2158c57da986e64d5f0bc09c719aa4bde7db3007fc9c989571c56bb2c1b8"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/modular_blast/blast_door_slider.png",
+    "sha256": "cc411f75d6e9ae381560df9bfdb0c597c82b351fddc329ec601c658fae449068"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/modular_blast/blast_door_tooth.png",
+    "sha256": "960786f54e6829ccfa7e247094c1d4269c64aa5525ca143251582d092cda862d"
   },
   {
     "path": "src/main/resources/assets/hbm_doors/textures/block/doors/qe_containment_decal.png",

@@ -19,4 +19,5 @@ case "silo_hatch" -> List.of(new Variant("Default","hbm_doors:block/doors/silo_h
 case "silo_hatch_large" -> List.of(new Variant("Default","hbm_doors:block/doors/silo_hatch_large",false,"default"));
 case "vault_door" -> List.of(new Variant("skin_101","hbm_doors:block/doors/vault_door_skin_101",false,"skin_101"),new Variant("Vault 87","hbm_doors:block/doors/vault_door_skin_87",false,"default"),new Variant("Vault 106","hbm_doors:block/doors/vault_door_skin_106",false,"skin_106"),new Variant("Vault 2","hbm_doors:block/doors/vault_door_skin_2",false,"skin_2"),new Variant("Vault 99","hbm_doors:block/doors/vault_door_skin_99",false,"skin_99"),new Variant("Vault 81","hbm_doors:block/doors/vault_door_skin_81",false,"skin_81"),new Variant("Vault 111","hbm_doors:block/doors/vault_door_skin_111",false,"skin_111"),new Variant("Legacy","hbm_doors:block/doors/vault_door",true,"default"));
 case "cargo_door" -> List.of(new Variant("Default","hbm_doors:block/doors/cargo_door",false,"default"));
+case "modular_blast_door" -> List.of(new Variant("Original 1.12","hbm_doors:block/doors/modular_blast_door",false,"default"));
 default -> throw new IllegalArgumentException(id);};}}

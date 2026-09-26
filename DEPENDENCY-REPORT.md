@@ -1,3 +1,5 @@
+Version 1.1.0 additionally ports the vertical modular 1.12 blast door; see [PORT-112.md](PORT-112.md). The original extraction report below describes the 1.0.0 base.
+
 # Door extraction report
 
 Source: Raptor324/HBM-Modernized, commit `0365cef5956016913095eeeb9366f26c601ca9a0` (cloned 2026-09-26). Upstream is now a multi-loader/multi-version project; its Forge target explicitly specifies Minecraft 1.20.1 and Forge 47.4.20. This extraction uses those versions, Java 17 and ForgeGradle 6.0.54 / Gradle 8.8.

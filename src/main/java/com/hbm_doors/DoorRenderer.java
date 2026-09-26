@@ -79,6 +79,7 @@ public class DoorRenderer implements BlockEntityRenderer<DoorBlockEntity> {
   }pose.popPose();
  }
  private static void part(String name,boolean child,DoorDecl d,DoorVariants.Variant v,Model m,float time,PoseStack p,MultiBufferSource b,int light,int overlay,int depth){
+  if(d instanceof ModularBlastDoorDecl&&!ModularBlastDoorDecl.visible(name,time))return;
   if(depth>16||!d.doesRender(name,child))return;p.pushPose();float[] o=new float[3],r=new float[3],t=new float[3];d.getOrigin(name,o,v.selection());d.getRotation(name,time,r,v.selection());d.getTranslation(name,time,child,t,v.selection());
   p.translate(o[0],o[1],o[2]);p.mulPose(Axis.XP.rotationDegrees(r[0]));p.mulPose(Axis.YP.rotationDegrees(r[1]));p.mulPose(Axis.ZP.rotationDegrees(r[2]));p.translate(t[0]-o[0],t[1]-o[1],t[2]-o[2]);
   for(Face face:m.parts.getOrDefault(name,List.of())){VertexConsumer vc=b.getBuffer(RenderType.entityCutoutNoCull(texture(m,face.material)));for(Vertex vertex:face.vertices)emit(vertex,p,vc,light,overlay);}

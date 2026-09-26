@@ -1,5 +1,5 @@
 plugins { id 'java'; id 'net.minecraftforge.gradle' version '6.0.54' }
-version='1.0.0'
+version='1.1.0'
 group='com.hbm_doors'
 base { archivesName='hbm-doors-1.20.1' }
 java.toolchain.languageVersion=JavaLanguageVersion.of(17)
@@ -15,4 +15,4 @@ minecraft {
 dependencies { minecraft 'net.minecraftforge:forge:1.20.1-47.4.20' }
 tasks.withType(JavaCompile).configureEach { options.encoding='UTF-8' }
 jar.finalizedBy('reobfJar')
-jar { from('LICENSE'); from('NOTICE'); from('UPSTREAM.txt') }
+jar { from('LICENSE'); from('NOTICE'); from('UPSTREAM.txt'); from('UPSTREAM-112.txt'); from('licenses') { into 'licenses' } }

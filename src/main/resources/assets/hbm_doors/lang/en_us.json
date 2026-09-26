@@ -34,5 +34,8 @@
   "sounds.hbm_doors.subtitle.vault_thud": "Vault thud",
   "sounds.hbm_doors.subtitle.wgh_stop": "Wgh stop",
   "sounds.hbm_doors.subtitle.sliding_door_opened": "Sliding door opened",
-  "sounds.hbm_doors.subtitle.garage_stop": "Garage stop"
+  "sounds.hbm_doors.subtitle.garage_stop": "Garage stop",
+  "block.hbm_doors.modular_blast_door": "Modular Sliding Blast Door",
+  "sounds.hbm_doors.modular_start": "Blast door moving",
+  "sounds.hbm_doors.modular_stop": "Blast door stops"
 }

@@ -13,3 +13,7 @@ recipes, resource generation, and isolated server/client smoke tests.
 
 The upstream LICENSE is included without modification. No endorsement
 by the HBM-Modernized project is implied.
+
+Version 1.1.0 includes the modular blast door from Hamster-Systems HBM 1.12.
+Original HBM contributors retain authorship of its models, textures and sounds.
+See UPSTREAM-112.txt and licenses/ for provenance and license copies.

@@ -38,7 +38,7 @@ for entry in sounds.values():
         require('sounds/' + name.split(':', 1)[-1] + '.ogg', assets / 'sounds.json')
 
 recipes = list((root / 'src/main/resources/data/hbm_doors/recipes').glob('*.json'))
-assert len(recipes) == 20, f'Expected 20 recipes, got {len(recipes)}'
+assert len(recipes) == 21, f'Expected 21 recipes, got {len(recipes)}'
 if errors:
     raise SystemExit('\n'.join(errors))
 print(f'PASS: models, textures, sound references and {len(recipes)} recipe files')

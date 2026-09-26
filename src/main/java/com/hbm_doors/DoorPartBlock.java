@@ -12,6 +12,14 @@ public class DoorPartBlock extends BaseEntityBlock {
  public DoorPartBlock(){super(Properties.copy(Blocks.IRON_BLOCK).strength(10,1000).requiresCorrectToolForDrops().noOcclusion().dynamicShape().isViewBlocking((s,l,p)->false).noLootTable());}
  public BlockEntity newBlockEntity(BlockPos p,BlockState s){return new DoorPartEntity(p,s);}
  public RenderShape getRenderShape(BlockState s){return RenderShape.INVISIBLE;}
+ public float getDestroyProgress(BlockState s,Player player,BlockGetter l,BlockPos p){
+  if(l.getBlockEntity(p) instanceof DoorPartEntity part&&part.controller!=null){var ctrl=l.getBlockState(part.controller);if(ctrl.getBlock() instanceof AnimatedDoorBlock)return ctrl.getDestroyProgress(player,l,part.controller);}
+  return super.getDestroyProgress(s,player,l,p);
+ }
+ public float getExplosionResistance(BlockState s,BlockGetter l,BlockPos p,net.minecraft.world.level.Explosion explosion){
+  if(l.getBlockEntity(p) instanceof DoorPartEntity part&&part.controller!=null&&l.getBlockEntity(part.controller) instanceof com.hbm_doors.legacy.block.entity.doors.DoorBlockEntity door&&door.isModularBlastDoor())return 18000;
+  return super.getExplosionResistance(s,l,p,explosion);
+ }
  public void playerWillDestroy(Level l,BlockPos p,BlockState s,Player player){
   if(!l.isClientSide&&l.getBlockEntity(p) instanceof DoorPartEntity part&&part.controller!=null){BlockPos ctrl=part.controller;part.controller=null;if(l.getBlockState(ctrl).getBlock() instanceof AnimatedDoorBlock)l.destroyBlock(ctrl,!player.isCreative()&&player.hasCorrectToolForDrops(l.getBlockState(ctrl)));}
   super.playerWillDestroy(l,p,s,player);
