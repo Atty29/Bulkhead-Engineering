@@ -1,0 +1,1422 @@
+[
+  {
+    "path": "src/main/resources/assets/hbm_doors/blockstates/blast_door.json",
+    "sha256": "5744c9b4470bb8b4fe90d6addcdb259f187066321d8a265ac1e7787c37285513"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/blockstates/cargo_door.json",
+    "sha256": "cd25ac6ba1c3420dac6c47cb67b13ae84dee7a26cb9bf5bdf1fe28299da04b9d"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/blockstates/door_bunker.json",
+    "sha256": "f1b6e5a75ce1d7aa585a7b7b7d3c0d43d9b7849e3176515d1a8163b66814a5b6"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/blockstates/door_office.json",
+    "sha256": "b58210d266bc232b5ce8699a5fe51e6e55d9f8dba957638142f891793d3d83df"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/blockstates/door_part.json",
+    "sha256": "cd25ac6ba1c3420dac6c47cb67b13ae84dee7a26cb9bf5bdf1fe28299da04b9d"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/blockstates/fire_door.json",
+    "sha256": "cd25ac6ba1c3420dac6c47cb67b13ae84dee7a26cb9bf5bdf1fe28299da04b9d"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/blockstates/fusion_hatch.json",
+    "sha256": "a62f6a055d44d6526f46d31a91faebe9fd6d5894601995b6045b77bb3b66ba17"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/blockstates/large_vehicle_door.json",
+    "sha256": "cd25ac6ba1c3420dac6c47cb67b13ae84dee7a26cb9bf5bdf1fe28299da04b9d"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/blockstates/metal_door.json",
+    "sha256": "542e9fb8843d100534c176220086c3ea9a550ce2675f157bf7bcc7ca17fada9d"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/blockstates/qe_containment_door.json",
+    "sha256": "cd25ac6ba1c3420dac6c47cb67b13ae84dee7a26cb9bf5bdf1fe28299da04b9d"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/blockstates/qe_sliding_door.json",
+    "sha256": "cd25ac6ba1c3420dac6c47cb67b13ae84dee7a26cb9bf5bdf1fe28299da04b9d"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/blockstates/round_airlock_door.json",
+    "sha256": "cd25ac6ba1c3420dac6c47cb67b13ae84dee7a26cb9bf5bdf1fe28299da04b9d"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/blockstates/seal_hatch.json",
+    "sha256": "aa4a308af3c31f8a380b21e23fa27e9c1ea9c95a2f34abe9f4b2a3e79b51106b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/blockstates/secure_access_door.json",
+    "sha256": "cd25ac6ba1c3420dac6c47cb67b13ae84dee7a26cb9bf5bdf1fe28299da04b9d"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/blockstates/silo_hatch.json",
+    "sha256": "cd25ac6ba1c3420dac6c47cb67b13ae84dee7a26cb9bf5bdf1fe28299da04b9d"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/blockstates/silo_hatch_large.json",
+    "sha256": "cd25ac6ba1c3420dac6c47cb67b13ae84dee7a26cb9bf5bdf1fe28299da04b9d"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/blockstates/sliding_blast_door.json",
+    "sha256": "cd25ac6ba1c3420dac6c47cb67b13ae84dee7a26cb9bf5bdf1fe28299da04b9d"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/blockstates/sliding_seal_door.json",
+    "sha256": "cd25ac6ba1c3420dac6c47cb67b13ae84dee7a26cb9bf5bdf1fe28299da04b9d"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/blockstates/trapdoor_steel.json",
+    "sha256": "f0276be1faf7ded59e27e82cbc11c88a4bb15e6ada8680f53bd4240b9086b27b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/blockstates/vault_door.json",
+    "sha256": "cd25ac6ba1c3420dac6c47cb67b13ae84dee7a26cb9bf5bdf1fe28299da04b9d"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/blockstates/water_door.json",
+    "sha256": "cd25ac6ba1c3420dac6c47cb67b13ae84dee7a26cb9bf5bdf1fe28299da04b9d"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/af_za.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/ar_sa.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/az_az.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/ba_ru.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/be_by.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/bg_bg.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/bs_ba.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/cs_cz.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/cy_gb.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/da_dk.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/de_at.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/de_ch.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/de_de.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/el_gr.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/en_gb.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/en_pt.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/en_us.json",
+    "sha256": "2738a91d6c12587a89d95482f6120ea04385129abde7ad0ac6956c2b6bb4bfd2"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/eo_uy.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/es_ar.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/es_cl.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/es_ec.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/es_es.json",
+    "sha256": "40b4a61aa4eef121c1d375b950a63968c117ff751fefee34306190e3cc425ed7"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/es_mx.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/es_uy.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/es_ve.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/et_ee.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/fa_ir.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/fi_fi.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/fil_ph.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/fo_fo.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/fr_ca.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/fr_fr.json",
+    "sha256": "c79c13f0be3e6fb4181288c178ef0806aa0d8dd9357eb95514414b0471de5ffa"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/fra_de.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/fur_it.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/fy_nl.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/ga_ie.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/gd_gb.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/haw_us.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/he_il.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/hi_in.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/hr_hr.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/hu_hu.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/hy_am.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/id_id.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/ig_ng.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/is_is.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/it_it.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/ja_jp.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/jbo_en.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/ka_ge.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/kk_kz.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/ko_kr.json",
+    "sha256": "c4103989f2531b63fa218d11808cd58cf28621752c6021b0a0b70db18aedd36d"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/la_la.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/lb_lu.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/li_li.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/lo_la.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/lol_us.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/lt_lt.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/lv_lv.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/mk_mk.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/mn_mn.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/ms_my.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/mt_mt.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/nb_no.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/nds_de.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/nl_nl.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/nn_no.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/oc_fr.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/pl_pl.json",
+    "sha256": "3a66146cdf661bf8e286f9cb34851a5584647296d487ac5bf229d1e59f32e41f"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/pt_br.json",
+    "sha256": "f85d00511a9735b0baba7500025f1b30c5af0205312a6a5d32d0a5cd3d15733b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/pt_pt.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/qya_aa.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/ro_ro.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/ry_ua.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/se_no.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/sk_sk.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/sl_si.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/so_so.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/sq_al.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/sr_cs.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/sr_sp.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/sv_se.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/ta_in.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/th_th.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/tl_ph.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/tlh_aa.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/tr_tr.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/tt_ru.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/uk_ua.json",
+    "sha256": "44bffd034fbb4c4c76a9edcb8d589cf0ab46535dcf8cd4b5e7c150ec5a87890b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/val_es.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/vec_it.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/vi_vn.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/vls_be.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/yi_de.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/yo_ng.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/zh_cn.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/lang/zh_tw.json",
+    "sha256": "d0cea2622e4a2a82ea6f3e2501036ed8d7538ad33f5acac45ee81c6bddc4193b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/blast_door.json",
+    "sha256": "9de16030adb936042b0b323c3e6a2838727fae5abe0b0cccc3d45b888a64fc21"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/door_bunker_bottom_left.json",
+    "sha256": "7ae859289cf02c01f94272b3ac8f31c0d6ab83409ef8ecea86c3f7f928d3c63d"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/door_bunker_bottom_left_open.json",
+    "sha256": "4b04afcf2eb11a4bb1c7824def506885b72eb45b94e7ffd30c04ff12206f45d4"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/door_bunker_bottom_right.json",
+    "sha256": "6682a8ae5d436ecd7ca32da85de7393b58365eb98e60757960d630528aa47f72"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/door_bunker_bottom_right_open.json",
+    "sha256": "498a85189619c809826c9c3d5da84bec42fd3d503242e950f868296df4a96cd2"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/door_bunker_top_left.json",
+    "sha256": "cdc8ce026e2c75e31ab5c0957814ffdb608cb705e24a31ae5b929f9a132c1173"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/door_bunker_top_left_open.json",
+    "sha256": "065e6c793885d1edcbcff0963a0c9ff4e165532d50da45507fa8d6f439783f3f"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/door_bunker_top_right.json",
+    "sha256": "2ce3ddcc9731c606b457a330294d2181cfff2d18b0e9fd254025fb7c85ad770f"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/door_bunker_top_right_open.json",
+    "sha256": "9cf2d15fe09ac2e4afa9f65ea19f592385eea78aebacd8f54b40ad15b471817d"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/door_office_bottom_left.json",
+    "sha256": "d7d1a61ef028f7e1034bad93efba024d566a0a36bce2391a71c815088847fcbf"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/door_office_bottom_left_open.json",
+    "sha256": "cf78c340571afb0f4e7851cbfc9ec031f2d3c13d2c45801daab9c06aed7db307"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/door_office_bottom_right.json",
+    "sha256": "efac24042a2b607e3256b8160e8e9a47f3e05ea65890e2715893d2fcae64ef3a"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/door_office_bottom_right_open.json",
+    "sha256": "e61a04af73e5f78d635c87e1020e64a1c5740551424f238c66e88817486a561d"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/door_office_top_left.json",
+    "sha256": "a356ce65fe397bce2f42f39bd32ea2965f64ecc42d53800d14a567f44433052b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/door_office_top_left_open.json",
+    "sha256": "4a9dd0bbb884b02e9b5187808496e37305a2670c50d47180dd93c4e65d5f764e"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/door_office_top_right.json",
+    "sha256": "020718bfb70ec3e55d16b1219d4f34f16e714451c46f79a861dfbb9ae0d00d94"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/door_office_top_right_open.json",
+    "sha256": "ec25f3ccd1e08ff81c6777d87d0e6133e1926a0fd31a049cef15841690d613de"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/cargo_door.json",
+    "sha256": "0728cad0ba3591b38ffb6d6d0aa5ffc1119f4a65222fab0f69eeb4b9532ad7f3"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/cargo_door.mtl",
+    "sha256": "1a16946ab4b350c0f253bd669bacc9c525c784d370b9ef998eea45ccac2d36f9"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/cargo_door.obj",
+    "sha256": "98aed2b89f07dde7e9b8d4c280bc25b73776989596e56cca6fda7b43229b0ef6"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/fire_door.json",
+    "sha256": "f3cdd70dc5ab5a4b8adede2e399fff8c8aea00c418865987941947cd1814a82b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/fire_door.mtl",
+    "sha256": "2064885c700d43d29927605b0a92085800639dd9251d63a1282bab361ca59d0f"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/fire_door.obj",
+    "sha256": "b7a74953d45d666cdaa01b60fb19d1b95d2b22879db16fedba54828f4fb8efff"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/fire_door_config.json",
+    "sha256": "ba4abea0593fa242b419c99f5f99fff517fa1d91b4e703842921f58fe085300c"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/fire_door_legacy.json",
+    "sha256": "9d2da8b7e096c5a9ea2bc6e923ec2e1f65ae1d98c36a1d52029e7b72d2c7198f"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/fire_door_modern.json",
+    "sha256": "44ab09a8d97e0639ffdd8c5ce9c55e523b537ba15cc78372a7c9bd5afa955d5d"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/fire_door_modern_black.json",
+    "sha256": "42108bcf4c7b351d6570e7f85411ca94a0fa56c052d4a5d3eb1f7a93ff0d8771"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/fire_door_modern_orange.json",
+    "sha256": "767f3c92fb617d11918a0893927b9c8411b54967264a087a99f39491c0614f76"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/fire_door_modern_trefoil.json",
+    "sha256": "e2806dc1f5bd3bb2d6dab356bd8999ad443bca1894ae9c25bd68857d4ac4cb60"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/fire_door_modern_yellow.json",
+    "sha256": "8cc9fcaeef313a1d8a6dd56a75bbc824dd6d47346a5749f18e1d3b95b0494410"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/fire_door_old.obj",
+    "sha256": "7be64e5d5ea21bd92359aba0dae034a8a72ac94e2f50dccef8ad77977dc811a4"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/large_vehicle_door.json",
+    "sha256": "1a21d58ca64eddcfc8ced953eb699d8a1b80137a661b15e8e3a5bc8ff0f0f09f"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/large_vehicle_door.mtl",
+    "sha256": "2064885c700d43d29927605b0a92085800639dd9251d63a1282bab361ca59d0f"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/large_vehicle_door.obj",
+    "sha256": "d85ef519d8399d74deb0db3600d2b525aa80c95417b3e5e06d9ea8f9e2c6b0ad"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/large_vehicle_door_clean.obj",
+    "sha256": "bd993ced8651b5a97c684eba3bd0a24bf224b9fe62b5fa684a34b0202c5ee22e"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/large_vehicle_door_config.json",
+    "sha256": "472b2e46b30a7caed6963648a83542134da18e420080e1d3df4368cf0b3f142b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/large_vehicle_door_legacy.json",
+    "sha256": "e640aacbc89b81f90c9098012a1b95a68daa3890edeb67ad7dbb8f47373bd3f8"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/large_vehicle_door_modern.json",
+    "sha256": "66b3a7d32ddcf83ae8d678346aed0e3a35ba4b6e0851142118bd245ebe0ff20e"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/large_vehicle_door_modern_clean.json",
+    "sha256": "462266f66eb295ce0bec9017c4d607d009d9791d8d2890f600c93bbbb56b0e86"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/large_vehicle_door_modern_rad.json",
+    "sha256": "8243eb0020e84e1d568d389b1c17008a1136c3701a1f082b225f5d4692cd71f9"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/large_vehicle_door_old.obj",
+    "sha256": "adcbebac9eff9b64f64a2376025a59b8cd6c0b046a8981d96a753fb14d6b9be9"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/qe_containment_door.json",
+    "sha256": "4b8d1df85dea86d2099e1aff8c47999ae59c4cfc76424b793185d9adcc36ee81"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/qe_containment_door.mtl",
+    "sha256": "c26774f85efc00a06fa2799fa85a62eda7bd635c001495b5f179279e3d181053"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/qe_containment_door.obj",
+    "sha256": "20185968f637ff16cb25776e27eee689a89cf6700a4e3f21a7739ac20b905c29"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/qe_containment_door_config.json",
+    "sha256": "65c8e1a3ec0ca6278b2985ae3ab159987f287562eccf8d828e08529e59ac94dc"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/qe_containment_door_legacy.json",
+    "sha256": "1a662c0854a75f03ac1df89df7084f242f6d00b77c450e703490e6a679841d87"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/qe_containment_door_modern.json",
+    "sha256": "f12da3b2e953b8b8219b238cc1d61c475afc2ca3a8e12b198772075e9c384899"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/qe_containment_door_modern_trefoil.json",
+    "sha256": "229e07bf2216cd549e0270ea832f7b806b8c52be638c45abb48bda7e28b94407"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/qe_containment_door_modern_trefoil_yellow.json",
+    "sha256": "996a32e99814389a6de3a56e761e0963375a0bd20c107e52372168b4d396c089"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/qe_containment_door_old.obj",
+    "sha256": "b348c46d909467a1e1a301e9a4d72958cf194dbdbeaa227500dd43e0e20d8f93"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/qe_sliding_door.json",
+    "sha256": "e8355f127454440cadd44d1ffbfa4dd36103c771146b307213c5f9f78c6c2dbd"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/qe_sliding_door.mtl",
+    "sha256": "2064885c700d43d29927605b0a92085800639dd9251d63a1282bab361ca59d0f"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/qe_sliding_door.obj",
+    "sha256": "72b00b1be919286ce6dce8aa4d3c9806c9d741419be3f90b746efac1d1fa24d4"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/qe_sliding_door_config.json",
+    "sha256": "920ebaf9a77390acd438acaaca534715bb60e2d5bf29cde5c3959ced72305a11"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/qe_sliding_door_legacy.json",
+    "sha256": "ce4b73f5b71ff543f4816436100346569f0c0ee1ce5973f44d302e85bcf053a3"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/qe_sliding_door_modern.json",
+    "sha256": "573d16ae2c8b8a9bb945da2f4fcfd325651cd5ba9cf9c76021a1b2a7226aecfb"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/qe_sliding_door_old.obj",
+    "sha256": "c3c9e7c4350205ebc0856703954fef824c5e4dca27c003ba3a2ee4d075b9bc36"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/round_airlock_door.json",
+    "sha256": "902ae6c7c84666845c0509b42ccef4ded77e803f20d97511d4c243b864a55a05"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/round_airlock_door.mtl",
+    "sha256": "2064885c700d43d29927605b0a92085800639dd9251d63a1282bab361ca59d0f"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/round_airlock_door.obj",
+    "sha256": "7c28d5d70ce79731b8b51ff48a968663d85daeed41af40ac58d2a7ceb0a34671"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/round_airlock_door_config.json",
+    "sha256": "10f934d8bf6432d31e12afdba68a91f1933295c2670065f4422421968a049b6d"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/round_airlock_door_legacy.json",
+    "sha256": "0a26f3db9eb21f8c8fc12b9d5e571d4fb548c91f27e7dd4ec4b93a9bfa68bdfc"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/round_airlock_door_modern.json",
+    "sha256": "8d36744ba937f28a5ddd07073ac0e03dba3926546a127d99406fe5e227a2957e"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/round_airlock_door_modern_clean.json",
+    "sha256": "042cb61c6bf5a84133555e0d38a05109e94142584b5d418b7f922c4c6715f74c"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/round_airlock_door_modern_green.json",
+    "sha256": "8aa6652dffe0731114e375ca6e96d58d49d43f7d4476c0af5049498f3d7f7ecd"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/round_airlock_door_old.obj",
+    "sha256": "a4dd9083afc5ccda263c7ede4ae8487ef77df89ec2a9d4faeb8993996c344a85"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/secure_access_door.json",
+    "sha256": "cdba17a7e14b27156b5f1038b557f8bc572960c6e2f0d3e7654a79d37782327d"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/secure_access_door.mtl",
+    "sha256": "2064885c700d43d29927605b0a92085800639dd9251d63a1282bab361ca59d0f"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/secure_access_door.obj",
+    "sha256": "2dbc9e9119ceb38f28e29adc8e546fe7d474864ff4bb6652b4c74c852e656b8e"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/secure_access_door_config.json",
+    "sha256": "753ad06f0efa4376c9835e3e60e15fe8c073cd279918bfd6327992fdf784b790"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/secure_access_door_legacy.json",
+    "sha256": "949dc1155bc145e510b4714a34ef17243c4bc1a5183c0796e847bf305c7f784c"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/secure_access_door_modern.json",
+    "sha256": "121386bcf240a3444ab92edb130122983ca2e94290226a885b0e333b7dd0e14c"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/secure_access_door_modern_black.json",
+    "sha256": "ce5b7f921a98cfa4e0709911bbb765bf302066a9e4e3e5fce96e014f248851fd"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/secure_access_door_modern_gray.json",
+    "sha256": "850c45a6057d58828872a5c27d1454012c3b72decde0c6dd8ec44ab8d13c0ada"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/secure_access_door_modern_yellow.json",
+    "sha256": "fd52213b61bd8320ff4fcb4496b5914cfd4328be0514d947f941348f1f84834a"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/secure_access_door_old.obj",
+    "sha256": "d5224cfdd254ffd2d2f36f7abe4a96165386710f684d71d7d25f0670efc338f6"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/silo_hatch.json",
+    "sha256": "fb35b1f3bf47bbe0cb227c03982eb1592405129f7d48d402d4198d31b2b0387f"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/silo_hatch.mtl",
+    "sha256": "2064885c700d43d29927605b0a92085800639dd9251d63a1282bab361ca59d0f"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/silo_hatch.obj",
+    "sha256": "c54402a2cff195ce2b96109c9697bcd3ed950143c866d3fc019109ebed5cfce5"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/silo_hatch_large.json",
+    "sha256": "c7012d163dab505518f68c9488584428560f9b44d481c9c59b369021b384bbbf"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/silo_hatch_large.mtl",
+    "sha256": "2064885c700d43d29927605b0a92085800639dd9251d63a1282bab361ca59d0f"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/silo_hatch_large.obj",
+    "sha256": "f28ade13e91b3721bb3d6ef6edaf9256ce049bcf7da82c6febac7b54bc1c3851"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/sliding_blast_door.dae",
+    "sha256": "d2b0aa21c84dad3d0421ee285666eb59c4b7cc8dc0bbe8f08278451869c4dc90"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/sliding_blast_door.json",
+    "sha256": "f70cd42447583f0c0c21187720d7cc55fb92751d00bdd7322167192db00a3bcf"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/sliding_blast_door.mtl",
+    "sha256": "c3ec0f5d08a8d4353fa7650d97a1279918c2214e4da936274ee8ffec7344a41e"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/sliding_blast_door.obj",
+    "sha256": "faf1498e2998cbc0851e221c5ab89ce50b0841c1b16934e16632137498d1aee5"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/sliding_blast_door_config.json",
+    "sha256": "d9497da65a9b830a78c430c255f1d02fd7357711c983c6d20e6520a10a00e089"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/sliding_blast_door_legacy.json",
+    "sha256": "8aedc894114279eb470268218f3d4734fbda0d12d1e51dd9b32c600f240b19dd"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/sliding_blast_door_modern.json",
+    "sha256": "7d02756b8c9739fb5d9b50ad49abc23455fcbb9a92f703d52a61e303c1635fa8"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/sliding_blast_door_modern_variant1.json",
+    "sha256": "4d8af90b854faaefa65f1c9495ce9f31aac6afd03b94a68928c87379bc568b40"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/sliding_blast_door_modern_variant2.json",
+    "sha256": "330894c60396ff56b6406a6bd467955d78ac5efe71681337cf47f6c5c6ee6842"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/sliding_seal_door.json",
+    "sha256": "4b3602d0d1deac19fe7a30dede669a6ed768749ee4b2d6797a6b55d4b4ec91df"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/sliding_seal_door.mtl",
+    "sha256": "2064885c700d43d29927605b0a92085800639dd9251d63a1282bab361ca59d0f"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/sliding_seal_door.obj",
+    "sha256": "183aeae6c7b730814225b385f195d18f7d053b9e30fb1527e3f6f0a6e3bb4c01"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/sliding_seal_door_config.json",
+    "sha256": "3d2c38c330c478055848cb9dba2c0d6cefce1fe25c338672398cbdf5c28d5895"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/sliding_seal_door_legacy.json",
+    "sha256": "d3275be538a77b8487035b8cfcb9826da1de2261a510e392b47105480e751161"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/sliding_seal_door_modern.json",
+    "sha256": "ea2214b2c9dd78c105aed1a0aebcb68d41ccce0f088881125657c15b794585da"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/sliding_seal_door_old.obj",
+    "sha256": "763a5f8d176b270a4b4579183ec779db9c28118a2f7e4ad109f09d1e08e7fd25"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/transition_seal.dae",
+    "sha256": "3cdeddb042bccc67a228bf2f4b9ec2f5c0ae5ba46546e2877473acffb53e6435"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/transition_seal.json",
+    "sha256": "1b85795206aade8dbbb46c97978f28b175c54d5612a6992986cc8600eaa21cc8"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/vault_door.json",
+    "sha256": "fe37f2054899514fa9ca73ca39d51c9230505d31bf3f6b06390af14d60e07c97"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/vault_door.mtl",
+    "sha256": "9460980f1b6085c0a8146abfa5ea222227ce150957edfa6a0d5d333ab8c46642"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/vault_door.obj",
+    "sha256": "df228fa9a9d3bdbd83151616476f94496057cf7fb9121a9aa7d33b2249811e02"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/vault_door_config.json",
+    "sha256": "52aae5ea2d40556d8ba976293b718d546b391b8806e4a554028b1bbf991e42e9"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/vault_door_skin_101.json",
+    "sha256": "23343f62a4e638cb782e5a801d96e139d6771d57a2d392109e4a9262259ff993"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/vault_door_skin_106.json",
+    "sha256": "719c8e8dcafe8a9301828359e1301af19a26d52e377508ae67d8eb0393b59178"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/vault_door_skin_111.json",
+    "sha256": "c42e9cd43b934ee92ed0a7d29ca1783ebc9ab5f7fb698013dc7e93ffd04de1fb"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/vault_door_skin_2.json",
+    "sha256": "a98eed5f89174e74df6eae85753703ad55377085aee56fdae58709e0e35f312c"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/vault_door_skin_81.json",
+    "sha256": "644f9ebc08a535fd271c919820e9e7d81241a331a0814ee115c2e91d33175a24"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/vault_door_skin_87.json",
+    "sha256": "8fddf192ab352a2b2e232ad8c1f0a3feaee62a23de2738421d66916463f4409c"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/vault_door_skin_99.json",
+    "sha256": "7f9eb408ecb8638541b0397526c1991c7436634bd9efc096cf169bfd8e783515"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/water_door.json",
+    "sha256": "895a8b5343ae25b35dcef0ff22735692da1e7befbec87f1cbd56ad53a7774751"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/water_door.mtl",
+    "sha256": "2064885c700d43d29927605b0a92085800639dd9251d63a1282bab361ca59d0f"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/water_door.obj",
+    "sha256": "2fc7c833d5b420468af50ae3e79ba53aa42dd109754b3b4f88628fd4e9c4fddc"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/water_door_clean.json",
+    "sha256": "d73446072be908fed8400e85bd2bfc2b74d604d18941868b8bdfb206c9ea5643"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/water_door_config.json",
+    "sha256": "5d68cf849ca36fbda61fb42eaf090ae8d3d3f938ce36ed0510666b2edada7ce6"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/water_door_legacy.json",
+    "sha256": "c434976622ef4a2590dc1c4f2b3d39c006be9def1ee3d0a46bb69cd9105929c4"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/water_door_modern.json",
+    "sha256": "ae82ffa3eef12e013efd871af7511421a1d8c6c62695ac37b38b1025ec25f2b2"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/doors/water_door_old.obj",
+    "sha256": "9ff0b4fec271368d258299088c6df013231154cd711439d622d263036be05bba"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/fusion_hatch.json",
+    "sha256": "a45b7c44278ae399200d1693c8539a13fc82a440866bb1f55b3cc0380644b1a6"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/metal_door_bottom_left.json",
+    "sha256": "830e39cdc1d2532d0fae328b03c1ca7326795f44cc1b10bf416e2c2f8b562e86"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/metal_door_bottom_left_open.json",
+    "sha256": "87d3daaf5c9f0c16f766c7314d0b326d69bb0380961130d090ecfb6b36b08197"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/metal_door_bottom_right.json",
+    "sha256": "94be548dda82b9b7f1abc61e83a327bd1ec563bc6e8543626669853a1e70b043"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/metal_door_bottom_right_open.json",
+    "sha256": "f464d23f7d1fa07cb7544fe992e9f7061e81ab17de3d2be9c3002a3b6e5eb8d5"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/metal_door_top_left.json",
+    "sha256": "44b7d5150dcbae45ff332e010d39b6e68b672e75b53aa34b30055253738b7568"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/metal_door_top_left_open.json",
+    "sha256": "b61718c6b4641c2899aab41ed41c61a1800a6914b9e883bcfc98bff17c7b0a1f"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/metal_door_top_right.json",
+    "sha256": "72849a6e9f38b3265f6f58614f9ba4362902c6502293ccd312f75e38751b15ec"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/metal_door_top_right_open.json",
+    "sha256": "42cae5767044e463d01bbf4a8fa5320db369124d5c623fec66c4b9f7af8d01da"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/seal_hatch.json",
+    "sha256": "8ff876fc04c1223f3e6260eb6615949f37f5bae8003696116b3247bb3d7f290a"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/trapdoor_steel.json",
+    "sha256": "267f5ac4975d793b6810659d73fa37c94f8f6eb5010df3ddf7514ef7002b1f54"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/item/blast_door.json",
+    "sha256": "a8a71b28e6a34fabd07b7f2f930675165108b253d2d60d891b09c5b1c27ca34c"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/item/cargo_door.json",
+    "sha256": "aab4f034fdd1fcfbaa494f8202e6de9f8002ffe9d17f2ca474ff4fb567843397"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/item/door_bunker.json",
+    "sha256": "d4ef02828f231cf3763c7a2b0c92cb3baf7f1f520c70caf88af752aa36857c9f"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/item/door_office.json",
+    "sha256": "b027b66d763e71aa654b12ac40897fa23491f3c57a578128842a09c7cfcc6b96"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/item/fire_door.json",
+    "sha256": "21bbb88c7ca9c3abd258dc0e04a6c8a86119dfbb86216ea443fc80bd04b950e5"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/item/fusion_hatch.json",
+    "sha256": "c7b8e6f25ea49676bd6abe75d4ab7af35ad062299551153ddebca5cf47eefd9e"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/item/large_vehicle_door.json",
+    "sha256": "b3c7789e91d679b32da06fe4bd3eb94313ffb0e7a585d4a6f65cdcbe6967292b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/item/metal_door.json",
+    "sha256": "4862441222bb023dbb932d7f98f0140e10afcdbed108f97f699abb0195b64f8e"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/item/qe_containment_door.json",
+    "sha256": "973a8b17752f4ec8e7777f4d3a8ada7937a25af28a5c98b1d1462c6325bde718"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/item/qe_sliding_door.json",
+    "sha256": "dfc147ef0d4957159cc0bb1cd5a63529ae2690f6b12f9b0a0e074d1412d7d2c6"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/item/round_airlock_door.json",
+    "sha256": "b8b72808dd2fb0d3f1a5bda4324284e87c3ed1696787dec2c2f962d520f99602"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/item/seal_hatch.json",
+    "sha256": "e90f297af44879236c07d414197ea48ad78e68ddabc965d7d7b06aff8daa7e57"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/item/secure_access_door.json",
+    "sha256": "c6b6bb0723b9ea0735f7dab976fe905490709d642e79848f85b6d5b309035f1a"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/item/silo_hatch.json",
+    "sha256": "cc4b777e91d90924829c56d541ca03ef5368e8595fa5468a1e4b002ddbf7bc06"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/item/silo_hatch_large.json",
+    "sha256": "e9a4e4a534be5e37e0a1aae4c22757f2602698f2f799264d51348afd65ba1720"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/item/sliding_blast_door.json",
+    "sha256": "83c5ac902fd82cef36de4d8baa26e3934e683c6d1d59a00ff9a6caab2ab8905f"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/item/sliding_seal_door.json",
+    "sha256": "829bb15813165877159697a5a889d77317552fd5155d72276eb610f5d2446275"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/item/trapdoor_steel.json",
+    "sha256": "e37ab9ddbd0ead18d3aa96418add5dca124a3112d8bca7005a3d0031646b156e"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/item/vault_door.json",
+    "sha256": "3d4473aca4cffd50643d6f4a65d7b46e5d18ca487214709416df36b04c4111b1"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/item/water_door.json",
+    "sha256": "86512abdd9a47a34bc8445fc6fb111e0dd5cc11dbe9bfcc4b2a9155c288d7588"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/sounds/block/door/alarm_6.ogg",
+    "sha256": "a0a1db31985069ffd784101bbd0be7ca4ac6cd139cd7bb38f6f316c7a474e843"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/sounds/block/door/door_move_2.ogg",
+    "sha256": "4525c97a751f6802fc3a78c6df61479b57baf99ba0935f2e069eedb2c0e19cd0"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/sounds/block/door/door_wgh_big_start.ogg",
+    "sha256": "b1e9f6c2a044dfd73894f9c0ffd79cc981bece80a10812cc21a6c51e48aaa9b2"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/sounds/block/door/door_wgh_big_stop.ogg",
+    "sha256": "625e9229623a8bae933855b3350d87df0a524ff463d0ed5afebf837e8538fb42"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/sounds/block/door/garage_move.ogg",
+    "sha256": "5f65a51e6a39d35d7fe9a8b86c1429856a1babd35a150dfc3f4f310550bf9d60"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/sounds/block/door/garage_stop.ogg",
+    "sha256": "f22e0a4bae143b926894002d33cf4416be4cc3d02b7e7f0762e72f4868ac9f01"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/sounds/block/door/lever_1.ogg",
+    "sha256": "431518c831f38992ab768dcd292ed0cb0e5e6923bbbda533481d93093f233d7b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/sounds/block/door/metal_stop_1.ogg",
+    "sha256": "3a6336ad86bde1b81a8334487d9ffc97fdc54d3bc15fca93f07ebfc4c12954cf"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/sounds/block/door/sliding_door_opened.ogg",
+    "sha256": "149d156aed0fa1bc48b3a30ba9bd3b07f7202b634f4f2dd0985ac395eccf893b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/sounds/block/door/sliding_door_opening.ogg",
+    "sha256": "116b45cd71a86305094513e1a1ce908a6a15c460600109add2d5869b4144a4a1"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/sounds/block/door/sliding_door_shut.ogg",
+    "sha256": "deae59bb30b07a8130086c253757474d39ddd4330a18a26955a12740c19d99ca"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/sounds/block/door/vault_scrape.ogg",
+    "sha256": "a1e01cffed5a8827c92f1ce45c7a7179a18c49cc73e095fc024000ba6985b40b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/sounds/block/door/vault_thud.ogg",
+    "sha256": "f6ead97a83b62450ed491b6bfb90be03b6c59d9aee62376f2277b5d2262deb30"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/sounds/block/door/wgh_start.ogg",
+    "sha256": "cd9dc680daa7388258a06b867bd17c4347f64dee08ae34a202b077ba5fe961f1"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/sounds/block/door/wgh_stop.ogg",
+    "sha256": "1deb845e5b81b2980a58998b8a779c58954ccd9b59c37bb9aada80da23602ce7"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/sounds.json",
+    "sha256": "408ab56a98f6d0254af4f611f10943d2dedd333e91ef1f04e603c378c9b3d4a7"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/blast_door.png",
+    "sha256": "bd17036e4e567c7be51262e726244d45d2ff10edc85597852565a93c497f3f0a"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/door_bunker_bottom.png",
+    "sha256": "cacdeee27c64f3f2e857867320a97734d14b00239654808399d57654bb7e93dc"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/door_bunker_top.png",
+    "sha256": "60b969bdbb9cb4ff43e12a56def393906eefb42a95ae66f3f5b33a5315785fea"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/door_office_bottom.png",
+    "sha256": "3f0cc96cb8f594a2ef1f77f183678ca87a50861a910569af430daa2a495996fd"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/door_office_top.png",
+    "sha256": "f3d2fbe280fca70d0dad5c5c0eda8ae6819c238d33c6959af8a9797a60792b46"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/blast_door_base.png",
+    "sha256": "bfa25a252b42f15b8d1495c741e86994c73dcad72408e2933d6dba375e89276f"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/blast_door_block.png",
+    "sha256": "fa6f2158c57da986e64d5f0bc09c719aa4bde7db3007fc9c989571c56bb2c1b8"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/blast_door_slider.png",
+    "sha256": "8fa813c0c693cad2aa63dc23d882d8e9327abe3c201e3b54a1c8c2d1e0a3672a"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/blast_door_tooth.png",
+    "sha256": "7dcd966c7d11256a46412022eb8bd29c5034e5403cc5df213f004f8b9f780d5b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/blast_door_tooth_alt.png",
+    "sha256": "7ac24db120ebc11678ded5dae228d23fa06f4fba09bbabd6f909249565ab6bee"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/blast_door_tooth_alt_alt.png",
+    "sha256": "81ee09911a7919c3769c5cc8d7f92230b8a64d25853d5f51bd45bf379c7ad6cb"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/cargo_door.png",
+    "sha256": "626384422ce16a7e964cda5aa469848285ef56cabe04e58727ab1aab68eadb06"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/fire_door.png",
+    "sha256": "38b79ed91a41ec40705f8c51b8c6f7ffe563732e1676f278eb1c2701746dae49"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/fire_door_black.png",
+    "sha256": "857c601981ed161d494e1b50907913ae7261ee93065a56fa73dadaf1f8cff8f2"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/fire_door_old.png",
+    "sha256": "8c1ad9944338c2bf55b7e7894ca4976ece9962f3fbb58bfd7f9fa3701d2a46da"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/fire_door_orange.png",
+    "sha256": "a17040f389fa04211cbf63303ef6148eaea581898c6d7c2c0c9e67b85262f198"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/fire_door_trefoil.png",
+    "sha256": "58a07b68bf0470c5836a5a54904d7f7b4845bbf9605c43ff3acc83b0585e1227"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/fire_door_yellow.png",
+    "sha256": "97cd506091de49b5b5e3a01fac64406e3537bd45c0edc5fa813386d261c46c3d"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/label_101.png",
+    "sha256": "0453ca5cbcf7b86eaa4e01ec5d7026d8829351c7c74d322f4a3e4c6311bb6430"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/label_106.png",
+    "sha256": "474364a4ca315f38811963f86b195fe6190e974357f28e626de44a92d9f10683"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/label_111.png",
+    "sha256": "e6689a2f6afd8f01fc021ccef3626c48d48a755dbbe0cd9614f0dc5bb1ba44e6"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/label_2.png",
+    "sha256": "b31f02a2a26fa82074533318c5a804306994f440734de9fc44823dafa252fc1f"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/label_81.png",
+    "sha256": "81dfc7db81439cb76f3fbfa43021b37bcc0e2f2f5ceb03d18b57306567cb0963"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/label_87.png",
+    "sha256": "81ee028dd32d00a32b6b7795250ac152897ed09fd7de7bebd2abe48825e9d7f4"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/label_99.png",
+    "sha256": "a24260ed318f78449b1208463ee15df2eb1e22ccf11d4341f6a943390f76909d"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/large_vehicle_door.png",
+    "sha256": "a8dd7ab992f084ec814ffa36f88f0b06442606487bd559337536626c702cd842"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/large_vehicle_door_clean.png",
+    "sha256": "3e73a35068be2e6bcda746225620c4c27f8f195e2176cb0ec32ed602f29b3244"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/large_vehicle_door_old.png",
+    "sha256": "351eb8b34796e2753757508df0187687f2087d7ab91814b26baf57746fda1c90"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/large_vehicle_door_rad.png",
+    "sha256": "c94f07cd1c707a08e18f010ea9542691c05a9d807491339980d2fd4abac22c16"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/large_vehicle_door_skin_rad.png",
+    "sha256": "90bb4cb59757834d6a8bb07bff6639c5cfec7e38c4726baf0ae254d42fd19666"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/qe_containment_decal.png",
+    "sha256": "1878df08a8ecfee7b29e06a0fcf45875aef933b5dcf400afdf8dc1da1780bb74"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/qe_containment_door.png",
+    "sha256": "701accfdb7b6ef7a4414dae8ad75284a552ab5fe1516cf1a9b7471741785ca13"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/qe_containment_door_old.png",
+    "sha256": "4cedf6176731dacbaa9c0f858c2d21a1b7483487bbf9e7f2c51ce251e3cd7bfc"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/qe_containment_door_trefoil.png",
+    "sha256": "35a0908fdded523d0f924b540ed6e18d13dacf214694e423b52b6a3b63a755d7"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/qe_containment_door_trefoil_yellow.png",
+    "sha256": "76ba12cac7468c409ad52b735e66fffa5641da4e096f8632f6506637ea66b52f"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/qe_sliding_door.png",
+    "sha256": "dd435ec20ab06c3cde4cf9c3363335c72d70c74a3d1290ed2e6bcaacf54825ec"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/qe_sliding_door_old.png",
+    "sha256": "cff2748e70c2eb9899803c7326367320dbde9f9e9216fa3a4eedb137da135972"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/round_airlock_door.png",
+    "sha256": "5882cc6f31fe949683a2d5256f74fa23958cf28e38d69874db67bd8de43510b8"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/round_airlock_door_clean.png",
+    "sha256": "1928c6b11ac0d8fd2cd3a810270d8e7aca8137959a6d826ef19a4bbd652af46a"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/round_airlock_door_green.png",
+    "sha256": "a13c24ff305257508554c874951e2927a85d1863554c4bf120656b6b8cc67fd6"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/round_airlock_door_old.png",
+    "sha256": "b853201eecca40999e4a2b46d1d9e7db787758e7d2271d88c13c86f3330df099"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/secure_access_door.png",
+    "sha256": "2ea5ba84fbe6c4b76db1a52aeb01ea21776f975dd7a359291e83e19d079cba0c"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/secure_access_door_black.png",
+    "sha256": "37d43306c605faa128708943db89a01a4c64f0ce56752718db09b79ee0d33c9e"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/secure_access_door_gray.png",
+    "sha256": "717dbd15b5098abbc7b143c49fb4713af0035f0d51e6f7e6ec1339da7e799173"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/secure_access_door_old.png",
+    "sha256": "1e86d894b3c47aea89d0460f5dd72c06813759348fd283cfdcc60d3e444a391c"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/secure_access_door_yellow.png",
+    "sha256": "83b8d8f15f0185fead0d3c98cf90aa25fe3a54ca23f93c583e0f3a9dee9f3505"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/silo_hatch.png",
+    "sha256": "2b3489a4b103fbf1d08ed964e738731739961b36400e7f6d2d940a20144f73c6"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/silo_hatch_base.png",
+    "sha256": "ada00f5e905bbddf9aec8f8750155788ab21b84761091d531510af150a3df89b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/silo_hatch_large.png",
+    "sha256": "03787f2c38e5897ce35b3023bdcbe98fb91c901346bc7e9dee94e9f4e710351c"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/silo_hatch_large_base.png",
+    "sha256": "335ca194da416d676c6dfcfc3b3d4b093867a7bc19eaca4bd386d7c54749c8fe"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/sliding_blast_door.png",
+    "sha256": "2cf36dc14fc720adc676697d81570cb89dd42b082e917fbbfc52bb61c9121e7a"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/sliding_blast_door_old.png",
+    "sha256": "4421e71d1e1b4f8949ceb356de97c56f3b82f76756f87885ad006dfb59f61712"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/sliding_blast_door_variant1_old.png",
+    "sha256": "497019c5351fe1fc2f2757b30ece9787484f5adc873c67c8d57e44d25fdffb77"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/sliding_blast_door_variant2_old.png",
+    "sha256": "6f585abcc49d427489edfccf090332a5180fdcde936c637d9f6a013dacad503d"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/sliding_seal_door.png",
+    "sha256": "12860a3b1d80e4b498ddaf600ac31a2e5d78b1d655136930f428548adeaacce1"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/sliding_seal_door_old.png",
+    "sha256": "11a58c5cf8e77e6352db651410c1711cf849271b3a1ba0bef3c3653fcdf12f71"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/transition_seal.png",
+    "sha256": "948a13b18e38d101cfab3f977f140efe9243befab68ff4f5e395db952f71ace1"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/vault_door_3.png",
+    "sha256": "23d73453eec2f4d855fee94995b50062cb1d2e9e6ba357adf6fb1e74159c3322"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/vault_door_4.png",
+    "sha256": "e535334ac6ce6dedf620baa39bf1f4c364f348aeda1a682e843666f33872b596"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/vault_door_s.png",
+    "sha256": "19629a2dbcfebe3775a1bcda7a13dc669fc675c20da3ec362663f8c3ce7a6ba3"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/water_door.png",
+    "sha256": "5687af5d43d3ed148e965b969459a49242e95f89795a7b863b7f31da99a42c14"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/water_door_clean.png",
+    "sha256": "5ff4fe9e25e5c544ab3633d4901014376cbcd4853a7a8ba44fab48d06017fdeb"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/doors/water_door_old.png",
+    "sha256": "d14a436c4538da89f3e06da7b0ee0dcebbd16ae5858b92979df06a94afcb4bf7"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/fusion_hatch.png",
+    "sha256": "e2c4ba9d0aaba8d6f9f5ae7a64d0a4ed29e8fa82f3032190db68ad24ac970a74"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/metal_door_bottom.png",
+    "sha256": "5d9c41f0afbe700b00448ce856f0ae4e1d8ea08488ea6f5bbc7cb838f0ad0ae2"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/metal_door_top.png",
+    "sha256": "8bf9ab7644076068b13a57e21918471fab5067fe6be14e26e378af1299827345"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/seal_hatch_3.png",
+    "sha256": "381bcb492268e4d4e28d4e92b80fb6dc0e56f58ebdb187ebf46a768a796b85f7"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/block/trapdoor_steel.png",
+    "sha256": "f0a681ce7b82552c89ad34dccaeafaa7d73c2b7e89fde2ff021aa60f0c880e27"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/item/door_bunker.png",
+    "sha256": "a9937063b0c090f081ea0dbc7a78bd180840a7d0db3a485c277be7bb08c04051"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/item/door_office.png",
+    "sha256": "dbf83b24406b09239d03672d845b489b9b8b6030d00e0f44d10539ffe3c13824"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/item/metal_door.png",
+    "sha256": "598bb132e106fc82539c8dc625e4389587547ca521b800f7ae26181436b6acd5"
+  }
+]

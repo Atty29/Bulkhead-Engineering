@@ -1,0 +1,18 @@
+plugins { id 'java'; id 'net.minecraftforge.gradle' version '6.0.54' }
+version='1.0.0'
+group='com.hbm_doors'
+base { archivesName='hbm-doors-1.20.1' }
+java.toolchain.languageVersion=JavaLanguageVersion.of(17)
+sourceSets { gametest { compileClasspath += sourceSets.main.output + sourceSets.main.compileClasspath; runtimeClasspath += sourceSets.main.output + sourceSets.main.runtimeClasspath } }
+minecraft {
+ mappings channel:'official', version:'1.20.1'
+ runs {
+  client { workingDirectory project.file('run'); if(project.hasProperty('doorSmokeTest')) { property 'hbmdoors.smoke','true' }; mods { hbm_doors { source sourceSets.main; if(project.hasProperty('doorSmokeTest')) { source sourceSets.gametest } } } }
+  server { workingDirectory project.file('run-server'); mods { hbm_doors { source sourceSets.main } } }
+  gameTestServer { workingDirectory project.file('run-tests'); property 'forge.enabledGameTestNamespaces','hbm_doors'; mods { hbm_doors { source sourceSets.main; source sourceSets.gametest } } }
+ }
+}
+dependencies { minecraft 'net.minecraftforge:forge:1.20.1-47.4.20' }
+tasks.withType(JavaCompile).configureEach { options.encoding='UTF-8' }
+jar.finalizedBy('reobfJar')
+jar { from('LICENSE'); from('NOTICE'); from('UPSTREAM.txt') }

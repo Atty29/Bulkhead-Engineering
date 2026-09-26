@@ -1,0 +1,15 @@
+HBM Doors Standalone is derived from:
+https://github.com/Raptor324/HBM-Modernized
+Commit 0365cef5956016913095eeeb9366f26c601ca9a0
+
+Original door declarations, model-selection value types, COLLADA parser,
+models, textures and sounds are by the HBM-Modernized contributors and
+their upstream authors. Original authorship comments are retained.
+
+Standalone modifications (2026-09-26): Forge-only bootstrap and registries,
+door-only controller/part block entities, multiblock placement/removal,
+buffered OBJ/COLLADA renderer, skin cycling, item rendering, vanilla-only
+recipes, resource generation, and isolated server/client smoke tests.
+
+The upstream LICENSE is included without modification. No endorsement
+by the HBM-Modernized project is implied.

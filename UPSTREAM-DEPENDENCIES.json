@@ -1,0 +1,3975 @@
+{
+  "door_roots": [
+    "com.hbm_m.block.decorations.DoorBlock",
+    "com.hbm_m.block.entity.doors.DoorBlockEntity",
+    "com.hbm_m.block.entity.doors.DoorDecl",
+    "com.hbm_m.block.entity.doors.DoorDeclRegistry",
+    "com.hbm_m.client.compat.create.ContraptionDoorAnimCache",
+    "com.hbm_m.client.compat.create.ContraptionDoorSoundHelper",
+    "com.hbm_m.client.compat.create.DoorClientInit",
+    "com.hbm_m.client.compat.create.DoorContraptionClientApplier",
+    "com.hbm_m.client.loader.DoorModelLoader",
+    "com.hbm_m.client.model.DoorBakedModel",
+    "com.hbm_m.client.model.variant.DoorModelProperties",
+    "com.hbm_m.client.model.variant.DoorModelRegistry",
+    "com.hbm_m.client.model.variant.DoorModelSelection",
+    "com.hbm_m.client.model.variant.DoorModelType",
+    "com.hbm_m.client.model.variant.DoorSkin",
+    "com.hbm_m.client.overlay.DoorAnimationDelayHelper",
+    "com.hbm_m.client.overlay.DoorModelFakeItemRenderer",
+    "com.hbm_m.client.overlay.DoorSelectionClientHooks",
+    "com.hbm_m.client.render.DoorChunkInvalidationHelper",
+    "com.hbm_m.client.render.implementations.DoorRenderer",
+    "com.hbm_m.client.render.implementations.DoorVboRenderer",
+    "com.hbm_m.client.sound.DoorLoopSoundFactory",
+    "com.hbm_m.compat.ContraptionDoorState",
+    "com.hbm_m.compat.create.CreateDoorRegistrar",
+    "com.hbm_m.compat.create.DoorShapeComputer",
+    "com.hbm_m.compat.create.HbmDoorInteractionBehaviour",
+    "com.hbm_m.compat.create.HbmDoorMovementBehaviour",
+    "com.hbm_m.compat.create.HbmDoorPartInteractionBehaviour",
+    "com.hbm_m.interfaces.IDoorAnimator",
+    "com.hbm_m.inventory.gui.GUIDoorModelSelection",
+    "com.hbm_m.multiblock.DoorBlockItem",
+    "com.hbm_m.network.DoorContraptionStatePacket",
+    "com.hbm_m.network.ServerboundDoorModelPacket"
+  ],
+  "upstream_transitive_imports": {
+    "com.hbm_m.api.block.ICrucibleAcceptor": [
+      "com.hbm_m.inventory.material.MaterialStack"
+    ],
+    "com.hbm_m.api.bomb.IBomb": [],
+    "com.hbm_m.api.energy.ConverterBlock": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.item.ModItems"
+    ],
+    "com.hbm_m.api.energy.ConverterBlockEntity": [
+      "com.hbm_m.interfaces.IEnergyProvider",
+      "com.hbm_m.interfaces.IEnergyReceiver",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.capability.ModCapabilities"
+    ],
+    "com.hbm_m.api.energy.EnergyCapabilityProvider": [
+      "com.hbm_m.capability.ModCapabilities",
+      "com.hbm_m.interfaces.IEnergyProvider",
+      "com.hbm_m.interfaces.IEnergyReceiver",
+      "com.hbm_m.powerarmor.ModArmorFSBPowered",
+      "com.hbm_m.platform.PlatformHooks"
+    ],
+    "com.hbm_m.api.energy.EnergyNetworkManager": [],
+    "com.hbm_m.api.energy.ItemEnergyAccess": [
+      "com.hbm_m.interfaces.IEnergyProvider",
+      "com.hbm_m.interfaces.IEnergyReceiver",
+      "com.hbm_m.capability.ModCapabilities",
+      "com.hbm_m.capability.ModCapabilities"
+    ],
+    "com.hbm_m.api.energy.PackedEnergyCapabilityProvider": [
+      "com.hbm_m.interfaces.IEnergyConnector",
+      "com.hbm_m.interfaces.IEnergyConnector"
+    ],
+    "com.hbm_m.api.energy.SwitchBlock": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.sound.ModSounds"
+    ],
+    "com.hbm_m.api.energy.SwitchBlockEntity": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.capability.ModCapabilities",
+      "com.hbm_m.interfaces.IEnergyConnector",
+      "com.hbm_m.capability.ModCapabilities"
+    ],
+    "com.hbm_m.api.energy.WireBlock": [
+      "com.hbm_m.block.machines.MachineBatteryBlock",
+      "com.hbm_m.block.machines.MachineBatterySocketBlock",
+      "com.hbm_m.capability.ModCapabilities",
+      "com.hbm_m.interfaces.IEnergyConnector",
+      "com.hbm_m.capability.ModCapabilities",
+      "com.hbm_m.capability.ModCapabilities"
+    ],
+    "com.hbm_m.api.energy.WireBlockEntity": [
+      "com.hbm_m.interfaces.IEnergyConnector",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.capability.ModCapabilities"
+    ],
+    "com.hbm_m.api.entity.IRadiationImmune": [],
+    "com.hbm_m.api.fluids.ConnectionPriority": [],
+    "com.hbm_m.api.fluids.FluidCapabilityAccess": [],
+    "com.hbm_m.api.fluids.FluidItemAccess": [],
+    "com.hbm_m.api.fluids.FluidNet": [
+      "com.hbm_m.api.network.NodeNet"
+    ],
+    "com.hbm_m.api.fluids.FluidNetProvider": [
+      "com.hbm_m.api.network.INetworkProvider"
+    ],
+    "com.hbm_m.api.fluids.FluidNode": [
+      "com.hbm_m.api.network.GenNode",
+      "com.hbm_m.api.network.INetworkProvider",
+      "com.hbm_m.api.network.NodeDirPos"
+    ],
+    "com.hbm_m.api.fluids.ForgeFluidHandlerAdapter": [
+      "com.hbm_m.blockentity.machines.MachineFluidTankBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockPart",
+      "com.hbm_m.inventory.fluid.tank.FluidTank",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.api.fluids.HbmFluidRegistry": [
+      "com.hbm_m.inventory.fluid.FluidType",
+      "com.hbm_m.inventory.fluid.ModFluids"
+    ],
+    "com.hbm_m.api.fluids.IFluidConnectorMK2": [],
+    "com.hbm_m.api.fluids.IFluidPipeMK2": [
+      "com.hbm_m.api.network.NodeDirPos"
+    ],
+    "com.hbm_m.api.fluids.IFluidProviderMK2": [],
+    "com.hbm_m.api.fluids.IFluidReceiverMK2": [
+      "com.hbm_m.api.network.UniNodespace"
+    ],
+    "com.hbm_m.api.fluids.IFluidStandardReceiverMK2": [
+      "com.hbm_m.inventory.fluid.ModFluids",
+      "com.hbm_m.inventory.fluid.tank.FluidTank"
+    ],
+    "com.hbm_m.api.fluids.IFluidStandardSenderMK2": [
+      "com.hbm_m.api.network.UniNodespace",
+      "com.hbm_m.inventory.fluid.tank.FluidTank"
+    ],
+    "com.hbm_m.api.fluids.IFluidStandardTransceiverMK2": [],
+    "com.hbm_m.api.fluids.IFluidUserMK2": [
+      "com.hbm_m.api.network.NodeNet",
+      "com.hbm_m.inventory.fluid.tank.FluidTank"
+    ],
+    "com.hbm_m.api.fluids.VanillaFluidEquivalence": [
+      "com.hbm_m.lib.RefStrings"
+    ],
+    "com.hbm_m.api.fluids.bootstrap.ModFluidTraitsBootstrap": [
+      "com.hbm_m.api.fluids.bootstrap.ModFluidPollutionPresets.POISON_EXTREME",
+      "com.hbm_m.api.fluids.bootstrap.ModFluidPollutionPresets.POISON_MINOR",
+      "com.hbm_m.api.fluids.bootstrap.ModFluidPollutionPresets.P_FUEL",
+      "com.hbm_m.api.fluids.bootstrap.ModFluidPollutionPresets.P_FUEL_LEADED",
+      "com.hbm_m.api.fluids.bootstrap.ModFluidPollutionPresets.P_GAS",
+      "com.hbm_m.api.fluids.bootstrap.ModFluidPollutionPresets.P_LIQUID_GAS",
+      "com.hbm_m.api.fluids.bootstrap.ModFluidPollutionPresets.P_OIL",
+      "com.hbm_m.inventory.fluid.ModFluids",
+      "com.hbm_m.inventory.fluid.ModFluids.FluidEntry",
+      "com.hbm_m.inventory.fluid.trait.FT_Combustible",
+      "com.hbm_m.inventory.fluid.trait.FT_Combustible.FuelGrade",
+      "com.hbm_m.inventory.fluid.trait.FT_Coolable",
+      "com.hbm_m.inventory.fluid.trait.FT_Coolable.CoolingType",
+      "com.hbm_m.inventory.fluid.trait.FT_Corrosive",
+      "com.hbm_m.inventory.fluid.trait.FT_Flammable",
+      "com.hbm_m.inventory.fluid.trait.FT_Heatable",
+      "com.hbm_m.inventory.fluid.trait.FT_Heatable.HeatingType",
+      "com.hbm_m.inventory.fluid.trait.FT_PWRModerator",
+      "com.hbm_m.inventory.fluid.trait.FT_Pheromone",
+      "com.hbm_m.inventory.fluid.trait.FT_Poison",
+      "com.hbm_m.inventory.fluid.trait.FT_Polluting",
+      "com.hbm_m.inventory.fluid.trait.FT_Toxin",
+      "com.hbm_m.inventory.fluid.trait.FT_VentRadiation",
+      "com.hbm_m.inventory.fluid.trait.FluidTrait",
+      "com.hbm_m.inventory.fluid.FluidType",
+      "com.hbm_m.inventory.fluid.trait.FluidTraitSimple.FT_Amat",
+      "com.hbm_m.inventory.fluid.trait.FluidTraitSimple.FT_Delicious",
+      "com.hbm_m.inventory.fluid.trait.FluidTraitSimple.FT_Gaseous",
+      "com.hbm_m.inventory.fluid.trait.FluidTraitSimple.FT_Gaseous_ART",
+      "com.hbm_m.inventory.fluid.trait.FluidTraitSimple.FT_LeadContainer",
+      "com.hbm_m.inventory.fluid.trait.FluidTraitSimple.FT_Liquid",
+      "com.hbm_m.inventory.fluid.trait.FluidTraitSimple.FT_NoContainer",
+      "com.hbm_m.inventory.fluid.trait.FluidTraitSimple.FT_NoID",
+      "com.hbm_m.inventory.fluid.trait.FluidTraitSimple.FT_Plasma",
+      "com.hbm_m.inventory.fluid.trait.FluidTraitSimple.FT_Unsiphonable",
+      "com.hbm_m.inventory.fluid.trait.FluidTraitSimple.FT_Viscous",
+      "com.hbm_m.inventory.fluid.trait.PollutionType"
+    ],
+    "com.hbm_m.api.item.IDesignatorItem": [],
+    "com.hbm_m.api.network.GenNode": [],
+    "com.hbm_m.api.network.INetworkProvider": [],
+    "com.hbm_m.api.network.NodeDirPos": [],
+    "com.hbm_m.api.network.NodeNet": [],
+    "com.hbm_m.api.network.UniNodespace": [],
+    "com.hbm_m.armormod.item.ItemArmorMod": [
+      "com.hbm_m.armormod.util.ArmorModificationHelper"
+    ],
+    "com.hbm_m.armormod.item.ItemModBattery": [
+      "com.hbm_m.armormod.util.ArmorModificationHelper"
+    ],
+    "com.hbm_m.armormod.item.ItemModCladding": [
+      "com.hbm_m.armormod.util.ArmorModificationHelper"
+    ],
+    "com.hbm_m.armormod.item.ItemModExtra": [
+      "com.hbm_m.armormod.util.ArmorModificationHelper"
+    ],
+    "com.hbm_m.armormod.item.ItemModHealth": [],
+    "com.hbm_m.armormod.item.ItemModKevlar": [
+      "com.hbm_m.armormod.util.ArmorModificationHelper"
+    ],
+    "com.hbm_m.armormod.item.ItemModRadProtection": [],
+    "com.hbm_m.armormod.item.ItemModServos": [
+      "com.hbm_m.armormod.util.ArmorModificationHelper"
+    ],
+    "com.hbm_m.armormod.menu.ArmorTableMenu": [
+      "com.hbm_m.armormod.item.ItemArmorMod",
+      "com.hbm_m.armormod.util.ArmorModificationHelper",
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.interfaces.IHasTooltip",
+      "com.hbm_m.inventory.menu.ModMenuTypes",
+      "com.hbm_m.sound.ModSounds"
+    ],
+    "com.hbm_m.armormod.util.ArmorModificationHelper": [
+      "com.hbm_m.armormod.item.ItemArmorMod",
+      "com.hbm_m.armormod.item.ItemModBattery",
+      "com.hbm_m.armormod.item.ItemModRadProtection",
+      "com.hbm_m.hazard.HazardSystem",
+      "com.hbm_m.platform.PlatformHooks"
+    ],
+    "com.hbm_m.block.ModBlocks": [
+      "com.hbm_m.api.energy.ConverterBlock",
+      "com.hbm_m.api.energy.SwitchBlock",
+      "com.hbm_m.api.energy.WireBlock",
+      "com.hbm_m.block.bomb.BlockTaint",
+      "com.hbm_m.block.generic.BlockAbsorber",
+      "com.hbm_m.block.generic.BlockOre",
+      "com.hbm_m.block.generic.BlockSellafieldOre",
+      "com.hbm_m.block.generic.BlockSellafieldSlaked",
+      "com.hbm_m.block.generic.BlockSlag",
+      "com.hbm_m.block.generic.WasteEarth",
+      "com.hbm_m.block.bomb.NukeFatManBlock",
+      "com.hbm_m.block.decorations.CageLampBlock",
+      "com.hbm_m.block.decorations.CrtBlock",
+      "com.hbm_m.block.decorations.DoorBlock",
+      "com.hbm_m.block.decorations.SteelWallBlock",
+      "com.hbm_m.block.explosives.AirBombBlock",
+      "com.hbm_m.block.explosives.AirNukeBombBlock",
+      "com.hbm_m.block.explosives.C4Block",
+      "com.hbm_m.block.explosives.DetMinerBlock",
+      "com.hbm_m.block.explosives.DudFugasBlock",
+      "com.hbm_m.block.explosives.DudNukeBlock",
+      "com.hbm_m.block.explosives.ExplosiveChargeBlock",
+      "com.hbm_m.block.explosives.GigaDetBlock",
+      "com.hbm_m.block.bomb.LandmineBlock",
+      "com.hbm_m.block.explosives.NuclearChargeBlock",
+      "com.hbm_m.block.explosives.SmokeBombBlock",
+      "com.hbm_m.block.explosives.WasteChargeBlock",
+      "com.hbm_m.block.machines.ArmorTableBlock",
+      "com.hbm_m.block.machines.BlastFurnaceBlock",
+      "com.hbm_m.block.machines.BlastFurnaceExtensionBlock",
+      "com.hbm_m.block.machines.CargoElevatorBlock",
+      "com.hbm_m.block.machines.FluidDuctBlock",
+      "com.hbm_m.block.machines.BlockDecon",
+      "com.hbm_m.block.machines.GeigerCounterBlock",
+      "com.hbm_m.block.machines.HeatingOvenBlock",
+      "com.hbm_m.block.machines.LaunchPadBlock",
+      "com.hbm_m.block.machines.LaunchPadRustedBlock",
+      "com.hbm_m.block.machines.MachineAdvancedAssemblerBlock",
+      "com.hbm_m.block.machines.MachineArcWelderBlock",
+      "com.hbm_m.block.machines.MachineAssemblerBlock",
+      "com.hbm_m.block.machines.MachineBat9000Block",
+      "com.hbm_m.block.machines.MachineBatteryBlock",
+      "com.hbm_m.block.machines.MachineBatterySocketBlock",
+      "com.hbm_m.block.machines.MachineBreederBlock",
+      "com.hbm_m.block.machines.MachineCatalyticReformerBlock",
+      "com.hbm_m.block.machines.MachineCentrifugeBlock",
+      "com.hbm_m.block.machines.MachineCombinationOvenBlock",
+      "com.hbm_m.block.machines.MachineChemicalFactoryBlock",
+      "com.hbm_m.block.machines.MachineChemicalPlantBlock",
+      "com.hbm_m.block.machines.MachineTowerLargeBlock",
+      "com.hbm_m.block.machines.MachineFoundryChannelBlock",
+      "com.hbm_m.block.machines.MachineFoundryBasinBlock",
+      "com.hbm_m.block.machines.MachineCoreEmitterBlock",
+      "com.hbm_m.block.machines.MachineCoreInjectorBlock",
+      "com.hbm_m.block.machines.MachineCoreReceiverBlock",
+      "com.hbm_m.block.machines.MachineCrackingTowerBlock",
+      "com.hbm_m.block.machines.MachineCrucibleBlock",
+      "com.hbm_m.block.machines.MachineCrystallizerBlock",
+      "com.hbm_m.block.machines.MachineCyclotronBlock",
+      "com.hbm_m.block.machines.MachineDerrickBlock",
+      "com.hbm_m.block.machines.MachineDeuteriumTowerBlock",
+      "com.hbm_m.block.machines.MachineFelBlock",
+      "com.hbm_m.block.machines.MachineFlareStackBlock",
+      "com.hbm_m.block.machines.MachineFluidTankBlock",
+      "com.hbm_m.block.machines.MachineFrackingTowerBlock",
+      "com.hbm_m.block.machines.MachineFractionTowerBlock",
+      "com.hbm_m.block.machines.MachineGasCentrifugeBlock",
+      "com.hbm_m.block.machines.MachineHydrotreaterBlock",
+      "com.hbm_m.block.machines.MachineIndustrialBoilerBlock",
+      "com.hbm_m.block.machines.MachineIndustrialTurbineBlock",
+      "com.hbm_m.block.machines.MachineLargePylonBlock",
+      "com.hbm_m.block.machines.MachineLiquefactorBlock",
+      "com.hbm_m.block.machines.MachineMiningDrillBlock",
+      "com.hbm_m.block.machines.MachineMixerBlock",
+      "com.hbm_m.block.machines.MachineOreSlopperBlock",
+      "com.hbm_m.block.machines.MachinePressBlock",
+      "com.hbm_m.block.machines.MachinePumpjackBlock",
+      "com.hbm_m.block.machines.MachineLargeRadarBlock",
+      "com.hbm_m.block.machines.MachineRadarBlock",
+      "com.hbm_m.block.machines.TransitionSealBlock",
+      "com.hbm_m.block.machines.MachineRadarScreenBlock",
+      "com.hbm_m.block.machines.MachineRbmkConsoleBlock",
+      "com.hbm_m.block.machines.MachineRefineryBlock",
+      "com.hbm_m.block.machines.MachineShredderBlock",
+      "com.hbm_m.block.machines.MachineSilexBlock",
+      "com.hbm_m.block.machines.MachineSolarBoilerBlock",
+      "com.hbm_m.block.machines.MachineSolarMirrorsBlock",
+      "com.hbm_m.block.machines.MachineSolderingStationBlock",
+      "com.hbm_m.block.machines.MachineSteamTurbineBlock",
+      "com.hbm_m.block.machines.MachineSteamCondenserBlock",
+      "com.hbm_m.block.machines.MachineSubstationBlock",
+      "com.hbm_m.block.machines.MachineTowerSmallBlock",
+      "com.hbm_m.block.machines.MachineTurbineBlock",
+      "com.hbm_m.block.machines.MachineTurbofanBlock",
+      "com.hbm_m.block.machines.MachineVacuumDistillBlock",
+      "com.hbm_m.block.machines.MachineWatzPowerplantBlock",
+      "com.hbm_m.block.machines.MachineWoodBurnerBlock",
+      "com.hbm_m.block.machines.MachineZirnoxBlock",
+      "com.hbm_m.block.machines.MachineZirnoxDestroyedBlock",
+      "com.hbm_m.block.machines.rbmk.RBMKRodBlock",
+      "com.hbm_m.block.machines.rbmk.RBMKControlManualBlock",
+      "com.hbm_m.block.machines.rbmk.RBMKControlAutoBlock",
+      "com.hbm_m.block.machines.rbmk.RBMKModeratorBlock",
+      "com.hbm_m.block.machines.rbmk.RBMKAbsorberBlock",
+      "com.hbm_m.block.machines.rbmk.RBMKReflectorBlock",
+      "com.hbm_m.block.machines.rbmk.RBMKCoolerBlock",
+      "com.hbm_m.block.machines.rbmk.RBMKBoilerBlock",
+      "com.hbm_m.block.machines.rbmk.RBMKHeaterBlock",
+      "com.hbm_m.block.machines.rbmk.RBMKOutgasserBlock",
+      "com.hbm_m.block.machines.rbmk.RBMKStorageBlock",
+      "com.hbm_m.block.machines.rbmk.RBMKBlankBlock",
+      "com.hbm_m.block.machines.rbmk.RBMKSteamInletBlock",
+      "com.hbm_m.block.machines.rbmk.RBMKSteamOutletBlock",
+      "com.hbm_m.block.machines.rbmk.RBMKLoaderBlock",
+      "com.hbm_m.block.machines.rbmk.RBMKAutoloaderBlock",
+      "com.hbm_m.block.machines.rbmk.RBMKCraneConsoleBlock",
+      "com.hbm_m.block.machines.rbmk.RBMKPanelBlock",
+      "com.hbm_m.block.machines.anvils.AnvilBlock",
+      "com.hbm_m.block.machines.anvils.AnvilTier",
+      "com.hbm_m.block.machines.crates.DeshCrateBlock",
+      "com.hbm_m.block.machines.crates.IronCrateBlock",
+      "com.hbm_m.block.machines.crates.SteelCrateBlock",
+      "com.hbm_m.block.machines.crates.TemplateCrateBlock",
+      "com.hbm_m.block.machines.crates.TungstenCrateBlock",
+      "com.hbm_m.block.nature.DepthOreBlock",
+      "com.hbm_m.block.nature.GeysirBlock",
+      "com.hbm_m.block.generic.BlockHazard",
+      "com.hbm_m.block.weapons.BarbedWireBlock",
+      "com.hbm_m.block.weapons.BarbedWireFireBlock",
+      "com.hbm_m.block.weapons.BarbedWirePoisonBlock",
+      "com.hbm_m.block.weapons.BarbedWireRadBlock",
+      "com.hbm_m.block.weapons.BarbedWireWitherBlock",
+      "com.hbm_m.block.weapons.FallingSellafit",
+      "com.hbm_m.item.BlockAbsorberItem",
+      "com.hbm_m.item.ModItems",
+      "com.hbm_m.item.fekal_electric.MachineBatteryBlockItem",
+      "com.hbm_m.item.tags_and_tiers.ModIngots",
+      "com.hbm_m.lib.RefStrings"
+    ],
+    "com.hbm_m.block.UniversalMachinePartBlock": [
+      "com.hbm_m.block.decorations.DoorBlock",
+      "com.hbm_m.block.entity.doors.DoorBlockEntity",
+      "com.hbm_m.block.entity.doors.DoorDecl",
+      "com.hbm_m.block.entity.doors.DoorDeclRegistry",
+      "com.hbm_m.block.machines.TransitionSealBlock",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.LaunchPadBaseBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineRadarBlockEntity",
+      "com.hbm_m.blockentity.machines.TransitionSealBlockEntity",
+      "com.hbm_m.blockentity.machines.UniversalMachinePartBlockEntity",
+      "com.hbm_m.interfaces.IDetonatable",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.interfaces.IMultiblockPart",
+      "com.hbm_m.multiblock.PartRole",
+      "com.hbm_m.item.ModItems",
+      "com.hbm_m.multiblock.MultiblockStructureHelper"
+    ],
+    "com.hbm_m.block.bomb.BlockTaint": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.effect.ModEffects",
+      "com.hbm_m.entity.mob.EntityCreeperTainted"
+    ],
+    "com.hbm_m.block.bomb.LandmineBlock": [
+      "com.hbm_m.api.bomb.IBomb",
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.bomb.LandMineBlockEntity",
+      "com.hbm_m.explosion.ExplosionNukeGeneric",
+      "com.hbm_m.explosion.vanillant.ExplosionVNT",
+      "com.hbm_m.explosion.vanillant.standard.BlockAllocatorStandard",
+      "com.hbm_m.explosion.vanillant.standard.BlockAllocatorWater",
+      "com.hbm_m.explosion.vanillant.standard.BlockProcessorStandard",
+      "com.hbm_m.explosion.vanillant.standard.EntityProcessorCrossSmooth",
+      "com.hbm_m.explosion.vanillant.standard.ExplosionEffectStandard",
+      "com.hbm_m.network.AuxParticlePacket",
+      "com.hbm_m.network.ModPacketHandler",
+      "com.hbm_m.sound.ModSounds"
+    ],
+    "com.hbm_m.block.bomb.NukeFatManBlock": [
+      "com.hbm_m.api.bomb.IBomb",
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.bomb.NukeFatManBlockEntity",
+      "com.hbm_m.explosion.NuclearExplosionAPI",
+      "com.hbm_m.interfaces.IDetonatable",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.decorations.CageLampBlock": [],
+    "com.hbm_m.block.decorations.CrtBlock": [],
+    "com.hbm_m.block.decorations.DoorBlock": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.block.entity.doors.DoorBlockEntity",
+      "com.hbm_m.block.entity.doors.DoorDecl",
+      "com.hbm_m.block.entity.doors.DoorDeclRegistry",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.item.ModItems",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.decorations.SteelWallBlock": [],
+    "com.hbm_m.block.entity.doors.DoorBlockEntity": [
+      "com.hbm_m.block.decorations.DoorBlock",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.client.model.variant.DoorModelRegistry",
+      "com.hbm_m.client.model.variant.DoorModelSelection",
+      "com.hbm_m.client.model.variant.DoorModelType",
+      "com.hbm_m.client.model.variant.DoorSkin",
+      "com.hbm_m.client.overlay.DoorAnimationDelayHelper",
+      "com.hbm_m.client.render.DoorChunkInvalidationHelper",
+      "com.hbm_m.interfaces.IMultiblockPart",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.main.MainRegistry",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole",
+      "com.hbm_m.sound.ClientSoundBootstrap",
+      "com.hbm_m.platform.PlatformHooks"
+    ],
+    "com.hbm_m.block.entity.doors.DoorDecl": [
+      "com.hbm_m.client.model.variant.DoorModelSelection",
+      "com.hbm_m.client.model.variant.DoorSkin",
+      "com.hbm_m.interfaces.IDoorAnimator",
+      "com.hbm_m.lib.RefStrings",
+      "com.hbm_m.multiblock.PartRole",
+      "com.hbm_m.sound.ModSounds"
+    ],
+    "com.hbm_m.block.entity.doors.DoorDeclRegistry": [],
+    "com.hbm_m.block.explosives.AirBombBlock": [
+      "com.hbm_m.entity.ModEntities",
+      "com.hbm_m.entity.grenades.AirBombProjectileEntity",
+      "com.hbm_m.interfaces.IDetonatable",
+      "com.hbm_m.item.ModItems"
+    ],
+    "com.hbm_m.block.explosives.AirNukeBombBlock": [
+      "com.hbm_m.entity.ModEntities",
+      "com.hbm_m.entity.grenades.AirNukeBombProjectileEntity",
+      "com.hbm_m.interfaces.IDetonatable",
+      "com.hbm_m.item.ModItems"
+    ],
+    "com.hbm_m.block.explosives.C4Block": [
+      "com.hbm_m.particle.explosions.basic.ExplosionParticleUtils",
+      "com.hbm_m.interfaces.IDetonatable",
+      "com.hbm_m.particle.ModExplosionParticles",
+      "com.hbm_m.util.explosions.general.BlastExplosionGenerator"
+    ],
+    "com.hbm_m.block.explosives.DetMinerBlock": [
+      "com.hbm_m.interfaces.IDetonatable"
+    ],
+    "com.hbm_m.block.explosives.DudFugasBlock": [
+      "com.hbm_m.interfaces.IDetonatable",
+      "com.hbm_m.particle.ModExplosionParticles",
+      "com.hbm_m.particle.explosions.basic.ExplosionParticleUtils"
+    ],
+    "com.hbm_m.block.explosives.DudNukeBlock": [
+      "com.hbm_m.explosion.command.ExplosionCommandOptions",
+      "com.hbm_m.explosion.command.NuclearScenarioLaunchers",
+      "com.hbm_m.interfaces.IDetonatable"
+    ],
+    "com.hbm_m.block.explosives.ExplosiveChargeBlock": [
+      "com.hbm_m.interfaces.IDetonatable",
+      "com.hbm_m.particle.ModExplosionParticles",
+      "com.hbm_m.particle.explosions.basic.ExplosionParticleUtils"
+    ],
+    "com.hbm_m.block.explosives.GigaDetBlock": [
+      "com.hbm_m.interfaces.IDetonatable",
+      "com.hbm_m.particle.ModExplosionParticles",
+      "com.hbm_m.particle.explosions.basic.ExplosionParticleUtils",
+      "com.hbm_m.util.explosions.freaky.MessGenerator"
+    ],
+    "com.hbm_m.block.explosives.NuclearChargeBlock": [
+      "com.hbm_m.explosion.command.ExplosionCommandOptions",
+      "com.hbm_m.explosion.command.NuclearScenarioLaunchers",
+      "com.hbm_m.interfaces.IDetonatable"
+    ],
+    "com.hbm_m.block.explosives.SmokeBombBlock": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.interfaces.IDetonatable",
+      "com.hbm_m.particle.ModExplosionParticles",
+      "com.hbm_m.particle.explosions.basic.ExplosionParticleUtils",
+      "com.hbm_m.util.explosions.general.ShockwaveGenerator"
+    ],
+    "com.hbm_m.block.explosives.WasteChargeBlock": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.interfaces.IDetonatable",
+      "com.hbm_m.particle.ModExplosionParticles",
+      "com.hbm_m.particle.explosions.basic.ExplosionParticleUtils",
+      "com.hbm_m.util.explosions.freaky.WasteBlastGenerator"
+    ],
+    "com.hbm_m.block.generic.BlockAbsorber": [
+      "com.hbm_m.radiation.ChunkRadiationManager",
+      "com.hbm_m.item.BlockAbsorberItem"
+    ],
+    "com.hbm_m.block.generic.BlockFallout": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.item.ModItems",
+      "com.hbm_m.util.ContaminationUtil",
+      "com.hbm_m.util.ContaminationUtil.ContaminationType",
+      "com.hbm_m.util.ContaminationUtil.HazardType"
+    ],
+    "com.hbm_m.block.generic.BlockHazard": [
+      "com.hbm_m.hazard.HazardRegistry",
+      "com.hbm_m.hazard.HazardSystem",
+      "com.hbm_m.particle.ModParticleTypes",
+      "com.hbm_m.radiation.ChunkRadiationManager"
+    ],
+    "com.hbm_m.block.generic.BlockOre": [
+      "com.hbm_m.hazard.HazardRegistry",
+      "com.hbm_m.hazard.HazardSystem",
+      "com.hbm_m.radiation.ChunkRadiationManager"
+    ],
+    "com.hbm_m.block.generic.BlockSellafieldOre": [],
+    "com.hbm_m.block.generic.BlockSellafieldSlaked": [],
+    "com.hbm_m.block.generic.BlockSlag": [],
+    "com.hbm_m.block.generic.WasteEarth": [],
+    "com.hbm_m.block.machines.ArmorTableBlock": [
+      "com.hbm_m.armormod.menu.ArmorTableMenu"
+    ],
+    "com.hbm_m.block.machines.BlastFurnaceBlock": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.BlastFurnaceBlockEntity"
+    ],
+    "com.hbm_m.block.machines.BlastFurnaceExtensionBlock": [
+      "com.hbm_m.blockentity.machines.BlastFurnaceBlockEntity"
+    ],
+    "com.hbm_m.block.machines.BlockDecon": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.DeconBlockEntity"
+    ],
+    "com.hbm_m.block.machines.CargoElevatorBlock": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.CargoElevatorBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.FluidDuctBlock": [
+      "com.hbm_m.api.fluids.FluidCapabilityAccess",
+      "com.hbm_m.api.fluids.HbmFluidRegistry",
+      "com.hbm_m.api.fluids.IFluidStandardReceiverMK2",
+      "com.hbm_m.api.fluids.VanillaFluidEquivalence",
+      "com.hbm_m.blockentity.machines.FluidDuctBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineChemicalPlantBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineFluidTankBlockEntity",
+      "com.hbm_m.blockentity.machines.UniversalMachinePartBlockEntity",
+      "com.hbm_m.client.render.DoorChunkInvalidationHelper",
+      "com.hbm_m.inventory.fluid.ModFluids",
+      "com.hbm_m.inventory.fluid.tank.FluidTank",
+      "com.hbm_m.multiblock.PartRole",
+      "com.hbm_m.interfaces.IItemFluidIdentifier",
+      "com.hbm_m.interfaces.ILookOverlay",
+      "com.hbm_m.item.ModItems",
+      "com.hbm_m.item.liquids.FluidDuctItem"
+    ],
+    "com.hbm_m.block.machines.FluidPumpBlock": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.FluidPumpBlockEntity",
+      "com.hbm_m.interfaces.IItemFluidIdentifier"
+    ],
+    "com.hbm_m.block.machines.GeigerCounterBlock": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.GeigerCounterBlockEntity",
+      "com.hbm_m.sound.ModSounds",
+      "com.hbm_m.util.ContaminationUtil"
+    ],
+    "com.hbm_m.block.machines.HeatingOvenBlock": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.HeatingOvenBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.LaunchPadBlock": [
+      "com.hbm_m.api.bomb.IBomb",
+      "com.hbm_m.api.energy.EnergyNetworkManager",
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.LaunchPadBaseBlockEntity",
+      "com.hbm_m.blockentity.machines.LaunchPadBlockEntity",
+      "com.hbm_m.interfaces.IDetonatable",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.LaunchPadRustedBlock": [
+      "com.hbm_m.api.bomb.IBomb",
+      "com.hbm_m.api.energy.EnergyNetworkManager",
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.LaunchPadBaseBlockEntity",
+      "com.hbm_m.blockentity.machines.LaunchPadRustedBlockEntity",
+      "com.hbm_m.interfaces.IDetonatable",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineAdvancedAssemblerBlock": [
+      "com.hbm_m.api.energy.EnergyNetworkManager",
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineAdvancedAssemblerBlockEntity",
+      "com.hbm_m.interfaces.IFrameSupportable",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockSideTuples",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineArcWelderBlock": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineArcWelderBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineAssemblerBlock": [
+      "com.hbm_m.api.energy.EnergyNetworkManager",
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineAssemblerBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineBat9000Block": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.Bat9000BlockEntity",
+      "com.hbm_m.blockentity.machines.MachineFluidTankBlockEntity",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineBatteryBlock": [
+      "com.hbm_m.api.energy.EnergyNetworkManager",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineBatteryBlockEntity",
+      "com.hbm_m.util.EnergyFormatter",
+      "com.hbm_m.platform.PlatformHooks"
+    ],
+    "com.hbm_m.block.machines.MachineBatterySocketBlock": [
+      "com.hbm_m.api.energy.EnergyNetworkManager",
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.BatterySocketBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineBreederBlock": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineBreederBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockSideTuples",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineCatalyticReformerBlock": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineCatalyticReformerBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockSideTuples",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineCentrifugeBlock": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineCentrifugeBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineChemicalFactoryBlock": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineChemicalFactoryBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockSideTuples",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineChemicalPlantBlock": [
+      "com.hbm_m.api.energy.EnergyNetworkManager",
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineChemicalPlantBlockEntity",
+      "com.hbm_m.interfaces.IFrameSupportable",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.interfaces.IMultiblockSidedIO",
+      "com.hbm_m.multiblock.MultiblockSideTuples",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineCombinationOvenBlock": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineCombinationOvenBlockEntity"
+    ],
+    "com.hbm_m.block.machines.MachineCoreEmitterBlock": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineCoreEmitterBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.MultiblockStructureStubs",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineCoreInjectorBlock": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineCoreInjectorBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.MultiblockStructureStubs",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineCoreReceiverBlock": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineCoreReceiverBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.MultiblockStructureStubs",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineCrackingTowerBlock": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineCrackingTowerBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockSideTuples",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineCrucibleBlock": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineCrucibleBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.inventory.menu.MachineCrucibleMenu",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineCrystallizerBlock": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineCrystallizerBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineCyclotronBlock": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineCyclotronBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockSideTuples",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineDerrickBlock": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineDerrickBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockSideTuples",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineDeuteriumTowerBlock": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineDeuteriumTowerBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockSideTuples",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineFelBlock": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineFelBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockSideTuples",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineFlareStackBlock": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineFlareStackBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockSideTuples",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineFluidTankBlock": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineFluidTankBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockSideTuples",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineFoundryBasinBlock": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineFoundryBasinBlockEntity",
+      "com.hbm_m.item.material.ItemCastMold"
+    ],
+    "com.hbm_m.block.machines.MachineFoundryChannelBlock": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineFoundryChannelBlockEntity"
+    ],
+    "com.hbm_m.block.machines.MachineFrackingTowerBlock": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineFrackingTowerBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineFractionTowerBlock": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineFractionTowerBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineGasCentrifugeBlock": [
+      "com.hbm_m.api.energy.EnergyNetworkManager",
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineGasCentrifugeBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineHydrotreaterBlock": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineHydrotreaterBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.MultiblockStructureStubs",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineIndustrialBoilerBlock": [
+      "com.hbm_m.api.energy.EnergyNetworkManager",
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineIndustrialBoilerBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineIndustrialTurbineBlock": [
+      "com.hbm_m.api.energy.EnergyNetworkManager",
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineIndustrialTurbineBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineLargePylonBlock": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineLargePylonBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineLargeRadarBlock": [
+      "com.hbm_m.api.energy.EnergyNetworkManager",
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineLiquefactorBlock": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineLiquefactorBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.MultiblockStructureStubs",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineMiningDrillBlock": [
+      "com.hbm_m.api.energy.EnergyNetworkManager",
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineMiningDrillBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineMixerBlock": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineMixerBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineOreSlopperBlock": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineOreSlopperBlockEntity"
+    ],
+    "com.hbm_m.block.machines.MachinePressBlock": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachinePressBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachinePumpjackBlock": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachinePumpjackBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineRadarBlock": [
+      "com.hbm_m.api.energy.EnergyNetworkManager",
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineRadarBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineRadarScreenBlock": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineRadarBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineRadarScreenBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockInteractionHelper",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineRbmkConsoleBlock": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineRbmkConsoleBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineRefineryBlock": [
+      "com.hbm_m.api.energy.EnergyNetworkManager",
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineRefineryBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineShredderBlock": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineShredderBlockEntity"
+    ],
+    "com.hbm_m.block.machines.MachineSilexBlock": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineSilexBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineSolarBoilerBlock": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineSolarBoilerBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineSolarMirrorsBlock": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineSolarMirrorsBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.MultiblockStructureStubs",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineSolderingStationBlock": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineSolderingStationBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineSteamCondenserBlock": [
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineSteamCondenserBlockEntity"
+    ],
+    "com.hbm_m.block.machines.MachineSteamTurbineBlock": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineSteamTurbineBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.MultiblockStructureStubs",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineSubstationBlock": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineSubstationBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineTowerLargeBlock": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineCoolingTowerBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineTowerSmallBlock": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineTowerSmallBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineTurbineBlock": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineTurbineBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineTurbofanBlock": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineTurbofanBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.MultiblockStructureStubs",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineVacuumDistillBlock": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineVacuumDistillBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.MultiblockStructureStubs",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineWatzPowerplantBlock": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineWatzPowerplantBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.MultiblockStructureStubs",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineWoodBurnerBlock": [
+      "com.hbm_m.api.energy.EnergyNetworkManager",
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineWoodBurnerBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineZirnoxBlock": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineZirnoxBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockSideTuples",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.MachineZirnoxDestroyedBlock": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.MachineZirnoxDestroyedBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.TransitionSealBlock": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.TransitionSealBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.block.machines.anvils.AnvilBlock": [
+      "com.hbm_m.blockentity.machines.AnvilBlockEntity"
+    ],
+    "com.hbm_m.block.machines.anvils.AnvilTier": [],
+    "com.hbm_m.block.machines.crates.CrateType": [
+      "com.hbm_m.lib.RefStrings"
+    ],
+    "com.hbm_m.block.machines.crates.DeshCrateBlock": [
+      "com.hbm_m.blockentity.crates.DeshCrateBlockEntity"
+    ],
+    "com.hbm_m.block.machines.crates.IronCrateBlock": [
+      "com.hbm_m.blockentity.crates.IronCrateBlockEntity"
+    ],
+    "com.hbm_m.block.machines.crates.SteelCrateBlock": [
+      "com.hbm_m.blockentity.crates.SteelCrateBlockEntity"
+    ],
+    "com.hbm_m.block.machines.crates.TemplateCrateBlock": [
+      "com.hbm_m.blockentity.crates.TemplateCrateBlockEntity"
+    ],
+    "com.hbm_m.block.machines.crates.TungstenCrateBlock": [
+      "com.hbm_m.blockentity.crates.TungstenCrateBlockEntity"
+    ],
+    "com.hbm_m.block.machines.rbmk.RBMKAbsorberBlock": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.rbmk.RBMKAbsorberBlockEntity"
+    ],
+    "com.hbm_m.block.machines.rbmk.RBMKAutoloaderBlock": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.rbmk.RBMKAutoloaderBlockEntity"
+    ],
+    "com.hbm_m.block.machines.rbmk.RBMKBlankBlock": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.rbmk.RBMKBlankBlockEntity"
+    ],
+    "com.hbm_m.block.machines.rbmk.RBMKBoilerBlock": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.rbmk.RBMKBoilerBlockEntity"
+    ],
+    "com.hbm_m.block.machines.rbmk.RBMKControlAutoBlock": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.rbmk.RBMKControlAutoBlockEntity"
+    ],
+    "com.hbm_m.block.machines.rbmk.RBMKControlManualBlock": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.rbmk.RBMKControlManualBlockEntity"
+    ],
+    "com.hbm_m.block.machines.rbmk.RBMKCoolerBlock": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.rbmk.RBMKCoolerBlockEntity"
+    ],
+    "com.hbm_m.block.machines.rbmk.RBMKCraneConsoleBlock": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.rbmk.RBMKCraneConsoleBlockEntity"
+    ],
+    "com.hbm_m.block.machines.rbmk.RBMKHeaterBlock": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.rbmk.RBMKHeaterBlockEntity"
+    ],
+    "com.hbm_m.block.machines.rbmk.RBMKLoaderBlock": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.rbmk.RBMKLoaderBlockEntity"
+    ],
+    "com.hbm_m.block.machines.rbmk.RBMKModeratorBlock": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.rbmk.RBMKModeratorBlockEntity"
+    ],
+    "com.hbm_m.block.machines.rbmk.RBMKOutgasserBlock": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.rbmk.RBMKOutgasserBlockEntity"
+    ],
+    "com.hbm_m.block.machines.rbmk.RBMKPanelBlock": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.rbmk.RBMKPanelBlockEntity"
+    ],
+    "com.hbm_m.block.machines.rbmk.RBMKReflectorBlock": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.rbmk.RBMKReflectorBlockEntity"
+    ],
+    "com.hbm_m.block.machines.rbmk.RBMKRodBlock": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.rbmk.RBMKColumnBlockEntity",
+      "com.hbm_m.blockentity.machines.rbmk.RBMKRodBlockEntity",
+      "com.hbm_m.handler.rbmk.RBMKDials",
+      "com.hbm_m.item.rbmk.RBMKRodItem"
+    ],
+    "com.hbm_m.block.machines.rbmk.RBMKSteamInletBlock": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.rbmk.RBMKSteamInletBlockEntity"
+    ],
+    "com.hbm_m.block.machines.rbmk.RBMKSteamOutletBlock": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.rbmk.RBMKSteamOutletBlockEntity"
+    ],
+    "com.hbm_m.block.machines.rbmk.RBMKStorageBlock": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.rbmk.RBMKStorageBlockEntity"
+    ],
+    "com.hbm_m.block.nature.DepthOreBlock": [],
+    "com.hbm_m.block.nature.GeysirBlock": [
+      "com.hbm_m.particle.explosions.basic.ExplosionParticleUtils"
+    ],
+    "com.hbm_m.block.weapons.BarbedWireBlock": [],
+    "com.hbm_m.block.weapons.BarbedWireFireBlock": [],
+    "com.hbm_m.block.weapons.BarbedWirePoisonBlock": [],
+    "com.hbm_m.block.weapons.BarbedWireRadBlock": [],
+    "com.hbm_m.block.weapons.BarbedWireWitherBlock": [],
+    "com.hbm_m.block.weapons.FallingSellafit": [],
+    "com.hbm_m.blockentity.BaseMachineBlockEntity": [
+      "com.hbm_m.api.energy.EnergyNetworkManager",
+      "com.hbm_m.api.energy.ItemEnergyAccess",
+      "com.hbm_m.api.energy.PackedEnergyCapabilityProvider",
+      "com.hbm_m.capability.ModCapabilities",
+      "com.hbm_m.interfaces.IEnergyConnector",
+      "com.hbm_m.interfaces.IEnergyProvider",
+      "com.hbm_m.interfaces.IEnergyReceiver",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.platform.ModItemStackHandler",
+      "com.hbm_m.platform.PlatformHooks"
+    ],
+    "com.hbm_m.blockentity.IRadarCommandReceiver": [],
+    "com.hbm_m.blockentity.LoadedMachineBlockEntity": [],
+    "com.hbm_m.blockentity.ModBlockEntities": [
+      "com.hbm_m.api.energy.ConverterBlockEntity",
+      "com.hbm_m.api.energy.SwitchBlockEntity",
+      "com.hbm_m.api.energy.WireBlockEntity",
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.block.entity.doors.DoorBlockEntity",
+      "com.hbm_m.blockentity.bomb.LandMineBlockEntity",
+      "com.hbm_m.blockentity.bomb.NukeFatManBlockEntity",
+      "com.hbm_m.blockentity.crates.DeshCrateBlockEntity",
+      "com.hbm_m.blockentity.crates.IronCrateBlockEntity",
+      "com.hbm_m.blockentity.crates.SteelCrateBlockEntity",
+      "com.hbm_m.blockentity.crates.TemplateCrateBlockEntity",
+      "com.hbm_m.blockentity.crates.TungstenCrateBlockEntity",
+      "com.hbm_m.blockentity.machines.AnvilBlockEntity",
+      "com.hbm_m.blockentity.machines.BatterySocketBlockEntity",
+      "com.hbm_m.blockentity.machines.BlastFurnaceBlockEntity",
+      "com.hbm_m.blockentity.machines.DeconBlockEntity",
+      "com.hbm_m.blockentity.machines.FluidDuctBlockEntity",
+      "com.hbm_m.blockentity.machines.FluidExhaustBlockEntity",
+      "com.hbm_m.blockentity.machines.FluidPumpBlockEntity",
+      "com.hbm_m.blockentity.machines.FluidValveBlockEntity",
+      "com.hbm_m.blockentity.machines.GeigerCounterBlockEntity",
+      "com.hbm_m.blockentity.machines.HeatingOvenBlockEntity",
+      "com.hbm_m.blockentity.machines.LaunchPadBlockEntity",
+      "com.hbm_m.blockentity.machines.LaunchPadRustedBlockEntity",
+      "com.hbm_m.blockentity.machines.CargoElevatorBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineAdvancedAssemblerBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineArcWelderBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineAssemblerBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineBatteryBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineBreederBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineCatalyticReformerBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineCentrifugeBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineChemicalFactoryBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineChemicalPlantBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineChungusBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineCoolingTowerBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineCoreEmitterBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineCoreInjectorBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineCoreReceiverBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineCrackingTowerBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineCrucibleBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineCrystallizerBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineCyclotronBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineDerrickBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineDeuteriumTowerBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineFelBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineFlareStackBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineFluidTankBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineFrackingTowerBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineFractionTowerBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineGasCentrifugeBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineHydrotreaterBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineIndustrialBoilerBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineIndustrialTurbineBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineLargePylonBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineLiquefactorBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineMiningDrillBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineMixerBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineOreSlopperBlockEntity",
+      "com.hbm_m.blockentity.machines.MachinePressBlockEntity",
+      "com.hbm_m.blockentity.machines.MachinePumpjackBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineRadarBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineRadarScreenBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineRbmkConsoleBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineRefineryBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineShredderBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineSilexBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineSolarBoilerBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineSolarMirrorsBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineSolderingStationBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineSteamCondenserBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineSteamTurbineBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineSubstationBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineTowerSmallBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineTurbineBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineTurbofanBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineVacuumDistillBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineWatzPowerplantBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineWoodBurnerBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineZirnoxBlockEntity",
+      "com.hbm_m.blockentity.machines.MachineZirnoxDestroyedBlockEntity",
+      "com.hbm_m.blockentity.machines.TransitionSealBlockEntity",
+      "com.hbm_m.blockentity.machines.UniversalMachinePartBlockEntity",
+      "com.hbm_m.blockentity.machines.rbmk.RBMKAbsorberBlockEntity",
+      "com.hbm_m.blockentity.machines.rbmk.RBMKAutoloaderBlockEntity",
+      "com.hbm_m.blockentity.machines.rbmk.RBMKBlankBlockEntity",
+      "com.hbm_m.blockentity.machines.rbmk.RBMKBoilerBlockEntity",
+      "com.hbm_m.blockentity.machines.rbmk.RBMKControlAutoBlockEntity",
+      "com.hbm_m.blockentity.machines.rbmk.RBMKControlManualBlockEntity",
+      "com.hbm_m.blockentity.machines.rbmk.RBMKCoolerBlockEntity",
+      "com.hbm_m.blockentity.machines.rbmk.RBMKCraneConsoleBlockEntity",
+      "com.hbm_m.blockentity.machines.rbmk.RBMKHeaterBlockEntity",
+      "com.hbm_m.blockentity.machines.rbmk.RBMKLoaderBlockEntity",
+      "com.hbm_m.blockentity.machines.rbmk.RBMKModeratorBlockEntity",
+      "com.hbm_m.blockentity.machines.rbmk.RBMKOutgasserBlockEntity",
+      "com.hbm_m.blockentity.machines.rbmk.RBMKPanelBlockEntity",
+      "com.hbm_m.blockentity.machines.rbmk.RBMKReflectorBlockEntity",
+      "com.hbm_m.blockentity.machines.rbmk.RBMKRodBlockEntity",
+      "com.hbm_m.blockentity.machines.rbmk.RBMKSteamInletBlockEntity",
+      "com.hbm_m.blockentity.machines.rbmk.RBMKSteamOutletBlockEntity",
+      "com.hbm_m.blockentity.machines.rbmk.RBMKStorageBlockEntity",
+      "com.hbm_m.lib.RefStrings"
+    ],
+    "com.hbm_m.blockentity.OilDrillBaseBlockEntity": [
+      "com.hbm_m.api.fluids.IFluidStandardSenderMK2",
+      "com.hbm_m.api.fluids.VanillaFluidEquivalence",
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.inventory.UpgradeManager",
+      "com.hbm_m.inventory.fluid.ModFluids",
+      "com.hbm_m.inventory.fluid.tank.FluidTank",
+      "com.hbm_m.item.industrial.ItemMachineUpgrade"
+    ],
+    "com.hbm_m.blockentity.bomb.LandMineBlockEntity": [
+      "com.hbm_m.block.bomb.LandmineBlock",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.sound.ModSounds"
+    ],
+    "com.hbm_m.blockentity.bomb.NukeFatManBlockEntity": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.menu.NukeFatManMenu",
+      "com.hbm_m.item.ModItems"
+    ],
+    "com.hbm_m.blockentity.crates.DeshCrateBlockEntity": [
+      "com.hbm_m.block.machines.crates.CrateType",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.menu.DeshCrateMenu"
+    ],
+    "com.hbm_m.blockentity.crates.IronCrateBlockEntity": [
+      "com.hbm_m.block.machines.crates.CrateType",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.menu.IronCrateMenu"
+    ],
+    "com.hbm_m.blockentity.crates.SteelCrateBlockEntity": [
+      "com.hbm_m.block.machines.crates.CrateType",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.menu.SteelCrateMenu"
+    ],
+    "com.hbm_m.blockentity.crates.TemplateCrateBlockEntity": [
+      "com.hbm_m.block.machines.crates.CrateType",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.menu.TemplateCrateMenu"
+    ],
+    "com.hbm_m.blockentity.crates.TungstenCrateBlockEntity": [
+      "com.hbm_m.block.machines.crates.CrateType",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.menu.TungstenCrateMenu"
+    ],
+    "com.hbm_m.blockentity.machines.AnvilBlockEntity": [
+      "com.hbm_m.block.machines.anvils.AnvilBlock",
+      "com.hbm_m.block.machines.anvils.AnvilTier",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.menu.AnvilMenu",
+      "com.hbm_m.item.fekal_electric.ModBatteryItem",
+      "com.hbm_m.platform.ModItemStackHandler",
+      "com.hbm_m.recipe.AnvilRecipe",
+      "com.hbm_m.recipe.AnvilRecipeManager",
+      "com.hbm_m.platform.PlatformHooks"
+    ],
+    "com.hbm_m.blockentity.machines.Bat9000BlockEntity": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.menu.Bat9000Menu"
+    ],
+    "com.hbm_m.blockentity.machines.BatterySocketBlockEntity": [
+      "com.hbm_m.api.energy.EnergyNetworkManager",
+      "com.hbm_m.multiblock.PartRole",
+      "com.hbm_m.block.machines.MachineBatterySocketBlock",
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.interfaces.IEnergyModeHolder",
+      "com.hbm_m.interfaces.IEnergyProvider",
+      "com.hbm_m.interfaces.IEnergyReceiver",
+      "com.hbm_m.inventory.menu.BatterySocketMenu",
+      "com.hbm_m.item.fekal_electric.ItemCreativeBattery",
+      "com.hbm_m.capability.ModCapabilities"
+    ],
+    "com.hbm_m.blockentity.machines.BlastFurnaceBlockEntity": [
+      "com.hbm_m.platform.ModItemStackHandler",
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.block.machines.BlastFurnaceBlock",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.menu.BlastFurnaceMenu",
+      "com.hbm_m.item.ModItems",
+      "com.hbm_m.item.tags_and_tiers.ModPowders",
+      "com.hbm_m.recipe.BlastFurnaceRecipe"
+    ],
+    "com.hbm_m.blockentity.machines.CargoElevatorBlockEntity": [
+      "com.hbm_m.blockentity.LoadedMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities"
+    ],
+    "com.hbm_m.blockentity.machines.DeconBlockEntity": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.extprop.HbmLivingProps",
+      "com.hbm_m.particle.ModParticleTypes"
+    ],
+    "com.hbm_m.blockentity.machines.FluidDuctBlockEntity": [
+      "com.hbm_m.api.fluids.FluidNet",
+      "com.hbm_m.api.fluids.FluidNetProvider",
+      "com.hbm_m.api.fluids.FluidNode",
+      "com.hbm_m.api.fluids.ForgeFluidHandlerAdapter",
+      "com.hbm_m.api.fluids.IFluidConnectorMK2",
+      "com.hbm_m.api.fluids.IFluidPipeMK2",
+      "com.hbm_m.api.fluids.VanillaFluidEquivalence",
+      "com.hbm_m.api.network.UniNodespace",
+      "com.hbm_m.block.machines.FluidDuctBlock",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.client.render.DoorChunkInvalidationHelper"
+    ],
+    "com.hbm_m.blockentity.machines.FluidExhaustBlockEntity": [
+      "com.hbm_m.api.fluids.FluidNetProvider",
+      "com.hbm_m.api.fluids.FluidNode",
+      "com.hbm_m.api.fluids.IFluidPipeMK2",
+      "com.hbm_m.api.network.UniNodespace",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.fluid.ModFluids"
+    ],
+    "com.hbm_m.blockentity.machines.FluidPumpBlockEntity": [
+      "com.hbm_m.api.fluids.ConnectionPriority",
+      "com.hbm_m.api.fluids.IFluidStandardTransceiverMK2",
+      "com.hbm_m.api.fluids.VanillaFluidEquivalence",
+      "com.hbm_m.block.machines.FluidPumpBlock",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.fluid.tank.FluidTank"
+    ],
+    "com.hbm_m.blockentity.machines.FluidValveBlockEntity": [
+      "com.hbm_m.api.fluids.FluidNetProvider",
+      "com.hbm_m.api.fluids.FluidNode",
+      "com.hbm_m.api.fluids.IFluidPipeMK2",
+      "com.hbm_m.api.fluids.VanillaFluidEquivalence",
+      "com.hbm_m.api.network.UniNodespace",
+      "com.hbm_m.blockentity.ModBlockEntities"
+    ],
+    "com.hbm_m.blockentity.machines.GeigerCounterBlockEntity": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.radiation.ChunkRadiationManager",
+      "com.hbm_m.sound.ModSounds"
+    ],
+    "com.hbm_m.blockentity.machines.HeatingOvenBlockEntity": [
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.menu.HeatingOvenMenu"
+    ],
+    "com.hbm_m.blockentity.machines.LaunchPadBaseBlockEntity": [
+      "com.hbm_m.api.energy.EnergyNetworkManager",
+      "com.hbm_m.api.fluids.IFluidConnectorMK2",
+      "com.hbm_m.api.fluids.IFluidStandardReceiverMK2",
+      "com.hbm_m.api.item.IDesignatorItem",
+      "com.hbm_m.api.network.NodeDirPos",
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.IRadarCommandReceiver",
+      "com.hbm_m.interfaces.IEnergyConnector",
+      "com.hbm_m.interfaces.IEnergyProvider",
+      "com.hbm_m.interfaces.IEnergyReceiver",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.entity.ModEntities",
+      "com.hbm_m.entity.missile.MissileBaseEntity",
+      "com.hbm_m.explosion.MissileWarheadEffects",
+      "com.hbm_m.particle.ModParticleTypes",
+      "com.hbm_m.inventory.fluid.ModFluids",
+      "com.hbm_m.inventory.fluid.tank.FluidTank",
+      "com.hbm_m.item.ModItems",
+      "com.hbm_m.item.fekal_electric.ItemCreativeBattery",
+      "com.hbm_m.item.missile.MissileItem"
+    ],
+    "com.hbm_m.blockentity.machines.LaunchPadBlockEntity": [
+      "com.hbm_m.api.network.NodeDirPos",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.menu.LaunchPadLargeMenu"
+    ],
+    "com.hbm_m.blockentity.machines.LaunchPadRustedBlockEntity": [
+      "com.hbm_m.api.network.NodeDirPos",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.menu.LaunchPadRustedMenu"
+    ],
+    "com.hbm_m.blockentity.machines.MachineAdvancedAssemblerBlockEntity": [
+      "com.hbm_m.api.energy.EnergyNetworkManager",
+      "com.hbm_m.block.machines.MachineAdvancedAssemblerBlock",
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.capability.ModCapabilities",
+      "com.hbm_m.interfaces.IFrameSupportable",
+      "com.hbm_m.interfaces.IMultiblockSidedIO",
+      "com.hbm_m.inventory.fluid.tank.FluidTank",
+      "com.hbm_m.inventory.menu.MachineAdvancedAssemblerMenu",
+      "com.hbm_m.item.fekal_electric.ItemCreativeBattery",
+      "com.hbm_m.item.industrial.ItemBlueprintFolder",
+      "com.hbm_m.module.machine.MachineModuleAdvancedAssembler",
+      "com.hbm_m.multiblock.MultiblockFrameHelper",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.recipe.AssemblerRecipe",
+      "com.hbm_m.sound.ModSounds",
+      "com.hbm_m.platform.PlatformHooks",
+      "com.hbm_m.client.machine.AdvancedAssemblerClientTicker",
+      "com.hbm_m.platform.PlatformHooks"
+    ],
+    "com.hbm_m.blockentity.machines.MachineArcWelderBlockEntity": [
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.fluid.tank.FluidTank",
+      "com.hbm_m.inventory.menu.MachineArcWelderMenu"
+    ],
+    "com.hbm_m.blockentity.machines.MachineAssemblerBlockEntity": [
+      "com.hbm_m.api.energy.EnergyNetworkManager",
+      "com.hbm_m.block.machines.MachineAssemblerBlock",
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.capability.ModCapabilities",
+      "com.hbm_m.inventory.menu.MachineAssemblerMenu",
+      "com.hbm_m.item.fekal_electric.ItemCreativeBattery",
+      "com.hbm_m.item.fekal_electric.ModBatteryItem",
+      "com.hbm_m.item.industrial.ItemAssemblyTemplate",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole",
+      "com.hbm_m.recipe.AssemblerRecipe",
+      "com.hbm_m.sound.ClientSoundBootstrap"
+    ],
+    "com.hbm_m.blockentity.machines.MachineBatteryBlockEntity": [
+      "com.hbm_m.api.energy.EnergyNetworkManager",
+      "com.hbm_m.api.energy.PackedEnergyCapabilityProvider",
+      "com.hbm_m.block.machines.MachineBatteryBlock",
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.interfaces.IEnergyModeHolder",
+      "com.hbm_m.inventory.menu.MachineBatteryMenu",
+      "com.hbm_m.item.fekal_electric.ItemCreativeBattery",
+      "com.hbm_m.capability.ModCapabilities"
+    ],
+    "com.hbm_m.blockentity.machines.MachineBreederBlockEntity": [
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.capability.ModCapabilities",
+      "com.hbm_m.inventory.menu.MachineBreederMenu",
+      "com.hbm_m.item.fekal_electric.ItemCreativeBattery"
+    ],
+    "com.hbm_m.blockentity.machines.MachineCatalyticReformerBlockEntity": [
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities"
+    ],
+    "com.hbm_m.blockentity.machines.MachineCentrifugeBlockEntity": [
+      "com.hbm_m.api.energy.ItemEnergyAccess",
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.menu.MachineCentrifugeMenu",
+      "com.hbm_m.recipe.CentrifugeRecipes"
+    ],
+    "com.hbm_m.blockentity.machines.MachineChemicalFactoryBlockEntity": [
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities"
+    ],
+    "com.hbm_m.blockentity.machines.MachineChemicalPlantBlockEntity": [
+      "com.hbm_m.api.fluids.IFluidStandardReceiverMK2",
+      "com.hbm_m.api.fluids.IFluidStandardTransceiverMK2",
+      "com.hbm_m.api.fluids.IFluidUserMK2",
+      "com.hbm_m.block.machines.MachineChemicalPlantBlock",
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.interfaces.IFrameSupportable",
+      "com.hbm_m.interfaces.IUpgradeInfoProvider",
+      "com.hbm_m.multiblock.MultiblockFrameHelper",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.inventory.UpgradeManager",
+      "com.hbm_m.inventory.fluid.ModFluids",
+      "com.hbm_m.inventory.fluid.tank.FluidTank",
+      "com.hbm_m.inventory.menu.MachineChemicalPlantMenu",
+      "com.hbm_m.item.fekal_electric.ItemCreativeBattery",
+      "com.hbm_m.item.industrial.ItemBlueprintFolder",
+      "com.hbm_m.item.industrial.ItemMachineUpgrade",
+      "com.hbm_m.item.industrial.ItemMachineUpgrade.UpgradeType",
+      "com.hbm_m.module.machine.MachineModuleChemplant",
+      "com.hbm_m.recipe.ChemicalPlantRecipe",
+      "com.hbm_m.sound.ClientSoundBootstrap"
+    ],
+    "com.hbm_m.blockentity.machines.MachineChungusBlockEntity": [
+      "com.hbm_m.api.fluids.IFluidStandardReceiverMK2",
+      "com.hbm_m.api.fluids.IFluidStandardSenderMK2",
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.fluid.ModFluids",
+      "com.hbm_m.inventory.fluid.tank.FluidTank",
+      "com.hbm_m.interfaces.IEnergyModeHolder",
+      "com.hbm_m.sound.ClientSoundBootstrap",
+      "com.hbm_m.sound.ModSounds"
+    ],
+    "com.hbm_m.blockentity.machines.MachineCombinationOvenBlockEntity": [
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.fluid.tank.FluidTank",
+      "com.hbm_m.inventory.menu.MachineCombinationOvenMenu",
+      "com.hbm_m.recipe.CombinationOvenRecipe",
+      "com.hbm_m.recipe.ModRecipes"
+    ],
+    "com.hbm_m.blockentity.machines.MachineCoolingTowerBlockEntity": [
+      "com.hbm_m.api.fluids.IFluidStandardTransceiverMK2",
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.fluid.ModFluids",
+      "com.hbm_m.inventory.fluid.tank.FluidTank"
+    ],
+    "com.hbm_m.blockentity.machines.MachineCoreEmitterBlockEntity": [
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities"
+    ],
+    "com.hbm_m.blockentity.machines.MachineCoreInjectorBlockEntity": [
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities"
+    ],
+    "com.hbm_m.blockentity.machines.MachineCoreReceiverBlockEntity": [
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities"
+    ],
+    "com.hbm_m.blockentity.machines.MachineCrackingTowerBlockEntity": [
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.menu.MachineCrackingTowerMenu"
+    ],
+    "com.hbm_m.blockentity.machines.MachineCrucibleBlockEntity": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.capability.ModCapabilities",
+      "com.hbm_m.interfaces.IEnergyProvider",
+      "com.hbm_m.inventory.material.MaterialStack",
+      "com.hbm_m.inventory.material.MaterialType",
+      "com.hbm_m.platform.ModItemStackHandler",
+      "com.hbm_m.recipe.CrucibleSmeltingRecipes",
+      "com.hbm_m.recipe.MoltenAlloyRecipe",
+      "com.hbm_m.recipe.MoltenAlloyRecipes"
+    ],
+    "com.hbm_m.blockentity.machines.MachineCrystallizerBlockEntity": [
+      "com.hbm_m.api.fluids.VanillaFluidEquivalence",
+      "com.hbm_m.sound.ClientSoundBootstrap",
+      "com.hbm_m.block.machines.MachineCrystallizerBlock",
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.interfaces.IItemFluidIdentifier",
+      "com.hbm_m.inventory.fluid.ModFluids",
+      "com.hbm_m.inventory.fluid.tank.FluidTank",
+      "com.hbm_m.inventory.menu.MachineCrystallizerMenu",
+      "com.hbm_m.item.fekal_electric.ItemCreativeBattery",
+      "com.hbm_m.item.liquids.FluidIdentifierItem",
+      "com.hbm_m.recipe.CrystallizerRecipe",
+      "com.hbm_m.recipe.CrystallizerRecipes"
+    ],
+    "com.hbm_m.blockentity.machines.MachineCyclotronBlockEntity": [
+      "com.hbm_m.api.fluids.IFluidStandardTransceiverMK2",
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.UpgradeManager",
+      "com.hbm_m.inventory.fluid.ModFluids",
+      "com.hbm_m.inventory.fluid.tank.FluidTank",
+      "com.hbm_m.inventory.menu.MachineCyclotronMenu",
+      "com.hbm_m.item.industrial.ItemMachineUpgrade",
+      "com.hbm_m.item.industrial.ItemMachineUpgrade.UpgradeType",
+      "com.hbm_m.recipe.CyclotronRecipes"
+    ],
+    "com.hbm_m.blockentity.machines.MachineDerrickBlockEntity": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.OilDrillBaseBlockEntity",
+      "com.hbm_m.inventory.fluid.ModFluids",
+      "com.hbm_m.inventory.menu.MachineDerrickMenu"
+    ],
+    "com.hbm_m.blockentity.machines.MachineDeuteriumTowerBlockEntity": [
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities"
+    ],
+    "com.hbm_m.blockentity.machines.MachineFelBlockEntity": [
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.menu.MachineFelMenu"
+    ],
+    "com.hbm_m.blockentity.machines.MachineFlareStackBlockEntity": [
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.menu.MachineFlareStackMenu"
+    ],
+    "com.hbm_m.blockentity.machines.MachineFluidTankBlockEntity": [
+      "com.hbm_m.api.fluids.ConnectionPriority",
+      "com.hbm_m.api.fluids.IFluidStandardTransceiverMK2",
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.block.machines.FluidDuctBlock",
+      "com.hbm_m.block.machines.MachineFluidTankBlock",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.interfaces.IMultiblockSidedIO",
+      "com.hbm_m.inventory.fluid.ModFluids",
+      "com.hbm_m.inventory.fluid.tank.FluidTank",
+      "com.hbm_m.inventory.fluid.trait.FT_Corrosive",
+      "com.hbm_m.inventory.fluid.trait.FT_Flammable",
+      "com.hbm_m.inventory.fluid.FluidType",
+      "com.hbm_m.inventory.fluid.trait.FluidTraitSimple.FT_Amat",
+      "com.hbm_m.inventory.fluid.trait.FluidTraitSimple.FT_Gaseous",
+      "com.hbm_m.inventory.menu.MachineFluidTankMenu",
+      "com.hbm_m.item.liquids.FluidIdentifierItem",
+      "com.hbm_m.item.liquids.InfiniteFluidItem",
+      "com.hbm_m.main.MainRegistry",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.platform.ModItemStackHandler"
+    ],
+    "com.hbm_m.blockentity.machines.MachineFoundryBasinBlockEntity": [
+      "com.hbm_m.api.block.ICrucibleAcceptor",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.material.MaterialStack",
+      "com.hbm_m.inventory.material.MaterialType",
+      "com.hbm_m.item.material.ItemCastMold"
+    ],
+    "com.hbm_m.blockentity.machines.MachineFoundryChannelBlockEntity": [
+      "com.hbm_m.api.block.ICrucibleAcceptor",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.material.MaterialStack",
+      "com.hbm_m.inventory.material.MaterialType"
+    ],
+    "com.hbm_m.blockentity.machines.MachineFrackingTowerBlockEntity": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.config.MachineConfig",
+      "com.hbm_m.inventory.fluid.ModFluids",
+      "com.hbm_m.inventory.fluid.tank.FluidTank",
+      "com.hbm_m.inventory.menu.MachineFrackingTowerMenu"
+    ],
+    "com.hbm_m.blockentity.machines.MachineFractionTowerBlockEntity": [
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.menu.MachineFractionTowerMenu"
+    ],
+    "com.hbm_m.blockentity.machines.MachineGasCentrifugeBlockEntity": [
+      "com.hbm_m.api.fluids.IFluidStandardReceiverMK2",
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.block.machines.MachineGasCentrifugeBlock",
+      "com.hbm_m.inventory.UpgradeManager",
+      "com.hbm_m.inventory.fluid.tank.FluidTank",
+      "com.hbm_m.inventory.menu.MachineGasCentrifugeMenu",
+      "com.hbm_m.item.industrial.ItemMachineUpgrade",
+      "com.hbm_m.item.industrial.ItemMachineUpgrade.UpgradeType",
+      "com.hbm_m.item.liquids.FluidIdentifierItem",
+      "com.hbm_m.item.ModItems",
+      "com.hbm_m.recipe.PseudoFluidTank",
+      "com.hbm_m.recipe.PseudoFluidType"
+    ],
+    "com.hbm_m.blockentity.machines.MachineHydrotreaterBlockEntity": [
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities"
+    ],
+    "com.hbm_m.blockentity.machines.MachineIndustrialBoilerBlockEntity": [
+      "com.hbm_m.api.fluids.IFluidStandardTransceiverMK2",
+      "com.hbm_m.api.fluids.VanillaFluidEquivalence",
+      "com.hbm_m.block.machines.MachineIndustrialBoilerBlock",
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.fluid.FluidType",
+      "com.hbm_m.inventory.fluid.ModFluids",
+      "com.hbm_m.inventory.fluid.tank.FluidTank",
+      "com.hbm_m.inventory.fluid.trait.FT_Heatable",
+      "com.hbm_m.inventory.fluid.trait.FT_Heatable.HeatingStep",
+      "com.hbm_m.inventory.fluid.trait.FT_Heatable.HeatingType"
+    ],
+    "com.hbm_m.blockentity.machines.MachineIndustrialTurbineBlockEntity": [
+      "com.hbm_m.api.fluids.IFluidStandardReceiverMK2",
+      "com.hbm_m.api.fluids.IFluidStandardSenderMK2",
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.interfaces.IEnergyModeHolder",
+      "com.hbm_m.inventory.fluid.ModFluids",
+      "com.hbm_m.inventory.fluid.tank.FluidTank",
+      "com.hbm_m.sound.ClientSoundBootstrap",
+      "com.hbm_m.sound.ModSounds"
+    ],
+    "com.hbm_m.blockentity.machines.MachineLargePylonBlockEntity": [
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.capability.ModCapabilities",
+      "com.hbm_m.inventory.menu.MachineLargePylonMenu",
+      "com.hbm_m.item.fekal_electric.ItemCreativeBattery"
+    ],
+    "com.hbm_m.blockentity.machines.MachineLiquefactorBlockEntity": [
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities"
+    ],
+    "com.hbm_m.blockentity.machines.MachineMiningDrillBlockEntity": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.nature.OreBedrockBlockEntity",
+      "com.hbm_m.inventory.fluid.ModFluids",
+      "com.hbm_m.inventory.fluid.tank.FluidTank",
+      "com.hbm_m.inventory.menu.MachineMiningDrillMenu",
+      "com.hbm_m.item.ModItems",
+      "com.hbm_m.recipe.ModRecipes",
+      "com.hbm_m.recipe.ShredderRecipe",
+      "com.hbm_m.worldgen.BedrockOreDensity",
+      "com.hbm_m.platform.PlatformHooks"
+    ],
+    "com.hbm_m.blockentity.machines.MachineMixerBlockEntity": [
+      "com.hbm_m.api.fluids.IFluidStandardTransceiverMK2",
+      "com.hbm_m.api.fluids.VanillaFluidEquivalence",
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.fluid.ModFluids",
+      "com.hbm_m.inventory.fluid.tank.FluidTank",
+      "com.hbm_m.inventory.menu.MachineMixerMenu",
+      "com.hbm_m.item.fekal_electric.ItemCreativeBattery",
+      "com.hbm_m.recipe.MixerRecipes",
+      "com.hbm_m.recipe.MixerRecipes.MixerRecipe"
+    ],
+    "com.hbm_m.blockentity.machines.MachineOreSlopperBlockEntity": [
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.fluid.ModFluids",
+      "com.hbm_m.inventory.fluid.tank.FluidTank",
+      "com.hbm_m.inventory.menu.MachineOreSlopperMenu",
+      "com.hbm_m.item.ModItems",
+      "com.hbm_m.worldgen.BedrockOreDensity",
+      "com.hbm_m.platform.PlatformHooks"
+    ],
+    "com.hbm_m.blockentity.machines.MachinePressBlockEntity": [
+      "com.hbm_m.inventory.menu.MachinePressMenu",
+      "com.hbm_m.recipe.PressRecipe",
+      "com.hbm_m.sound.ModSounds",
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.capability.ModCapabilities"
+    ],
+    "com.hbm_m.blockentity.machines.MachinePumpjackBlockEntity": [
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.menu.MachinePumpjackMenu"
+    ],
+    "com.hbm_m.blockentity.machines.MachineRadarBlockEntity": [
+      "com.hbm_m.api.energy.ItemEnergyAccess",
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.IRadarCommandReceiver",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.capability.ModCapabilities",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.inventory.menu.MachineRadarMenu",
+      "com.hbm_m.item.fekal_electric.ItemCreativeBattery",
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole",
+      "com.hbm_m.sound.ModSounds",
+      "com.hbm_m.entity.missile.MissileBaseEntity",
+      "com.hbm_m.platform.PlatformHooks"
+    ],
+    "com.hbm_m.blockentity.machines.MachineRadarScreenBlockEntity": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.platform.PlatformHooks"
+    ],
+    "com.hbm_m.blockentity.machines.MachineRbmkConsoleBlockEntity": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.blockentity.machines.rbmk.",
+      "com.hbm_m.blockentity.machines.rbmk.RBMKColumnBlockEntity.ColumnType",
+      "com.hbm_m.inventory.menu.MachineRbmkConsoleMenu",
+      "com.hbm_m.platform.PlatformHooks"
+    ],
+    "com.hbm_m.blockentity.machines.MachineRefineryBlockEntity": [
+      "com.hbm_m.api.fluids.FluidItemAccess",
+      "com.hbm_m.api.fluids.IFluidStandardTransceiverMK2",
+      "com.hbm_m.api.fluids.VanillaFluidEquivalence",
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.fluid.ModFluids",
+      "com.hbm_m.inventory.fluid.tank.FluidTank",
+      "com.hbm_m.inventory.menu.MachineRefineryMenu",
+      "com.hbm_m.item.ModItems",
+      "com.hbm_m.item.liquids.FluidIdentifierItem"
+    ],
+    "com.hbm_m.blockentity.machines.MachineShredderBlockEntity": [
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.menu.MachineShredderMenu",
+      "com.hbm_m.item.ModItems",
+      "com.hbm_m.item.industrial.ItemBlades",
+      "com.hbm_m.recipe.ShredderRecipe",
+      "com.hbm_m.sound.ClientSoundBootstrap"
+    ],
+    "com.hbm_m.blockentity.machines.MachineSilexBlockEntity": [
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.menu.MachineSilexMenu"
+    ],
+    "com.hbm_m.blockentity.machines.MachineSolarBoilerBlockEntity": [
+      "com.hbm_m.api.fluids.IFluidStandardTransceiverMK2",
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.block.machines.MachineSolarBoilerBlock",
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.fluid.ModFluids",
+      "com.hbm_m.inventory.fluid.tank.FluidTank"
+    ],
+    "com.hbm_m.blockentity.machines.MachineSolarMirrorsBlockEntity": [
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities"
+    ],
+    "com.hbm_m.blockentity.machines.MachineSolderingStationBlockEntity": [
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.fluid.tank.FluidTank",
+      "com.hbm_m.inventory.menu.MachineSolderingStationMenu",
+      "com.hbm_m.inventory.recipes.SolderingRecipes",
+      "com.hbm_m.inventory.recipes.SolderingRecipes.SolderingRecipe"
+    ],
+    "com.hbm_m.blockentity.machines.MachineSteamCondenserBlockEntity": [
+      "com.hbm_m.api.fluids.IFluidStandardTransceiverMK2",
+      "com.hbm_m.api.fluids.VanillaFluidEquivalence",
+      "com.hbm_m.block.machines.FluidDuctBlock",
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.fluid.ModFluids",
+      "com.hbm_m.inventory.fluid.tank.FluidTank"
+    ],
+    "com.hbm_m.blockentity.machines.MachineSteamTurbineBlockEntity": [
+      "com.hbm_m.api.fluids.VanillaFluidEquivalence",
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.fluid.ModFluids",
+      "com.hbm_m.inventory.fluid.tank.FluidTank",
+      "com.hbm_m.inventory.menu.MachineSteamTurbineMenu",
+      "com.hbm_m.interfaces.IEnergyModeHolder",
+      "com.hbm_m.interfaces.IItemFluidIdentifier",
+      "com.hbm_m.item.fekal_electric.ItemCreativeBattery",
+      "com.hbm_m.item.liquids.FluidIdentifierItem"
+    ],
+    "com.hbm_m.blockentity.machines.MachineSubstationBlockEntity": [
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.menu.MachineSubstationMenu"
+    ],
+    "com.hbm_m.blockentity.machines.MachineTowerSmallBlockEntity": [
+      "com.hbm_m.api.fluids.IFluidStandardTransceiverMK2",
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.fluid.ModFluids",
+      "com.hbm_m.inventory.fluid.tank.FluidTank"
+    ],
+    "com.hbm_m.blockentity.machines.MachineTurbineBlockEntity": [
+      "com.hbm_m.api.fluids.IFluidConnectorMK2",
+      "com.hbm_m.api.fluids.IFluidStandardTransceiverMK2",
+      "com.hbm_m.api.fluids.VanillaFluidEquivalence",
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.fluid.ModFluids",
+      "com.hbm_m.inventory.fluid.tank.FluidTank",
+      "com.hbm_m.inventory.menu.MachineTurbineMenu",
+      "com.hbm_m.interfaces.IEnergyModeHolder",
+      "com.hbm_m.item.fekal_electric.ItemCreativeBattery",
+      "com.hbm_m.item.liquids.FluidIdentifierItem"
+    ],
+    "com.hbm_m.blockentity.machines.MachineTurbofanBlockEntity": [
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities"
+    ],
+    "com.hbm_m.blockentity.machines.MachineVacuumDistillBlockEntity": [
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities"
+    ],
+    "com.hbm_m.blockentity.machines.MachineWatzPowerplantBlockEntity": [
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities"
+    ],
+    "com.hbm_m.blockentity.machines.MachineWoodBurnerBlockEntity": [
+      "com.hbm_m.block.machines.MachineWoodBurnerBlock",
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.menu.MachineWoodBurnerMenu",
+      "com.hbm_m.item.ModItems"
+    ],
+    "com.hbm_m.blockentity.machines.MachineZirnoxBlockEntity": [
+      "com.hbm_m.api.fluids.IFluidStandardTransceiverMK2",
+      "com.hbm_m.api.fluids.VanillaFluidEquivalence",
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.BaseMachineBlockEntity",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.interfaces.IMultiblockSidedIO",
+      "com.hbm_m.explosion.ExplosionNukeGeneric",
+      "com.hbm_m.inventory.fluid.ModFluids",
+      "com.hbm_m.inventory.fluid.tank.FluidTank",
+      "com.hbm_m.inventory.menu.MachineZirnoxMenu",
+      "com.hbm_m.item.ModItems",
+      "com.hbm_m.item.industrial.ZirnoxRodItem",
+      "com.hbm_m.item.liquids.FluidBarrelItem",
+      "com.hbm_m.item.tags_and_tiers.ModTags"
+    ],
+    "com.hbm_m.blockentity.machines.MachineZirnoxDestroyedBlockEntity": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.damagesource.ModDamageSources",
+      "com.hbm_m.util.ContaminationUtil",
+      "com.hbm_m.util.ContaminationUtil.ContaminationType",
+      "com.hbm_m.util.ContaminationUtil.HazardType"
+    ],
+    "com.hbm_m.blockentity.machines.TransitionSealBlockEntity": [
+      "com.hbm_m.block.UniversalMachinePartBlock",
+      "com.hbm_m.block.machines.TransitionSealBlock",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.sound.ModSounds"
+    ],
+    "com.hbm_m.blockentity.machines.UniversalMachinePartBlockEntity": [
+      "com.hbm_m.interfaces.IEnergyConnector",
+      "com.hbm_m.interfaces.IMultiblockPart",
+      "com.hbm_m.multiblock.PartRole",
+      "com.hbm_m.api.fluids.FluidNetProvider",
+      "com.hbm_m.api.fluids.FluidNode",
+      "com.hbm_m.api.fluids.ForgeFluidHandlerAdapter",
+      "com.hbm_m.api.fluids.IFluidConnectorMK2",
+      "com.hbm_m.api.fluids.IFluidProviderMK2",
+      "com.hbm_m.api.fluids.IFluidReceiverMK2",
+      "com.hbm_m.api.fluids.IFluidStandardReceiverMK2",
+      "com.hbm_m.api.fluids.IFluidStandardSenderMK2",
+      "com.hbm_m.api.fluids.IFluidUserMK2",
+      "com.hbm_m.api.network.NodeDirPos",
+      "com.hbm_m.api.network.UniNodespace",
+      "com.hbm_m.api.energy.EnergyNetworkManager",
+      "com.hbm_m.inventory.fluid.tank.FluidTank",
+      "com.hbm_m.platform.PlatformHooks",
+      "com.hbm_m.capability.ModCapabilities",
+      "com.hbm_m.block.machines.FluidDuctBlock",
+      "com.hbm_m.blockentity.ModBlockEntities"
+    ],
+    "com.hbm_m.blockentity.machines.rbmk.RBMKAbsorberBlockEntity": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.handler.rbmk.RBMKNeutronHandler.RBMKType"
+    ],
+    "com.hbm_m.blockentity.machines.rbmk.RBMKAutoloaderBlockEntity": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.handler.rbmk.RBMKNeutronHandler.RBMKType",
+      "com.hbm_m.item.rbmk.RBMKRodItem"
+    ],
+    "com.hbm_m.blockentity.machines.rbmk.RBMKBlankBlockEntity": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.handler.rbmk.RBMKNeutronHandler.RBMKType"
+    ],
+    "com.hbm_m.blockentity.machines.rbmk.RBMKBoilerBlockEntity": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.handler.rbmk.RBMKDials",
+      "com.hbm_m.handler.rbmk.RBMKNeutronHandler.RBMKType",
+      "com.hbm_m.inventory.fluid.tank.FluidTank",
+      "com.hbm_m.inventory.menu.RBMKBoilerMenu"
+    ],
+    "com.hbm_m.blockentity.machines.rbmk.RBMKColumnBlockEntity": [
+      "com.hbm_m.handler.rbmk.NeutronNodeWorld",
+      "com.hbm_m.handler.rbmk.RBMKDials",
+      "com.hbm_m.handler.rbmk.RBMKNeutronHandler",
+      "com.hbm_m.handler.rbmk.RBMKNeutronHandler.RBMKType"
+    ],
+    "com.hbm_m.blockentity.machines.rbmk.RBMKControlAutoBlockEntity": [
+      "com.hbm_m.blockentity.ModBlockEntities"
+    ],
+    "com.hbm_m.blockentity.machines.rbmk.RBMKControlManualBlockEntity": [
+      "com.hbm_m.blockentity.ModBlockEntities"
+    ],
+    "com.hbm_m.blockentity.machines.rbmk.RBMKCoolerBlockEntity": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.handler.rbmk.RBMKNeutronHandler.RBMKType",
+      "com.hbm_m.inventory.fluid.tank.FluidTank"
+    ],
+    "com.hbm_m.blockentity.machines.rbmk.RBMKCraneConsoleBlockEntity": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.handler.rbmk.RBMKNeutronHandler.RBMKType"
+    ],
+    "com.hbm_m.blockentity.machines.rbmk.RBMKHeaterBlockEntity": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.handler.rbmk.RBMKNeutronHandler.RBMKType",
+      "com.hbm_m.inventory.fluid.tank.FluidTank"
+    ],
+    "com.hbm_m.blockentity.machines.rbmk.RBMKLoaderBlockEntity": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.handler.rbmk.RBMKNeutronHandler.RBMKType"
+    ],
+    "com.hbm_m.blockentity.machines.rbmk.RBMKModeratorBlockEntity": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.handler.rbmk.RBMKNeutronHandler.RBMKType"
+    ],
+    "com.hbm_m.blockentity.machines.rbmk.RBMKOutgasserBlockEntity": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.handler.rbmk.RBMKDials",
+      "com.hbm_m.handler.rbmk.RBMKNeutronHandler.RBMKNeutronStream",
+      "com.hbm_m.handler.rbmk.RBMKNeutronHandler.RBMKType",
+      "com.hbm_m.inventory.menu.RBMKOutgasserMenu",
+      "com.hbm_m.item.rbmk.RBMKRodItem"
+    ],
+    "com.hbm_m.blockentity.machines.rbmk.RBMKPanelBlockEntity": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.handler.rbmk.RBMKNeutronHandler.RBMKType"
+    ],
+    "com.hbm_m.blockentity.machines.rbmk.RBMKReflectorBlockEntity": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.handler.rbmk.RBMKNeutronHandler.RBMKType"
+    ],
+    "com.hbm_m.blockentity.machines.rbmk.RBMKRodBlockEntity": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.handler.rbmk.NeutronNodeWorld",
+      "com.hbm_m.handler.rbmk.RBMKDials",
+      "com.hbm_m.radiation.ChunkRadiationManager",
+      "com.hbm_m.handler.rbmk.RBMKNeutronHandler",
+      "com.hbm_m.handler.rbmk.RBMKNeutronHandler.RBMKNeutronNode",
+      "com.hbm_m.handler.rbmk.RBMKNeutronHandler.RBMKNeutronStream",
+      "com.hbm_m.handler.rbmk.RBMKNeutronHandler.RBMKType",
+      "com.hbm_m.inventory.menu.RBMKRodMenu",
+      "com.hbm_m.item.rbmk.RBMKRodItem"
+    ],
+    "com.hbm_m.blockentity.machines.rbmk.RBMKSteamInletBlockEntity": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.fluid.tank.FluidTank"
+    ],
+    "com.hbm_m.blockentity.machines.rbmk.RBMKSteamOutletBlockEntity": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.fluid.tank.FluidTank"
+    ],
+    "com.hbm_m.blockentity.machines.rbmk.RBMKStorageBlockEntity": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.handler.rbmk.RBMKNeutronHandler.RBMKType",
+      "com.hbm_m.inventory.menu.RBMKStorageMenu",
+      "com.hbm_m.item.rbmk.RBMKRodItem"
+    ],
+    "com.hbm_m.blockentity.nature.OreBedrockBlockEntity": [
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.inventory.fluid.ModFluids"
+    ],
+    "com.hbm_m.capability.ModCapabilities": [
+      "com.hbm_m.interfaces.IEnergyConnector",
+      "com.hbm_m.interfaces.IEnergyProvider",
+      "com.hbm_m.interfaces.IEnergyReceiver",
+      "com.hbm_m.lib.RefStrings"
+    ],
+    "com.hbm_m.client.ClientRenderHandler": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.config.ModClothConfig",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.interfaces.IMultiblockPart"
+    ],
+    "com.hbm_m.client.compat.create.ContraptionDoorAnimCache": [],
+    "com.hbm_m.client.compat.create.ContraptionDoorSoundHelper": [
+      "com.hbm_m.block.entity.doors.DoorDecl"
+    ],
+    "com.hbm_m.client.compat.create.DoorClientInit": [
+      "com.hbm_m.compat.ContraptionDoorState",
+      "com.hbm_m.compat.create.CreateLevelAccess"
+    ],
+    "com.hbm_m.client.compat.create.DoorContraptionClientApplier": [
+      "com.hbm_m.block.entity.doors.DoorDecl",
+      "com.hbm_m.block.entity.doors.DoorDeclRegistry",
+      "com.hbm_m.compat.ContraptionDoorState",
+      "com.hbm_m.compat.create.CreateLevelAccess",
+      "com.hbm_m.compat.create.DoorShapeComputer"
+    ],
+    "com.hbm_m.client.handler.ClientVanishHandler": [
+      "com.hbm_m.lib.RefStrings"
+    ],
+    "com.hbm_m.client.loader.DoorModelLoader": [
+      "com.hbm_m.client.model.DoorBakedModel"
+    ],
+    "com.hbm_m.client.loader.dae.DaeAnimation": [],
+    "com.hbm_m.client.loader.dae.DaeModel": [
+      "com.hbm_m.lib.RefStrings"
+    ],
+    "com.hbm_m.client.loader.dae.DaeNode": [],
+    "com.hbm_m.client.loader.dae.DaeQuadBaker": [],
+    "com.hbm_m.client.machine.AdvancedAssemblerClientTicker": [
+      "com.hbm_m.blockentity.machines.MachineAdvancedAssemblerBlockEntity",
+      "com.hbm_m.sound.AdvancedAssemblerSoundInstance",
+      "com.hbm_m.sound.ModSounds"
+    ],
+    "com.hbm_m.client.model.DoorBakedModel": [
+      "com.hbm_m.client.model.variant.DoorModelProperties",
+      "com.hbm_m.client.model.variant.DoorModelRegistry",
+      "com.hbm_m.block.decorations.DoorBlock",
+      "com.hbm_m.block.entity.doors.DoorDecl",
+      "com.hbm_m.block.entity.doors.DoorDeclRegistry",
+      "com.hbm_m.client.model.variant.DoorModelSelection",
+      "com.hbm_m.client.render.shader.ShaderCompatibilityDetector",
+      "com.hbm_m.util.MultipartFacingTransforms"
+    ],
+    "com.hbm_m.client.model.variant.DoorModelProperties": [],
+    "com.hbm_m.client.model.variant.DoorModelRegistry": [
+      "com.hbm_m.main.MainRegistry"
+    ],
+    "com.hbm_m.client.model.variant.DoorModelSelection": [
+      "com.hbm_m.lib.RefStrings"
+    ],
+    "com.hbm_m.client.model.variant.DoorModelType": [],
+    "com.hbm_m.client.model.variant.DoorSkin": [
+      "com.hbm_m.lib.RefStrings"
+    ],
+    "com.hbm_m.client.overlay.DoorAnimationDelayHelper": [
+      "com.hbm_m.block.entity.doors.DoorBlockEntity",
+      "com.hbm_m.client.render.DoorChunkInvalidationHelper"
+    ],
+    "com.hbm_m.client.overlay.DoorModelFakeItemRenderer": [
+      "com.hbm_m.client.model.variant.DoorModelRegistry",
+      "com.hbm_m.client.model.variant.DoorModelSelection"
+    ],
+    "com.hbm_m.client.overlay.DoorSelectionClientHooks": [
+      "com.hbm_m.block.entity.doors.DoorBlockEntity",
+      "com.hbm_m.inventory.gui.GUIDoorModelSelection"
+    ],
+    "com.hbm_m.client.overlay.OverlayGeiger": [
+      "com.hbm_m.config.ModClothConfig",
+      "com.hbm_m.item.radiation_meter.ItemGeigerCounter",
+      "com.hbm_m.lib.RefStrings"
+    ],
+    "com.hbm_m.client.overlay.OverlayInfoToast": [
+      "com.hbm_m.config.ModClothConfig",
+      "com.hbm_m.lib.RefStrings"
+    ],
+    "com.hbm_m.client.render.AbstractPartBasedRenderer": [
+      "com.hbm_m.client.render.shader.ShaderCompatibilityDetector",
+      "com.hbm_m.main.MainRegistry"
+    ],
+    "com.hbm_m.client.render.DoorChunkInvalidationHelper": [
+      "com.hbm_m.client.render.culling.OcclusionCullingHelper",
+      "com.hbm_m.main.MainRegistry"
+    ],
+    "com.hbm_m.client.render.GlVaoSafety": [],
+    "com.hbm_m.client.render.ImmediateVertexWriter": [],
+    "com.hbm_m.client.render.InstancedStaticPartRenderer": [
+      "com.hbm_m.client.render.culling.OcclusionCullingHelper",
+      "com.hbm_m.client.render.shader.ShaderCompatibilityDetector",
+      "com.hbm_m.config.ModClothConfig",
+      "com.hbm_m.main.MainRegistry"
+    ],
+    "com.hbm_m.client.render.IrisCompanionMesh": [
+      "com.hbm_m.main.MainRegistry"
+    ],
+    "com.hbm_m.client.render.LegacyAnimator": [
+      "com.hbm_m.interfaces.IDoorAnimator",
+      "com.hbm_m.util.MultipartFacingTransforms"
+    ],
+    "com.hbm_m.client.render.MeshRenderCache": [
+      "com.hbm_m.client.render.shader.IrisBufferHelper",
+      "com.hbm_m.main.MainRegistry"
+    ],
+    "com.hbm_m.client.render.ModShaders": [],
+    "com.hbm_m.client.render.ObjModelVboBuilder": [],
+    "com.hbm_m.client.render.RenderDistanceHelper": [
+      "com.hbm_m.compat.ContraptionRenderCompat",
+      "com.hbm_m.config.ModClothConfig"
+    ],
+    "com.hbm_m.client.render.SingleMeshVboRenderer": [
+      "com.hbm_m.client.render.culling.OcclusionCullingHelper",
+      "com.hbm_m.client.render.shader.IrisExtendedShaderAccess",
+      "com.hbm_m.client.render.shader.IrisPhaseGuard",
+      "com.hbm_m.client.render.shader.IrisRenderBatch",
+      "com.hbm_m.client.render.shader.ShaderCompatibilityDetector",
+      "com.hbm_m.main.MainRegistry"
+    ],
+    "com.hbm_m.client.render.culling.OcclusionCullingHelper": [
+      "com.hbm_m.main.MainRegistry",
+      "com.hbm_m.config.ModClothConfig",
+      "com.hbm_m.client.render.shader.ShaderCompatibilityDetector"
+    ],
+    "com.hbm_m.client.render.implementations.DoorRenderer": [
+      "com.hbm_m.block.entity.doors.DoorBlockEntity",
+      "com.hbm_m.block.entity.doors.DoorDecl",
+      "com.hbm_m.client.loader.dae.DaeAnimation",
+      "com.hbm_m.client.loader.dae.DaeModel",
+      "com.hbm_m.client.loader.dae.DaeNode",
+      "com.hbm_m.client.loader.dae.DaeQuadBaker",
+      "com.hbm_m.client.model.DoorBakedModel",
+      "com.hbm_m.client.model.variant.DoorModelRegistry",
+      "com.hbm_m.client.model.variant.DoorModelSelection",
+      "com.hbm_m.client.model.variant.DoorSkin",
+      "com.hbm_m.client.render.AbstractPartBasedRenderer",
+      "com.hbm_m.client.render.MeshRenderCache",
+      "com.hbm_m.client.render.InstancedStaticPartRenderer",
+      "com.hbm_m.client.render.LegacyAnimator",
+      "com.hbm_m.client.render.ObjModelVboBuilder",
+      "com.hbm_m.client.render.RenderDistanceHelper",
+      "com.hbm_m.client.render.SingleMeshVboRenderer",
+      "com.hbm_m.client.render.culling.OcclusionCullingHelper",
+      "com.hbm_m.client.render.shader.IrisRenderBatch",
+      "com.hbm_m.client.render.shader.ShaderCompatibilityDetector",
+      "com.hbm_m.config.ModClothConfig",
+      "com.hbm_m.lib.RefStrings",
+      "com.hbm_m.main.MainRegistry"
+    ],
+    "com.hbm_m.client.render.implementations.DoorVboRenderer": [
+      "com.hbm_m.block.entity.doors.DoorDecl",
+      "com.hbm_m.client.model.DoorBakedModel",
+      "com.hbm_m.client.model.variant.DoorModelSelection",
+      "com.hbm_m.client.render.MeshRenderCache",
+      "com.hbm_m.client.render.ObjModelVboBuilder",
+      "com.hbm_m.client.render.SingleMeshVboRenderer"
+    ],
+    "com.hbm_m.client.render.shader.IrisBufferHelper": [],
+    "com.hbm_m.client.render.shader.IrisExtendedShaderAccess": [
+      "com.hbm_m.client.render.ModShaders",
+      "com.hbm_m.main.MainRegistry"
+    ],
+    "com.hbm_m.client.render.shader.IrisPhaseGuard": [
+      "com.hbm_m.main.MainRegistry"
+    ],
+    "com.hbm_m.client.render.shader.IrisRenderBatch": [
+      "com.hbm_m.client.render.GlVaoSafety",
+      "com.hbm_m.client.render.IrisCompanionMesh",
+      "com.hbm_m.main.MainRegistry"
+    ],
+    "com.hbm_m.client.render.shader.ShaderCompatibilityDetector": [
+      "com.hbm_m.client.render.culling.OcclusionCullingHelper",
+      "com.hbm_m.main.MainRegistry",
+      "com.hbm_m.main.MainRegistry"
+    ],
+    "com.hbm_m.client.sound.DoorLoopSoundFactory": [
+      "com.hbm_m.block.entity.doors.DoorBlockEntity"
+    ],
+    "com.hbm_m.client.tooltip.CrateContentsTooltipComponent": [],
+    "com.hbm_m.compat.ContraptionDoorState": [],
+    "com.hbm_m.compat.ContraptionRenderCompat": [],
+    "com.hbm_m.compat.create.CreateDoorRegistrar": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.block.UniversalMachinePartBlock",
+      "com.hbm_m.block.decorations.DoorBlock",
+      "com.hbm_m.lib.RefStrings",
+      "com.hbm_m.main.MainRegistry"
+    ],
+    "com.hbm_m.compat.create.CreateLevelAccess": [],
+    "com.hbm_m.compat.create.DoorShapeComputer": [
+      "com.hbm_m.block.entity.doors.DoorDecl",
+      "com.hbm_m.block.entity.doors.DoorDeclRegistry",
+      "com.hbm_m.compat.ContraptionDoorState",
+      "com.hbm_m.multiblock.MultiblockStructureHelper"
+    ],
+    "com.hbm_m.compat.create.HbmDoorInteractionBehaviour": [],
+    "com.hbm_m.compat.create.HbmDoorMovementBehaviour": [
+      "com.hbm_m.block.decorations.DoorBlock",
+      "com.hbm_m.block.entity.doors.DoorDecl",
+      "com.hbm_m.block.entity.doors.DoorDeclRegistry",
+      "com.hbm_m.compat.ContraptionDoorState",
+      "com.hbm_m.network.DoorContraptionStatePacket"
+    ],
+    "com.hbm_m.compat.create.HbmDoorPartInteractionBehaviour": [
+      "com.hbm_m.compat.ContraptionDoorState"
+    ],
+    "com.hbm_m.config.FalloutConfigJSON": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.block.generic.BlockSellafieldSlaked",
+      "com.hbm_m.main.MainRegistry"
+    ],
+    "com.hbm_m.config.GeneralConfig": [],
+    "com.hbm_m.config.MachineConfig": [],
+    "com.hbm_m.config.ModClothConfig": [
+      "com.hbm_m.config.schema.ConfigSchema",
+      "com.hbm_m.config.schema.ConfigSide"
+    ],
+    "com.hbm_m.config.RadiationConfig": [],
+    "com.hbm_m.config.schema.ConfigSchema": [
+      "com.hbm_m.config.ModClothConfig"
+    ],
+    "com.hbm_m.config.schema.ConfigSide": [],
+    "com.hbm_m.damagesource.ModDamageSources": [],
+    "com.hbm_m.damagesource.ModDamageTypes": [
+      "com.hbm_m.lib.RefStrings"
+    ],
+    "com.hbm_m.effect.ModEffects": [
+      "com.hbm_m.lib.RefStrings",
+      "com.hbm_m.main.MainRegistry"
+    ],
+    "com.hbm_m.entity.ModEntities": [
+      "com.hbm_m.entity.effect.EntityCloudFleija",
+      "com.hbm_m.entity.effect.EntityFalloutRain",
+      "com.hbm_m.entity.effect.EntityMist",
+      "com.hbm_m.entity.grenades.",
+      "com.hbm_m.entity.logic.EntityNukeExplosionMK3",
+      "com.hbm_m.entity.logic.EntityNukeExplosionMK5",
+      "com.hbm_m.entity.mob.EntityCreeperGold",
+      "com.hbm_m.entity.mob.EntityCreeperNuclear",
+      "com.hbm_m.entity.mob.EntityCreeperPhosgene",
+      "com.hbm_m.entity.mob.EntityCreeperTainted",
+      "com.hbm_m.entity.mob.EntityCreeperVolatile",
+      "com.hbm_m.entity.mob.NoloEntity",
+      "com.hbm_m.entity.missile.MissileABMEntity",
+      "com.hbm_m.entity.missile.MissileBaseEntity",
+      "com.hbm_m.entity.missile.MissileTestEntity",
+      "com.hbm_m.entity.missile.MissileShuttleEntity",
+      "com.hbm_m.entity.missile.MissileStealthEntity",
+      "com.hbm_m.entity.missile.MissileTier0",
+      "com.hbm_m.entity.missile.MissileTier1",
+      "com.hbm_m.entity.missile.MissileTier2",
+      "com.hbm_m.entity.missile.MissileTier3",
+      "com.hbm_m.entity.missile.MissileTier4",
+      "com.hbm_m.entity.projectile.ZirnoxDebrisEntity",
+      "com.hbm_m.entity.projectile.TurretBulletEntity",
+      "com.hbm_m.entity.projectile.TurretRocketEntity",
+      "com.hbm_m.main.MainRegistry"
+    ],
+    "com.hbm_m.entity.effect.BlackHoleEntity": [
+      "com.hbm_m.damagesource.ModDamageSources",
+      "com.hbm_m.entity.ModEntities",
+      "com.hbm_m.entity.projectile.RubbleEntity",
+      "com.hbm_m.item.ModItems"
+    ],
+    "com.hbm_m.entity.effect.EntityCloudFleija": [],
+    "com.hbm_m.entity.effect.EntityFalloutRain": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.block.generic.BlockFallout",
+      "com.hbm_m.config.FalloutConfigJSON",
+      "com.hbm_m.config.ModClothConfig",
+      "com.hbm_m.entity.logic.EntityExplosionChunkloading",
+      "com.hbm_m.radiation.ChunkRadiationManager",
+      "com.hbm_m.util.WorldUtil",
+      "com.hbm_m.world.biome.ModBiomes"
+    ],
+    "com.hbm_m.entity.effect.EntityMist": [
+      "com.hbm_m.damagesource.ModDamageSources",
+      "com.hbm_m.inventory.fluid.FluidType",
+      "com.hbm_m.inventory.fluid.ModFluids",
+      "com.hbm_m.inventory.fluid.trait.FT_Corrosive",
+      "com.hbm_m.inventory.fluid.trait.FT_Poison",
+      "com.hbm_m.inventory.fluid.trait.FT_VentRadiation"
+    ],
+    "com.hbm_m.entity.effect.VortexEntity": [],
+    "com.hbm_m.entity.grenades.AirBombProjectileEntity": [
+      "com.hbm_m.entity.ModEntities",
+      "com.hbm_m.interfaces.IDetonatable",
+      "com.hbm_m.item.ModItems",
+      "com.hbm_m.particle.ModExplosionParticles",
+      "com.hbm_m.particle.explosions.basic.ExplosionParticleUtils",
+      "com.hbm_m.sound.ModSounds"
+    ],
+    "com.hbm_m.entity.grenades.AirNukeBombProjectileEntity": [
+      "com.hbm_m.entity.ModEntities",
+      "com.hbm_m.interfaces.IDetonatable",
+      "com.hbm_m.item.ModItems",
+      "com.hbm_m.particle.ModExplosionParticles",
+      "com.hbm_m.particle.explosions.basic.ExplosionParticleUtils",
+      "com.hbm_m.sound.ModSounds",
+      "com.hbm_m.util.explosions.nuclear.NuclearExplosionHelper"
+    ],
+    "com.hbm_m.entity.grenades.AirstrikeAgentEntity": [
+      "com.hbm_m.entity.ModEntities",
+      "com.hbm_m.particle.explosions.basic.ExplosionParticleUtils",
+      "com.hbm_m.sound.ModSounds"
+    ],
+    "com.hbm_m.entity.grenades.AirstrikeEntity": [
+      "com.hbm_m.entity.ModEntities",
+      "com.hbm_m.sound.ModSounds"
+    ],
+    "com.hbm_m.entity.grenades.AirstrikeHeavyEntity": [
+      "com.hbm_m.entity.ModEntities",
+      "com.hbm_m.sound.ModSounds"
+    ],
+    "com.hbm_m.entity.grenades.AirstrikeNukeEntity": [
+      "com.hbm_m.entity.ModEntities",
+      "com.hbm_m.sound.ModSounds"
+    ],
+    "com.hbm_m.entity.grenades.GrenadeIfProjectileEntity": [
+      "com.hbm_m.entity.ModEntities",
+      "com.hbm_m.sound.ModSounds",
+      "com.hbm_m.entity.grenades.GrenadeProjectileEntity.GRENADE_TYPE_ID"
+    ],
+    "com.hbm_m.entity.grenades.GrenadeIfType": [
+      "com.hbm_m.item.ModItems"
+    ],
+    "com.hbm_m.entity.grenades.GrenadeNucProjectileEntity": [
+      "com.hbm_m.entity.ModEntities",
+      "com.hbm_m.explosion.command.ExplosionCommandOptions",
+      "com.hbm_m.explosion.command.NuclearScenarioLaunchers",
+      "com.hbm_m.item.ModItems",
+      "com.hbm_m.sound.ModSounds"
+    ],
+    "com.hbm_m.entity.grenades.GrenadeProjectileEntity": [
+      "com.hbm_m.sound.ModSounds"
+    ],
+    "com.hbm_m.entity.grenades.GrenadeType": [
+      "com.hbm_m.item.ModItems"
+    ],
+    "com.hbm_m.entity.logic.EmpPulseEntity": [
+      "com.hbm_m.interfaces.IEnergyReceiver"
+    ],
+    "com.hbm_m.entity.logic.EntityExplosionChunkloading": [],
+    "com.hbm_m.entity.logic.EntityNukeExplosionMK3": [
+      "com.hbm_m.config.ModClothConfig",
+      "com.hbm_m.entity.ModEntities",
+      "com.hbm_m.explosion.ExplosionFleija",
+      "com.hbm_m.explosion.ExplosionNukeGeneric"
+    ],
+    "com.hbm_m.entity.logic.EntityNukeExplosionMK5": [
+      "com.hbm_m.config.ModClothConfig",
+      "com.hbm_m.entity.ModEntities",
+      "com.hbm_m.explosion.ExplosionNukeGeneric",
+      "com.hbm_m.util.ContaminationUtil",
+      "com.hbm_m.util.ContaminationUtil.ContaminationType",
+      "com.hbm_m.util.ContaminationUtil.HazardType",
+      "com.hbm_m.explosion.IExplosionRay",
+      "com.hbm_m.explosion.NoOpExplosionRay",
+      "com.hbm_m.explosion.NukeMk5ChunkEater",
+      "com.hbm_m.main.MainRegistry",
+      "com.hbm_m.util.WorldUtil"
+    ],
+    "com.hbm_m.entity.missile.MissileABMEntity": [
+      "com.hbm_m.entity.ModEntities",
+      "com.hbm_m.explosion.MissileWarheadEffects"
+    ],
+    "com.hbm_m.entity.missile.MissileBaseEntity": [
+      "com.hbm_m.explosion.MissileWarheadEffects"
+    ],
+    "com.hbm_m.entity.missile.MissileShuttleEntity": [
+      "com.hbm_m.explosion.MissileWarheadEffects",
+      "com.hbm_m.item.ModItems"
+    ],
+    "com.hbm_m.entity.missile.MissileStealthEntity": [
+      "com.hbm_m.explosion.MissileWarheadEffects"
+    ],
+    "com.hbm_m.entity.missile.MissileTestEntity": [
+      "com.hbm_m.entity.ModEntities",
+      "com.hbm_m.util.explosions.nuclear.NuclearExplosionHelper"
+    ],
+    "com.hbm_m.entity.missile.MissileTier0": [
+      "com.hbm_m.explosion.ExplosionNukeGeneric",
+      "com.hbm_m.explosion.FleijaExplosionAPI",
+      "com.hbm_m.explosion.MissileWarheadEffects",
+      "com.hbm_m.explosion.NuclearExplosionAPI",
+      "com.hbm_m.item.ModItems"
+    ],
+    "com.hbm_m.entity.missile.MissileTier1": [
+      "com.hbm_m.explosion.ExplosionChaos",
+      "com.hbm_m.explosion.MissileWarheadEffects"
+    ],
+    "com.hbm_m.entity.missile.MissileTier2": [
+      "com.hbm_m.explosion.ExplosionChaos",
+      "com.hbm_m.explosion.MissileWarheadEffects"
+    ],
+    "com.hbm_m.entity.missile.MissileTier3": [
+      "com.hbm_m.explosion.ExplosionChaos",
+      "com.hbm_m.explosion.MissileWarheadEffects"
+    ],
+    "com.hbm_m.entity.missile.MissileTier4": [
+      "com.hbm_m.config.ModClothConfig",
+      "com.hbm_m.explosion.NuclearExplosionAPI",
+      "com.hbm_m.explosion.NuclearExplosionConfig"
+    ],
+    "com.hbm_m.entity.mob.EntityCreeperGold": [
+      "com.hbm_m.explosion.vanillant.ExplosionVNT",
+      "com.hbm_m.explosion.vanillant.standard.BlockAllocatorBulkie",
+      "com.hbm_m.explosion.vanillant.standard.BlockMutatorBulkie",
+      "com.hbm_m.explosion.vanillant.standard.BlockProcessorStandard",
+      "com.hbm_m.explosion.vanillant.standard.EntityProcessorStandard",
+      "com.hbm_m.explosion.vanillant.standard.ExplosionEffectStandard",
+      "com.hbm_m.item.ModItems"
+    ],
+    "com.hbm_m.entity.mob.EntityCreeperNuclear": [
+      "com.hbm_m.damagesource.ModDamageTypes",
+      "com.hbm_m.mixin.CreeperAccessor",
+      "com.hbm_m.entity.logic.EntityNukeExplosionMK5",
+      "com.hbm_m.explosion.ExplosionNukeGeneric",
+      "com.hbm_m.explosion.MissileWarheadEffects",
+      "com.hbm_m.particle.helper.IParticleCreator",
+      "com.hbm_m.radiation.ChunkRadiationManager",
+      "com.hbm_m.sound.ModSounds",
+      "com.hbm_m.util.ContaminationUtil",
+      "com.hbm_m.util.ContaminationUtil.ContaminationType",
+      "com.hbm_m.util.ContaminationUtil.HazardType"
+    ],
+    "com.hbm_m.entity.mob.EntityCreeperPhosgene": [
+      "com.hbm_m.entity.ModEntities",
+      "com.hbm_m.entity.effect.EntityMist",
+      "com.hbm_m.mixin.CreeperAccessor",
+      "com.hbm_m.inventory.fluid.FluidType",
+      "com.hbm_m.inventory.fluid.ModFluids"
+    ],
+    "com.hbm_m.entity.mob.EntityCreeperTainted": [
+      "com.hbm_m.block.bomb.BlockTaint",
+      "com.hbm_m.config.ModClothConfig",
+      "com.hbm_m.entity.ModEntities",
+      "com.hbm_m.mixin.CreeperAccessor"
+    ],
+    "com.hbm_m.entity.mob.EntityCreeperVolatile": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.block.generic.BlockSlag",
+      "com.hbm_m.explosion.vanillant.ExplosionVNT",
+      "com.hbm_m.explosion.vanillant.standard.BlockAllocatorBulkie",
+      "com.hbm_m.explosion.vanillant.standard.BlockMutatorBulkie",
+      "com.hbm_m.explosion.vanillant.standard.BlockProcessorStandard",
+      "com.hbm_m.explosion.vanillant.standard.EntityProcessorStandard",
+      "com.hbm_m.explosion.vanillant.standard.ExplosionEffectStandard",
+      "com.hbm_m.item.ModItems"
+    ],
+    "com.hbm_m.entity.mob.NoloEntity": [
+      "com.hbm_m.entity.ModEntities"
+    ],
+    "com.hbm_m.entity.projectile.ClusterRocketEntity": [],
+    "com.hbm_m.entity.projectile.RubbleEntity": [
+      "com.hbm_m.damagesource.ModDamageSources",
+      "com.hbm_m.entity.ModEntities",
+      "com.hbm_m.sound.ModSounds"
+    ],
+    "com.hbm_m.entity.projectile.TurretBulletEntity": [
+      "com.hbm_m.entity.ModEntities",
+      "com.hbm_m.item.ModItems"
+    ],
+    "com.hbm_m.entity.projectile.TurretRocketEntity": [
+      "com.hbm_m.entity.ModEntities",
+      "com.hbm_m.item.ModItems"
+    ],
+    "com.hbm_m.entity.projectile.ZirnoxDebrisEntity": [
+      "com.hbm_m.entity.ModEntities",
+      "com.hbm_m.util.ContaminationUtil",
+      "com.hbm_m.util.ContaminationUtil.ContaminationType",
+      "com.hbm_m.util.ContaminationUtil.HazardType"
+    ],
+    "com.hbm_m.event.BombDefuser": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.block.bomb.LandmineBlock",
+      "com.hbm_m.item.ModItems",
+      "com.hbm_m.sound.ModSounds"
+    ],
+    "com.hbm_m.event.CrateBreaker": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.item.ModItems",
+      "com.hbm_m.sound.ModSounds"
+    ],
+    "com.hbm_m.event.HazardEventHandler": [
+      "com.hbm_m.hazard.HazardEntry",
+      "com.hbm_m.hazard.HazardSystem",
+      "com.hbm_m.hazard.modifier.HazardModifier"
+    ],
+    "com.hbm_m.event.PlayerHazardHandler": [
+      "com.hbm_m.hazard.HazardSystem"
+    ],
+    "com.hbm_m.event.ScrewdriverInteractionHandler": [
+      "com.hbm_m.block.entity.doors.DoorBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockPart",
+      "com.hbm_m.item.ModItems"
+    ],
+    "com.hbm_m.explosion.ExplosionChaos": [
+      "com.hbm_m.entity.ModEntities",
+      "com.hbm_m.entity.projectile.ClusterRocketEntity"
+    ],
+    "com.hbm_m.explosion.ExplosionFleija": [],
+    "com.hbm_m.explosion.ExplosionNukeGeneric": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.damagesource.ModDamageSources",
+      "com.hbm_m.entity.effect.EntityCloudFleija",
+      "com.hbm_m.util.confetti.ConfettiUtil",
+      "com.hbm_m.entity.logic.EntityExplosionChunkloading",
+      "com.hbm_m.interfaces.IEnergyReceiver",
+      "com.hbm_m.radiation.ChunkRadiationManager"
+    ],
+    "com.hbm_m.explosion.FleijaExplosionAPI": [
+      "com.hbm_m.config.ModClothConfig",
+      "com.hbm_m.entity.ModEntities",
+      "com.hbm_m.entity.effect.EntityCloudFleija",
+      "com.hbm_m.entity.logic.EntityNukeExplosionMK3",
+      "com.hbm_m.util.WorldUtil"
+    ],
+    "com.hbm_m.explosion.IExplosionRay": [],
+    "com.hbm_m.explosion.MissileWarheadEffects": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.block.bomb.BlockTaint",
+      "com.hbm_m.entity.ModEntities",
+      "com.hbm_m.entity.effect.BlackHoleEntity",
+      "com.hbm_m.entity.logic.EmpPulseEntity",
+      "com.hbm_m.explosion.vanillant.ExplosionVNT",
+      "com.hbm_m.explosion.vanillant.standard.BlockAllocatorStandard",
+      "com.hbm_m.explosion.vanillant.standard.BlockMutatorFire",
+      "com.hbm_m.explosion.vanillant.standard.BlockProcessorStandard",
+      "com.hbm_m.explosion.vanillant.standard.EntityProcessorCross",
+      "com.hbm_m.item.ModItems",
+      "com.hbm_m.particle.ModExplosionParticles",
+      "com.hbm_m.particle.ModParticleTypes",
+      "com.hbm_m.particle.explosions.ServerExplosionParticles",
+      "com.hbm_m.particle.explosions.basic.ExplosionParticleUtils",
+      "com.hbm_m.particle.helper.ExplosionCreator"
+    ],
+    "com.hbm_m.explosion.NoOpExplosionRay": [],
+    "com.hbm_m.explosion.NuclearExplosionAPI": [
+      "com.hbm_m.config.ModClothConfig",
+      "com.hbm_m.entity.ModEntities",
+      "com.hbm_m.entity.logic.EntityNukeExplosionMK5",
+      "com.hbm_m.explosion.command.ExplosionCommandOptions",
+      "com.hbm_m.particle.helper.NukeTorexCreator",
+      "com.hbm_m.util.WorldUtil",
+      "com.hbm_m.util.explosions.nuclear.NuclearExplosionHelper"
+    ],
+    "com.hbm_m.explosion.NuclearExplosionConfig": [],
+    "com.hbm_m.explosion.NukeMk5ChunkEater": [],
+    "com.hbm_m.explosion.command.ExplosionCommandOptions": [],
+    "com.hbm_m.explosion.command.HbmExplosionCommands": [],
+    "com.hbm_m.explosion.command.NuclearScenarioLaunchers": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.interfaces.IDetonatable",
+      "com.hbm_m.particle.ModExplosionParticles",
+      "com.hbm_m.particle.explosions.basic.ExplosionParticleUtils",
+      "com.hbm_m.particle.explosions.nuclear.medium.MediumNuclearMushroomCloud",
+      "com.hbm_m.sound.ModSounds",
+      "com.hbm_m.util.explosions.general.ShockwaveGenerator",
+      "com.hbm_m.util.explosions.nuclear.CraterGenerationFlags",
+      "com.hbm_m.util.explosions.nuclear.CraterGenerator",
+      "com.hbm_m.util.explosions.nuclear.NuclearExplosionHelper"
+    ],
+    "com.hbm_m.explosion.vanillant.ExplosionVNT": [
+      "com.hbm_m.explosion.vanillant.interfaces.IBlockAllocator",
+      "com.hbm_m.explosion.vanillant.interfaces.IBlockProcessor",
+      "com.hbm_m.explosion.vanillant.interfaces.IEntityProcessor",
+      "com.hbm_m.explosion.vanillant.interfaces.IExplosionSFX",
+      "com.hbm_m.explosion.vanillant.standard.BlockAllocatorStandard",
+      "com.hbm_m.explosion.vanillant.standard.BlockMutatorFire",
+      "com.hbm_m.explosion.vanillant.standard.BlockProcessorStandard",
+      "com.hbm_m.explosion.vanillant.standard.EntityProcessorStandard",
+      "com.hbm_m.explosion.vanillant.standard.ExplosionEffectStandard",
+      "com.hbm_m.radiation.ChunkRadiationManager"
+    ],
+    "com.hbm_m.explosion.vanillant.interfaces.IBlockAllocator": [
+      "com.hbm_m.explosion.vanillant.ExplosionVNT"
+    ],
+    "com.hbm_m.explosion.vanillant.interfaces.IBlockMutator": [
+      "com.hbm_m.explosion.vanillant.ExplosionVNT"
+    ],
+    "com.hbm_m.explosion.vanillant.interfaces.IBlockProcessor": [
+      "com.hbm_m.explosion.vanillant.ExplosionVNT"
+    ],
+    "com.hbm_m.explosion.vanillant.interfaces.ICustomDamageHandler": [
+      "com.hbm_m.explosion.vanillant.ExplosionVNT"
+    ],
+    "com.hbm_m.explosion.vanillant.interfaces.IDropChanceMutator": [
+      "com.hbm_m.explosion.vanillant.ExplosionVNT"
+    ],
+    "com.hbm_m.explosion.vanillant.interfaces.IEntityProcessor": [
+      "com.hbm_m.explosion.vanillant.ExplosionVNT"
+    ],
+    "com.hbm_m.explosion.vanillant.interfaces.IEntityRangeMutator": [
+      "com.hbm_m.explosion.vanillant.ExplosionVNT"
+    ],
+    "com.hbm_m.explosion.vanillant.interfaces.IExplosionSFX": [
+      "com.hbm_m.explosion.vanillant.ExplosionVNT"
+    ],
+    "com.hbm_m.explosion.vanillant.interfaces.IFortuneMutator": [
+      "com.hbm_m.explosion.vanillant.ExplosionVNT"
+    ],
+    "com.hbm_m.explosion.vanillant.standard.BlockAllocatorBulkie": [
+      "com.hbm_m.explosion.vanillant.ExplosionVNT",
+      "com.hbm_m.explosion.vanillant.interfaces.IBlockAllocator"
+    ],
+    "com.hbm_m.explosion.vanillant.standard.BlockAllocatorStandard": [
+      "com.hbm_m.explosion.vanillant.ExplosionVNT",
+      "com.hbm_m.explosion.vanillant.interfaces.IBlockAllocator"
+    ],
+    "com.hbm_m.explosion.vanillant.standard.BlockAllocatorWater": [
+      "com.hbm_m.explosion.vanillant.ExplosionVNT",
+      "com.hbm_m.explosion.vanillant.interfaces.IBlockAllocator"
+    ],
+    "com.hbm_m.explosion.vanillant.standard.BlockMutatorBulkie": [
+      "com.hbm_m.explosion.vanillant.ExplosionVNT",
+      "com.hbm_m.explosion.vanillant.interfaces.IBlockMutator"
+    ],
+    "com.hbm_m.explosion.vanillant.standard.BlockMutatorFire": [
+      "com.hbm_m.explosion.vanillant.ExplosionVNT",
+      "com.hbm_m.explosion.vanillant.interfaces.IBlockMutator"
+    ],
+    "com.hbm_m.explosion.vanillant.standard.BlockProcessorStandard": [
+      "com.hbm_m.explosion.vanillant.ExplosionVNT",
+      "com.hbm_m.explosion.vanillant.interfaces.IBlockMutator",
+      "com.hbm_m.explosion.vanillant.interfaces.IBlockProcessor",
+      "com.hbm_m.explosion.vanillant.interfaces.IDropChanceMutator",
+      "com.hbm_m.explosion.vanillant.interfaces.IFortuneMutator"
+    ],
+    "com.hbm_m.explosion.vanillant.standard.EntityProcessorCross": [
+      "com.hbm_m.explosion.vanillant.ExplosionVNT",
+      "com.hbm_m.explosion.vanillant.interfaces.ICustomDamageHandler",
+      "com.hbm_m.explosion.vanillant.interfaces.IEntityProcessor",
+      "com.hbm_m.explosion.vanillant.interfaces.IEntityRangeMutator"
+    ],
+    "com.hbm_m.explosion.vanillant.standard.EntityProcessorCrossSmooth": [
+      "com.hbm_m.explosion.vanillant.ExplosionVNT"
+    ],
+    "com.hbm_m.explosion.vanillant.standard.EntityProcessorStandard": [
+      "com.hbm_m.explosion.vanillant.ExplosionVNT",
+      "com.hbm_m.explosion.vanillant.interfaces.ICustomDamageHandler",
+      "com.hbm_m.explosion.vanillant.interfaces.IEntityProcessor",
+      "com.hbm_m.explosion.vanillant.interfaces.IEntityRangeMutator"
+    ],
+    "com.hbm_m.explosion.vanillant.standard.ExplosionEffectStandard": [
+      "com.hbm_m.explosion.vanillant.ExplosionVNT",
+      "com.hbm_m.explosion.vanillant.interfaces.IExplosionSFX",
+      "com.hbm_m.network.VanillaExplosionPacket"
+    ],
+    "com.hbm_m.extprop.HbmLivingProps": [
+      "com.hbm_m.config.ModClothConfig",
+      "com.hbm_m.radiation.PlayerHandler"
+    ],
+    "com.hbm_m.handler.HazmatRegistry": [
+      "com.hbm_m.item.ModItems"
+    ],
+    "com.hbm_m.handler.MobGearHandler": [
+      "com.hbm_m.item.ModItems"
+    ],
+    "com.hbm_m.handler.rbmk.NeutronNodeWorld": [
+      "com.hbm_m.blockentity.machines.rbmk.RBMKColumnBlockEntity"
+    ],
+    "com.hbm_m.handler.rbmk.RBMKDials": [],
+    "com.hbm_m.handler.rbmk.RBMKNeutronHandler": [
+      "com.hbm_m.blockentity.machines.rbmk."
+    ],
+    "com.hbm_m.hazard.HazardEntry": [
+      "com.hbm_m.hazard.modifier.HazardModifier",
+      "com.hbm_m.hazard.type.HazardTypeBase"
+    ],
+    "com.hbm_m.hazard.HazardRegistry": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.hazard.type.HazardTypeAsbestos",
+      "com.hbm_m.hazard.type.HazardTypeBase",
+      "com.hbm_m.hazard.type.HazardTypeBlinding",
+      "com.hbm_m.hazard.type.HazardTypeCoal",
+      "com.hbm_m.hazard.type.HazardTypeDigamma",
+      "com.hbm_m.hazard.type.HazardTypeExplosive",
+      "com.hbm_m.hazard.type.HazardTypeHot",
+      "com.hbm_m.hazard.type.HazardTypeHydroactive",
+      "com.hbm_m.hazard.type.HazardTypeRadiation",
+      "com.hbm_m.item.ModItems",
+      "com.hbm_m.item.tags_and_tiers.ModIngots"
+    ],
+    "com.hbm_m.hazard.HazardSystem": [
+      "com.hbm_m.handler.HazmatRegistry",
+      "com.hbm_m.block.generic.BlockSellafieldSlaked",
+      "com.hbm_m.hazard.modifier.HazardModifier",
+      "com.hbm_m.hazard.type.HazardTypeBase"
+    ],
+    "com.hbm_m.hazard.modifier.HazardModifier": [],
+    "com.hbm_m.hazard.type.HazardTypeAsbestos": [
+      "com.hbm_m.config.RadiationConfig",
+      "com.hbm_m.extprop.HbmLivingProps",
+      "com.hbm_m.hazard.modifier.HazardModifier"
+    ],
+    "com.hbm_m.hazard.type.HazardTypeBase": [
+      "com.hbm_m.hazard.modifier.HazardModifier"
+    ],
+    "com.hbm_m.hazard.type.HazardTypeBlinding": [
+      "com.hbm_m.config.RadiationConfig",
+      "com.hbm_m.hazard.modifier.HazardModifier"
+    ],
+    "com.hbm_m.hazard.type.HazardTypeCoal": [
+      "com.hbm_m.config.RadiationConfig",
+      "com.hbm_m.extprop.HbmLivingProps",
+      "com.hbm_m.hazard.modifier.HazardModifier"
+    ],
+    "com.hbm_m.hazard.type.HazardTypeDigamma": [
+      "com.hbm_m.hazard.modifier.HazardModifier",
+      "com.hbm_m.util.ContaminationUtil"
+    ],
+    "com.hbm_m.hazard.type.HazardTypeExplosive": [
+      "com.hbm_m.config.RadiationConfig",
+      "com.hbm_m.hazard.modifier.HazardModifier"
+    ],
+    "com.hbm_m.hazard.type.HazardTypeHot": [
+      "com.hbm_m.config.RadiationConfig",
+      "com.hbm_m.hazard.modifier.HazardModifier"
+    ],
+    "com.hbm_m.hazard.type.HazardTypeHydroactive": [
+      "com.hbm_m.config.RadiationConfig",
+      "com.hbm_m.hazard.modifier.HazardModifier"
+    ],
+    "com.hbm_m.hazard.type.HazardTypeRadiation": [
+      "com.hbm_m.config.GeneralConfig",
+      "com.hbm_m.hazard.modifier.HazardModifier",
+      "com.hbm_m.item.ModItems",
+      "com.hbm_m.util.BobMathUtil",
+      "com.hbm_m.util.ContaminationUtil",
+      "com.hbm_m.util.ContaminationUtil.ContaminationType",
+      "com.hbm_m.util.ContaminationUtil.HazardType"
+    ],
+    "com.hbm_m.interfaces.IDetonatable": [],
+    "com.hbm_m.interfaces.IDoorAnimator": [],
+    "com.hbm_m.interfaces.IEnergyConnector": [],
+    "com.hbm_m.interfaces.IEnergyModeHolder": [],
+    "com.hbm_m.interfaces.IEnergyProvider": [],
+    "com.hbm_m.interfaces.IEnergyReceiver": [],
+    "com.hbm_m.interfaces.IFrameSupportable": [],
+    "com.hbm_m.interfaces.IHasTooltip": [],
+    "com.hbm_m.interfaces.IItemControlReceiver": [],
+    "com.hbm_m.interfaces.IItemFluidIdentifier": [],
+    "com.hbm_m.interfaces.ILongEnergyMenu": [],
+    "com.hbm_m.interfaces.ILookOverlay": [],
+    "com.hbm_m.interfaces.IMultiblockController": [
+      "com.hbm_m.multiblock.MultiblockStructureHelper",
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.interfaces.IMultiblockPart": [
+      "com.hbm_m.multiblock.PartRole"
+    ],
+    "com.hbm_m.interfaces.IMultiblockSidedIO": [],
+    "com.hbm_m.interfaces.IResistanceProvider": [],
+    "com.hbm_m.interfaces.IUpgradeInfoProvider": [
+      "com.hbm_m.item.industrial.ItemMachineUpgrade.UpgradeType"
+    ],
+    "com.hbm_m.inventory.ModItemStackHandlerContainer": [
+      "com.hbm_m.platform.ModItemStackHandler"
+    ],
+    "com.hbm_m.inventory.UpgradeManager": [
+      "com.hbm_m.item.industrial.ItemMachineUpgrade",
+      "com.hbm_m.platform.ModItemStackHandler"
+    ],
+    "com.hbm_m.inventory.fluid.FluidType": [
+      "com.hbm_m.inventory.fluid.tank.FluidTank",
+      "com.hbm_m.inventory.fluid.trait.FT_Corrosive",
+      "com.hbm_m.inventory.fluid.trait.FluidTrait",
+      "com.hbm_m.inventory.fluid.trait.FluidTraitSimple.FT_Amat",
+      "com.hbm_m.inventory.fluid.trait.FluidTraitSimple.FT_LeadContainer",
+      "com.hbm_m.inventory.fluid.trait.FluidTraitSimple.FT_NoContainer",
+      "com.hbm_m.inventory.fluid.trait.FluidTraitSimple.FT_NoID",
+      "com.hbm_m.inventory.fluid.trait.FluidTraitSimple.FT_Viscous"
+    ],
+    "com.hbm_m.inventory.fluid.ModFluids": [
+      "com.hbm_m.main.MainRegistry"
+    ],
+    "com.hbm_m.inventory.fluid.tank.FluidTank": [
+      "com.hbm_m.api.fluids.VanillaFluidEquivalence",
+      "com.hbm_m.inventory.fluid.ModFluids",
+      "com.hbm_m.item.liquids.FluidIdentifierItem",
+      "com.hbm_m.item.liquids.InfiniteFluidItem"
+    ],
+    "com.hbm_m.inventory.fluid.trait.FT_Combustible": [
+      "com.hbm_m.util.EnergyFormatter"
+    ],
+    "com.hbm_m.inventory.fluid.trait.FT_Coolable": [
+      "com.hbm_m.util.EnergyFormatter"
+    ],
+    "com.hbm_m.inventory.fluid.trait.FT_Corrosive": [],
+    "com.hbm_m.inventory.fluid.trait.FT_Flammable": [
+      "com.hbm_m.util.EnergyFormatter"
+    ],
+    "com.hbm_m.inventory.fluid.trait.FT_Heatable": [
+      "com.hbm_m.util.EnergyFormatter"
+    ],
+    "com.hbm_m.inventory.fluid.trait.FT_PWRModerator": [],
+    "com.hbm_m.inventory.fluid.trait.FT_Pheromone": [],
+    "com.hbm_m.inventory.fluid.trait.FT_Poison": [],
+    "com.hbm_m.inventory.fluid.trait.FT_Polluting": [
+      "com.hbm_m.util.EnergyFormatter"
+    ],
+    "com.hbm_m.inventory.fluid.trait.FT_Toxin": [],
+    "com.hbm_m.inventory.fluid.trait.FT_VentRadiation": [
+      "com.hbm_m.inventory.fluid.tank.FluidTank"
+    ],
+    "com.hbm_m.inventory.fluid.trait.FluidTrait": [
+      "com.hbm_m.inventory.fluid.tank.FluidTank"
+    ],
+    "com.hbm_m.inventory.fluid.trait.PollutionType": [],
+    "com.hbm_m.inventory.gui.GUIDoorModelSelection": [
+      "com.hbm_m.client.model.variant.DoorModelRegistry",
+      "com.hbm_m.client.model.variant.DoorModelSelection",
+      "com.hbm_m.client.model.variant.DoorModelType",
+      "com.hbm_m.client.model.variant.DoorSkin",
+      "com.hbm_m.client.overlay.DoorModelFakeItemRenderer",
+      "com.hbm_m.item.ModItems",
+      "com.hbm_m.lib.RefStrings",
+      "com.hbm_m.network.ServerboundDoorModelPacket",
+      "com.hbm_m.sound.ModSounds"
+    ],
+    "com.hbm_m.inventory.gui.GUITemplateFolder": [
+      "com.hbm_m.item.ModItems",
+      "com.hbm_m.lib.RefStrings",
+      "com.hbm_m.network.GiveTemplateC2SPacket",
+      "com.hbm_m.network.ModPacketHandler",
+      "com.hbm_m.recipe.AssemblerRecipe",
+      "com.hbm_m.util.TemplateCraftingCosts"
+    ],
+    "com.hbm_m.inventory.material.MaterialStack": [],
+    "com.hbm_m.inventory.material.MaterialType": [
+      "com.hbm_m.item.ModItems"
+    ],
+    "com.hbm_m.inventory.menu.AnvilMenu": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.machines.AnvilBlockEntity",
+      "com.hbm_m.platform.ModItemStackHandler"
+    ],
+    "com.hbm_m.inventory.menu.Bat9000Menu": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.machines.MachineFluidTankBlockEntity",
+      "com.hbm_m.interfaces.IItemFluidIdentifier"
+    ],
+    "com.hbm_m.inventory.menu.BatterySocketMenu": [
+      "com.hbm_m.block.machines.MachineBatterySocketBlock",
+      "com.hbm_m.blockentity.machines.BatterySocketBlockEntity",
+      "com.hbm_m.interfaces.ILongEnergyMenu",
+      "com.hbm_m.network.ModPacketHandler",
+      "com.hbm_m.network.packet.PacketSyncEnergy",
+      "com.hbm_m.platform.ModItemStackHandler"
+    ],
+    "com.hbm_m.inventory.menu.BlastFurnaceMenu": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.machines.BlastFurnaceBlockEntity",
+      "com.hbm_m.inventory.ModItemStackHandlerContainer",
+      "com.hbm_m.main.MainRegistry"
+    ],
+    "com.hbm_m.inventory.menu.DeshCrateMenu": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.block.machines.crates.CrateType",
+      "com.hbm_m.blockentity.crates.DeshCrateBlockEntity"
+    ],
+    "com.hbm_m.inventory.menu.HeatingOvenMenu": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.machines.HeatingOvenBlockEntity",
+      "com.hbm_m.inventory.ModItemStackHandlerContainer"
+    ],
+    "com.hbm_m.inventory.menu.IronCrateMenu": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.block.machines.crates.CrateType",
+      "com.hbm_m.blockentity.crates.IronCrateBlockEntity"
+    ],
+    "com.hbm_m.inventory.menu.LaunchPadLargeMenu": [
+      "com.hbm_m.api.item.IDesignatorItem",
+      "com.hbm_m.blockentity.machines.LaunchPadBaseBlockEntity",
+      "com.hbm_m.interfaces.ILongEnergyMenu",
+      "com.hbm_m.lib.RefStrings",
+      "com.hbm_m.network.ModPacketHandler",
+      "com.hbm_m.network.packet.PacketSyncEnergy",
+      "com.hbm_m.platform.ModItemStackHandler"
+    ],
+    "com.hbm_m.inventory.menu.LaunchPadRustedMenu": [
+      "com.hbm_m.api.item.IDesignatorItem",
+      "com.hbm_m.blockentity.machines.LaunchPadRustedBlockEntity",
+      "com.hbm_m.lib.RefStrings",
+      "com.hbm_m.platform.ModItemStackHandler"
+    ],
+    "com.hbm_m.inventory.menu.MachineAdvancedAssemblerMenu": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.machines.MachineAdvancedAssemblerBlockEntity",
+      "com.hbm_m.inventory.ModItemStackHandlerContainer",
+      "com.hbm_m.interfaces.ILongEnergyMenu",
+      "com.hbm_m.network.ModPacketHandler",
+      "com.hbm_m.api.energy.ItemEnergyAccess",
+      "com.hbm_m.util.LongDataPacker"
+    ],
+    "com.hbm_m.inventory.menu.MachineArcWelderMenu": [
+      "com.hbm_m.blockentity.machines.MachineArcWelderBlockEntity"
+    ],
+    "com.hbm_m.inventory.menu.MachineAssemblerMenu": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.machines.MachineAssemblerBlockEntity",
+      "com.hbm_m.inventory.ModItemStackHandlerContainer",
+      "com.hbm_m.interfaces.ILongEnergyMenu",
+      "com.hbm_m.item.industrial.ItemAssemblyTemplate",
+      "com.hbm_m.main.MainRegistry",
+      "com.hbm_m.network.ModPacketHandler"
+    ],
+    "com.hbm_m.inventory.menu.MachineBatteryMenu": [
+      "com.hbm_m.block.machines.MachineBatteryBlock",
+      "com.hbm_m.blockentity.machines.MachineBatteryBlockEntity",
+      "com.hbm_m.inventory.ModItemStackHandlerContainer",
+      "com.hbm_m.interfaces.ILongEnergyMenu",
+      "com.hbm_m.network.ModPacketHandler",
+      "com.hbm_m.network.packet.PacketSyncEnergy"
+    ],
+    "com.hbm_m.inventory.menu.MachineBreederMenu": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.machines.MachineBreederBlockEntity",
+      "com.hbm_m.capability.ModCapabilities",
+      "com.hbm_m.interfaces.ILongEnergyMenu",
+      "com.hbm_m.inventory.ModItemStackHandlerContainer",
+      "com.hbm_m.item.fekal_electric.ItemCreativeBattery",
+      "com.hbm_m.network.ModPacketHandler",
+      "com.hbm_m.network.packet.PacketSyncEnergy"
+    ],
+    "com.hbm_m.inventory.menu.MachineCentrifugeMenu": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.machines.MachineCentrifugeBlockEntity",
+      "com.hbm_m.interfaces.ILongEnergyMenu",
+      "com.hbm_m.network.ModPacketHandler",
+      "com.hbm_m.network.packet.PacketSyncEnergy",
+      "com.hbm_m.platform.ModItemStackHandler"
+    ],
+    "com.hbm_m.inventory.menu.MachineChemicalPlantMenu": [
+      "com.hbm_m.api.energy.ItemEnergyAccess",
+      "com.hbm_m.api.fluids.FluidItemAccess",
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.machines.MachineChemicalPlantBlockEntity",
+      "com.hbm_m.inventory.ModItemStackHandlerContainer",
+      "com.hbm_m.item.industrial.ItemBlueprintFolder",
+      "com.hbm_m.item.industrial.ItemMachineUpgrade"
+    ],
+    "com.hbm_m.inventory.menu.MachineCombinationOvenMenu": [
+      "com.hbm_m.blockentity.machines.MachineCombinationOvenBlockEntity",
+      "com.hbm_m.inventory.ModItemStackHandlerContainer",
+      "com.hbm_m.lib.RefStrings"
+    ],
+    "com.hbm_m.inventory.menu.MachineCrackingTowerMenu": [
+      "com.hbm_m.blockentity.machines.MachineCrackingTowerBlockEntity",
+      "com.hbm_m.lib.RefStrings"
+    ],
+    "com.hbm_m.inventory.menu.MachineCrucibleMenu": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.machines.MachineCrucibleBlockEntity",
+      "com.hbm_m.inventory.ModItemStackHandlerContainer"
+    ],
+    "com.hbm_m.inventory.menu.MachineCrystallizerMenu": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.machines.MachineCrystallizerBlockEntity",
+      "com.hbm_m.interfaces.ILongEnergyMenu",
+      "com.hbm_m.network.ModPacketHandler",
+      "com.hbm_m.network.packet.PacketSyncEnergy",
+      "com.hbm_m.platform.ModItemStackHandler",
+      "com.hbm_m.capability.ModCapabilities",
+      "com.hbm_m.item.fekal_electric.ItemCreativeBattery",
+      "com.hbm_m.item.industrial.ItemMachineUpgrade"
+    ],
+    "com.hbm_m.inventory.menu.MachineCyclotronMenu": [
+      "com.hbm_m.blockentity.machines.MachineCyclotronBlockEntity",
+      "com.hbm_m.item.ModItems",
+      "com.hbm_m.item.industrial.ItemMachineUpgrade",
+      "com.hbm_m.lib.RefStrings",
+      "com.hbm_m.platform.ModItemStackHandler"
+    ],
+    "com.hbm_m.inventory.menu.MachineDerrickMenu": [
+      "com.hbm_m.blockentity.machines.MachineDerrickBlockEntity",
+      "com.hbm_m.inventory.ModItemStackHandlerContainer",
+      "com.hbm_m.item.industrial.ItemMachineUpgrade",
+      "com.hbm_m.lib.RefStrings"
+    ],
+    "com.hbm_m.inventory.menu.MachineFelMenu": [
+      "com.hbm_m.blockentity.machines.MachineFelBlockEntity",
+      "com.hbm_m.lib.RefStrings"
+    ],
+    "com.hbm_m.inventory.menu.MachineFlareStackMenu": [
+      "com.hbm_m.blockentity.machines.MachineFlareStackBlockEntity",
+      "com.hbm_m.lib.RefStrings"
+    ],
+    "com.hbm_m.inventory.menu.MachineFluidTankMenu": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.machines.MachineFluidTankBlockEntity",
+      "com.hbm_m.interfaces.IItemFluidIdentifier"
+    ],
+    "com.hbm_m.inventory.menu.MachineFrackingTowerMenu": [
+      "com.hbm_m.blockentity.machines.MachineFrackingTowerBlockEntity",
+      "com.hbm_m.item.industrial.ItemMachineUpgrade",
+      "com.hbm_m.platform.ModItemStackHandler"
+    ],
+    "com.hbm_m.inventory.menu.MachineFractionTowerMenu": [
+      "com.hbm_m.blockentity.machines.MachineFractionTowerBlockEntity",
+      "com.hbm_m.lib.RefStrings"
+    ],
+    "com.hbm_m.inventory.menu.MachineGasCentrifugeMenu": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.machines.MachineGasCentrifugeBlockEntity",
+      "com.hbm_m.interfaces.ILongEnergyMenu",
+      "com.hbm_m.inventory.ModItemStackHandlerContainer",
+      "com.hbm_m.item.industrial.ItemMachineUpgrade",
+      "com.hbm_m.item.liquids.FluidIdentifierItem",
+      "com.hbm_m.network.ModPacketHandler",
+      "com.hbm_m.network.packet.PacketSyncEnergy"
+    ],
+    "com.hbm_m.inventory.menu.MachineLargePylonMenu": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.machines.MachineLargePylonBlockEntity",
+      "com.hbm_m.capability.ModCapabilities",
+      "com.hbm_m.interfaces.ILongEnergyMenu",
+      "com.hbm_m.inventory.ModItemStackHandlerContainer",
+      "com.hbm_m.item.fekal_electric.ItemCreativeBattery",
+      "com.hbm_m.network.ModPacketHandler",
+      "com.hbm_m.network.packet.PacketSyncEnergy"
+    ],
+    "com.hbm_m.inventory.menu.MachineMiningDrillMenu": [
+      "com.hbm_m.api.energy.ItemEnergyAccess",
+      "com.hbm_m.blockentity.machines.MachineMiningDrillBlockEntity",
+      "com.hbm_m.inventory.ModItemStackHandlerContainer",
+      "com.hbm_m.lib.RefStrings"
+    ],
+    "com.hbm_m.inventory.menu.MachineMixerMenu": [
+      "com.hbm_m.blockentity.machines.MachineMixerBlockEntity",
+      "com.hbm_m.capability.ModCapabilities",
+      "com.hbm_m.inventory.ModItemStackHandlerContainer",
+      "com.hbm_m.lib.RefStrings"
+    ],
+    "com.hbm_m.inventory.menu.MachineOreSlopperMenu": [
+      "com.hbm_m.api.energy.ItemEnergyAccess",
+      "com.hbm_m.blockentity.machines.MachineOreSlopperBlockEntity",
+      "com.hbm_m.inventory.ModItemStackHandlerContainer",
+      "com.hbm_m.lib.RefStrings"
+    ],
+    "com.hbm_m.inventory.menu.MachinePressMenu": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.machines.MachinePressBlockEntity",
+      "com.hbm_m.inventory.ModItemStackHandlerContainer",
+      "com.hbm_m.item.industrial.ItemStamp",
+      "com.hbm_m.item.ModItems",
+      "com.hbm_m.main.MainRegistry"
+    ],
+    "com.hbm_m.inventory.menu.MachinePumpjackMenu": [
+      "com.hbm_m.blockentity.machines.MachinePumpjackBlockEntity",
+      "com.hbm_m.lib.RefStrings"
+    ],
+    "com.hbm_m.inventory.menu.MachineRadarMenu": [
+      "com.hbm_m.blockentity.machines.MachineRadarBlockEntity",
+      "com.hbm_m.lib.RefStrings",
+      "com.hbm_m.platform.ModItemStackHandler"
+    ],
+    "com.hbm_m.inventory.menu.MachineRbmkConsoleMenu": [
+      "com.hbm_m.blockentity.machines.MachineRbmkConsoleBlockEntity",
+      "com.hbm_m.lib.RefStrings"
+    ],
+    "com.hbm_m.inventory.menu.MachineRefineryMenu": [
+      "com.hbm_m.blockentity.machines.MachineRefineryBlockEntity",
+      "com.hbm_m.inventory.ModItemStackHandlerContainer",
+      "com.hbm_m.lib.RefStrings"
+    ],
+    "com.hbm_m.inventory.menu.MachineShredderMenu": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.machines.MachineShredderBlockEntity",
+      "com.hbm_m.interfaces.ILongEnergyMenu",
+      "com.hbm_m.network.ModPacketHandler",
+      "com.hbm_m.item.industrial.ItemBlades",
+      "com.hbm_m.platform.ModItemStackHandler"
+    ],
+    "com.hbm_m.inventory.menu.MachineSilexMenu": [
+      "com.hbm_m.blockentity.machines.MachineSilexBlockEntity",
+      "com.hbm_m.lib.RefStrings"
+    ],
+    "com.hbm_m.inventory.menu.MachineSolderingStationMenu": [
+      "com.hbm_m.blockentity.machines.MachineSolderingStationBlockEntity"
+    ],
+    "com.hbm_m.inventory.menu.MachineSteamTurbineMenu": [
+      "com.hbm_m.blockentity.machines.MachineSteamTurbineBlockEntity",
+      "com.hbm_m.inventory.ModItemStackHandlerContainer",
+      "com.hbm_m.lib.RefStrings"
+    ],
+    "com.hbm_m.inventory.menu.MachineSubstationMenu": [
+      "com.hbm_m.blockentity.machines.MachineSubstationBlockEntity",
+      "com.hbm_m.lib.RefStrings"
+    ],
+    "com.hbm_m.inventory.menu.MachineTurbineMenu": [
+      "com.hbm_m.blockentity.machines.MachineTurbineBlockEntity",
+      "com.hbm_m.inventory.ModItemStackHandlerContainer",
+      "com.hbm_m.lib.RefStrings"
+    ],
+    "com.hbm_m.inventory.menu.MachineWoodBurnerMenu": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.blockentity.machines.MachineWoodBurnerBlockEntity",
+      "com.hbm_m.inventory.ModItemStackHandlerContainer",
+      "com.hbm_m.interfaces.ILongEnergyMenu",
+      "com.hbm_m.network.ModPacketHandler",
+      "com.hbm_m.api.energy.ItemEnergyAccess"
+    ],
+    "com.hbm_m.inventory.menu.MachineZirnoxMenu": [
+      "com.hbm_m.api.fluids.VanillaFluidEquivalence",
+      "com.hbm_m.blockentity.machines.MachineZirnoxBlockEntity",
+      "com.hbm_m.inventory.ModItemStackHandlerContainer",
+      "com.hbm_m.inventory.fluid.ModFluids",
+      "com.hbm_m.lib.RefStrings",
+      "com.hbm_m.item.ModItems",
+      "com.hbm_m.item.liquids.FluidBarrelItem",
+      "com.hbm_m.item.tags_and_tiers.ModTags"
+    ],
+    "com.hbm_m.inventory.menu.ModMenuTypes": [
+      "com.hbm_m.armormod.menu.ArmorTableMenu",
+      "com.hbm_m.lib.RefStrings"
+    ],
+    "com.hbm_m.inventory.menu.NukeFatManMenu": [
+      "com.hbm_m.blockentity.bomb.NukeFatManBlockEntity"
+    ],
+    "com.hbm_m.inventory.menu.RBMKBoilerMenu": [
+      "com.hbm_m.blockentity.machines.rbmk.RBMKBoilerBlockEntity"
+    ],
+    "com.hbm_m.inventory.menu.RBMKOutgasserMenu": [
+      "com.hbm_m.blockentity.machines.rbmk.RBMKOutgasserBlockEntity",
+      "com.hbm_m.item.rbmk.RBMKRodItem"
+    ],
+    "com.hbm_m.inventory.menu.RBMKRodMenu": [
+      "com.hbm_m.blockentity.machines.rbmk.RBMKRodBlockEntity",
+      "com.hbm_m.item.rbmk.RBMKRodItem"
+    ],
+    "com.hbm_m.inventory.menu.RBMKStorageMenu": [
+      "com.hbm_m.blockentity.machines.rbmk.RBMKStorageBlockEntity",
+      "com.hbm_m.item.rbmk.RBMKRodItem"
+    ],
+    "com.hbm_m.inventory.menu.SteelCrateMenu": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.block.machines.crates.CrateType",
+      "com.hbm_m.blockentity.crates.SteelCrateBlockEntity"
+    ],
+    "com.hbm_m.inventory.menu.TemplateCrateMenu": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.block.machines.crates.CrateType",
+      "com.hbm_m.blockentity.crates.TemplateCrateBlockEntity"
+    ],
+    "com.hbm_m.inventory.menu.TungstenCrateMenu": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.block.machines.crates.CrateType",
+      "com.hbm_m.blockentity.crates.TungstenCrateBlockEntity"
+    ],
+    "com.hbm_m.inventory.recipes.SolderingRecipes": [
+      "com.hbm_m.inventory.fluid.FluidType",
+      "com.hbm_m.inventory.fluid.ModFluids",
+      "com.hbm_m.inventory.fluid.tank.FluidTank",
+      "com.hbm_m.item.ModItems",
+      "com.hbm_m.item.tags_and_tiers.ModIngots"
+    ],
+    "com.hbm_m.item.BlockAbsorberItem": [
+      "com.hbm_m.block.generic.BlockAbsorber",
+      "com.hbm_m.block.generic.BlockAbsorber.EnumAbsorberTier",
+      "com.hbm_m.platform.PlatformHooks"
+    ],
+    "com.hbm_m.item.ModItems": [
+      "com.hbm_m.lib.RefStrings.MODID",
+      "com.hbm_m.armormod.item.ItemModBattery",
+      "com.hbm_m.armormod.item.ItemModHealth",
+      "com.hbm_m.armormod.item.ItemModRadProtection",
+      "com.hbm_m.armormod.item.ItemModCladding",
+      "com.hbm_m.armormod.item.ItemModExtra",
+      "com.hbm_m.armormod.item.ItemModHealth",
+      "com.hbm_m.armormod.item.ItemModKevlar",
+      "com.hbm_m.armormod.item.ItemModRadProtection",
+      "com.hbm_m.armormod.item.ItemModServos",
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.block.machines.crates.CrateType",
+      "com.hbm_m.blockentity.machines.rbmk.IRBMKFluxReceiver.NType",
+      "com.hbm_m.effect.ModEffects",
+      "com.hbm_m.entity.ModEntities",
+      "com.hbm_m.entity.grenades.GrenadeIfType",
+      "com.hbm_m.entity.grenades.GrenadeType",
+      "com.hbm_m.item.crates.CrateItem",
+      "com.hbm_m.item.designator.ItemDesignator",
+      "com.hbm_m.item.designator.ItemDesignatorManual",
+      "com.hbm_m.item.designator.ItemDesignatorRange",
+      "com.hbm_m.item.fekal_electric.ItemCreativeBattery",
+      "com.hbm_m.item.fekal_electric.ModBatteryItem",
+      "com.hbm_m.item.food.ItemConserve",
+      "com.hbm_m.item.food.ItemEnergyDrink",
+      "com.hbm_m.item.food.ModFoods",
+      "com.hbm_m.item.grenades_and_activators.AirBombItem",
+      "com.hbm_m.item.grenades_and_activators.AirNukeBombItem",
+      "com.hbm_m.item.grenades_and_activators.AirstrikeItem",
+      "com.hbm_m.item.grenades_and_activators.AirstrikeItem.AirstrikeType",
+      "com.hbm_m.item.grenades_and_activators.DetonatorItem",
+      "com.hbm_m.item.grenades_and_activators.GrenadeIfItem",
+      "com.hbm_m.item.grenades_and_activators.GrenadeItem",
+      "com.hbm_m.item.grenades_and_activators.GrenadeNucItem",
+      "com.hbm_m.item.grenades_and_activators.MultiDetonatorItem",
+      "com.hbm_m.item.grenades_and_activators.RangeDetonatorItem",
+      "com.hbm_m.item.tool.ConfettiTesterItem",
+      "com.hbm_m.item.tool.RangefinderItem",
+      "com.hbm_m.item.industrial.FuelItem",
+      "com.hbm_m.item.industrial.ItemAssemblyTemplate",
+      "com.hbm_m.item.industrial.ItemBlades",
+      "com.hbm_m.item.industrial.ItemBlueprintFolder",
+      "com.hbm_m.item.industrial.ItemMachineUpgrade",
+      "com.hbm_m.item.industrial.ItemStamp",
+      "com.hbm_m.item.industrial.ItemTemplateFolder",
+      "com.hbm_m.item.industrial.ZirnoxRodItem",
+      "com.hbm_m.item.liquids.FluidBarrelItem",
+      "com.hbm_m.item.liquids.FluidDuctItem",
+      "com.hbm_m.item.liquids.FluidIdentifierItem",
+      "com.hbm_m.item.liquids.InfiniteFluidItem",
+      "com.hbm_m.item.missile.MissileItem",
+      "com.hbm_m.item.radiation_meter.ItemDigammaDiagnostic",
+      "com.hbm_m.item.radiation_meter.ItemDosimeter",
+      "com.hbm_m.item.radiation_meter.ItemGeigerCounter",
+      "com.hbm_m.item.rbmk.RBMKLidItem",
+      "com.hbm_m.item.rbmk.RBMKPelletItem",
+      "com.hbm_m.item.rbmk.RBMKRodItem",
+      "com.hbm_m.item.scanners.DepthOresScannerItem",
+      "com.hbm_m.item.scanners.OilDetectorItem",
+      "com.hbm_m.item.tags_and_tiers.ItemSimpleConsumable",
+      "com.hbm_m.item.tags_and_tiers.ModIngots",
+      "com.hbm_m.item.tags_and_tiers.ModPowders",
+      "com.hbm_m.item.tags_and_tiers.RadioactiveItem",
+      "com.hbm_m.item.tools_and_armor.ModArmorMaterials",
+      "com.hbm_m.item.tools_and_armor.ModAxeItem",
+      "com.hbm_m.item.tools_and_armor.ModPickaxeItem",
+      "com.hbm_m.item.tools_and_armor.ModShovelItem",
+      "com.hbm_m.item.tools_and_armor.ModToolTiers",
+      "com.hbm_m.item.tools_and_armor.ScrewdriverItem",
+      "com.hbm_m.multiblock.DoorBlockItem",
+      "com.hbm_m.multiblock.MultiblockBlockItem",
+      "com.hbm_m.powerarmor.AJRArmor",
+      "com.hbm_m.powerarmor.AJROArmor",
+      "com.hbm_m.powerarmor.BismuthArmor",
+      "com.hbm_m.powerarmor.DNTArmor",
+      "com.hbm_m.powerarmor.T51Armor",
+      "com.hbm_m.sound.ModSounds"
+    ],
+    "com.hbm_m.item.crates.CrateItem": [
+      "com.hbm_m.client.tooltip.CrateContentsTooltipComponent",
+      "com.hbm_m.platform.PlatformHooks",
+      "com.hbm_m.platform.ModItemStackHandler"
+    ],
+    "com.hbm_m.item.designator.ItemDesignator": [
+      "com.hbm_m.api.item.IDesignatorItem",
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.platform.PlatformHooks",
+      "com.hbm_m.sound.ModSounds"
+    ],
+    "com.hbm_m.item.designator.ItemDesignatorManual": [
+      "com.hbm_m.api.item.IDesignatorItem",
+      "com.hbm_m.platform.PlatformHooks"
+    ],
+    "com.hbm_m.item.designator.ItemDesignatorRange": [
+      "com.hbm_m.api.item.IDesignatorItem",
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.platform.PlatformHooks",
+      "com.hbm_m.sound.ModSounds"
+    ],
+    "com.hbm_m.item.fekal_electric.ItemCreativeBattery": [],
+    "com.hbm_m.item.fekal_electric.MachineBatteryBlockItem": [
+      "com.hbm_m.platform.PlatformHooks"
+    ],
+    "com.hbm_m.item.fekal_electric.ModBatteryItem": [
+      "com.hbm_m.api.energy.EnergyCapabilityProvider",
+      "com.hbm_m.api.energy.ItemEnergyAccess",
+      "com.hbm_m.platform.PlatformHooks",
+      "com.hbm_m.util.EnergyFormatter"
+    ],
+    "com.hbm_m.item.food.ItemConserve": [
+      "com.hbm_m.entity.ModEntities",
+      "com.hbm_m.entity.effect.VortexEntity",
+      "com.hbm_m.item.ModItems"
+    ],
+    "com.hbm_m.item.food.ItemEnergyDrink": [
+      "com.hbm_m.item.ModItems"
+    ],
+    "com.hbm_m.item.food.ModFoods": [],
+    "com.hbm_m.item.grenades_and_activators.AirBombItem": [
+      "com.hbm_m.entity.grenades.AirBombProjectileEntity"
+    ],
+    "com.hbm_m.item.grenades_and_activators.AirNukeBombItem": [
+      "com.hbm_m.entity.grenades.AirNukeBombProjectileEntity"
+    ],
+    "com.hbm_m.item.grenades_and_activators.AirstrikeItem": [
+      "com.hbm_m.entity.grenades.AirstrikeAgentEntity",
+      "com.hbm_m.entity.grenades.AirstrikeEntity",
+      "com.hbm_m.entity.grenades.AirstrikeHeavyEntity",
+      "com.hbm_m.entity.grenades.AirstrikeNukeEntity",
+      "com.hbm_m.sound.ModSounds"
+    ],
+    "com.hbm_m.item.grenades_and_activators.DetonatorItem": [
+      "com.hbm_m.interfaces.IDetonatable",
+      "com.hbm_m.sound.ModSounds",
+      "com.hbm_m.platform.PlatformHooks"
+    ],
+    "com.hbm_m.item.grenades_and_activators.GrenadeIfItem": [
+      "com.hbm_m.entity.grenades.GrenadeIfProjectileEntity",
+      "com.hbm_m.entity.grenades.GrenadeIfType"
+    ],
+    "com.hbm_m.item.grenades_and_activators.GrenadeItem": [
+      "com.hbm_m.entity.grenades.GrenadeProjectileEntity",
+      "com.hbm_m.entity.grenades.GrenadeType"
+    ],
+    "com.hbm_m.item.grenades_and_activators.GrenadeNucItem": [
+      "com.hbm_m.entity.grenades.GrenadeNucProjectileEntity"
+    ],
+    "com.hbm_m.item.grenades_and_activators.MultiDetonatorItem": [
+      "com.hbm_m.interfaces.IDetonatable",
+      "com.hbm_m.sound.ModSounds",
+      "com.hbm_m.platform.PlatformHooks"
+    ],
+    "com.hbm_m.item.grenades_and_activators.RangeDetonatorItem": [
+      "com.hbm_m.interfaces.IDetonatable",
+      "com.hbm_m.sound.ModSounds"
+    ],
+    "com.hbm_m.item.industrial.FuelItem": [],
+    "com.hbm_m.item.industrial.ItemAssemblyTemplate": [
+      "com.hbm_m.platform.PlatformHooks",
+      "com.hbm_m.util.TemplateTooltipUtil"
+    ],
+    "com.hbm_m.item.industrial.ItemBlades": [],
+    "com.hbm_m.item.industrial.ItemBlueprintFolder": [
+      "com.hbm_m.platform.PlatformHooks",
+      "com.hbm_m.recipe.AssemblerRecipe",
+      "com.hbm_m.recipe.ChemicalPlantRecipe"
+    ],
+    "com.hbm_m.item.industrial.ItemMachineUpgrade": [],
+    "com.hbm_m.item.industrial.ItemStamp": [],
+    "com.hbm_m.item.industrial.ItemTemplateFolder": [
+      "com.hbm_m.inventory.gui.GUITemplateFolder"
+    ],
+    "com.hbm_m.item.industrial.ZirnoxRodItem": [
+      "com.hbm_m.platform.PlatformHooks"
+    ],
+    "com.hbm_m.item.liquids.FluidBarrelItem": [
+      "com.hbm_m.api.fluids.VanillaFluidEquivalence",
+      "com.hbm_m.api.fluids.HbmFluidRegistry",
+      "com.hbm_m.platform.PlatformHooks"
+    ],
+    "com.hbm_m.item.liquids.FluidDuctItem": [
+      "com.hbm_m.api.fluids.HbmFluidRegistry",
+      "com.hbm_m.block.machines.FluidDuctBlock",
+      "com.hbm_m.blockentity.machines.FluidDuctBlockEntity",
+      "com.hbm_m.inventory.fluid.ModFluids",
+      "com.hbm_m.main.MainRegistry",
+      "com.hbm_m.sound.ModSounds",
+      "com.hbm_m.platform.PlatformHooks"
+    ],
+    "com.hbm_m.item.liquids.FluidIdentifierItem": [
+      "com.hbm_m.api.fluids.HbmFluidRegistry",
+      "com.hbm_m.block.machines.FluidDuctBlock",
+      "com.hbm_m.blockentity.machines.MachineFluidTankBlockEntity",
+      "com.hbm_m.interfaces.IItemControlReceiver",
+      "com.hbm_m.interfaces.IItemFluidIdentifier",
+      "com.hbm_m.interfaces.IMultiblockPart",
+      "com.hbm_m.inventory.fluid.ModFluids",
+      "com.hbm_m.platform.PlatformHooks"
+    ],
+    "com.hbm_m.item.liquids.InfiniteFluidItem": [
+      "com.hbm_m.platform.PlatformHooks"
+    ],
+    "com.hbm_m.item.material.ItemCastMold": [],
+    "com.hbm_m.item.missile.MissileItem": [],
+    "com.hbm_m.item.radiation_meter.ItemDigammaDiagnostic": [
+      "com.hbm_m.sound.ModSounds",
+      "com.hbm_m.util.ContaminationUtil"
+    ],
+    "com.hbm_m.item.radiation_meter.ItemDosimeter": [
+      "com.hbm_m.extprop.HbmLivingProps",
+      "com.hbm_m.sound.ModSounds",
+      "com.hbm_m.util.ContaminationUtil"
+    ],
+    "com.hbm_m.item.radiation_meter.ItemGeigerCounter": [
+      "com.hbm_m.extprop.HbmLivingProps",
+      "com.hbm_m.sound.ModSounds",
+      "com.hbm_m.util.ContaminationUtil"
+    ],
+    "com.hbm_m.item.rbmk.RBMKLidItem": [
+      "com.hbm_m.blockentity.machines.rbmk.RBMKColumnBlockEntity"
+    ],
+    "com.hbm_m.item.rbmk.RBMKPelletItem": [
+      "com.hbm_m.blockentity.machines.rbmk.IRBMKFluxReceiver.NType"
+    ],
+    "com.hbm_m.item.rbmk.RBMKRodItem": [
+      "com.hbm_m.blockentity.machines.rbmk.IRBMKFluxReceiver.NType",
+      "com.hbm_m.handler.rbmk.RBMKDials",
+      "com.hbm_m.platform.PlatformHooks"
+    ],
+    "com.hbm_m.item.scanners.DepthOresScannerItem": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.sound.ModSounds"
+    ],
+    "com.hbm_m.item.scanners.OilDetectorItem": [
+      "com.hbm_m.sound.ModSounds",
+      "com.hbm_m.block.ModBlocks"
+    ],
+    "com.hbm_m.item.tags_and_tiers.ItemSimpleConsumable": [],
+    "com.hbm_m.item.tags_and_tiers.ModIngots": [],
+    "com.hbm_m.item.tags_and_tiers.ModPowders": [],
+    "com.hbm_m.item.tags_and_tiers.ModTags": [
+      "com.hbm_m.main.MainRegistry"
+    ],
+    "com.hbm_m.item.tags_and_tiers.RadioactiveItem": [],
+    "com.hbm_m.item.tool.ConfettiTesterItem": [
+      "com.hbm_m.platform.PlatformHooks",
+      "com.hbm_m.util.confetti.ConfettiUtil"
+    ],
+    "com.hbm_m.item.tool.RangefinderItem": [
+      "com.hbm_m.client.overlay.OverlayInfoToast"
+    ],
+    "com.hbm_m.item.tools_and_armor.ModArmorMaterials": [
+      "com.hbm_m.item.ModItems",
+      "com.hbm_m.main.MainRegistry"
+    ],
+    "com.hbm_m.item.tools_and_armor.ModAxeItem": [
+      "com.hbm_m.client.overlay.OverlayInfoToast",
+      "com.hbm_m.platform.PlatformHooks"
+    ],
+    "com.hbm_m.item.tools_and_armor.ModPickaxeItem": [
+      "com.hbm_m.client.overlay.OverlayInfoToast",
+      "com.hbm_m.platform.PlatformHooks"
+    ],
+    "com.hbm_m.item.tools_and_armor.ModShovelItem": [
+      "com.hbm_m.client.overlay.OverlayInfoToast",
+      "com.hbm_m.platform.PlatformHooks"
+    ],
+    "com.hbm_m.item.tools_and_armor.ModToolTiers": [
+      "com.hbm_m.item.ModItems",
+      "com.hbm_m.item.tags_and_tiers.ModTags",
+      "com.hbm_m.main.MainRegistry"
+    ],
+    "com.hbm_m.item.tools_and_armor.ScrewdriverItem": [
+      "com.hbm_m.block.entity.doors.DoorBlockEntity",
+      "com.hbm_m.interfaces.IMultiblockPart",
+      "com.hbm_m.lib.RefStrings"
+    ],
+    "com.hbm_m.lib.RefStrings": [],
+    "com.hbm_m.main.MainRegistry": [
+      "com.hbm_m.api.energy.EnergyNetworkManager",
+      "com.hbm_m.api.fluids.bootstrap.ModFluidTraitsBootstrap",
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.block.entity.doors.DoorDeclRegistry",
+      "com.hbm_m.blockentity.ModBlockEntities",
+      "com.hbm_m.config.ModClothConfig",
+      "com.hbm_m.effect.ModEffects",
+      "com.hbm_m.entity.ModEntities",
+      "com.hbm_m.event.BombDefuser",
+      "com.hbm_m.event.CrateBreaker",
+      "com.hbm_m.event.HazardEventHandler",
+      "com.hbm_m.event.PlayerHazardHandler",
+      "com.hbm_m.event.ScrewdriverInteractionHandler",
+      "com.hbm_m.handler.MobGearHandler",
+      "com.hbm_m.handler.rbmk.NeutronNodeWorld",
+      "com.hbm_m.hazard.HazardRegistry",
+      "com.hbm_m.inventory.menu.ModMenuTypes",
+      "com.hbm_m.item.ModItems",
+      "com.hbm_m.lib.RefStrings",
+      "com.hbm_m.multiblock.LadderClimbHandler",
+      "com.hbm_m.network.ModPacketHandler",
+      "com.hbm_m.particle.ModExplosionParticles",
+      "com.hbm_m.particle.ModParticleTypes",
+      "com.hbm_m.powerarmor.PowerArmorHandlers",
+      "com.hbm_m.powerarmor.resist.DamageResistanceHandler",
+      "com.hbm_m.radiation.ChunkRadiationManager",
+      "com.hbm_m.radiation.PlayerHandler",
+      "com.hbm_m.recipe.CentrifugeRecipes",
+      "com.hbm_m.recipe.ChemicalPlantRecipes",
+      "com.hbm_m.recipe.CyclotronRecipes",
+      "com.hbm_m.recipe.ModRecipes",
+      "com.hbm_m.recipe.CrystallizerRecipes",
+      "com.hbm_m.sound.ModSounds",
+      "com.hbm_m.world.biome.ModBiomes"
+    ],
+    "com.hbm_m.mixin.CreeperAccessor": [],
+    "com.hbm_m.module.machine.MachineModuleAdvancedAssembler": [
+      "com.hbm_m.interfaces.IEnergyReceiver",
+      "com.hbm_m.recipe.AssemblerRecipe",
+      "com.hbm_m.platform.ModItemStackHandler",
+      "com.hbm_m.recipe.index.ModRecipeIndex"
+    ],
+    "com.hbm_m.module.machine.MachineModuleChemplant": [
+      "com.hbm_m.inventory.fluid.tank.FluidTank",
+      "com.hbm_m.recipe.ChemicalPlantRecipe"
+    ],
+    "com.hbm_m.multiblock.DoorBlockItem": [
+      "com.hbm_m.lib.RefStrings"
+    ],
+    "com.hbm_m.multiblock.LadderClimbHandler": [
+      "com.hbm_m.interfaces.IMultiblockPart"
+    ],
+    "com.hbm_m.multiblock.MultiblockBlockItem": [
+      "com.hbm_m.interfaces.IMultiblockController"
+    ],
+    "com.hbm_m.multiblock.MultiblockFrameHelper": [
+      "com.hbm_m.interfaces.IFrameSupportable",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.interfaces.IMultiblockPart"
+    ],
+    "com.hbm_m.multiblock.MultiblockInteractionHelper": [
+      "com.hbm_m.interfaces.IMultiblockPart"
+    ],
+    "com.hbm_m.multiblock.MultiblockSideTuples": [],
+    "com.hbm_m.multiblock.MultiblockStructureHelper": [
+      "com.hbm_m.api.energy.WireBlock",
+      "com.hbm_m.block.UniversalMachinePartBlock",
+      "com.hbm_m.config.ModClothConfig",
+      "com.hbm_m.interfaces.IMultiblockController",
+      "com.hbm_m.interfaces.IMultiblockPart",
+      "com.hbm_m.interfaces.IMultiblockSidedIO",
+      "com.hbm_m.main.MainRegistry",
+      "com.hbm_m.network.HighlightBlocksPacket"
+    ],
+    "com.hbm_m.multiblock.MultiblockStructureStubs": [
+      "com.hbm_m.block.ModBlocks"
+    ],
+    "com.hbm_m.multiblock.PartRole": [],
+    "com.hbm_m.network.AuxParticlePacket": [
+      "com.hbm_m.network.S2CPacket",
+      "com.hbm_m.particle.helper.ParticleEffectClient"
+    ],
+    "com.hbm_m.network.C2SPacket": [],
+    "com.hbm_m.network.DoorContraptionStatePacket": [],
+    "com.hbm_m.network.GiveTemplateC2SPacket": [
+      "com.hbm_m.item.ModItems",
+      "com.hbm_m.item.industrial.ItemAssemblyTemplate",
+      "com.hbm_m.network.C2SPacket",
+      "com.hbm_m.util.TemplateCraftingCosts"
+    ],
+    "com.hbm_m.network.HighlightBlocksPacket": [
+      "com.hbm_m.client.ClientRenderHandler",
+      "com.hbm_m.network.S2CPacket"
+    ],
+    "com.hbm_m.network.ModPacketHandler": [
+      "com.hbm_m.lib.RefStrings",
+      "com.hbm_m.network.packets.PowerArmorDashPacket",
+      "com.hbm_m.network.sounds.GeigerSoundPacket"
+    ],
+    "com.hbm_m.network.RadiationDataPacket": [
+      "com.hbm_m.client.overlay.OverlayGeiger",
+      "com.hbm_m.main.MainRegistry",
+      "com.hbm_m.network.S2CPacket"
+    ],
+    "com.hbm_m.network.S2CPacket": [],
+    "com.hbm_m.network.ServerboundDoorModelPacket": [
+      "com.hbm_m.block.entity.doors.DoorBlockEntity",
+      "com.hbm_m.client.model.variant.DoorModelSelection",
+      "com.hbm_m.client.model.variant.DoorModelType",
+      "com.hbm_m.client.model.variant.DoorSkin",
+      "com.hbm_m.main.MainRegistry"
+    ],
+    "com.hbm_m.network.VanillaExplosionPacket": [
+      "com.hbm_m.explosion.vanillant.standard.ExplosionEffectStandard",
+      "com.hbm_m.network.S2CPacket"
+    ],
+    "com.hbm_m.network.packet.PacketSyncEnergy": [
+      "com.hbm_m.network.ModPacketHandler",
+      "com.hbm_m.network.S2CPacket"
+    ],
+    "com.hbm_m.network.packets.PowerArmorDashPacket": [
+      "com.hbm_m.network.ModPacketHandler",
+      "com.hbm_m.network.S2CPacket"
+    ],
+    "com.hbm_m.network.sounds.GeigerSoundPacket": [
+      "com.hbm_m.config.ModClothConfig",
+      "com.hbm_m.main.MainRegistry",
+      "com.hbm_m.network.ModPacketHandler",
+      "com.hbm_m.network.S2CPacket"
+    ],
+    "com.hbm_m.particle.ModExplosionParticles": [
+      "com.hbm_m.lib.RefStrings"
+    ],
+    "com.hbm_m.particle.ModParticleTypes": [
+      "com.hbm_m.lib.RefStrings"
+    ],
+    "com.hbm_m.particle.explosions.ServerExplosionParticles": [],
+    "com.hbm_m.particle.explosions.basic.CameraShakeHandler": [],
+    "com.hbm_m.particle.explosions.basic.ExplosionParticleUtils": [
+      "com.hbm_m.particle.ModExplosionParticles",
+      "com.hbm_m.particle.explosions.ServerExplosionParticles",
+      "com.hbm_m.particle.explosions.nuclear.small.NuclearMushroomCloud"
+    ],
+    "com.hbm_m.particle.explosions.nuclear.medium.MediumNuclearMushroomCloud": [
+      "com.hbm_m.particle.ModExplosionParticles",
+      "com.hbm_m.particle.explosions.ServerExplosionParticles"
+    ],
+    "com.hbm_m.particle.explosions.nuclear.small.NuclearMushroomCloud": [
+      "com.hbm_m.particle.ModExplosionParticles",
+      "com.hbm_m.particle.explosions.ServerExplosionParticles"
+    ],
+    "com.hbm_m.particle.helper.AshesCreator": [
+      "com.hbm_m.client.handler.ClientVanishHandler",
+      "com.hbm_m.particle.nt.ParticleAshesNT",
+      "com.hbm_m.particle.nt.ParticleEngineNT"
+    ],
+    "com.hbm_m.particle.helper.ExplosionCreator": [],
+    "com.hbm_m.particle.helper.IParticleCreator": [
+      "com.hbm_m.network.AuxParticlePacket",
+      "com.hbm_m.network.ModPacketHandler"
+    ],
+    "com.hbm_m.particle.helper.NukeTorexCreator": [
+      "com.hbm_m.particle.nt.NukeExplosionRings",
+      "com.hbm_m.particle.nt.NukeTorex",
+      "com.hbm_m.particle.nt.ParticleEngineNT",
+      "com.hbm_m.util.BobMathUtil"
+    ],
+    "com.hbm_m.particle.helper.ParticleEffectClient": [
+      "com.hbm_m.config.ModClothConfig",
+      "com.hbm_m.extprop.HbmLivingProps"
+    ],
+    "com.hbm_m.particle.helper.SkeletonCreator": [
+      "com.hbm_m.client.handler.ClientVanishHandler",
+      "com.hbm_m.particle.nt.ParticleSkeletonNT",
+      "com.hbm_m.particle.nt.ParticleEngineNT"
+    ],
+    "com.hbm_m.particle.nt.NukeExplosionRings": [
+      "com.hbm_m.client.ClientRenderHandler",
+      "com.hbm_m.client.render.ImmediateVertexWriter",
+      "com.hbm_m.lib.RefStrings"
+    ],
+    "com.hbm_m.particle.nt.NukeTorex": [
+      "com.hbm_m.client.ClientRenderHandler",
+      "com.hbm_m.client.render.ImmediateVertexWriter",
+      "com.hbm_m.lib.RefStrings",
+      "com.hbm_m.particle.explosions.basic.CameraShakeHandler",
+      "com.hbm_m.sound.ModSounds"
+    ],
+    "com.hbm_m.particle.nt.ParticleAshesNT": [],
+    "com.hbm_m.particle.nt.ParticleEngineNT": [],
+    "com.hbm_m.particle.nt.ParticleSkeletonNT": [
+      "com.hbm_m.lib.RefStrings",
+      "com.hbm_m.main.MainRegistry"
+    ],
+    "com.hbm_m.platform.ModItemStackHandler": [],
+    "com.hbm_m.platform.PlatformHooks": [],
+    "com.hbm_m.platform.PlayerPersistentData": [],
+    "com.hbm_m.powerarmor.AJRArmor": [],
+    "com.hbm_m.powerarmor.AJROArmor": [],
+    "com.hbm_m.powerarmor.BismuthArmor": [],
+    "com.hbm_m.powerarmor.DNTArmor": [],
+    "com.hbm_m.powerarmor.ModArmorFSBPowered": [
+      "com.hbm_m.armormod.util.ArmorModificationHelper",
+      "com.hbm_m.util.EnergyFormatter",
+      "com.hbm_m.api.energy.EnergyCapabilityProvider",
+      "com.hbm_m.platform.PlatformHooks"
+    ],
+    "com.hbm_m.powerarmor.PowerArmorHandlers": [
+      "com.hbm_m.main.MainRegistry",
+      "com.hbm_m.network.ModPacketHandler",
+      "com.hbm_m.network.packets.PowerArmorDashPacket",
+      "com.hbm_m.platform.PlayerPersistentData",
+      "com.hbm_m.sound.ModSounds",
+      "com.hbm_m.powerarmor.resist.DamageResistanceHandler"
+    ],
+    "com.hbm_m.powerarmor.T51Armor": [],
+    "com.hbm_m.powerarmor.resist.DamageResistanceHandler": [
+      "com.hbm_m.entity.mob.EntityCreeperNuclear",
+      "com.hbm_m.interfaces.IResistanceProvider",
+      "com.hbm_m.item.ModItems"
+    ],
+    "com.hbm_m.radiation.ChunkRadiationManager": [
+      "com.hbm_m.config.ModClothConfig",
+      "com.hbm_m.main.MainRegistry"
+    ],
+    "com.hbm_m.radiation.PlayerHandler": [
+      "com.hbm_m.config.ModClothConfig",
+      "com.hbm_m.damagesource.ModDamageSources",
+      "com.hbm_m.explosion.command.HbmExplosionCommands",
+      "com.hbm_m.extprop.HbmLivingProps",
+      "com.hbm_m.hazard.HazardSystem",
+      "com.hbm_m.hazard.HazardRegistry",
+      "com.hbm_m.lib.RefStrings",
+      "com.hbm_m.main.MainRegistry",
+      "com.hbm_m.network.ModPacketHandler",
+      "com.hbm_m.network.RadiationDataPacket",
+      "com.hbm_m.platform.PlayerPersistentData"
+    ],
+    "com.hbm_m.recipe.AnvilRecipe": [
+      "com.hbm_m.block.machines.anvils.AnvilTier"
+    ],
+    "com.hbm_m.recipe.AnvilRecipeManager": [
+      "com.hbm_m.block.machines.anvils.AnvilTier"
+    ],
+    "com.hbm_m.recipe.AssemblerRecipe": [
+      "com.hbm_m.lib.RefStrings"
+    ],
+    "com.hbm_m.recipe.BlastFurnaceRecipe": [],
+    "com.hbm_m.recipe.CentrifugeRecipes": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.item.ModItems",
+      "com.hbm_m.item.tags_and_tiers.ModIngots"
+    ],
+    "com.hbm_m.recipe.ChemicalPlantRecipe": [
+      "com.hbm_m.item.ModItems",
+      "com.hbm_m.item.liquids.FluidIdentifierItem",
+      "com.hbm_m.lib.RefStrings"
+    ],
+    "com.hbm_m.recipe.ChemicalPlantRecipes": [
+      "com.hbm_m.inventory.fluid.ModFluids",
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.item.ModItems",
+      "com.hbm_m.item.tags_and_tiers.ModIngots",
+      "com.hbm_m.item.tags_and_tiers.ModPowders"
+    ],
+    "com.hbm_m.recipe.CombinationOvenRecipe": [
+      "com.hbm_m.lib.RefStrings"
+    ],
+    "com.hbm_m.recipe.CrucibleSmeltingRecipes": [
+      "com.hbm_m.inventory.material.MaterialStack",
+      "com.hbm_m.inventory.material.MaterialType"
+    ],
+    "com.hbm_m.recipe.CrystallizerRecipe": [],
+    "com.hbm_m.recipe.CrystallizerRecipes": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.inventory.fluid.ModFluids",
+      "com.hbm_m.item.ModItems"
+    ],
+    "com.hbm_m.recipe.CyclotronRecipes": [],
+    "com.hbm_m.recipe.MixerRecipes": [
+      "com.hbm_m.api.fluids.VanillaFluidEquivalence",
+      "com.hbm_m.inventory.fluid.ModFluids"
+    ],
+    "com.hbm_m.recipe.ModRecipes": [
+      "com.hbm_m.lib.RefStrings"
+    ],
+    "com.hbm_m.recipe.MoltenAlloyRecipe": [
+      "com.hbm_m.inventory.material.MaterialStack"
+    ],
+    "com.hbm_m.recipe.MoltenAlloyRecipes": [
+      "com.hbm_m.inventory.material.MaterialStack",
+      "com.hbm_m.inventory.material.MaterialType"
+    ],
+    "com.hbm_m.recipe.PressRecipe": [],
+    "com.hbm_m.recipe.PseudoFluidTank": [],
+    "com.hbm_m.recipe.PseudoFluidType": [
+      "com.hbm_m.inventory.fluid.ModFluids",
+      "com.hbm_m.item.ModItems",
+      "com.hbm_m.item.tags_and_tiers.ModIngots",
+      "com.hbm_m.item.tags_and_tiers.ModPowders"
+    ],
+    "com.hbm_m.recipe.ShredderRecipe": [
+      "com.hbm_m.lib.RefStrings"
+    ],
+    "com.hbm_m.recipe.index.ModRecipeIndex": [
+      "com.hbm_m.recipe.AnvilRecipe",
+      "com.hbm_m.recipe.AssemblerRecipe",
+      "com.hbm_m.recipe.ChemicalPlantRecipe"
+    ],
+    "com.hbm_m.sound.AdvancedAssemblerSoundInstance": [],
+    "com.hbm_m.sound.ClientSoundBootstrap": [],
+    "com.hbm_m.sound.ModSounds": [
+      "com.hbm_m.lib.RefStrings"
+    ],
+    "com.hbm_m.util.BobMathUtil": [],
+    "com.hbm_m.util.ContaminationUtil": [
+      "com.hbm_m.api.entity.IRadiationImmune",
+      "com.hbm_m.entity.mob.EntityCreeperNuclear",
+      "com.hbm_m.extprop.HbmLivingProps",
+      "com.hbm_m.handler.HazmatRegistry",
+      "com.hbm_m.radiation.ChunkRadiationManager"
+    ],
+    "com.hbm_m.util.EnergyFormatter": [],
+    "com.hbm_m.util.LongDataPacker": [],
+    "com.hbm_m.util.MultipartFacingTransforms": [],
+    "com.hbm_m.util.TemplateCraftingCosts": [
+      "com.hbm_m.item.ModItems"
+    ],
+    "com.hbm_m.util.TemplateTooltipUtil": [
+      "com.hbm_m.item.industrial.ItemAssemblyTemplate",
+      "com.hbm_m.recipe.AssemblerRecipe"
+    ],
+    "com.hbm_m.util.WorldUtil": [],
+    "com.hbm_m.util.confetti.ConfettiUtil": [
+      "com.hbm_m.damagesource.ModDamageTypes",
+      "com.hbm_m.particle.helper.AshesCreator",
+      "com.hbm_m.particle.helper.SkeletonCreator",
+      "com.hbm_m.sound.ModSounds"
+    ],
+    "com.hbm_m.util.explosions.ExplosionResistanceRegistry": [],
+    "com.hbm_m.util.explosions.freaky.MessGenerator": [],
+    "com.hbm_m.util.explosions.freaky.WasteBlastGenerator": [
+      "com.hbm_m.util.explosions.ExplosionResistanceRegistry"
+    ],
+    "com.hbm_m.util.explosions.general.BlastExplosionGenerator": [],
+    "com.hbm_m.util.explosions.general.ShockwaveGenerator": [],
+    "com.hbm_m.util.explosions.nuclear.CraterGenerationFlags": [],
+    "com.hbm_m.util.explosions.nuclear.CraterGenerator": [],
+    "com.hbm_m.util.explosions.nuclear.NuclearExplosionHelper": [
+      "com.hbm_m.block.ModBlocks",
+      "com.hbm_m.explosion.command.ExplosionCommandOptions",
+      "com.hbm_m.interfaces.IDetonatable",
+      "com.hbm_m.particle.ModExplosionParticles",
+      "com.hbm_m.particle.explosions.basic.ExplosionParticleUtils",
+      "com.hbm_m.sound.ModSounds"
+    ],
+    "com.hbm_m.world.biome.ModBiomes": [
+      "com.hbm_m.main.MainRegistry"
+    ],
+    "com.hbm_m.worldgen.BedrockOreDensity": [
+      "com.hbm_m.inventory.fluid.ModFluids"
+    ]
+  },
+  "note": "Import graph records the upstream coupling, not runtime dependencies of the standalone mod. Same-package and fully-qualified references require manual inspection."
+}

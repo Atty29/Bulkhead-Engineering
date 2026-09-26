@@ -1,0 +1,21 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="GPL-3.0-only"
+[[mods]]
+modId="hbm_doors"
+version="1.0.0"
+displayName="HBM Doors Standalone"
+authors="HBM-Modernized contributors; standalone extraction"
+description='''Doors extracted from HBM-Modernized. No HBM runtime required.'''
+[[dependencies.hbm_doors]]
+modId="forge"
+mandatory=true
+versionRange="[47.3.31,)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.hbm_doors]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.20.1]"
+ordering="NONE"
+side="BOTH"

@@ -1,0 +1,25 @@
+Source: https://github.com/Raptor324/HBM-Modernized
+Commit: 0365cef5956016913095eeeb9366f26c601ca9a0
+Retained Java files:
+block/entity/doors/DoorDecl.java
+block/entity/doors/DoorDeclRegistry.java
+client/model/variant/DoorModelSelection.java
+client/model/variant/DoorModelType.java
+client/model/variant/DoorSkin.java
+interfaces/IDoorAnimator.java
+multiblock/PartRole.java
+The retained classes are relocated from com.hbm_m to com.hbm_doors.legacy.
+Also retained from client/loader/dae:
+DaeModel.java
+DaeNode.java
+DaeMesh.java
+DaeAnimation.java
+DaeCurve.java
+DaeTransform.java
+DaeModelFormatException.java
+
+Door source roots inspected additionally include block/decorations/DoorBlock,
+block/entity/doors/DoorBlockEntity, multiblock/DoorBlockItem, door model/loaders,
+render implementations, overlay/UI and network packets, Create compat,
+ModBlocks/ModItems/ModBlockEntities/ModSounds, and data generators.
+See DEPENDENCY-REPORT.md for replacements and excluded systems.

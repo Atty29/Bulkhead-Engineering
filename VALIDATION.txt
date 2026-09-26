@@ -1,0 +1,28 @@
+Release validation — 2026-09-26
+Minecraft 1.20.1 / Forge 47.4.20 / Java 17 / Windows x64
+
+PASS: clean build, production JAR reobfuscation, separate GameTest source set.
+PASS: all 2 required dedicated-server GameTests.
+  lifecycle: all 13 animated doors x 4 directions = 52 combinations;
+  controller/part creation, open/close timing and state, NBT round trips,
+  removal without orphan parts.
+  redstoneAndPartRemoval: powered open, unpowered close, part removal.
+PASS: final client loads 45 original model/skin variants.
+PASS: final client renders all 13 default animated inventory models.
+PASS: default-model gallery visually inspected; no missing textures observed.
+PASS: offline asset references and 20 recipe files.
+PASS: shipped JAR contains no test classes or original com.hbm_m classes.
+
+Commands: gradlew.bat clean build runGameTestServer
+          gradlew.bat build runClient -PdoorSmokeTest
+          python tools/verify_assets.py
+
+The first sandboxed Forge setup failed on Java ZIP filesystem access.
+An allowed unrestricted build resolved that environment issue.
+An initial client launch exited during resource loading; the subsequent
+client smoke test completed. A final server rerun exposed a stale-controller
+collision query during removal; it was fixed and the tests passed again.
+
+Not validated: full in-world visual/animation comparison with upstream,
+multiplayer sessions, external shader packs, long-duration chunk reloads.
+See DEPENDENCY-REPORT.md for functional simplifications.
