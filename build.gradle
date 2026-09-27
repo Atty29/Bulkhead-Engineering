@@ -1,5 +1,5 @@
 plugins { id 'java'; id 'net.minecraftforge.gradle' version '6.0.54' }
-version='2.0.1'
+version='2.0.2'
 group='com.hbm_doors'
 base { archivesName='hbm-doors-1.20.1' }
 java.toolchain.languageVersion=JavaLanguageVersion.of(17)
@@ -16,3 +16,10 @@ dependencies { minecraft 'net.minecraftforge:forge:1.20.1-47.4.20' }
 tasks.withType(JavaCompile).configureEach { options.encoding='UTF-8' }
 jar.finalizedBy('reobfJar')
 jar { from('LICENSE'); from('NOTICE'); from('UPSTREAM.txt'); from('UPSTREAM-112.txt'); from('UPSTREAM-MTR.txt'); from('licenses') { into 'licenses' } }
+
+// Optional exact rendering-mod version from the SoA pack; never shipped in the mod.
+if (project.hasProperty('embeddiumCompatTest')) {
+ repositories { maven { url 'https://www.cursemaven.com' } }
+ dependencies { runtimeOnly fg.deobf('curse.maven:embeddium-908741:5681725'); runtimeOnly fg.deobf('curse.maven:oculus-581495:6020952') }
+}
+if (project.hasProperty('embeddiumCompatTest')) { minecraft.runs.client { property 'mixin.env.remapRefMap', 'true'; property 'mixin.env.refMapRemappingFile', project.file('build/createSrgToMcp/output.srg').absolutePath } }

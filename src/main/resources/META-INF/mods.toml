@@ -3,7 +3,7 @@ loaderVersion="[47,)"
 license="GPL-3.0-only"
 [[mods]]
 modId="hbm_doors"
-version="2.0.1"
+version="2.0.2"
 displayName="HBM Doors Standalone"
 authors="HBM contributors; Jonathan Ho and MTR contributors; standalone adaptation"
 description='''HBM doors with adapted Minecraft Transit Railway lifts and escalators. Forge only; no HBM or MTR runtime required.'''

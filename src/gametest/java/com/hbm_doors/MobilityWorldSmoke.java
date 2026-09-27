@@ -31,7 +31,7 @@ public class MobilityWorldSmoke {
    for(String id:new String[]{"lift_buttons_1","lift_panel_odd_1"}){var p=id.contains("buttons")?new BlockPos(2,201,4):new BlockPos(-1,202,4);var b=(LiftFixtureBlock)Mobility.BLOCKS.get(id).get();l.setBlock(p,b.defaultBlockState(),3);b.setPlacedBy(l,p,b.defaultBlockState(),null,ItemStack.EMPTY);for(int x=0;x<b.width();x++){var be=(LiftStationEntity)l.getBlockEntity(p.east(x));be.links.add(POS);be.sync();}}
    var player=mc.getSingleplayerServer().getPlayerList().getPlayers().get(0);player.addEffect(new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.NIGHT_VISION,12000,0,false,false));player.getAbilities().flying=true;player.onUpdateAbilities();player.connection.teleport(9,203,11,140,12);placed=true;
   });return;}if(!placed)return;ticks++;
-  if(ticks==70)shot(mc,"01-lift-ground");
+  if(ticks==70){checkModelCache();shot(mc,"01-lift-ground");}
   if(ticks==80)mc.getSingleplayerServer().execute(()->((LiftCarEntity)mc.getSingleplayerServer().overworld().getEntity(carId)).request(1));
   if(ticks==125)shot(mc,"02-lift-moving");
   if(ticks==210){shot(mc,"03-lift-upper");mc.getSingleplayerServer().execute(()->mc.getSingleplayerServer().getPlayerList().getPlayers().get(0).connection.teleport(10,203,5,150,17));}
@@ -44,6 +44,11 @@ public class MobilityWorldSmoke {
   if(ticks==490)mc.getSingleplayerServer().execute(()->{var player=mc.getSingleplayerServer().getPlayerList().getPlayers().get(0);player.connection.teleport(7,199.94,.5,180,0);});
   if(ticks==555){if(mc.player.getY()<202||mc.player.getZ()>-2)throw new IllegalStateException("Escalator did not carry player: "+mc.player.position());shot(mc,"09-escalator-ride");System.out.println("HBM_MOBILITY_WORLD_SMOKE: escalator carried client player upstairs to "+mc.player.position());mc.stop();}
  }
+ static void checkModelCache(){try{
+  var root=new com.hbm_doors.mobility.client.ModelPartExtension();root.addCuboid(0,0,0,1,1,1,0,false);root.addChild().addCuboid(0,0,0,1,1,1,0,false);
+  var bake=root.getClass().getDeclaredMethod("bake");bake.setAccessible(true);var part=bake.invoke(root);
+  try{var data=Class.forName("me.jellysquid.mods.sodium.client.render.immediate.model.ModelPartData");var cuboids=data.getMethod("getCuboids");var children=data.getMethod("getChildren");Object[] childParts=(Object[])children.invoke(part);if(java.lang.reflect.Array.getLength(cuboids.invoke(part))!=1||childParts.length!=1||java.lang.reflect.Array.getLength(cuboids.invoke(childParts[0]))!=1)throw new IllegalStateException("Optimized renderer cached incomplete lift geometry");System.out.println("HBM_MODEL_CACHE: complete parent and child geometry cached by optimized renderer");}catch(ClassNotFoundException vanilla){System.out.println("HBM_MODEL_CACHE: vanilla model bake passed");}
+ }catch(ReflectiveOperationException ex){throw new RuntimeException(ex);}}
  static class ItemsGallery extends net.minecraft.client.gui.screens.Screen {
   ItemsGallery(){super(net.minecraft.network.chat.Component.literal("Lifts and escalators"));}
   public boolean isPauseScreen(){return false;}
