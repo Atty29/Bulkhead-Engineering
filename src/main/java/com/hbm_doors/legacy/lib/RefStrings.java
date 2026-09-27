@@ -1,1 +1,0 @@
-package com.hbm_doors.legacy.lib; public final class RefStrings { public static final String MODID="hbm_doors"; public static net.minecraft.resources.ResourceLocation resourceLocation(String path){return new net.minecraft.resources.ResourceLocation(MODID,path);} }

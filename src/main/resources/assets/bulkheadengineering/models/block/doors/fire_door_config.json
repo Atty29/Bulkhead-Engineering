@@ -1,0 +1,15 @@
+{
+    "door_id":"fire_door",
+    "legacy_model":"bulkheadengineering:block/doors/fire_door_legacy",
+    "modern_model":{
+        "model":"bulkheadengineering:block/doors/fire_door_modern",
+        "skins":[
+            {"id":"default","name":"Standard","texture":"bulkheadengineering:block/doors/fire_door"},
+            {"id":"black","name":"Black","texture":"bulkheadengineering:block/doors/fire_door_black","model":"bulkheadengineering:block/doors/fire_door_modern_black"},
+            {"id":"orange","name":"Orange","texture":"bulkheadengineering:block/doors/fire_door_orange","model":"bulkheadengineering:block/doors/fire_door_modern_orange"},
+            {"id":"trefoil","name":"Trefoil","texture":"bulkheadengineering:block/doors/fire_door_trefoil","model":"bulkheadengineering:block/doors/fire_door_modern_trefoil"},
+            {"id":"yellow","name":"Yellow","texture":"bulkheadengineering:block/doors/fire_door_yellow","model":"bulkheadengineering:block/doors/fire_door_modern_yellow"}
+        ]
+    },
+    "default":{"type":"modern","skin":"default"}
+}

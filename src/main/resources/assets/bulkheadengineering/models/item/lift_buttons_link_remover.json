@@ -1,0 +1,15 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "bulkheadengineering:mtr/item/lift_buttons_link",
+    "layer1": "bulkheadengineering:mtr/item/rail_remover"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "bulkheadengineering:selected": 1
+      },
+      "model": "bulkheadengineering:mtr/item/lift_buttons_link_remover_selected"
+    }
+  ]
+}

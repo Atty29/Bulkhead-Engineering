@@ -2,18 +2,18 @@ modLoader="javafml"
 loaderVersion="[47,)"
 license="GPL-3.0-only"
 [[mods]]
-modId="hbm_doors"
-version="2.0.2"
-displayName="HBM Doors Standalone"
+modId="bulkheadengineering"
+version="2.1.0"
+displayName="Bulkhead Engineering"
 authors="HBM contributors; Jonathan Ho and MTR contributors; standalone adaptation"
-description='''HBM doors with adapted Minecraft Transit Railway lifts and escalators. Forge only; no HBM or MTR runtime required.'''
-[[dependencies.hbm_doors]]
+description='''Industrial doors with adapted Minecraft Transit Railway lifts and escalators. Forge only; no HBM or MTR runtime required.'''
+[[dependencies.bulkheadengineering]]
 modId="forge"
 mandatory=true
 versionRange="[47.3.31,)"
 ordering="NONE"
 side="BOTH"
-[[dependencies.hbm_doors]]
+[[dependencies.bulkheadengineering]]
 modId="minecraft"
 mandatory=true
 versionRange="[1.20.1]"

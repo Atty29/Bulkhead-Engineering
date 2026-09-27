@@ -1,0 +1,14 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "bulkheadengineering:mtr/item/lift_buttons_link"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "bulkheadengineering:selected": 1
+      },
+      "model": "bulkheadengineering:mtr/item/lift_buttons_link_connector_selected"
+    }
+  ]
+}

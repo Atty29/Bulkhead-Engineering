@@ -1,6 +1,6 @@
 # Lift recovery update — 2.0.1
 
-Minecraft 1.20.1, Forge 47.4.20, Java 17. Replace the previous HBM Doors JAR on client and server; keep only one version installed.
+Minecraft 1.20.1, Forge 47.4.20, Java 17. Replace the previous Bulkhead Engineering JAR on client and server; keep only one version installed.
 
 ## Recover an existing lift
 

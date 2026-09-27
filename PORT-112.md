@@ -1,6 +1,6 @@
 # HBM 1.12 modular sliding blast door
 
-Version 1.1.0 adds **Modular Sliding Blast Door** (`hbm_doors:modular_blast_door`), matching the tall vertical door in the reference screenshot. The source calls this block `blast_door`; its separate `sliding_blast_door` is a different, side-opening design already represented by the existing port's variants.
+Version 1.1.0 adds **Modular Sliding Blast Door** (`bulkheadengineering:modular_blast_door`), matching the tall vertical door in the reference screenshot. The source calls this block `blast_door`; its separate `sliding_blast_door` is a different, side-opening design already represented by the existing port's variants.
 
 Place one section on the floor with seven clear blocks of height. Each section is one block wide, with a five-block-high opening between the base and top beam. Place sections next to one another to make a wider door. Right-click a section to toggle the connected wall. Each rising redstone edge at the base or top toggles it; removing power leaves its current state unchanged. Motion takes 100 ticks (five seconds at 20 TPS). Inputs while moving are ignored.
 

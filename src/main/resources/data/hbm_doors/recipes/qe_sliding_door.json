@@ -1,1 +1,0 @@
-{"type": "minecraft:crafting_shaped", "pattern": ["III", "IRI", "ABA"], "key": {"I": {"item": "minecraft:iron_ingot"}, "R": {"item": "minecraft:redstone"}, "A": {"item": "minecraft:obsidian"}, "B": {"item": "minecraft:iron_ingot"}}, "result": {"item": "hbm_doors:qe_sliding_door"}}

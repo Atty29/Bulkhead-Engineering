@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "bulkheadengineering:mtr/block/lift_buttons_1"
+    },
+    "facing=east": {
+      "model": "bulkheadengineering:mtr/block/lift_buttons_1",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "bulkheadengineering:mtr/block/lift_buttons_1",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "bulkheadengineering:mtr/block/lift_buttons_1",
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "block.door_wgh_big_stop": {
+    "subtitle": "sounds.bulkheadengineering.subtitle.door_wgh_big_stop",
+    "sounds": [
+      "bulkheadengineering:block/door/door_wgh_big_stop"
+    ]
+  },
+  "block.wgh_start": {
+    "subtitle": "sounds.bulkheadengineering.subtitle.wgh_start",
+    "sounds": [
+      "bulkheadengineering:block/door/wgh_start"
+    ]
+  },
+  "block.door_wgh_big_start": {
+    "subtitle": "sounds.bulkheadengineering.subtitle.door_wgh_big_start",
+    "sounds": [
+      "bulkheadengineering:block/door/door_wgh_big_start"
+    ]
+  },
+  "block.garage_move": {
+    "subtitle": "sounds.bulkheadengineering.subtitle.garage_move",
+    "sounds": [
+      "bulkheadengineering:block/door/garage_move"
+    ]
+  },
+  "block.sliding_door_opening": {
+    "subtitle": "sounds.bulkheadengineering.subtitle.sliding_door_opening",
+    "sounds": [
+      "bulkheadengineering:block/door/sliding_door_opening"
+    ]
+  },
+  "block.vault_scrape": {
+    "subtitle": "sounds.bulkheadengineering.subtitle.vault_scrape",
+    "sounds": [
+      "bulkheadengineering:block/door/vault_scrape"
+    ]
+  },
+  "block.metal_stop_1": {
+    "subtitle": "sounds.bulkheadengineering.subtitle.metal_stop_1",
+    "sounds": [
+      "bulkheadengineering:block/door/metal_stop_1"
+    ]
+  },
+  "block.alarm_6": {
+    "subtitle": "sounds.bulkheadengineering.subtitle.alarm_6",
+    "sounds": [
+      "bulkheadengineering:block/door/alarm_6"
+    ]
+  },
+  "block.door_move_2": {
+    "subtitle": "sounds.bulkheadengineering.subtitle.door_move_2",
+    "sounds": [
+      "bulkheadengineering:block/door/door_move_2"
+    ]
+  },
+  "block.sliding_door_shut": {
+    "subtitle": "sounds.bulkheadengineering.subtitle.sliding_door_shut",
+    "sounds": [
+      "bulkheadengineering:block/door/sliding_door_shut"
+    ]
+  },
+  "block.lever_1": {
+    "subtitle": "sounds.bulkheadengineering.subtitle.lever_1",
+    "sounds": [
+      "bulkheadengineering:block/door/lever_1"
+    ]
+  },
+  "block.vault_thud": {
+    "subtitle": "sounds.bulkheadengineering.subtitle.vault_thud",
+    "sounds": [
+      "bulkheadengineering:block/door/vault_thud"
+    ]
+  },
+  "block.wgh_stop": {
+    "subtitle": "sounds.bulkheadengineering.subtitle.wgh_stop",
+    "sounds": [
+      "bulkheadengineering:block/door/wgh_stop"
+    ]
+  },
+  "block.sliding_door_opened": {
+    "subtitle": "sounds.bulkheadengineering.subtitle.sliding_door_opened",
+    "sounds": [
+      "bulkheadengineering:block/door/sliding_door_opened"
+    ]
+  },
+  "block.garage_stop": {
+    "subtitle": "sounds.bulkheadengineering.subtitle.garage_stop",
+    "sounds": [
+      "bulkheadengineering:block/door/garage_stop"
+    ]
+  },
+  "block.modular_start": {
+    "subtitle": "sounds.bulkheadengineering.modular_start",
+    "sounds": [
+      {
+        "name": "bulkheadengineering:block/reactorstart",
+        "stream": false
+      }
+    ]
+  },
+  "block.modular_stop": {
+    "subtitle": "sounds.bulkheadengineering.modular_stop",
+    "sounds": [
+      {
+        "name": "bulkheadengineering:block/reactorstop",
+        "stream": false
+      }
+    ]
+  }
+}

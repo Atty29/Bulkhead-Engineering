@@ -1,0 +1,1 @@
+package com.bulkheadengineering.legacy.lib; public final class RefStrings { public static final String MODID="bulkheadengineering"; public static net.minecraft.resources.ResourceLocation resourceLocation(String path){return new net.minecraft.resources.ResourceLocation(MODID,path);} }

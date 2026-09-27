@@ -31,7 +31,7 @@ The four placeholders are plain cubes upstream; this extraction does not claim t
 
 | Upstream subsystem | Standalone treatment |
 |---|---|
-| `DoorDecl`, `DoorDeclRegistry`, animation interface, model-selection value types | Retained under `com.hbm_doors.legacy`; resource namespace changed to `hbm_doors`. Removed the unused selection overload requiring the full client model registry. |
+| `DoorDecl`, `DoorDeclRegistry`, animation interface, model-selection value types | Retained under `com.bulkheadengineering.legacy`; resource namespace changed to `bulkheadengineering`. Removed the unused selection overload requiring the full client model registry. |
 | `DoorBlock`, `DoorBlockEntity`, `DoorBlockItem` | Replaced with door-specific Forge blocks, controller entity and item. Original timing, procedural transforms, click suppression during motion, redstone edge semantics and cargo sound callbacks are reused. |
 | Universal machine parts, multiblock helpers and controller interfaces | Replaced by `DoorPartBlock`/`DoorPartEntity` and footprint/shape rotation code. No machinery, energy, fluids or conveyors are registered. |
 | Door model loaders/baked models, VBO renderer, mesh caches, shader batching/culling | Replaced with a small client-only OBJ/COLLADA renderer. Original OBJ geometry, material texture assignments, hierarchy transforms and COLLADA curves are used. Original item display transforms are retained. |

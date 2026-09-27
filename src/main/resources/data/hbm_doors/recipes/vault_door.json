@@ -1,1 +1,0 @@
-{"type": "minecraft:crafting_shaped", "pattern": ["III", "IRI", "ABA"], "key": {"I": {"item": "minecraft:iron_ingot"}, "R": {"item": "minecraft:redstone"}, "A": {"item": "minecraft:redstone"}, "B": {"item": "minecraft:iron_block"}}, "result": {"item": "hbm_doors:vault_door"}}

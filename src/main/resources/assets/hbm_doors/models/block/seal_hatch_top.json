@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/template_orientable_trapdoor_top",
-  "textures": {
-    "texture": "hbm_doors:block/seal_hatch_3"
-  }
-}

@@ -1,0 +1,6 @@
+{
+  "parent": "bulkheadengineering:mtr/block/escalator_step_transition_bottom_left_base",
+  "textures": {
+    "step": "bulkheadengineering:mtr/block/escalator_stop"
+  }
+}

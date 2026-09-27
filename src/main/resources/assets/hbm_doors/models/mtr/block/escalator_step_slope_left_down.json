@@ -1,7 +1,0 @@
-{
-  "parent": "hbm_doors:mtr/block/escalator_step_slope_left_base",
-  "ambientocclusion": false,
-  "textures": {
-    "step": "hbm_doors:mtr/block/escalator_down"
-  }
-}

@@ -1,15 +1,15 @@
 plugins { id 'java'; id 'net.minecraftforge.gradle' version '6.0.54' }
-version='2.0.2'
-group='com.hbm_doors'
-base { archivesName='hbm-doors-1.20.1' }
+version='2.1.0'
+group='com.bulkheadengineering'
+base { archivesName='bulkhead-engineering-1.20.1' }
 java.toolchain.languageVersion=JavaLanguageVersion.of(17)
 sourceSets { gametest { compileClasspath += sourceSets.main.output + sourceSets.main.compileClasspath; runtimeClasspath += sourceSets.main.output + sourceSets.main.runtimeClasspath } }
 minecraft {
  mappings channel:'official', version:'1.20.1'
  runs {
-  client { workingDirectory project.file('run'); if(project.hasProperty('mobilitySmokeTest')) { property 'hbmdoors.mobilitySmoke','true' }; if(project.hasProperty('doorWorldTest')) { property 'hbmdoors.worldSmoke','true' }; if(project.hasProperty('doorSmokeTest')) { property 'hbmdoors.smoke','true' }; mods { hbm_doors { source sourceSets.main; if(project.hasProperty('doorSmokeTest') || project.hasProperty('doorWorldTest') || project.hasProperty('mobilitySmokeTest')) { source sourceSets.gametest } } } }
-  server { workingDirectory project.file('run-server'); mods { hbm_doors { source sourceSets.main } } }
-  gameTestServer { workingDirectory project.file('run-tests'); property 'forge.enabledGameTestNamespaces','hbm_doors'; mods { hbm_doors { source sourceSets.main; source sourceSets.gametest } } }
+  client { workingDirectory project.file('run'); if(project.hasProperty('identitySmokeTest')) { property 'bulkheadengineering.identitySmoke','true'; if(project.hasProperty('reloadIdentityWorld')) { property 'bulkheadengineering.reloadIdentity',project.property('reloadIdentityWorld') } }; if(project.hasProperty('mobilitySmokeTest')) { property 'bulkheadengineering.mobilitySmoke','true' }; if(project.hasProperty('doorWorldTest')) { property 'bulkheadengineering.worldSmoke','true' }; if(project.hasProperty('doorSmokeTest')) { property 'bulkheadengineering.smoke','true' }; mods { bulkheadengineering { source sourceSets.main; if(project.hasProperty('identitySmokeTest') || project.hasProperty('doorSmokeTest') || project.hasProperty('doorWorldTest') || project.hasProperty('mobilitySmokeTest')) { source sourceSets.gametest } } } }
+  server { workingDirectory project.file('run-server'); mods { bulkheadengineering { source sourceSets.main } } }
+  gameTestServer { workingDirectory project.file('run-tests-bulkhead'); property 'forge.enabledGameTestNamespaces','bulkheadengineering'; mods { bulkheadengineering { source sourceSets.main; source sourceSets.gametest } } }
  }
 }
 dependencies { minecraft 'net.minecraftforge:forge:1.20.1-47.4.20' }
@@ -23,3 +23,12 @@ if (project.hasProperty('embeddiumCompatTest')) {
  dependencies { runtimeOnly fg.deobf('curse.maven:embeddium-908741:5681725'); runtimeOnly fg.deobf('curse.maven:oculus-581495:6020952') }
 }
 if (project.hasProperty('embeddiumCompatTest')) { minecraft.runs.client { property 'mixin.env.remapRefMap', 'true'; property 'mixin.env.refMapRemappingFile', project.file('build/createSrgToMcp/output.srg').absolutePath } }
+
+repositories { maven { url 'https://api.modrinth.com/maven' } }
+dependencies {
+ compileOnly fg.deobf('maven.modrinth:jade:11.13.3+forge')
+ compileOnly fg.deobf('maven.modrinth:wthit:forge-8.21.1')
+ if(project.hasProperty('jadeTest')) { runtimeOnly fg.deobf('maven.modrinth:jade:11.13.3+forge') }
+ if(project.hasProperty('wthitTest')) { runtimeOnly fg.deobf('maven.modrinth:wthit:forge-8.21.1'); runtimeOnly fg.deobf('maven.modrinth:badpackets:forge-0.4.3') }
+}
+if(project.hasProperty('jadeTest') || project.hasProperty('wthitTest')) { minecraft.runs.client { property 'mixin.env.remapRefMap','true'; property 'mixin.env.refMapRemappingFile',project.file('build/createSrgToMcp/output.srg').absolutePath } }

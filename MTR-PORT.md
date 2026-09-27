@@ -1,6 +1,6 @@
 # MTR lifts and escalators — standalone port, version 2.0.2
 
-For Minecraft 1.20.1 / Forge 47.4.20 / Java 17. Install the same HBM Doors JAR on the server and every client. Neither MTR nor HBM is required. Existing HBM door IDs and the default global `redstoneOnly = true` setting are retained. Lift call buttons remain usable; lift landing doors open automatically only when their linked cabin docks.
+For Minecraft 1.20.1 / Forge 47.4.20 / Java 17. Install the same Bulkhead Engineering JAR on the server and every client. Neither MTR nor HBM is required. Existing HBM door IDs and the default global `redstoneOnly = true` setting are retained. Lift call buttons remain usable; lift landing doors open automatically only when their linked cabin docks.
 
 ## Included
 

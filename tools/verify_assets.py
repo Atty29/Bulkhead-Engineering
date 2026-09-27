@@ -3,7 +3,7 @@ from pathlib import Path
 import json
 
 root = Path(__file__).resolve().parents[1]
-assets = root / 'src/main/resources/assets/hbm_doors'
+assets = root / 'src/main/resources/assets/bulkheadengineering'
 errors = []
 
 def require(path, source):
@@ -19,7 +19,7 @@ for source in assets.rglob('*.json'):
         elif isinstance(node, list):
             for v in node:
                 visit(v, key)
-        elif isinstance(node, str) and node.startswith('hbm_doors:'):
+        elif isinstance(node, str) and node.startswith('bulkheadengineering:'):
             path = node.split(':', 1)[1]
             if key in ('model', 'parent', 'legacy_model'):
                 if path.startswith('models/'):
@@ -28,7 +28,7 @@ for source in assets.rglob('*.json'):
                     require('models/' + path + '.json', source)
     visit(data)
     for texture in data.get('textures', {}).values():
-        if texture.startswith('hbm_doors:'):
+        if texture.startswith('bulkheadengineering:'):
             require('textures/' + texture.split(':', 1)[1] + '.png', source)
 
 sounds = json.loads((assets / 'sounds.json').read_text(encoding='utf-8'))
@@ -37,7 +37,7 @@ for entry in sounds.values():
         name = sound if isinstance(sound, str) else sound['name']
         require('sounds/' + name.split(':', 1)[-1] + '.ogg', assets / 'sounds.json')
 
-recipes = list((root / 'src/main/resources/data/hbm_doors/recipes').glob('*.json'))
+recipes = list((root / 'src/main/resources/data/bulkheadengineering/recipes').glob('*.json'))
 assert len(recipes) == 37, f'Expected 37 recipes, got {len(recipes)}'
 if errors:
     raise SystemExit('\n'.join(errors))

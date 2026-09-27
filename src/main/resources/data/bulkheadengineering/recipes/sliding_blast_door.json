@@ -1,0 +1,1 @@
+{"type": "minecraft:crafting_shaped", "pattern": ["III", "IRI", "ABA"], "key": {"I": {"item": "minecraft:iron_ingot"}, "R": {"item": "minecraft:redstone"}, "A": {"item": "minecraft:gold_ingot"}, "B": {"item": "minecraft:iron_ingot"}}, "result": {"item": "bulkheadengineering:sliding_blast_door"}}

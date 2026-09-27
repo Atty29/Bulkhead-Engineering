@@ -1,0 +1,13 @@
+{
+	"door_id":"large_vehicle_door",
+	"legacy_model":"bulkheadengineering:block/doors/large_vehicle_door_legacy",
+	"modern_model":{
+		"model":"bulkheadengineering:block/doors/large_vehicle_door_modern",
+		"skins":[
+			{"id":"default","name":"Standard","texture":"bulkheadengineering:block/doors/large_vehicle_door"},
+			{"id":"rad","name":"Rad","texture":"bulkheadengineering:block/doors/large_vehicle_door_rad", "model":"bulkheadengineering:block/doors/large_vehicle_door_modern_rad"},
+			{"id":"clear","name":"Clear","texture":"bulkheadengineering:block/doors/large_vehicle_door_clean", "model":"bulkheadengineering:block/doors/large_vehicle_door_modern_clean"}
+		]
+	},
+	"default":{"type":"modern","skin":"default"}
+}

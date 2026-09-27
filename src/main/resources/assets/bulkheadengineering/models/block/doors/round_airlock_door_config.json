@@ -1,0 +1,13 @@
+{
+    "door_id": "round_airlock_door",
+    "legacy_model": "bulkheadengineering:block/doors/round_airlock_door_legacy",
+    "modern_model": {
+        "model": "bulkheadengineering:block/doors/round_airlock_door_modern",
+        "skins": [
+        {"id": "default", "name": "Standard", "texture": "bulkheadengineering:block/doors/round_airlock_door"},
+        {"id": "clean", "name": "Clean", "texture": "bulkheadengineering:block/doors/round_airlock_door_clean", "model": "bulkheadengineering:block/doors/round_airlock_door_modern_clean"},
+        {"id": "green", "name": "Green", "texture": "bulkheadengineering:block/doors/round_airlock_door_green", "model": "bulkheadengineering:block/doors/round_airlock_door_modern_green"}
+        ]
+    },
+    "default": {"type": "modern", "skin": "default"}
+}

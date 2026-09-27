@@ -1,0 +1,1 @@
+{"parent": "minecraft:block/door_bottom_left_open", "render_type": "minecraft:cutout", "textures": {"bottom": "bulkheadengineering:block/metal_door_bottom", "top": "bulkheadengineering:block/metal_door_top"}}

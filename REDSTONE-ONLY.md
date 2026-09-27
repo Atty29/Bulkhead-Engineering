@@ -1,10 +1,10 @@
-# HBM Doors 1.3.0 — global redstone-only control
+# Bulkhead Engineering 1.3.0 â€” global redstone-only control
 
 Enabled by default. Replace the previous mod JAR on both client and server. No door replacement is required for this update.
 
 All 21 HBM door/hatch entries block manual opening and closing. This includes animated doors and their invisible structure parts, both halves of the three conventional doors, all three small hatches, and the Blast Door alias. Existing redstone behavior is preserved. Sneak-click model/skin selection remains available. Other mods and vanilla doors are unaffected.
 
-Configuration: `<world>/serverconfig/hbm_doors-server.toml` (singleplayer worlds are in `saves/<world>`).
+Configuration: `<world>/serverconfig/bulkheadengineering-server.toml` (singleplayer worlds are in `saves/<world>`).
 
 ```toml
 redstoneOnly = true

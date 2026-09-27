@@ -1,0 +1,1826 @@
+package com.bulkheadengineering.legacy.block.entity.doors;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.jetbrains.annotations.Nullable;
+
+import com.bulkheadengineering.legacy.client.model.variant.DoorModelSelection;
+import com.bulkheadengineering.legacy.client.model.variant.DoorSkin;
+import com.bulkheadengineering.legacy.interfaces.IDoorAnimator;
+import com.bulkheadengineering.legacy.lib.RefStrings;
+import com.bulkheadengineering.legacy.multiblock.PartRole;
+import com.bulkheadengineering.legacy.sound.ModSounds;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
+
+/**
+ * Декларативный класс параметров двери.
+ * Модели загружаются автоматически из blockstate JSON файлов.
+ */
+
+public abstract class DoorDecl {
+    // Кеш загруженных моделей
+    // private final Map<String, BakedModel> modelCache = new HashMap<>();
+    // private BakedModel[] cachedModelParts = null;
+    // private String[] cachedPartNames = null;
+
+    protected DoorStructureDefinition structureDefinition;
+
+
+    // Кэш извлечённых AABB частей из OBJ модели (клиентский доступ)
+    private Map<String, AABB> cachedPartAABBs = new HashMap<>();
+
+    // ==================== Основные абстрактные методы ====================
+
+    /**
+     * Время открытия в тиках
+     */
+    public abstract int getOpenTime();
+
+    /**
+     * Диапазоны открытия двери для мультиблока
+     */
+    public int[][] getDoorOpenRanges() { return new int[0][]; }
+
+    /**
+     * Инициализация схемы. Должна вызываться в конструкторе конкретной двери.
+     */
+    protected void defineStructure(DoorStructureDefinition definition) {
+        this.structureDefinition = definition;
+    }
+
+    public DoorStructureDefinition getStructureDefinition() {
+        return structureDefinition;
+    }
+
+    public void onTick(DoorBlockEntity door) {}
+
+    @Nullable
+    public VoxelShape getDynamicOutline(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context, float progress) {
+        // Если дверь открыта больше чем на 90%, можно уменьшить рамку выделения,
+        // чтобы она не мешала кликать по объектам за дверью.
+        if (progress > 0.9f) return Shapes.empty(); 
+        return null; 
+    }
+
+    /**
+     * Размеры мультиблока двери
+     */
+    public int[] getDimensions() {
+        // 1. Если есть схема - берем размеры из неё
+        if (structureDefinition != null) {
+            return structureDefinition.getDimensions();
+        }
+
+        // 2. Fallback для старых дверей без схем
+        return switch (getBlockId().getPath()) {
+            case "large_vehicle_door" -> new int[] { -3, 0, 0, 6, 5, 0 };
+            case "round_airlock_door" -> new int[] { -1, 0, 0, 3, 3, 0 };
+            case "fire_door" -> new int[] { -1, 0, 0, 3, 2, 0 };
+            case "sliding_blast_door" -> new int[] { -3, 0, 0, 6, 3, 0 };
+            case "sliding_seal_door" -> new int[] { 0, 0, 0, 0, 1, 0 };
+            case "secure_access_door" -> new int[] { -2, 0, 0, 4, 4, 0 };
+            case "qe_sliding_door" -> new int[] { 0, 0, 0, 1, 1, 0 };
+            case "qe_containment_door" -> new int[] { -1, 0, 0, 2, 2, 0 };
+            case "water_door" -> new int[] { -1, 0, 0, 2, 2, 0 };
+            case "silo_hatch" -> new int[] { -2, 0, -2, 4, 0, 4 };
+            case "silo_hatch_large" -> new int[] { -3, 0, -3, 6, 0, 6 };
+            case "cargo_door" -> new int[] { -1, -1, 0, 3, 3, 1 };
+            default -> new int[] { 0, 0, 0, 0, 1, 0 };
+        };
+    }
+
+    public boolean isDynamicShape() {
+        return false;
+    }
+
+    /**
+     * ID блока для автоматической загрузки модели
+     */
+    public abstract ResourceLocation getBlockId();
+
+    public abstract String[] getPartNames();
+
+    /**
+     * Выбор модели по умолчанию при первой установке двери.
+     * По умолчанию LEGACY. Для round_airlock_door - MODERN + default.
+     */
+    public DoorModelSelection getDefaultModelSelection() {
+        return DoorModelSelection.DEFAULT;
+    }
+
+    /**
+     * Путь к DAE-файлу с анимациями. Если null - используются procedural-анимации (getTranslation/getRotation).
+     */
+    @Nullable
+    public ResourceLocation getColladaAnimationSource() {
+        return null;
+    }
+
+    /**
+     * Инвертировать время анимации DAE.
+     * Если true: closed (progress=0) → последний keyframe, open (progress=1) → первый keyframe.
+     * Нужно когда Blender экспортировал анимацию с rest pose = открытое состояние.
+     */
+    public boolean isColladaAnimationInverted() {
+        return false;
+    }
+
+    /**
+     * Сохраняет извлечённые AABB (вызывается из DoorBakedModel).
+     */
+    public void setPartAABBs(Map<String, AABB> aabbs) {
+        this.cachedPartAABBs = new HashMap<>(aabbs);
+    }
+
+    /**
+     * Получает базовый AABB для части (клиентский доступ).
+     */
+    @Nullable
+    public AABB getPartAABB(String partName) {
+        return cachedPartAABBs.get(partName);
+    }
+
+    /**
+     * Получает все базовые AABB (клиентский доступ).
+     */
+    public Map<String, AABB> getAllPartAABBs() {
+        return Collections.unmodifiableMap(cachedPartAABBs);
+    }
+
+    /**
+     * Проверяет, загружены ли AABB для этой двери.
+     */
+    public boolean hasPartAABBs() {
+        return !cachedPartAABBs.isEmpty();
+    }
+
+    public int getBlockOffset() { return 0; }
+
+    public boolean remoteControllable() { return false; }
+
+    public boolean hasSkins() { return false; }
+
+    public int getSkinCount() { return 0; }
+
+    public boolean isLadder(boolean open) { return false; }
+
+    public AABB getBlockBound(int x, int y, int z, boolean open, boolean forCollision) {
+        if (open) return new AABB(0, 0, 0, 0, 0, 0);
+        return new AABB(0, 0, 0, 1, 1, 1);
+    }
+
+    // Звуки
+    @Nullable public SoundEvent getOpenSoundStart() { return null; }
+    @Nullable public SoundEvent getOpenSoundEnd() { return null; }
+    @Nullable public SoundEvent getOpenSoundLoop() { return null; }
+    @Nullable public SoundEvent getCloseSoundStart() { return getOpenSoundStart(); }
+    @Nullable public SoundEvent getCloseSoundEnd() { return getOpenSoundEnd(); }
+    @Nullable public SoundEvent getCloseSoundLoop() { return getOpenSoundLoop(); }
+    @Nullable public SoundEvent getSoundLoop2() { return null; }
+    public float getSoundVolume() { return 1.0f; }
+
+    public double getRenderRadius() { return 8.0; }
+
+    public Component getLockedMessage() {
+        return Component.translatable("door.locked");
+    }
+
+    public void doOffsetTransform(IDoorAnimator animator) {}
+
+    /**
+     * Доп. поворот Y (градусы) для baked model - должен совпадать с doOffsetTransform,
+     * чтобы BakedModel и BER были выровнены. По умолчанию 0.
+     */
+    public int getBakedModelRotationOffsetY() { return 0; }
+
+    public double[][] getClippingPlanes() { return new double[0][]; }
+
+    // Трансформации
+    public void getTranslation(String partName, float openTicks, boolean child, float[] trans) {
+        trans[0] = 0; trans[1] = 0; trans[2] = 0;
+    }
+
+    /**
+     * Смещение с учётом выбора модели (legacy/modern).
+     * По умолчанию делегирует в {@link #getTranslation(String, float, boolean, float[])}.
+     */
+    public void getTranslation(String partName, float openTicks, boolean child, float[] trans, @Nullable DoorModelSelection selection) {
+        getTranslation(partName, openTicks, child, trans);
+    }
+
+    public void getOrigin(String partName, float[] orig) {
+        orig[0] = 0; orig[1] = 0; orig[2] = 0;
+    }
+
+    /**
+     * Пивот вращения с учётом выбора модели (legacy/modern).
+     * Позволяет задать разные пивоты для новой модели, где части могут иметь иное положение.
+     * По умолчанию делегирует в {@link #getOrigin(String, float[])}.
+     */
+    public void getOrigin(String partName, float[] orig, @Nullable DoorModelSelection selection) {
+        getOrigin(partName, orig);
+    }
+
+    public void getRotation(String partName, float openTicks, float[] rot) {
+        rot[0] = 0; rot[1] = 0; rot[2] = 0;
+    }
+
+    /**
+     * Поворот с учётом выбора модели (legacy/modern).
+     * По умолчанию делегирует в {@link #getRotation(String, float, float[])}.
+     */
+    public void getRotation(String partName, float openTicks, float[] rot, @Nullable DoorModelSelection selection) {
+        getRotation(partName, openTicks, rot);
+    }
+
+    public boolean doesRender(String partName, boolean child) { return true; }
+
+    public String[] getChildren(String partName) { return new String[0]; }
+
+    /**
+     * Дочерние части с учётом выбора модели (legacy/modern).
+     * По умолчанию делегирует в {@link #getChildren(String)}.
+     */
+    public String[] getChildren(String partName, @Nullable DoorModelSelection selection) {
+        return getChildren(partName);
+    }
+
+    protected float getNormTime(float time) {
+        return getNormTime(time, 0, getOpenTime());
+    }
+
+    protected float getNormTime(float time, float min, float max) {
+        if (max - min == 0) return 0;
+        return Math.max(0, Math.min(1, (time - min) / (max - min)));
+    }
+
+    protected void set(float[] array, float x, float y, float z) {
+        array[0] = x; array[1] = y; array[2] = z;
+    }
+
+    protected double[] getDoorCenter() {
+        int[] dims = getDimensions();
+
+        int offsetX = dims[0];
+        int offsetZ = dims[2];
+        int sizeX = dims[3];
+        int sizeZ = dims[5];
+        
+        // Вычисляем центр на основе реального диапазона структуры
+        double centerX = (offsetX + (offsetX + sizeX)) / 2.0;
+        double centerZ = (offsetZ + (offsetZ + sizeZ)) / 2.0;
+        
+        return new double[] { centerX, centerZ };
+    }    
+
+    protected static AABB rotateAABB(AABB bb, Direction facing) {
+        double[][] pts = {
+            {bb.minX, bb.minZ}, {bb.maxX, bb.minZ},
+            {bb.minX, bb.maxZ}, {bb.maxX, bb.maxZ}
+        };
+        double minX = Double.POSITIVE_INFINITY, minZ = Double.POSITIVE_INFINITY;
+        double maxX = Double.NEGATIVE_INFINITY, maxZ = Double.NEGATIVE_INFINITY;
+        
+        for (double[] p : pts) {
+            double x = p[0], z = p[1];
+            double rx, rz;
+            
+            switch (facing) {
+                case SOUTH -> { rx = -x; rz = -z; }
+                case WEST  -> { rx = z; rz = -x; }
+                case EAST  -> { rx = -z; rz = x; }
+                default    -> { rx = x; rz = z; }   // NORTH
+            }
+            
+            if (rx < minX) minX = rx; if (rx > maxX) maxX = rx;
+            if (rz < minZ) minZ = rz; if (rz > maxZ) maxZ = rz;
+        }
+        
+        return new AABB(minX, bb.minY, minZ, maxX, bb.maxY, maxZ);
+    }
+
+
+    // Вспомогательный класс для определения структуры двери
+
+    public static class DoorStructureDefinition {
+        // Карта: Локальная позиция -> Коллизия в ЗАКРЫТОМ состоянии
+        private final Map<BlockPos, VoxelShape> closedShapes = new HashMap<>();
+        // Карта: Локальная позиция -> Коллизия в ОТКРЫТОМ состоянии
+        private final Map<BlockPos, VoxelShape> openShapes = new HashMap<>();
+        // Карта: Локальная позиция -> Роль части
+        private final Map<BlockPos, PartRole> roles = new HashMap<>();
+        
+        // Размеры (вычисляются автоматически)
+        private int minX, minY, minZ, maxX, maxY, maxZ;
+        private BlockPos controllerOffset = BlockPos.ZERO;
+
+        private DoorStructureDefinition() {}
+
+        public static Builder create() { return new Builder(); }
+
+        public Map<BlockPos, VoxelShape> getClosedShapes() { return closedShapes; }
+        public Map<BlockPos, VoxelShape> getOpenShapes() { return openShapes; }
+        public Map<BlockPos, PartRole> getRoles() { return roles; }
+        public BlockPos getControllerOffset() { return controllerOffset; }
+        
+        // Возвращает массив [offsetX, offsetY, offsetZ, sizeX, sizeY, sizeZ] для DoorBlock
+        public int[] getDimensions() {
+            return new int[] { 
+                minX, minY, minZ, 
+                maxX - minX, maxY - minY, maxZ - minZ 
+            };
+        }
+
+        public static class Builder {
+            private final Map<Character, VoxelShape> symbolShapes = new HashMap<>();
+            private final Map<Character, PartRole> symbolRoles = new HashMap<>();
+            
+            public Builder() {
+                // Символ по умолчанию для воздуха/прохода
+                addSymbol(' ', Shapes.empty(), PartRole.DEFAULT);
+                // Символ для обычного полного блока
+                addSymbol('#', Shapes.block(), PartRole.DEFAULT);
+            }
+
+            public Builder addSymbol(char symbol, VoxelShape shape, PartRole role) {
+                symbolShapes.put(symbol, shape);
+                symbolRoles.put(symbol, role);
+                return this;
+            }
+            
+            // Упрощенное добавление символа (дефолтная роль)
+            public Builder addSymbol(char symbol, VoxelShape shape) {
+                return addSymbol(symbol, shape, PartRole.DEFAULT);
+            }
+
+            /**
+             * Парсит вертикальную структуру (Вид СБОКУ / Спереди).
+             * Y меняется по строкам (сверху вниз или снизу вверх - см. invertY), X по символам.
+             * Z = 0 (плоская дверь).
+             * 
+             * @param closedPattern Схема закрытой двери
+             * @param openPattern Схема открытой двери (должна совпадать по размерам или быть null)
+             * @param controllerChar Символ, обозначающий центр (0,0,0). Если не найден, центр будет (0,0,0) по координатам.
+             */
+            public DoorStructureDefinition parseVertical(String[] closedPattern, String[] openPattern, char controllerChar) {
+                return parse(closedPattern, openPattern, controllerChar, true);
+            }
+
+            /**
+             * Парсит горизонтальную структуру (Вид СВЕРХУ).
+             * Z меняется по строкам, X по символам.
+             * Y = 0 (плоский люк).
+             */
+            public DoorStructureDefinition parseHorizontal(String[] closedPattern, String[] openPattern, char controllerChar) {
+                return parse(closedPattern, openPattern, controllerChar, false);
+            }
+
+            private DoorStructureDefinition parse(String[] closed, String[] open, char ctrlChar, boolean isVertical) {
+                DoorStructureDefinition def = new DoorStructureDefinition();
+                
+                // 1. Сначала ищем контроллер, чтобы вычислить смещение
+                int ctrlRow = -1;
+                int ctrlCol = -1;
+                
+                // Ищем в closed схеме
+                for (int r = 0; r < closed.length; r++) {
+                    int idx = closed[r].indexOf(ctrlChar);
+                    if (idx != -1) {
+                        ctrlRow = r;
+                        ctrlCol = idx;
+                        break;
+                    }
+                }
+                
+                // Если контроллер не указан в схеме, считаем что он в 0,0,0 (относительно схемы это может быть край)
+                // Но лучше требовать его наличие для корректного центрирования.
+                int cR = ctrlRow == -1 ? 0 : ctrlRow;
+                int cC = ctrlCol == -1 ? 0 : ctrlCol;
+
+                def.minX = Integer.MAX_VALUE; def.minY = Integer.MAX_VALUE; def.minZ = Integer.MAX_VALUE;
+                def.maxX = Integer.MIN_VALUE; def.maxY = Integer.MIN_VALUE; def.maxZ = Integer.MIN_VALUE;
+
+                // 2. Парсим блоки
+                // vertical: row=Y (top to bottom usually), col=X
+                // horizontal: row=Z, col=X
+                
+                int height = closed.length;
+                
+                for (int row = 0; row < height; row++) {
+                    String line = closed[row];
+                    String openLine = (open != null && row < open.length) ? open[row] : null;
+                    
+                    for (int col = 0; col < line.length(); col++) {
+                        char cSym = line.charAt(col);
+                        if (cSym == ' ') continue; // Пропускаем пустоту, если она не часть структуры
+                        
+                        // Вычисляем координаты относительно контроллера
+                        int x = col - cC;
+                        int y, z;
+                        
+                        if (isVertical) {
+                            // Строки идут сверху вниз (обычно в коде так пишут массивы)
+                            // Значит row 0 это самый верх.
+                            // Чтобы контроллер был на Y=0, нужно инвертировать
+                            y = (height - 1 - row) - (height - 1 - cR); 
+                            z = 0;
+                        } else {
+                            // Horizontal (Top-down view)
+                            // Row = Z, Col = X
+                            y = 0;
+                            z = row - cR;
+                        }
+
+                        BlockPos pos = new BlockPos(x, y, z);
+                        
+                        // Сохраняем границы
+                        def.minX = Math.min(def.minX, x); def.maxX = Math.max(def.maxX, x);
+                        def.minY = Math.min(def.minY, y); def.maxY = Math.max(def.maxY, y);
+                        def.minZ = Math.min(def.minZ, z); def.maxZ = Math.max(def.maxZ, z);
+
+                        // Коллизия CLOSED
+                        VoxelShape shape = symbolShapes.getOrDefault(cSym, Shapes.block());
+                        def.closedShapes.put(pos, shape);
+                        
+                        // Роль
+                        PartRole role = symbolRoles.getOrDefault(cSym, PartRole.DEFAULT);
+                        // Если это символ контроллера, форсируем роль
+                        if (cSym == ctrlChar) role = PartRole.CONTROLLER;
+                        def.roles.put(pos, role);
+                        
+                        // Коллизия OPEN
+                        if (openLine != null && col < openLine.length()) {
+                            char oSym = openLine.charAt(col);
+                            def.openShapes.put(pos, symbolShapes.getOrDefault(oSym, Shapes.empty()));
+                        } else {
+                            // По дефолту открытая = пустая, если не задана схема
+                            def.openShapes.put(pos, Shapes.empty());
+                        }
+                    }
+                }
+                
+                // Смещение контроллера относительно min координат (нужно для MultiblockHelper)
+                def.controllerOffset = new BlockPos(-def.minX, -def.minY, -def.minZ);
+                
+                return def;
+            }
+        }
+    }
+    
+
+    // ==================== Реализации ====================
+
+    public static final DoorDecl LARGE_VEHICLE_DOOR = new DoorDecl() {
+        {
+            // Настройка схемной структуры
+            DoorStructureDefinition.Builder builder = DoorStructureDefinition.create();
+            
+            // Легенда символов
+            builder.addSymbol('C', Shapes.block(), PartRole.CONTROLLER); // Контроллер
+            builder.addSymbol('X', Shapes.block(), PartRole.DEFAULT);
+            builder.addSymbol('O', Shapes.empty(), PartRole.DEFAULT);
+            builder.addSymbol('H', Block.box(0, 0, 0, 8, 16, 16), PartRole.DEFAULT);    // левый вертикальный полублок
+            builder.addSymbol('G', Block.box(8, 0, 0, 16, 16, 16), PartRole.DEFAULT);   // правый вертикальный полублок
+            builder.addSymbol('T', Block.box(0, 10, 0, 16, 16, 16), PartRole.DEFAULT); // полублок в верхнем положении
+            builder.addSymbol('M', Block.box(0, 0, 0, 16, 1, 16), PartRole.DEFAULT); // плита в нижнем положении
+            // Схема ЗАКРЫТОЙ двери (Вид спереди, Y сверху вниз)
+            String[] closed = {
+                "XXXXXXX",
+                "XXXXXXX",
+                "XXXXXXX",
+                "XXXXXXX",
+                "XXXXXXX",
+                "XXXCXXX"
+            };
+
+            // Схема ОТКРЫТОЙ двери
+            String[] open = {
+                "XTTTTTX",
+                "HOOOOOG",
+                "HOOOOOG",
+                "HOOOOOG",
+                "HOOOOOG",
+                "HMMMMMG"
+            };
+            
+            // Регистрируем структуру (C - центр/контроллер)
+            defineStructure(builder.parseVertical(closed, open, 'C'));
+        }
+
+        @Override
+        public String[] getPartNames() {
+            return new String[] { "frame", "door" };
+        }
+
+        @Override
+        public ResourceLocation getBlockId() {
+            //? if fabric && < 1.21.1 {
+            /*return new ResourceLocation(RefStrings.MODID, "large_vehicle_door");
+            *///?} else {
+                        return new ResourceLocation(RefStrings.MODID, "large_vehicle_door");
+            //?}
+
+        }
+
+        @Override
+        public DoorModelSelection getDefaultModelSelection() {
+            return DoorModelSelection.modern(DoorSkin.DEFAULT);
+        }
+
+        @Override 
+        public int getOpenTime() { 
+            return 60; 
+        }
+
+        @Override
+        public void getTranslation(String partName, float openTicks, boolean child, float[] trans) {
+            if ("doorLeft".equals(partName)) {
+                set(trans, 0, 0, 3.0F * getNormTime(openTicks));
+            } else if ("doorRight".equals(partName)) {
+                set(trans, 0, 0, -3.0F * getNormTime(openTicks));
+            } else {
+                super.getTranslation(partName, openTicks, child, trans);
+            }
+        }
+
+        @Override
+        public boolean isDynamicShape() {
+            return true;
+        }
+
+        @Override 
+        public double[][] getClippingPlanes() {
+            return new double[][] {
+                { 1.0, 0.0, 0.0, 3.5 },
+                { -1.0, 0.0, 0.0, 3.5 }
+            };
+        }
+
+        @Override
+        public int[][] getDoorOpenRanges() {
+            return new int[0][];
+        }
+
+        @Override public SoundEvent getOpenSoundEnd() { return ModSounds.GARAGE_STOP.get(); }
+        @Override public SoundEvent getOpenSoundLoop() { return ModSounds.GARAGE_MOVE.get(); }
+        @Override public SoundEvent getCloseSoundEnd() { return ModSounds.GARAGE_STOP.get(); }
+        @Override public SoundEvent getCloseSoundLoop() { return ModSounds.GARAGE_MOVE.get(); }
+        @Override public float getSoundVolume() { return 2.0f; }
+    };
+
+    public static final DoorDecl ROUND_AIRLOCK_DOOR = new DoorDecl() {
+        {
+            // Настройка схемной структуры
+            DoorStructureDefinition.Builder builder = DoorStructureDefinition.create();
+            
+            // Легенда символов
+            builder.addSymbol('C', Shapes.block(), PartRole.CONTROLLER);
+            builder.addSymbol('O', Shapes.empty(), PartRole.DEFAULT);
+            builder.addSymbol('H', Block.box(0, 0, 0, 8, 16, 16), PartRole.DEFAULT);    // левый вертикальный полублок
+            builder.addSymbol('G', Block.box(8, 0, 0, 16, 16, 16), PartRole.DEFAULT);   // правый вертикальный полублок
+            builder.addSymbol('T', Block.box(0, 10, 0, 16, 16, 16), PartRole.DEFAULT); // полублок в верхнем положении
+            builder.addSymbol('M', Block.box(0, 0, 0, 16, 3, 16), PartRole.DEFAULT); // плита в нижнем положении
+            String[] closed = {
+                "####",
+                "####",
+                "####",
+                "#C##"
+            };
+
+            String[] open = {
+                "HTTG",
+                "HOOG",
+                "HOOG",
+                "HMMG"
+            };
+            
+            // Регистрируем структуру (C - центр/контроллер)
+            defineStructure(builder.parseVertical(closed, open, 'C'));
+        }
+        @Override
+        public ResourceLocation getBlockId() {
+            //? if fabric && < 1.21.1 {
+            /*return new ResourceLocation(RefStrings.MODID, "round_airlock_door");
+            *///?} else {
+                        return new ResourceLocation(RefStrings.MODID, "round_airlock_door");
+            //?}
+
+        }
+
+        @Override
+        public DoorModelSelection getDefaultModelSelection() {
+            return DoorModelSelection.modern(DoorSkin.DEFAULT);
+        }
+
+        @Override public int getOpenTime() { return 60; }
+
+        @Override
+        public void getTranslation(String partName, float openTicks, boolean child, float[] trans) {
+            if ("doorLeft".equals(partName)) {
+                set(trans, 0, 0, 1.5F * getNormTime(openTicks));  // Движение по Z вперед
+            } else if ("doorRight".equals(partName)) {
+                set(trans, 0, 0, -1.5F * getNormTime(openTicks)); // Движение по Z назад
+            } else {
+                super.getTranslation(partName, openTicks, child, trans);
+            }
+        }
+
+        @Override public double[][] getClippingPlanes() {
+            return new double[][] {
+                { 0.0, 0.0, 1.0, 2.0001 },
+                { 0.0, 0.0, -1.0, 2.0001 }
+            };
+        }
+
+        @Override public int[][] getDoorOpenRanges() {
+            return new int[][] { { 0, 0, 0, -2, 4, 2 }, { 0, 0, 0, 3, 4, 2 } };
+        }
+
+        @Override
+        public String[] getPartNames() {
+            return new String[] { "frame", "door" };
+        }
+
+        @Override public SoundEvent getOpenSoundEnd() { return ModSounds.GARAGE_STOP.get(); }
+        @Override public SoundEvent getOpenSoundLoop() { return ModSounds.GARAGE_MOVE.get(); }
+        @Override public SoundEvent getCloseSoundEnd() { return ModSounds.GARAGE_STOP.get(); }
+        @Override public SoundEvent getCloseSoundLoop() { return ModSounds.GARAGE_MOVE.get(); }
+        @Override public float getSoundVolume() { return 2.0f; }
+    };
+    
+    public static final DoorDecl FIRE_DOOR = new DoorDecl() {
+        {
+            DoorStructureDefinition.Builder builder = DoorStructureDefinition.create();
+            
+            builder.addSymbol('#', Shapes.block(), PartRole.DEFAULT);
+            builder.addSymbol('C', Shapes.block(), PartRole.CONTROLLER);
+            builder.addSymbol('O', Shapes.empty(), PartRole.DEFAULT);
+            builder.addSymbol('H', Block.box(0, 0, 0, 8, 16, 16), PartRole.DEFAULT);    // левый вертикальный полублок
+            builder.addSymbol('G', Block.box(8, 0, 0, 16, 16, 16), PartRole.DEFAULT);   // правый вертикальный полублок
+            builder.addSymbol('T', Block.box(0, 12, 0, 16, 16, 16), PartRole.DEFAULT); // полублок в верхнем положении
+            builder.addSymbol('M', Block.box(0, 0, 0, 16, 3, 16), PartRole.DEFAULT); // плита в нижнем положении
+
+            // Вид спереди (Y сверху вниз)
+            // Дверь 4 блока в ширину, 3 в высоту
+            // Контроллер находится в левом нижнем углу (относительно центра)
+            String[] closed = {
+                "####",
+                "####",
+                "#C##"
+            };
+
+            String[] open = {
+                "HTTG", // Верхняя рама остается? Если нет, ставь OOOO
+                "HOOG", // Проход
+                "HMMG"  // Контроллер остается твердым, остальное проход
+            };
+
+            // Если C - это контроллер, метод parseVertical сам посчитает координаты остальных блоков
+            defineStructure(builder.parseVertical(closed, open, 'C'));
+        }
+
+        @Override
+        public String[] getPartNames() {
+            return new String[] { "frame", "door" };
+        }
+
+        @Override
+        public ResourceLocation getBlockId() {
+            //? if fabric && < 1.21.1 {
+            /*return new ResourceLocation(RefStrings.MODID, "fire_door");
+            *///?} else {
+                        return new ResourceLocation(RefStrings.MODID, "fire_door");
+            //?}
+
+        }
+
+        @Override
+        public DoorModelSelection getDefaultModelSelection() {
+            return DoorModelSelection.modern(DoorSkin.DEFAULT);
+        }
+
+        @Override public int getOpenTime() { return 160; }
+
+        @Override
+        public void getTranslation(String partName, float openTicks, boolean child, float[] trans) {
+            if ("door".equals(partName) || !"frame".equals(partName)) {
+                set(trans, 0, 3.0F * getNormTime(openTicks), 0);
+            } else {
+                set(trans, 0, 0, 0);
+            }
+        }
+
+        @Override public double[][] getClippingPlanes() {
+            return new double[][] { { 0, -1, 0, 3.0001 } };
+        }
+
+        @Override public int[][] getDoorOpenRanges() {
+            return new int[][] { { -1, 0, 0, 3, 4, 1 } };
+        }
+
+        @Override public SoundEvent getOpenSoundEnd() { return ModSounds.WGH_STOP.get(); }
+        @Override public SoundEvent getOpenSoundLoop() { return ModSounds.WGH_START.get(); }
+        @Override public SoundEvent getSoundLoop2() { return ModSounds.ALARM_6.get(); }
+        @Override public float getSoundVolume() { return 1.5f; }
+    };
+
+    public static final DoorDecl SLIDING_BLAST_DOOR = new DoorDecl() {
+        {
+            DoorStructureDefinition.Builder builder = DoorStructureDefinition.create();
+            builder.addSymbol('#', Shapes.block(), PartRole.DEFAULT);
+            builder.addSymbol('C', Shapes.block(), PartRole.CONTROLLER);
+            builder.addSymbol('O', Shapes.empty(), PartRole.DEFAULT);
+
+            // 7x5 frame with 5x4 opening
+            String[] closed = {
+                "#######",
+                "#######",
+                "#######",
+                "###C###"
+            };
+            String[] open = {
+                "#######",
+                "#OOOOO#",
+                "#OOOOO#",
+                "#OOOOO#" 
+            };
+            defineStructure(builder.parseVertical(closed, open, 'C'));
+        }
+
+        @Override
+        public String[] getPartNames() {
+            return new String[] { "Frame", "LeftDoor", "RightDoor", "LeftLock", "RightLock" };
+        }
+
+        @Override
+        public ResourceLocation getBlockId() {
+            //? if fabric && < 1.21.1 {
+            /*return new ResourceLocation(RefStrings.MODID, "sliding_blast_door");
+            *///?} else {
+            return new ResourceLocation(RefStrings.MODID, "sliding_blast_door");
+            //?}
+        }
+
+        @Override
+        public ResourceLocation getColladaAnimationSource() {
+            //? if fabric && < 1.21.1 {
+            /*return new ResourceLocation(RefStrings.MODID, "models/block/doors/sliding_blast_door");
+            *///?} else {
+            return new ResourceLocation(RefStrings.MODID, "models/block/doors/sliding_blast_door");
+            //?}
+        }
+
+        @Override
+        public DoorModelSelection getDefaultModelSelection() {
+            // По умолчанию — MODERN + default skin: OBJ-модель (sliding_blast_door_modern)
+            // рендерится через VBO-pipeline (DoorRenderer.renderWithVBO), который
+            // гарантированно работает для всех скинов и поддерживает анимацию
+            // (getTranslation для LeftDoor/RightDoor). DAE-pipeline
+            // (renderDaeModel) задействуется только при выборе скинов variant1/variant2
+            // (их modelPath указывает на _modern_variant1/2 с loader'ом hbm_m:dae) либо
+            // при ручном переключении в LEGACY-режим.
+            return DoorModelSelection.modern(DoorSkin.DEFAULT);
+        }
+
+        @Override 
+        public int getOpenTime() { 
+            return 24; 
+        }
+
+        @Override
+        public void getTranslation(String partName, float openTicks, boolean child, float[] trans) {
+            //LEGACY (DAE) путь: симметричный линейный slide ±3.0*progress, как было ранее.
+            float progress = getNormTime(openTicks, 0, 24);
+            if ("LeftDoor".equals(partName) || "LeftLock".equals(partName)) {
+                set(trans, 0, 0, 3.0F * progress);
+            } else if ("RightDoor".equals(partName) || "RightLock".equals(partName)) {
+                set(trans, 0, 0, -3.0F * progress);
+            } else {
+                super.getTranslation(partName, openTicks, child, trans);
+            }
+        }
+
+        @Override
+        public void getTranslation(String partName, float openTicks, boolean child, float[] trans,
+                                   @Nullable DoorModelSelection selection) {
+            if (selection == null || selection.isLegacy()) {
+                getTranslation(partName, openTicks, child, trans);
+                return;
+            }
+            // MODERN/OBJ-pipeline: dual-phase слайдинг.
+            float t = openTicks;
+            float doorProg = Math.max(0f, Math.min(1f, (t - 7f) / 17f)); // 7..24 → 0..1
+            float maxOpen = 2.125f;
+            if ("LeftDoor".equals(partName) || "LeftLock".equals(partName)) {
+                set(trans, 0, 0, maxOpen * doorProg);
+            } else if ("RightDoor".equals(partName) || "RightLock".equals(partName)) {
+                set(trans, 0, 0, -maxOpen * doorProg);
+            } else {
+                super.getTranslation(partName, openTicks, child, trans, selection);
+            }
+        }
+
+        @Override
+        public void getOrigin(String partName, float[] orig, @Nullable DoorModelSelection selection) {
+            // Pivot для поворота замков вокруг X: (0, 1.8125, 0) — как в 1.7.10
+            // glTranslated(0, 1.8125, 0); glRotated(90+lock, 1,0,0); glTranslated(0, -1.8125, 0);
+            if (selection != null && !selection.isLegacy()
+                    && ("LeftLock".equals(partName) || "RightLock".equals(partName))) {
+                set(orig, 0f, 1.8125f, 0f);
+            } else {
+                super.getOrigin(partName, orig, selection);
+            }
+        }
+
+        @Override
+        public void getRotation(String partName, float openTicks, float[] rot,
+                                @Nullable DoorModelSelection selection) {
+            if (selection == null || selection.isLegacy()
+                    || (!"LeftLock".equals(partName) && !"RightLock".equals(partName))) {
+                super.getRotation(partName, openTicks, rot, selection);
+                return;
+            }
+            // MODERN: lock поворот вокруг X = 90 + 90*lockProg (как в 1.7.10).
+            // lock=0 (закрыт) → 90°; lock=1 (открыт) → 180°.
+            float t = openTicks;
+            float lockProg = Math.max(0f, Math.min(1f, t / 4f)); // 0..4 → 0..1
+            set(rot, 90f + 90f * lockProg, 0f, 0f);
+        }
+
+        @Override
+        public double[][] getClippingPlanes() {
+            // (glClipPlane в современном MixedPipelineIndexVertex builder'е) — TODO.
+            return new double[][] { { 0, 0, 1, 2.5 }, { 0, 0, -1, 2.5 } };
+        }
+
+        @Override
+        public int getBakedModelRotationOffsetY() {
+            return -90; // Fixes the 90-degree Y rotation issue on the DAE model
+        }
+
+        @Override public SoundEvent getOpenSoundEnd() { return ModSounds.SLIDING_DOOR_OPENED.get(); }
+        @Override public SoundEvent getOpenSoundLoop() { return ModSounds.SLIDING_DOOR_OPENING.get(); }
+        @Override public SoundEvent getCloseSoundEnd() { return ModSounds.SLIDING_DOOR_SHUT.get(); }
+        @Override public float getSoundVolume() { return 2.0f; }
+    };
+    
+    public static final DoorDecl SLIDING_SEAL_DOOR = new DoorDecl() {
+        {
+            DoorStructureDefinition.Builder builder = DoorStructureDefinition.create();
+            
+            VoxelShape thinDoorShape = Block.box(0, 0, 6, 16, 16, 10);
+            
+            builder.addSymbol('#', thinDoorShape, PartRole.DEFAULT);
+            builder.addSymbol('C', thinDoorShape, PartRole.CONTROLLER);
+
+            String[] closed = {
+                "#",
+                "C"
+            };
+
+            // В системе Builder.parse пробел по умолчанию означает Shapes.empty()
+            String[] open = {
+                " ",
+                " "
+            };
+
+            // Регистрируем структуру
+            defineStructure(builder.parseVertical(closed, open, 'C'));
+        }
+        @Override
+        public ResourceLocation getBlockId() {
+            //? if fabric && < 1.21.1 {
+            /*return new ResourceLocation(RefStrings.MODID, "sliding_seal_door");
+            *///?} else {
+                        return new ResourceLocation(RefStrings.MODID, "sliding_seal_door");
+            //?}
+
+        }
+
+        @Override
+        public DoorModelSelection getDefaultModelSelection() {
+            return DoorModelSelection.modern(DoorSkin.DEFAULT);
+        }
+
+        @Override public int getOpenTime() { return 20; }
+
+        @Override
+        public void getTranslation(String partName, float openTicks, boolean child, float[] trans) {
+            if (partName.startsWith("door")) {
+                set(trans, 0, 0, getNormTime(openTicks));
+            } else {
+                set(trans, 0, 0, 0);
+            }
+        }
+
+        @Override
+        public String[] getPartNames() {
+            return new String[] { "frame", "door" };
+        }
+
+        @Override public double[][] getClippingPlanes() {
+            return new double[][] { { 0, 0, -1, 0.5001 } };
+        }
+
+        @Override public int[][] getDoorOpenRanges() {
+            return new int[][] { { 0, 0, 0, 1, 2, 2 } };
+        }
+
+        @Override public SoundEvent getOpenSoundEnd() { return ModSounds.METAL_STOP_1.get(); }
+        @Override public SoundEvent getOpenSoundStart() { return ModSounds.DOOR_MOVE_2.get(); }
+        @Override public float getSoundVolume() { return 2.0f; }
+    };
+
+    public static final DoorDecl SECURE_ACCESS_DOOR = new DoorDecl() {
+
+        {
+            // Настройка схемной структуры
+            DoorStructureDefinition.Builder builder = DoorStructureDefinition.create();
+            
+            // Легенда символов
+            builder.addSymbol('C', Shapes.block(), PartRole.CONTROLLER); // Контроллер
+            builder.addSymbol('X', Shapes.block(), PartRole.DEFAULT);
+            builder.addSymbol('O', Shapes.empty(), PartRole.DEFAULT);
+            builder.addSymbol('H', Block.box(0, 0, 0, 8, 16, 16), PartRole.DEFAULT);    // левый вертикальный полублок
+            builder.addSymbol('G', Block.box(8, 0, 0, 16, 16, 16), PartRole.DEFAULT);   // правый вертикальный полублок
+            builder.addSymbol('T', Block.box(0, 6, 0, 16, 16, 16), PartRole.DEFAULT); // полублок в верхнем положении
+            builder.addSymbol('M', Block.box(0, 0, 6, 16, 16, 10), PartRole.DEFAULT); // тонкая стена
+            // Схема ЗАКРЫТОЙ двери (Вид спереди, Y сверху вниз)
+            String[] closed = {
+                "XXXXX",
+                "MMMMM",
+                "MMMMM",
+                "MMMMM",
+                "XXCXX"
+            };
+
+            // Схема ОТКРЫТОЙ двери
+            String[] open = {
+                "TTTTT",
+                "OOOOO",
+                "OOOOO",
+                "OOOOO",
+                "XXXXX"
+            };
+            
+            // Регистрируем структуру (C - центр/контроллер)
+            defineStructure(builder.parseVertical(closed, open, 'C'));
+        }
+
+        @Override
+        public ResourceLocation getBlockId() {
+            //? if fabric && < 1.21.1 {
+            /*return new ResourceLocation(RefStrings.MODID, "secure_access_door");
+            *///?} else {
+                        return new ResourceLocation(RefStrings.MODID, "secure_access_door");
+            //?}
+
+        }
+
+        @Override
+        public DoorModelSelection getDefaultModelSelection() {
+            return DoorModelSelection.modern(DoorSkin.DEFAULT);
+        }
+
+        @Override
+        public String[] getPartNames() {
+            return new String[] { "frame", "door" };
+        }
+    
+        @Override public int getOpenTime() { return 120; }
+        
+        @Override
+        public void getTranslation(String partName, float openTicks, boolean child, float[] trans) {
+            if(!partName.equals("base")) {
+                set(trans, 0, 3.5F * getNormTime(openTicks), 0);
+            } else {
+                super.getTranslation(partName, openTicks, child, trans);
+            }
+        }
+
+        @Override
+        public boolean isDynamicShape() {
+            return true;
+        }
+        
+        @Override public double[][] getClippingPlanes() {
+            return new double[][] { { 0, -1, 0, 5 } };
+        }
+    
+        @Override public int[][] getDoorOpenRanges() {
+            return new int[][] { { -2, 1, 0, 4, 5, 1 } };
+        }
+    
+        @Override public SoundEvent getCloseSoundLoop() { return ModSounds.GARAGE_MOVE.get(); }
+        @Override public SoundEvent getCloseSoundEnd() { return ModSounds.GARAGE_STOP.get(); }
+        @Override public SoundEvent getOpenSoundEnd() { return ModSounds.GARAGE_STOP.get(); }
+        @Override public SoundEvent getOpenSoundLoop() { return ModSounds.GARAGE_MOVE.get(); }
+        @Override public float getSoundVolume() { return 2.0f; }
+    };    
+
+    public static final DoorDecl QE_SLIDING = new DoorDecl() {
+
+        {
+            DoorStructureDefinition.Builder builder = DoorStructureDefinition.create();
+            
+            // Создаем форму: толщина 2 пикселя в центре блока (от 7 до 9 по оси Z)
+            // Если блок 16x16x16, то центр - это 8. 7-9 дает нам ровно 2 пикселя толщины.
+            VoxelShape thinDoorShape = Block.box(0, 0, 7, 16, 16, 9);
+            
+            // Регистрируем символы с нашей тонкой формой
+            builder.addSymbol('#', thinDoorShape, PartRole.DEFAULT);
+            builder.addSymbol('C', thinDoorShape, PartRole.CONTROLLER);
+
+            // Схема 2x2
+            // C - контроллер (0, 0, 0)
+            String[] closed = {
+                "##", // Y = 1
+                "C#"  // Y = 0
+            };
+
+            // В открытом состоянии используем пробелы. 
+            // В нашей системе Builder.parse пробел по умолчанию означает Shapes.empty()
+            String[] open = {
+                "  ",
+                "  "
+            };
+
+            // Регистрируем структуру
+            defineStructure(builder.parseVertical(closed, open, 'C'));
+        }
+
+        @Override
+        public ResourceLocation getBlockId() {
+            //? if fabric && < 1.21.1 {
+            /*return new ResourceLocation(RefStrings.MODID, "qe_sliding_door");
+            *///?} else {
+                        return new ResourceLocation(RefStrings.MODID, "qe_sliding_door");
+            //?}
+
+        }
+
+        @Override
+        public DoorModelSelection getDefaultModelSelection() {
+            return DoorModelSelection.modern(DoorSkin.DEFAULT);
+        }
+
+        @Override
+        public String[] getPartNames() {
+            return new String[] { "frame", "door" };
+        }
+
+        @Override public int getOpenTime() { return 10; }
+
+        @Override
+        public void getTranslation(String partName, float openTicks, boolean child, float[] trans) {
+            if (partName.startsWith("left")) {
+                set(trans, 0, 0, 0.99F * getNormTime(openTicks));
+            } else if (partName.startsWith("right")) {
+                set(trans, 0, 0, -0.99F * getNormTime(openTicks));
+            }
+        }
+
+        @Override public int[][] getDoorOpenRanges() {
+            return new int[][] { { 0, 0, 0, 2, 2, 2 } };
+        }
+
+        @Override public SoundEvent getOpenSoundEnd() { return ModSounds.SLIDING_DOOR_OPENED.get(); }
+        @Override public SoundEvent getCloseSoundEnd() { return ModSounds.SLIDING_DOOR_SHUT.get(); }
+        @Override public SoundEvent getOpenSoundLoop() { return ModSounds.SLIDING_DOOR_OPENING.get(); }
+        @Override public float getSoundVolume() { return 2.0f; }
+    };
+
+    public static final DoorDecl QE_CONTAINMENT = new DoorDecl() {
+        {
+            DoorStructureDefinition.Builder builder = DoorStructureDefinition.create();
+            
+            // Создаем форму: толщина 2 пикселя в центре блока (от 7 до 9 по оси Z)
+            // Если блок 16x16x16, то центр - это 8. 7-9 дает нам ровно 2 пикселя толщины.
+            VoxelShape thinDoorShape = Block.box(0, 0, 4, 16, 16, 12);
+            
+            // Регистрируем символы с нашей тонкой формой
+            builder.addSymbol('#', thinDoorShape, PartRole.DEFAULT);
+            builder.addSymbol('C', thinDoorShape, PartRole.CONTROLLER);
+            builder.addSymbol('H', Block.box(0, 0, 4, 4, 16, 12), PartRole.DEFAULT);    // левый вертикальный полублок
+            builder.addSymbol('G', Block.box(12, 0, 4, 16, 16, 12), PartRole.DEFAULT);   // правый вертикальный полублок
+            builder.addSymbol('T', Block.box(0, 6, 0, 16, 16, 16), PartRole.DEFAULT); // полублок в верхнем положении
+            builder.addSymbol('M', Block.box(0, 0, 0, 16, 3, 16), PartRole.DEFAULT); // плита в нижнем положении
+
+            // Схема 2x2
+            // C - контроллер (0, 0, 0)
+            String[] closed = {
+                "###",
+                "###",
+                "#C#"
+            };
+
+            // В открытом состоянии используем пробелы. 
+            // В нашей системе Builder.parse пробел по умолчанию означает Shapes.empty()
+            String[] open = {
+                "TTT",
+                "H G",
+                "HMG"
+            };
+
+            // Регистрируем структуру
+            defineStructure(builder.parseVertical(closed, open, 'C'));
+        }
+
+        @Override
+        public ResourceLocation getBlockId() {
+            //? if fabric && < 1.21.1 {
+            /*return new ResourceLocation(RefStrings.MODID, "qe_containment_door");
+            *///?} else {
+                        return new ResourceLocation(RefStrings.MODID, "qe_containment_door");
+            //?}
+
+        }
+
+        @Override
+        public DoorModelSelection getDefaultModelSelection() {
+            return DoorModelSelection.modern(DoorSkin.DEFAULT);
+        }
+
+        @Override
+        public String[] getPartNames() {
+            return new String[] { "frame", "door" };
+        }
+    
+        @Override 
+        public int getOpenTime() { 
+            return 160; 
+        }
+    
+        @Override
+        public void getTranslation(String partName, float openTicks, boolean child, float[] trans) {
+            // Декаль движется вместе с дверью
+            if ("door".equals(partName) || "decal".equals(partName)) {
+                set(trans, 0, 3.0F * getNormTime(openTicks), 0);
+            } else {
+                super.getTranslation(partName, openTicks, child, trans);
+            }
+        }
+    
+        @Override 
+        public double[][] getClippingPlanes() {
+            return new double[][] { { 0, -1, 0, 3.0001 } };
+        }
+    
+        @Override 
+        public int[][] getDoorOpenRanges() {
+            return new int[][] { { -1, 0, 0, 3, 3, 1 } };
+        }
+    
+        @Override 
+        public SoundEvent getOpenSoundEnd() { 
+            return ModSounds.WGH_STOP.get(); 
+        }
+        
+        @Override 
+        public SoundEvent getOpenSoundLoop() { 
+            return ModSounds.WGH_START.get(); 
+        }
+        
+        @Override 
+        public float getSoundVolume() { 
+            return 2.0f; 
+        }
+    };    
+
+    public static final DoorDecl WATER_DOOR = new DoorDecl() {
+
+        {
+            DoorStructureDefinition.Builder builder = DoorStructureDefinition.create();
+            
+            // Создаем форму: толщина 2 пикселя в центре блока (от 7 до 9 по оси Z)
+            // Если блок 16x16x16, то центр - это 8. 7-9 дает нам ровно 2 пикселя толщины.
+            VoxelShape thinDoorShape = Block.box(0, 0, 6, 16, 16, 10);
+            
+            // Регистрируем символы с нашей тонкой формой
+            builder.addSymbol('#', thinDoorShape, PartRole.DEFAULT);
+            builder.addSymbol('C', thinDoorShape, PartRole.CONTROLLER);
+            builder.addSymbol('H', Block.box(0, 0, 6, 8, 16, 10), PartRole.DEFAULT);    // левый вертикальный полублок
+            builder.addSymbol('G', Block.box(11, 0, 6, 16, 16, 10), PartRole.DEFAULT);   // правый вертикальный полублок
+            builder.addSymbol('T', Block.box(0, 13, 0, 16, 16, 16), PartRole.DEFAULT); // полублок в верхнем положении
+
+            // Схема 2x2
+            // C - контроллер (0, 0, 0)
+            String[] closed = {
+                "###",
+                "###",
+                "#C#"
+            };
+
+            // В открытом состоянии используем пробелы. 
+            // В нашей системе Builder.parse пробел по умолчанию означает Shapes.empty()
+            String[] open = {
+                "TTT",
+                "H G",
+                "H G"
+            };
+
+            // Регистрируем структуру
+            defineStructure(builder.parseVertical(closed, open, 'C'));
+        }
+
+        @Override
+        public ResourceLocation getBlockId() {
+            //? if fabric && < 1.21.1 {
+            /*return new ResourceLocation(RefStrings.MODID, "water_door");
+            *///?} else {
+                        return new ResourceLocation(RefStrings.MODID, "water_door");
+            //?}
+
+        }
+
+        @Override
+        public DoorModelSelection getDefaultModelSelection() {
+            return DoorModelSelection.modern(DoorSkin.DEFAULT);
+        }
+    
+        @Override
+        public int getOpenTime() { 
+            return 60; 
+        }
+
+        @Override
+        public String[] getPartNames() {
+            return new String[] { "frame", "door" };
+        }
+    
+        @Override
+        public void getTranslation(String partName, float openTicks, boolean child, float[] trans) {
+            // bolt движется вперед (Z направление) в первой фазе (0-30 тиков)
+            if ("bolt".equals(partName)) {
+                float boltProgress = Math.min(1.0f, openTicks / 30.0f);
+                set(trans, 0, 0, 0.4f * smoothstep(boltProgress));
+            } else {
+                set(trans, 0, 0, 0);
+            }
+        }
+    
+        @Override
+        public void getOrigin(String partName, float[] orig) {
+            if ("door".equals(partName) || "bolt".equals(partName)) {
+                set(orig, 0.125F, 1.5F, 1.18F); // bolt вращается вокруг той же оси, что и дверь
+                return;
+            } else if ("spinny_upper".equals(partName)) {
+                set(orig, 0.041499F, 2.43569F, -0.587849F);
+                return;
+            } else if ("spinny_lower".equals(partName)) {
+                set(orig, 0.041499F, 0.571054F, -0.587849F);
+                return;
+            }
+            super.getOrigin(partName, orig);
+        }
+
+        @Override
+        public void getOrigin(String partName, float[] orig, @Nullable DoorModelSelection selection) {
+            // RenderWaterDoor 1.7.10: пивоты (0.40625, 2.28125, 0) и (0.40625, 0.71875, 0).
+            // Modern модель имеет transform rotation[0,90,0] - пивот в преобразованной СК: (z,y,-x)
+            if (selection != null && selection.isModern()) {
+                if ("spinny_upper".equals(partName)) {
+                    set(orig, 0F, 2.28125F, -0.40625F);
+                    return;
+                } else if ("spinny_lower".equals(partName)) {
+                    set(orig, 0F, 0.71875F, -0.40625F);
+                    return;
+                }
+            }
+            getOrigin(partName, orig);
+        }
+    
+        @Override
+        public void getRotation(String partName, float openTicks, float[] rot) {
+            // Вентили вращаются ТОЛЬКО в первой фазе (0-30 тиков)
+            if (partName.startsWith("spinny")) {
+                float spinnyProgress = Math.min(1.0f, openTicks / 30.0f);
+                set(rot, smoothstep(spinnyProgress) * 360.0f, 0.0f, 0.0f);
+                return;
+            }
+            // Дверь и bolt вращаются ВО ВТОРОЙ фазе (30-60 тиков)
+            else if ("door".equals(partName) || "bolt".equals(partName)) {
+                float doorProgress = Math.max(0.0f, Math.min(1.0f, (openTicks - 30.0f) / 30.0f));
+                set(rot, 0.0f, smoothstep(doorProgress) * -134.0f, 0.0f);
+                return;
+            }
+            super.getRotation(partName, openTicks, rot);
+        }
+
+        @Override
+        public void getRotation(String partName, float openTicks, float[] rot, @Nullable DoorModelSelection selection) {
+            // Modern: вентили вращаются вокруг X (как legacy)
+            if (selection != null && selection.isModern() && partName.startsWith("spinny")) {
+                float boltProgress = Math.min(1.0f, openTicks / 30.0f);
+                set(rot, smoothstep(boltProgress) * 360.0f, 0.0f, 0.0f);
+                return;
+            }
+            getRotation(partName, openTicks, rot);
+        }
+    
+        @Override
+        public boolean doesRender(String partName, boolean child) {
+            return child || !partName.startsWith("spinny");
+        }
+    
+        @Override
+        public String[] getChildren(String partName) {
+            if ("door".equals(partName)) {
+                return new String[] { "spinny_lower", "spinny_upper" };
+            }
+            return super.getChildren(partName);
+        }
+    
+        @Override
+        public int[][] getDoorOpenRanges() {
+            // Фантомные блоки для обнаружения игроков/сущностей
+            return new int[][] { { 1, 0, 0, -3, 3, 2 } };
+        }
+    
+        private float smoothstep(float t) {
+            // Плавная интерполяция (кубический Эрмит)
+            return t * t * (3.0f - 2.0f * t);
+        }
+
+        @Override 
+        public SoundEvent getOpenSoundEnd() { 
+            return ModSounds.DOOR_WGH_BIG_STOP.get();
+        }
+        
+        @Override 
+        public SoundEvent getOpenSoundLoop() { 
+            return ModSounds.DOOR_WGH_BIG_START.get();
+        }
+        
+        @Override 
+        public SoundEvent getOpenSoundStart() { 
+            return ModSounds.LEVER_1.get(); 
+        }
+        
+        @Override 
+        public SoundEvent getCloseSoundStart() { 
+            return null; // LEVER_1 только в начале открытия и в конце закрытия
+        }
+        
+        @Override 
+        public SoundEvent getCloseSoundEnd() { 
+            return ModSounds.LEVER_1.get(); 
+        }
+        
+        @Override 
+        public float getSoundVolume() { 
+            return 2.0f; 
+        }
+    };    
+
+    public static final DoorDecl SILO_HATCH = new DoorDecl() {
+        {
+            DoorStructureDefinition.Builder builder = DoorStructureDefinition.create();
+            // Хатч обычно плоский, используем полную коллизию для закрытого состояния
+            builder.addSymbol('#', Shapes.block(), PartRole.DEFAULT);
+            builder.addSymbol('C', Shapes.block(), PartRole.CONTROLLER);
+
+            // Вид сверху (Z меняется по строкам, X по символам)
+            String[] closed = {
+                "#####",
+                "#####",
+                "##C##",
+                "#####",
+                "#####"
+            };
+
+            // В открытом состоянии центральная часть 3x3 становится пустой
+            String[] open = {
+                "#####",
+                "#   #",
+                "#   #",
+                "#   #",
+                "#####"
+            };
+
+            defineStructure(builder.parseHorizontal(closed, open, 'C'));
+        }
+
+        //? if fabric && < 1.21.1 {
+        /*@Override public ResourceLocation getBlockId() { return new ResourceLocation(RefStrings.MODID, "silo_hatch");
+        *///?} else {
+                @Override public ResourceLocation getBlockId() { return new ResourceLocation(RefStrings.MODID, "silo_hatch");
+        //?}
+ }
+        @Override public String[] getPartNames() { return new String[] { "frame", "door" }; }
+        @Override public int getOpenTime() { return 60; }
+        @Override public boolean remoteControllable() { return true; }
+        @Override public int getBlockOffset() { return 2; }
+
+        @Override
+        public void getTranslation(String partName, float openTicks, boolean child, float[] trans) {
+            if ("Hatch".equals(partName)) {
+                float smoothTime = smoothstep(getNormTime(openTicks, 0, 10));
+                set(trans, 0, 0.25F * smoothTime, 0);
+            }
+        }
+
+        @Override
+        public boolean isDynamicShape() {
+            return true;
+        }
+
+        @Override
+        public void getOrigin(String partName, float[] orig) {
+            if ("Hatch".equals(partName)) set(orig, 0F, 0.875F, -1.875F);
+        }
+
+        @Override
+        public void getRotation(String partName, float openTicks, float[] rot) {
+            if ("Hatch".equals(partName)) {
+                float smoothTime = smoothstep(getNormTime(openTicks, 20, 100));
+                set(rot, smoothTime * -240, 0, 0);
+            }
+        }
+
+        private float smoothstep(float t) { return t * t * (3.0f - 2.0f * t); }
+
+        @Override public SoundEvent getOpenSoundEnd() { return ModSounds.DOOR_WGH_BIG_STOP.get(); }
+        @Override public SoundEvent getOpenSoundLoop() { return ModSounds.DOOR_WGH_BIG_START.get(); }
+        @Override public SoundEvent getCloseSoundEnd() { return ModSounds.DOOR_WGH_BIG_STOP.get(); }
+        @Override public float getSoundVolume() { return 2.0f; }
+    };
+
+    public static final DoorDecl SILO_HATCH_LARGE = new DoorDecl() {
+        {
+            DoorStructureDefinition.Builder builder = DoorStructureDefinition.create();
+            builder.addSymbol('#', Shapes.block(), PartRole.DEFAULT);
+            builder.addSymbol('C', Shapes.block(), PartRole.CONTROLLER);
+
+            // 7x7 структура
+            String[] closed = {
+                "#######",
+                "#######",
+                "#######",
+                "###C###",
+                "#######",
+                "#######",
+                "#######"
+            };
+
+            // Проем 5x5
+            String[] open = {
+                "#######",
+                "##   ##",
+                "#     #",
+                "#     #",
+                "#     #",
+                "##   ##",
+                "#######"
+            };
+
+            defineStructure(builder.parseHorizontal(closed, open, 'C'));
+        }
+
+        //? if fabric && < 1.21.1 {
+        /*@Override public ResourceLocation getBlockId() { return new ResourceLocation(RefStrings.MODID, "silo_hatch_large");
+        *///?} else {
+                @Override public ResourceLocation getBlockId() { return new ResourceLocation(RefStrings.MODID, "silo_hatch_large");
+        //?}
+ }
+        @Override public String[] getPartNames() { return new String[] { "frame", "door" }; }
+        @Override public int getOpenTime() { return 60; }
+        @Override public boolean remoteControllable() { return true; }
+        @Override public int getBlockOffset() { return 3; }
+
+        @Override
+        public void getTranslation(String partName, float openTicks, boolean child, float[] trans) {
+            if ("Hatch".equals(partName)) {
+                float smoothTime = smoothstep(getNormTime(openTicks, 0, 10));
+                set(trans, 0, 0.25F * smoothTime, 0);
+            }
+        }
+
+        @Override
+        public boolean isDynamicShape() {
+            return true;
+        }
+
+        @Override
+        public void getOrigin(String partName, float[] orig) {
+            if ("Hatch".equals(partName)) set(orig, 0F, 0.875F, -2.875F);
+        }
+
+        @Override
+        public void getRotation(String partName, float openTicks, float[] rot) {
+            if ("Hatch".equals(partName)) {
+                float smoothTime = smoothstep(getNormTime(openTicks, 20, 100));
+                set(rot, smoothTime * -240, 0, 0);
+            }
+        }
+
+        private float smoothstep(float t) { return t * t * (3.0f - 2.0f * t); }
+
+        @Override public SoundEvent getOpenSoundEnd() { return ModSounds.DOOR_WGH_BIG_STOP.get(); }
+        @Override public SoundEvent getOpenSoundLoop() { return ModSounds.DOOR_WGH_BIG_START.get(); }
+        @Override public SoundEvent getCloseSoundEnd() { return ModSounds.DOOR_WGH_BIG_STOP.get(); }
+        @Override public float getSoundVolume() { return 2.0f; }
+    };
+
+    public static final DoorDecl CARGO_DOOR = new DoorDecl() {
+        {
+            DoorStructureDefinition.Builder builder = DoorStructureDefinition.create();
+
+            // Повторяет оригинальный getBlockBound из 1.7.10:
+            // закрытая дверь — тонкая створка 0.375..0.625 по Z (т.е. 6/16..10/16)
+            VoxelShape thin = Block.box(0, 0, 6, 16, 16, 10);
+            builder.addSymbol('#', thin, PartRole.DEFAULT);
+            builder.addSymbol('C', thin, PartRole.CONTROLLER);
+
+            // Вид спереди (Y сверху вниз): 3 блока в ширину (X), 3 в высоту (Y).
+            // Контроллер — нижний-средний блок (как в оригинале getDimensions {-1,-1,0,3,3,1}).
+            String[] closed = {
+                "###",
+                "###",
+                "#C#"
+            };
+
+            // В открытом состоянии вся створка убирается, рамка остаётся коллизией
+            // ( BOT/TOP поднимаются, проход свободен ).
+            String[] open = {
+                "###",
+                "   ",
+                "   "
+            };
+
+            defineStructure(builder.parseVertical(closed, open, 'C'));
+        }
+
+        //? if fabric && < 1.21.1 {
+        /*@Override public ResourceLocation getBlockId() { return new ResourceLocation(RefStrings.MODID, "cargo_door");
+        *///?} else {
+                @Override public ResourceLocation getBlockId() { return new ResourceLocation(RefStrings.MODID, "cargo_door");
+        //?}
+ }
+
+        @Override public String[] getPartNames() { return new String[] { "Frame", "DoorTop", "DoorBot" }; }
+        @Override public int getOpenTime() { return 60; }
+
+        @Override
+        public DoorModelSelection getDefaultModelSelection() {
+            return DoorModelSelection.modern(DoorSkin.DEFAULT);
+        }
+
+        // Повторяет логику AxisAlignedBB из оригинального DoorDecl.CARGO_DOOR (1.7.10).
+        // open=false → створка 0..1 × 0..1 × 0.375..0.625.
+        // open=true: верхние блоки (y>1) ↑ 0.25..1; нижний (y==0) ↑ 0..(forCollision?0:0.125).
+        @Override
+        public AABB getBlockBound(int x, int y, int z, boolean open, boolean forCollision) {
+            if (!open) return new AABB(0, 0, 0.375, 1, 1, 0.625);
+            if (y > 1) return new AABB(0, 0.25, 0.375, 1, 1, 0.625);
+            else if (y == 0) return new AABB(0, 0, 0.375, 1, forCollision ? 0 : 0.125, 0.625);
+            return super.getBlockBound(x, y, z, open, forCollision);
+        }
+
+        // BusAnimation оригинала: BOT поднимается на 2 блока за timeToOpen*2 тиков
+        // (полный проезд한다 за открытие), TOP поднимается на 1 блок с задержкой.
+        // В Modernized трансляции задаётся через нормированный прогресс [0..1].
+        @Override
+        public void getTranslation(String partName, float openTicks, boolean child, float[] trans) {
+            float norm = getNormTime(openTicks, 0, getOpenTime());
+            if ("DoorBot".equals(partName)) {
+                // BOT: полное смещение 2 блока, плавное (ease-in/out через smoothstep)
+                float t = smoothstep(norm);
+                set(trans, 0, 2.0F * t, 0);
+            } else if ("DoorTop".equals(partName)) {
+                // TOP: половина длительности стоит, потом поднимается на 1 блок.
+                // Оригинал BusAnimation: addPos(0,0,0,half) + addPos(0,1,0,half).
+                float t = smoothstep(getNormTime(openTicks, getOpenTime() * 0.5F, getOpenTime()));
+                set(trans, 0, 1.0F * t, 0);
+            } else {
+                super.getTranslation(partName, openTicks, child, trans);
+            }
+        }
+
+        private float smoothstep(float t) { return t * t * (3.0f - 2.0f * t); }
+
+        @Override public int[][] getDoorOpenRanges() { return new int[][] { { -1, -1, 0, 3, 3, 1 } }; }
+
+        // Звуки: hbm:door.garage_move (loop) / hbm:door.garage_stop (end), громкость 2.0
+        @Override public SoundEvent getOpenSoundLoop() { return ModSounds.GARAGE_MOVE.get(); }
+        @Override public SoundEvent getOpenSoundEnd() { return ModSounds.GARAGE_STOP.get(); }
+        @Override public SoundEvent getCloseSoundLoop() { return ModSounds.GARAGE_MOVE.get(); }
+        @Override public SoundEvent getCloseSoundEnd() { return ModSounds.GARAGE_STOP.get(); }
+        @Override public float getSoundVolume() { return 2.0f; }
+    };
+
+    public static final DoorDecl VAULT_DOOR = new DoorDecl() {
+        {
+            DoorStructureDefinition.Builder builder = DoorStructureDefinition.create();
+            
+            VoxelShape DoorShape = Block.box(0, 0, 0, 16, 16, 16);
+            
+            builder.addSymbol('#', DoorShape, PartRole.DEFAULT);
+            builder.addSymbol('C', DoorShape, PartRole.CONTROLLER);
+
+            String[] closed = {
+                "#####",
+                "#####",
+                "#####",
+                "#####",
+                "##C##"
+            };
+
+            String[] open = {
+                "#####",
+                "#...#",
+                "#...#",
+                "#...#",
+                "#####"
+            };
+
+            defineStructure(builder.parseVertical(closed, open, 'C'));
+        }
+
+        @Override
+        public ResourceLocation getBlockId() {
+            //? if fabric && < 1.21.1 {
+            /*return new ResourceLocation(RefStrings.MODID, "vault_door");
+            *///?} else {
+                        return new ResourceLocation(RefStrings.MODID, "vault_door");
+            //?}
+
+        }
+
+        @Override
+        public DoorModelSelection getDefaultModelSelection() {
+            return DoorModelSelection.modern(DoorSkin.of("vault_door_skin_101"));
+        }
+
+        @Override
+        public String[] getPartNames() {
+            return new String[] { "Label", "Frame", "Door" };
+        }
+
+        @Override 
+        public int getOpenTime() { 
+            return 120; 
+        }
+
+        @Override
+        public boolean hasSkins() {
+            return true;
+        }
+
+        @Override
+        public int getSkinCount() {
+            return 3;
+        }
+
+        @Override
+        public AABB getBlockBound(int x, int y, int z, boolean open, boolean forCollision) {
+            if (!open || y == 0) return new AABB(0, 0, 0, 1, 1, 1);
+            return super.getBlockBound(x, y, z, open, forCollision);
+        }
+
+        @Override
+        public void getTranslation(String partName, float openTicks, boolean child, float[] trans) {
+            // Рама стоит на месте
+            if ("Frame".equals(partName)) {
+                super.getTranslation(partName, openTicks, child, trans);
+                return;
+            }
+
+            float pull = getVaultPull(openTicks);
+            float slideDist = getVaultSlide(openTicks) * 5.0f; // Дистанция 5 блоков
+
+            // Дверь и табличка вращаются
+            if ("Door".equals(partName) || "Label".equals(partName)) {
+                // 1. Вычисляем текущий угол поворота (так же, как в getRotation)
+                double diameter = 4.25;
+                double circumference = diameter * Math.PI;
+                float rollDeg = (float) (360.0 * slideDist / circumference);
+                double rollRad = Math.toRadians(rollDeg);
+
+                // 2. Математическая компенсация:
+                // Так как рендерер сначала поворачивает оси, вектор смещения (0,0,slide) тоже поворачивается и уходит в пол.
+                // Мы "предвидим" это и поворачиваем вектор смещения в ОБРАТНУЮ сторону.
+                // Когда рендерер применит поворот двери, наш вектор выровняется в идеальную прямую линию.
+                
+                // Формула обратного поворота вектора (0, 0, slideDist) вокруг оси X:
+                float yComp = (float) (slideDist * Math.sin(rollRad));
+                float zComp = (float) (slideDist * Math.cos(rollRad));
+                
+                set(trans, -pull, yComp, zComp);
+            } else {
+                // Если появятся другие части, которые двигаются, но не крутятся
+                set(trans, -pull, 0, slideDist);
+            }
+        }
+
+        @Override
+        public void getOrigin(String partName, float[] orig) {
+            if ("Door".equals(partName) || "Label".equals(partName)) {
+                // Устанавливаем центр вращения на высоту 2.5 блока.
+                // Это заставит дверь вращаться вокруг своего центра, а не вокруг ног.
+                set(orig, 0, 2.5f, 0); 
+            } else {
+                super.getOrigin(partName, orig);
+            }
+        }
+
+        @Override
+        public void getOrigin(String partName, float[] orig, @Nullable DoorModelSelection selection) {
+            // Явно вызываем наш метод с логикой пивота, игнорируя selection
+            getOrigin(partName, orig);
+        }
+
+        @Override
+        public void getRotation(String partName, float openTicks, float[] rot) {
+            if ("Door".equals(partName) || "Label".equals(partName)) {
+                float slide = getVaultSlide(openTicks);
+                double diameter = 4.25;
+                double circumference = diameter * Math.PI;
+                // Скейлим слайд для расчета угла (так же, как и дистанцию)
+                float slideScaled = slide * 5f;
+                float rollDeg = (float) (360.0 * slideScaled / circumference);
+                
+                set(rot, rollDeg, 0, 0);
+            } else {
+                super.getRotation(partName, openTicks, rot);
+            }
+        }
+
+        private float getVaultPull(float openTicks) {
+            if (openTicks <= 40) {
+                float t = getNormTime(openTicks, 0, 40);
+                // Аналог HBM IType.SIN_FULL (Плавное ускорение/замедление)
+                return (float) ((1.0 - Math.cos(t * Math.PI)) / 2.0);
+            }
+            return 1f;
+        }
+
+        private float getVaultSlide(float openTicks) {
+            if (openTicks <= 40) return 0f;
+            // Линейное движение в диапазоне от 40 до 120 тика (возвращает от 0.0 до 1.0)
+            return getNormTime(openTicks, 40, 120);
+        }
+
+        @Override 
+        public double[][] getClippingPlanes() {
+            return new double[][] { { 0, -1, 0, 3.0001 } };
+        }
+
+        @Override 
+        public int[][] getDoorOpenRanges() {
+            return new int[][] { { -1, 1, 0, 3, 3, 2 } };
+        }
+        
+        // Отключаем стандартный спам звуков
+        @Override public SoundEvent getOpenSoundStart() { return null; }
+        @Override public SoundEvent getOpenSoundEnd() { return null; }
+        @Override public SoundEvent getOpenSoundLoop() { return null; }
+        @Override public SoundEvent getCloseSoundStart() { return null; }
+        @Override public SoundEvent getCloseSoundEnd() { return null; }
+        @Override public SoundEvent getCloseSoundLoop() { return null; }
+        @Override public float getSoundVolume() { return 1.0f; }
+
+        @Override 
+        public void onTick(DoorBlockEntity door) { 
+            Level level = door.getLevel();
+            if (level == null || level.isClientSide()) return;
+            
+            BlockPos pos = door.getBlockPos();
+            int openTicks = door.getOpenTicks();
+
+            if (door.state == 3) { // STATE_OPENING (Тики растут с 0 до 120)
+                // Используем 1 вместо 0, т.к. в serverTick счетчик инкрементируется до проверки
+                if (openTicks == 1) { 
+                    level.playSound(null, pos, ModSounds.VAULT_SCRAPE.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
+                }
+                if (openTicks >= 45 && openTicks <= 115 && (openTicks - 45) % 10 == 0) {
+                    level.playSound(null, pos, ModSounds.VAULT_THUD.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
+                }
+            } else if (door.state == 2) { // STATE_CLOSING (Тики убывают со 120 до 0)
+                // ИСПРАВЛЕНИЕ: Так как в 1.20.1 тики тоже убывают, возвращаем оригинальные значения из 1.7.10
+                if (openTicks == 30) {
+                    level.playSound(null, pos, ModSounds.VAULT_SCRAPE.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
+                }
+                if (openTicks >= 45 && openTicks <= 115 && (openTicks - 45) % 10 == 0) {
+                    level.playSound(null, pos, ModSounds.VAULT_THUD.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
+                }
+            }
+        }
+    };
+}

@@ -1,6 +1,8 @@
-# HBM Doors Standalone
+# Bulkhead Engineering
 
 Minecraft **1.20.1**, Forge **47.4.20**, Java **17**. Install the built JAR in the `mods` folder on both the client and server. HBM, MTR, Architectury, Cloth Config, Create and other third-party mods are not required.
+
+Version **2.1.0** adopts the `bulkheadengineering` namespace and makes every completed door section identify and pick its owning door, including its style. Jade and WTHIT are optional. See [RELEASE-2.1.0.md](RELEASE-2.1.0.md).
 
 Includes 14 animated door/hatch types, three conventional doors, and three functional metal hatches. The formerly decorative Blast Door entry now places the modular blast door. Version **2.0.2** fixes invisible cabins with Oculus/Embeddium; see [VALIDATION-2.0.2.md](VALIDATION-2.0.2.md). Version **2.0.1** fixes cabin visibility bounds and stuck/occupied lift editing; see [VALIDATION-2.0.1.md](VALIDATION-2.0.1.md). Version **2.0.0** adds MTR lifts and escalators; see [MTR-PORT.md](MTR-PORT.md) for setup and port differences. Version **1.3.0** adds the global redstone-only setting described below. Version 1.2.0 fixes model alignment, animations, open-door targeting, collision, and the vault label; see [FIXES-1.2.0.md](FIXES-1.2.0.md).
 
@@ -10,24 +12,24 @@ With redstone-only mode disabled, right-click an animated door or its frame to o
 
 Fusion Hatch, Seal Hatch and Steel Trapdoor act as single-block metal trapdoors. Their hand controls also obey the global setting. They are functional replacements for upstream placeholders, rather than recovered HBM machine hatches. When manual controls are enabled, aim at the frame or upper rail of open QE and sliding steel doors to close them.
 
-When upgrading, remove the previous standalone JAR. Break and replace old **Blast Door cubes** to construct their new multiblock structure; existing animated doors retain their IDs.
+The pre-release namespace has changed. Worlds and inventories using the old namespace are not automatically migrated. Use a new world for this release, or migrate a backed-up development world before loading it. Remove the previous mod JAR; do not install both identities together.
 
-All items are in the **HBM Doors** creative tab. Each has a distinct vanilla-material crafting recipe in `src/main/resources/data/hbm_doors/recipes`. The namespace is `hbm_doors`; this does not convert existing HBM worlds or inventories.
+All items are in the **Bulkhead Engineering** creative tab. Each has a distinct vanilla-material crafting recipe in `src/main/resources/data/bulkheadengineering/recipes`. The namespace is `bulkheadengineering`; this does not convert existing HBM worlds or inventories.
 
 ## Global redstone-only setting
 
-**Enabled by default in 1.3.0.** All 21 registered HBM door/hatch entries reject manual opening and closing, including clicks on multiblock parts and either half of a conventional door. Vanilla Minecraft doors and doors from other mods are unaffected. Sneak-clicking an animated door still changes its skin.
+**Enabled by default in 1.3.0.** All 21 registered door/hatch entries reject manual opening and closing, including clicks on multiblock parts and either half of a conventional door. Vanilla Minecraft doors and doors from other mods are unaffected. Sneak-clicking an animated door still changes its skin.
 
-Forge creates `hbm_doors-server.toml` inside the world's `serverconfig` directory:
+Forge creates `bulkheadengineering-server.toml` inside the world's `serverconfig` directory:
 
-- Singleplayer: `saves/<world>/serverconfig/hbm_doors-server.toml`
-- Dedicated server: `<world>/serverconfig/hbm_doors-server.toml`
+- Singleplayer: `saves/<world>/serverconfig/bulkheadengineering-server.toml`
+- Dedicated server: `<world>/serverconfig/bulkheadengineering-server.toml`
 
 ```toml
 redstoneOnly = true
 ```
 
-Set it to `false` to restore hand controls. Stop the world/server before editing and reopen it afterward. This is one server-owned setting for all HBM doors in that world; Forge syncs it to clients when they join. To set defaults for future worlds, put the same file in the instance's `defaultconfigs` folder.
+Set it to `false` to restore hand controls. Stop the world/server before editing and reopen it afterward. This is one server-owned setting for all doors in that world; Forge syncs it to clients when they join. To set defaults for future worlds, put the same file in the instance's `defaultconfigs` folder.
 
 Redstone operation is unchanged: ordinary doors follow power, while the modular blast door (including the Blast Door alias) toggles on each rising pulse. An already open door is not forcibly closed when this setting is enabled; use its normal redstone controls to close it.
 
@@ -43,7 +45,7 @@ gradlew.bat runClient -PdoorWorldTest
 gradlew.bat runClient -PmobilitySmokeTest
 ```
 
-On Linux/macOS use `bash gradlew` instead. First builds require Internet access for Gradle, Forge and Minecraft dependencies. The production JAR is written to `build/libs/hbm-doors-1.20.1-2.0.2.jar`. Tests live in the separate `gametest` source set and are excluded from this JAR. The optional client smoke test renders an inventory gallery, writes `run/door-gallery.png`, then closes Minecraft. The world test creates a separate flat test world, places the 11 reported entries, and saves closed/half-open/open screenshots in `run/world-preview`.
+On Linux/macOS use `bash gradlew` instead. First builds require Internet access for Gradle, Forge and Minecraft dependencies. The production JAR is written to `build/libs/bulkhead-engineering-1.20.1-2.0.2.jar`. Tests live in the separate `gametest` source set and are excluded from this JAR. The optional client smoke test renders an inventory gallery, writes `run/door-gallery.png`, then closes Minecraft. The world test creates a separate flat test world, places the 11 reported entries, and saves closed/half-open/open screenshots in `run/world-preview`.
 
 See [DEPENDENCY-REPORT.md](DEPENDENCY-REPORT.md) for scope, changes, limitations and validation. [UPSTREAM.txt](UPSTREAM.txt) pins the source commit. [ASSET-MANIFEST.json](ASSET-MANIFEST.json) inventories packaged resources; [UPSTREAM-DEPENDENCIES.json](UPSTREAM-DEPENDENCIES.json) records the original Java import graph.
 

@@ -1,0 +1,12 @@
+{
+    "door_id":"water_door",
+    "legacy_model":"bulkheadengineering:block/doors/water_door_legacy",
+    "modern_model":{
+        "model":"bulkheadengineering:block/doors/water_door_modern",
+        "skins":[
+            {"id":"default","name":"Standard","texture":"bulkheadengineering:block/doors/water_door"},
+            {"id":"clean","name":"Clean","texture":"bulkheadengineering:block/doors/water_door_clean","model":"bulkheadengineering:block/doors/water_door_clean"}
+        ]
+    },
+    "default":{"type":"modern","skin":"default"}
+}

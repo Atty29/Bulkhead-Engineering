@@ -1,6 +1,6 @@
 # Invisible lift cabin fix — 2.0.2
 
-Replace the old HBM Doors JAR with hbm-doors-1.20.1-2.0.2.jar and restart Minecraft. Existing cabins and settings are retained; rebuilding lifts is unnecessary. Keep only one HBM Doors version installed. The 2.0.1 editing/recovery fixes remain included.
+Replace the old Bulkhead Engineering JAR with bulkhead-engineering-1.20.1-2.0.2.jar and restart Minecraft. Existing cabins and settings are retained; rebuilding lifts is unnecessary. Keep only one Bulkhead Engineering version installed. The 2.0.1 editing/recovery fixes remain included.
 
 ## Confirmed cause and change
 

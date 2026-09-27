@@ -1,0 +1,10 @@
+{
+    "door_id":"qe_sliding_door",
+    "legacy_model":"bulkheadengineering:block/doors/qe_sliding_door_legacy",
+    "modern_model":{"model":"bulkheadengineering:block/doors/qe_sliding_door_modern",
+    "skins":[
+        {"id":"default","name":"Standard","texture":"bulkheadengineering:block/doors/qe_sliding_door"}
+    ]
+    },
+    "default":{"type":"modern","skin":"default"}
+}
