@@ -13,8 +13,9 @@ public final class LiftToolItem extends Item {
   try {
    if(kind==Kind.REFRESH){var route=LiftRoute.discover(level,p);Set<UUID> ids=new HashSet<>();for(int stop:route.stops())if(level.getBlockEntity(route.blocks().get(stop)) instanceof LiftStationEntity station&&station.cabin!=null)ids.add(station.cabin);if(ids.size()>1)throw new IllegalArgumentException("Remove existing lifts before merging their tracks");
     LiftCarEntity car=null;if(!ids.isEmpty()){var entity=level.getEntity(ids.iterator().next());if(entity instanceof LiftCarEntity found)car=found;else throw new IllegalArgumentException("Load the existing cabin's chunk before refreshing");}
-    if(car!=null&&(car.moving()||!car.getPassengers().isEmpty()))throw new IllegalArgumentException("Wait until the lift is idle and empty");
+    if(car!=null)car.pauseForEditing();
     if(player.isShiftKeyDown()){if(car!=null){car.discard();for(var floor:route.blocks())if(level.getBlockEntity(floor) instanceof LiftStationEntity s){s.cabin=null;s.cabinId=-1;s.sync();}}player.displayClientMessage(Component.literal("Lift removed; tracks kept"),true);return InteractionResult.SUCCESS;}
+    if(car!=null){LiftNetwork.open(player,p,car,"cabin");return InteractionResult.SUCCESS;}
     boolean fresh=car==null;if(fresh)car=Mobility.LIFT_CAR.get().create(level);car.initialize(route,level.getBlockState(p).getValue(LiftTrackBlock.FACING).getOpposite());if(fresh)level.addFreshEntity(car);
     for(int stop:route.stops())if(level.getBlockEntity(route.blocks().get(stop)) instanceof LiftStationEntity station){station.cabin=car.getUUID();station.cabinId=car.getId();station.sync();}LiftNetwork.open(player,p,car,"cabin");
    }else{

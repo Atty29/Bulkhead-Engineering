@@ -1,4 +1,4 @@
-# MTR lifts and escalators — standalone port, version 2.0.0
+# MTR lifts and escalators — standalone port, version 2.0.1
 
 For Minecraft 1.20.1 / Forge 47.4.20 / Java 17. Install the same HBM Doors JAR on the server and every client. Neither MTR nor HBM is required. Existing HBM door IDs and the default global `redstoneOnly = true` setting are retained. Lift call buttons remain usable; lift landing doors open automatically only when their linked cabin docks.
 
@@ -16,7 +16,7 @@ For Minecraft 1.20.1 / Forge 47.4.20 / Java 17. Install the same HBM Doors JAR o
 
 1. Place **Lift Floor Track** at the cabin-floor height of every landing. Join these markers with **Vertical Lift Track**. Keep all tracks facing the same way, with at least two floor markers. A simple first build has markers six blocks apart, joined by five vertical tracks.
 2. Leave a clear shaft for the entire cabin. The default cabin is 3 × 3 × 3. Its entrance faces opposite the track's facing; the cabin sits in front of the track. Keep redstone wiring outside the cabin's path.
-3. Right-click a track with **Lift Refresher** to create the cabin and open setup. Adjust dimensions, orientation and offsets as needed. Right-click the cabin with **Lift Wrench** to reopen setup. Refreshing an idle, empty lift updates its route and returns it to the first floor. Sneak-use the refresher removes the cabin while retaining the tracks.
+3. Right-click a track with **Lift Refresher** to create the cabin and open setup. Adjust dimensions, orientation and offsets as needed. Right-click the cabin with **Lift Wrench** to reopen setup. Using the refresher on an existing lift pauses it in place and reopens setup, even if occupied or obstructed. Riders are released onto its platform. Calling a floor resumes operation. To rebuild a changed track route, remove the empty cabin at a landing and create it again. Sneak-use the refresher removes the cabin while retaining the tracks.
 4. Use **Lift Wrench** on a floor marker to set its number/name, description, and arrival bell. Do this before building walls that conceal the marker.
 5. Place a **Lift Call Buttons** block at each landing. With **Lift Link Connector**, first click that landing's floor marker, then click the buttons. The same two-step procedure links landing doors and floor panels. Linking any part links the entire door/panel. A button can link up to 16 markers; when multiple lifts are linked, it calls the nearest candidate, preferring idle cabins.
 6. Click a linked call button to summon the lift. Inside, right-click the cabin wall/floor to choose a destination. Linked panels also open floor selection. The cabin closes, travels, then opens and releases riders. The landing door opens only while the cabin is docked at its linked floor.
@@ -57,4 +57,4 @@ This is a **functional adaptation of the built-in lift/escalator set, not a byte
 
 ## Validation
 
-See `VALIDATION-2.0.0.md` for the final build/test results and their limits. Test harnesses are in the separate `gametest` source set and are excluded from the shipped JAR.
+See `VALIDATION-2.0.1.md` for the final build/test results and their limits. Test harnesses are in the separate `gametest` source set and are excluded from the shipped JAR.

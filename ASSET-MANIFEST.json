@@ -205,7 +205,7 @@
   },
   {
     "path": "src/main/resources/assets/hbm_doors/lang/en_us.json",
-    "sha256": "8b3bb38db8c3912a7abe55e150acf3a88a379481a979814a11c50b7f70d7b02b"
+    "sha256": "e74ac7fbb4b1688fc28ca02631dfdf75df7888f5b0ddc91965ec770c22eb5345"
   },
   {
     "path": "src/main/resources/assets/hbm_doors/lang/eo_uy.json",
@@ -2273,7 +2273,7 @@
   },
   {
     "path": "src/main/resources/META-INF/mods.toml",
-    "sha256": "c78b7892a0980ab1999896587f25ed64838723e0014832b52908357c4064c758"
+    "sha256": "f9aad59f773be7affbc4d3d36c836296cea063e7415d0b194fcd65054461e33d"
   },
   {
     "path": "src/main/resources/pack.mcmeta",

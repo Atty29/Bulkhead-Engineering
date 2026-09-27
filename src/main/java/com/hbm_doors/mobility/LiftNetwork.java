@@ -23,7 +23,7 @@ public final class LiftNetwork {
   boolean linked=car!=null&&(car.tracks.contains(p.pos)||be instanceof LiftStationEntity station&&station.car()==car||aboard);if(car!=null&&!linked)return;
   switch(p.action){
    case "select":if(car!=null&&(!(be instanceof LiftStationEntity station)||!station.locked))car.request(p.data.getInt("floor"));break;
-   case "cabin":if(car!=null&&player.mayBuild()&&!car.moving()&&car.getPassengers().isEmpty()&&(player.isHolding(Mobility.WRENCH.get())||player.isHolding(Mobility.REFRESHER.get())))car.configure(p.data);break;
+   case "cabin":if(car!=null&&player.mayBuild()&&(player.isHolding(Mobility.WRENCH.get())||player.isHolding(Mobility.REFRESHER.get()))){car.pauseForEditing();car.configure(p.data);}break;
    case "floor":if(nearby&&be instanceof LiftStationEntity station&&level.getBlockState(p.pos).getBlock() instanceof LiftTrackBlock&&player.mayBuild()&&player.isHolding(Mobility.WRENCH.get())){station.floorName=p.data.getString("name").substring(0,Math.min(32,p.data.getString("name").length()));station.description=p.data.getString("description").substring(0,Math.min(64,p.data.getString("description").length()));station.ding=p.data.getBoolean("ding");station.sync();if(station.car()!=null)station.car().refreshNames();}break;
   }
  }

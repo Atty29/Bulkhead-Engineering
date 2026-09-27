@@ -57,5 +57,6 @@
   "block.hbm_doors.lift_panel_odd_2": "Lift Panel (3 wide, style 2)",
   "entity.hbm_doors.lift_car": "Lift Cabin",
   "block.hbm_doors.escalator_step": "Escalator Steps",
-  "block.hbm_doors.escalator_side": "Escalator Handrail"
+  "block.hbm_doors.escalator_side": "Escalator Handrail",
+  "entity.hbm_doors.lift_barrier": "Lift Cabin"
 }
