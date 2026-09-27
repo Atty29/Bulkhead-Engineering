@@ -14,6 +14,7 @@ import net.minecraft.world.level.block.TrapDoorBlock;
 public class InteractionTests {
  @GameTest(template="empty",timeoutTicks=300)
  public static void openDoorsRemainClickableAndPassable(GameTestHelper h){
+  boolean previous=DoorConfig.REDSTONE_ONLY.get();DoorConfig.REDSTONE_ONLY.set(false);try {
   var level=h.getLevel();var player=FakePlayerFactory.getMinecraft(level);BlockPos p=h.absolutePos(new BlockPos(10,5,10));
   for(String id:new String[]{"qe_sliding_door","sliding_seal_door","secure_access_door","fire_door","large_vehicle_door","water_door"})for(Direction facing:Direction.Plane.HORIZONTAL){
    var block=(AnimatedDoorBlock)Doors.DOORS.get(id).get();var state=block.defaultBlockState().setValue(AnimatedDoorBlock.FACING,facing);
@@ -41,10 +42,12 @@ public class InteractionTests {
    }
    level.removeBlock(p,false);level.removeBlock(p.below(),false);
   }h.succeed();
+  } finally {DoorConfig.REDSTONE_ONLY.set(previous);}
  }
  private static Vec3 world(BlockPos p,Direction f,double x,double y,double z){double a=x-.5,b=z;return switch(f){case SOUTH->new Vec3(p.getX()+.5-a,p.getY()+y,p.getZ()+.5-b);case WEST->new Vec3(p.getX()+.5+b,p.getY()+y,p.getZ()+.5-a);case EAST->new Vec3(p.getX()+.5-b,p.getY()+y,p.getZ()+.5+a);default->new Vec3(p.getX()+x,p.getY()+y,p.getZ()+.5+b);};}
  @GameTest(template="empty",timeoutTicks=100)
  public static void hatchesActuallyOpen(GameTestHelper h){
+  boolean previous=DoorConfig.REDSTONE_ONLY.get();DoorConfig.REDSTONE_ONLY.set(false);try {
   var l=h.getLevel();var p=h.absolutePos(new BlockPos(10,5,10));var player=FakePlayerFactory.getMinecraft(l);
   for(String id:new String[]{"fusion_hatch","seal_hatch","trapdoor_steel"}){
    var block=Doors.DOORS.get(id).get();h.assertTrue(block instanceof TrapDoorBlock,id+" uses hatch behavior");
@@ -54,5 +57,6 @@ public class InteractionTests {
    l.setBlock(p.below(),net.minecraft.world.level.block.Blocks.REDSTONE_BLOCK.defaultBlockState(),3);h.assertTrue(l.getBlockState(p).getValue(TrapDoorBlock.OPEN),id+" redstone opens");
    l.removeBlock(p.below(),false);h.assertTrue(!l.getBlockState(p).getValue(TrapDoorBlock.OPEN),id+" redstone closes");l.removeBlock(p,false);
   }h.succeed();
+  } finally {DoorConfig.REDSTONE_ONLY.set(previous);}
  }
 }

@@ -42,7 +42,7 @@ public class AnimatedDoorBlock extends BaseEntityBlock {
   }
  }
  public InteractionResult use(BlockState s,Level l,BlockPos p,Player player,InteractionHand hand,BlockHitResult hit){
-  if(l.getBlockEntity(p) instanceof DoorBlockEntity be){if(!l.isClientSide){if(player.isShiftKeyDown())be.cycleVariant(player);else be.toggle();}return InteractionResult.sidedSuccess(l.isClientSide);}return InteractionResult.PASS;
+  if(l.getBlockEntity(p) instanceof DoorBlockEntity be){if(!l.isClientSide){if(player.isShiftKeyDown())be.cycleVariant(player);else if(!DoorConfig.REDSTONE_ONLY.get())be.toggle();}return InteractionResult.sidedSuccess(l.isClientSide);}return InteractionResult.PASS;
  }
  public VoxelShape getShape(BlockState s,BlockGetter l,BlockPos p,CollisionContext c){return outline(s,l,p,BlockPos.ZERO);}
  public VoxelShape getCollisionShape(BlockState s,BlockGetter l,BlockPos p,CollisionContext c){return shape(s,l,p,BlockPos.ZERO);}

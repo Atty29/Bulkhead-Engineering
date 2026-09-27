@@ -1,3 +1,7 @@
+## 1.3.0 global controls
+
+[REDSTONE-ONLY.md](REDSTONE-ONLY.md) documents the new global server configuration. Redstone-only mode defaults to enabled for every HBM door/hatch entry. No dependencies or assets were added. Earlier descriptions of hand controls apply with `redstoneOnly = false`.
+
 ## 1.2.0 corrections
 
 The current build replaces the four decorative placeholders with functional entries and corrects the renderer and collision defects described in [FIXES-1.2.0.md](FIXES-1.2.0.md). The extraction inventory below describes the original 1.0 baseline; its placeholder behavior and older validation counts are superseded by that report. No additional runtime dependencies were added.

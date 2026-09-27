@@ -1,5 +1,5 @@
 plugins { id 'java'; id 'net.minecraftforge.gradle' version '6.0.54' }
-version='1.2.0'
+version='1.3.0'
 group='com.hbm_doors'
 base { archivesName='hbm-doors-1.20.1' }
 java.toolchain.languageVersion=JavaLanguageVersion.of(17)
