@@ -45,7 +45,7 @@ gradlew.bat runClient -PdoorWorldTest
 gradlew.bat runClient -PmobilitySmokeTest
 ```
 
-On Linux/macOS use `bash gradlew` instead. First builds require Internet access for Gradle, Forge and Minecraft dependencies. The production JAR is written to `build/libs/bulkhead-engineering-1.20.1-2.0.2.jar`. Tests live in the separate `gametest` source set and are excluded from this JAR. The optional client smoke test renders an inventory gallery, writes `run/door-gallery.png`, then closes Minecraft. The world test creates a separate flat test world, places the 11 reported entries, and saves closed/half-open/open screenshots in `run/world-preview`.
+On Linux/macOS use `bash gradlew` instead. First builds require Internet access for Gradle, Forge and Minecraft dependencies. The production JAR is written to `build/libs/bulkhead-engineering-1.20.1-2.1.0.jar`. Tests live in the separate `gametest` source set and are excluded from this JAR. The optional client smoke test renders an inventory gallery, writes `run/door-gallery.png`, then closes Minecraft. The world test creates a separate flat test world, places the 11 reported entries, and saves closed/half-open/open screenshots in `run/world-preview`.
 
 See [DEPENDENCY-REPORT.md](DEPENDENCY-REPORT.md) for scope, changes, limitations and validation. [UPSTREAM.txt](UPSTREAM.txt) pins the source commit. [ASSET-MANIFEST.json](ASSET-MANIFEST.json) inventories packaged resources; [UPSTREAM-DEPENDENCIES.json](UPSTREAM-DEPENDENCIES.json) records the original Java import graph.
 
