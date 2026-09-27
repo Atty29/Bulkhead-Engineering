@@ -25,6 +25,9 @@ public class DoorPartBlock extends BaseEntityBlock {
   super.playerWillDestroy(l,p,s,player);
  }
  public VoxelShape getShape(BlockState s,BlockGetter l,BlockPos p,CollisionContext c){
+  if(l.getBlockEntity(p) instanceof DoorPartEntity be&&be.controller!=null)return AnimatedDoorBlock.outline(l.getBlockState(be.controller),l,be.controller,be.local);return Shapes.empty();
+ }
+ public VoxelShape getCollisionShape(BlockState s,BlockGetter l,BlockPos p,CollisionContext c){
   if(l.getBlockEntity(p) instanceof DoorPartEntity be&&be.controller!=null)return AnimatedDoorBlock.shape(l.getBlockState(be.controller),l,be.controller,be.local);return Shapes.empty();
  }
  public InteractionResult use(BlockState s,Level l,BlockPos p,Player player,InteractionHand hand,BlockHitResult hit){

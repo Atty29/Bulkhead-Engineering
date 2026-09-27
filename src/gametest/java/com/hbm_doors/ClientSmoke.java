@@ -31,7 +31,7 @@ public class ClientSmoke {
    g.fill(0,0,width,height,0xff26323c);g.drawString(font,"HBM Doors — model verification",12,10,0xffffff);
    int i=0;for(var entry:Doors.DOORS.entrySet())if(entry.getValue().get() instanceof AnimatedDoorBlock){int x=20+(i%5)*(width/5),y=40+(i/5)*(height/3-8);g.pose().pushPose();g.pose().translate(x,y,0);g.pose().scale(3,3,3);g.renderItem(new ItemStack(entry.getValue().get()),0,0);g.pose().popPose();g.drawString(font,entry.getKey().replace("_door",""),x,y+50,0xffffff,false);i++;}
    super.render(g,mx,my,partial);
-   if(++frames==40){save("door-gallery.png",g);System.out.println("HBM_DOORS_SMOKE: rendered all 14 inventory models");}
+   if(++frames==40){save("door-gallery.png",g);System.out.println("HBM_DOORS_SMOKE: rendered all 15 animated inventory entries");}
   }
   private void save(String name,GuiGraphics g){g.flush();try(NativeImage image=Screenshot.takeScreenshot(minecraft.getMainRenderTarget())){image.writeToFile(java.nio.file.Path.of(name));}catch(Exception ex){throw new RuntimeException(ex);}}
   private void renderModular(GuiGraphics g){

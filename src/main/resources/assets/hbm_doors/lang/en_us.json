@@ -37,5 +37,6 @@
   "sounds.hbm_doors.subtitle.garage_stop": "Garage stop",
   "block.hbm_doors.modular_blast_door": "Modular Sliding Blast Door",
   "sounds.hbm_doors.modular_start": "Blast door moving",
-  "sounds.hbm_doors.modular_stop": "Blast door stops"
+  "sounds.hbm_doors.modular_stop": "Blast door stops",
+  "block.hbm_doors.door_part": "Door frame"
 }

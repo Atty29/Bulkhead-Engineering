@@ -1,5 +1,5 @@
 plugins { id 'java'; id 'net.minecraftforge.gradle' version '6.0.54' }
-version='1.1.0'
+version='1.2.0'
 group='com.hbm_doors'
 base { archivesName='hbm-doors-1.20.1' }
 java.toolchain.languageVersion=JavaLanguageVersion.of(17)
@@ -7,7 +7,7 @@ sourceSets { gametest { compileClasspath += sourceSets.main.output + sourceSets.
 minecraft {
  mappings channel:'official', version:'1.20.1'
  runs {
-  client { workingDirectory project.file('run'); if(project.hasProperty('doorSmokeTest')) { property 'hbmdoors.smoke','true' }; mods { hbm_doors { source sourceSets.main; if(project.hasProperty('doorSmokeTest')) { source sourceSets.gametest } } } }
+  client { workingDirectory project.file('run'); if(project.hasProperty('doorWorldTest')) { property 'hbmdoors.worldSmoke','true' }; if(project.hasProperty('doorSmokeTest')) { property 'hbmdoors.smoke','true' }; mods { hbm_doors { source sourceSets.main; if(project.hasProperty('doorSmokeTest') || project.hasProperty('doorWorldTest')) { source sourceSets.gametest } } } }
   server { workingDirectory project.file('run-server'); mods { hbm_doors { source sourceSets.main } } }
   gameTestServer { workingDirectory project.file('run-tests'); property 'forge.enabledGameTestNamespaces','hbm_doors'; mods { hbm_doors { source sourceSets.main; source sourceSets.gametest } } }
  }

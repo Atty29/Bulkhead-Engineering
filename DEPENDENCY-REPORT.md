@@ -1,3 +1,7 @@
+## 1.2.0 corrections
+
+The current build replaces the four decorative placeholders with functional entries and corrects the renderer and collision defects described in [FIXES-1.2.0.md](FIXES-1.2.0.md). The extraction inventory below describes the original 1.0 baseline; its placeholder behavior and older validation counts are superseded by that report. No additional runtime dependencies were added.
+
 Version 1.1.0 additionally ports the vertical modular 1.12 blast door; see [PORT-112.md](PORT-112.md). The original extraction report below describes the 1.0.0 base.
 
 # Door extraction report

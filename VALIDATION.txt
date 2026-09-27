@@ -1,24 +1,19 @@
-Release 1.1.0 validation â€” 2026-09-27
-Minecraft 1.20.1 / Forge 47.4.20 / Java 17 / Windows x64
+HBM Doors 1.2.0 — validation (2026-09-27)
+Java 17 x64, Gradle 8.8, Forge 47.4.20, Minecraft 1.20.1.
 
-PASS: build and production reobfuscation.
-PASS: all 4 dedicated-server GameTests:
-  lifecycle: 14 animated types x 4 orientations = 56 lifecycle combinations;
-  redstoneAndPartRemoval: original-door redstone and structure regression;
-  linkedWallAndStagedCollision: three modular columns in all four orientations,
-    every collision stage, 100-tick opening/closing, mid-motion saving,
-    adjoining-column removal isolation;
-  risingEdgeToggleAtTopAndBase: top/base redstone inputs, falling-edge hold.
-PASS: client loaded 46 model/skin variants and rendered 14 inventory models.
-PASS: client rendered a three-section modular wall closed, half-open and open;
-      saved screenshot visually inspected.
-PASS: offline model/texture/sound references and 21 recipe files.
+Commands:
+  gradlew.bat build runGameTestServer runClient -PdoorSmokeTest
+  gradlew.bat runClient -PdoorWorldTest
+  python tools/verify_assets.py
 
-Commands: gradlew.bat build
-          gradlew.bat runGameTestServer
-          gradlew.bat build runClient -PdoorSmokeTest
-          python tools/verify_assets.py
+Server: all six required GameTests pass.
+- lifecycle: 60 door-entry/facing combinations, state transitions, persistence and cleanup.
+- redstoneAndPartRemoval: power changes and removal propagation.
+- modular linked-wall stages and redstone pulse behavior.
+- openDoorsRemainClickableAndPassable: real item placement and open passage collision in four directions; outline raycast and click-to-close from both sides for QE/steel sliders.
+- hatchesActuallyOpen: hand and redstone controls for all three replacements.
 
-Test classes and run directories are excluded from the production JAR.
-Not tested: full multiplayer sessions, long-duration survival gameplay, external
-shader packs. See PORT-112.md for unsupported HBM lock/radiation/control systems.
+Client: all 46 model/skin selections load; 15 animated item entries render.
+World: all 11 reported entries rendered at three staged animation positions, 33 captures. Vault front label and water-door hinge visually inspected.
+Assets: all referenced meshes/textures/sounds and 21 recipes resolve.
+Production artifact excludes test harnesses. No external shader/modpack compatibility claim.

@@ -1,7 +1,7 @@
 [
   {
     "path": "src/main/resources/assets/hbm_doors/blockstates/blast_door.json",
-    "sha256": "5744c9b4470bb8b4fe90d6addcdb259f187066321d8a265ac1e7787c37285513"
+    "sha256": "cd25ac6ba1c3420dac6c47cb67b13ae84dee7a26cb9bf5bdf1fe28299da04b9d"
   },
   {
     "path": "src/main/resources/assets/hbm_doors/blockstates/cargo_door.json",
@@ -25,7 +25,7 @@
   },
   {
     "path": "src/main/resources/assets/hbm_doors/blockstates/fusion_hatch.json",
-    "sha256": "a62f6a055d44d6526f46d31a91faebe9fd6d5894601995b6045b77bb3b66ba17"
+    "sha256": "903849763d213a185049968cf835cd2bc3699b877f4fdb1e4797331daa5449c8"
   },
   {
     "path": "src/main/resources/assets/hbm_doors/blockstates/large_vehicle_door.json",
@@ -53,7 +53,7 @@
   },
   {
     "path": "src/main/resources/assets/hbm_doors/blockstates/seal_hatch.json",
-    "sha256": "aa4a308af3c31f8a380b21e23fa27e9c1ea9c95a2f34abe9f4b2a3e79b51106b"
+    "sha256": "14676807c1ee426c5651aab77b5cbf0e4b1efd6a3c44c60e085f3c03707f8f4f"
   },
   {
     "path": "src/main/resources/assets/hbm_doors/blockstates/secure_access_door.json",
@@ -77,7 +77,7 @@
   },
   {
     "path": "src/main/resources/assets/hbm_doors/blockstates/trapdoor_steel.json",
-    "sha256": "f0276be1faf7ded59e27e82cbc11c88a4bb15e6ada8680f53bd4240b9086b27b"
+    "sha256": "236d44ccb23fee35a9cc6d89ff36fd837738956818260fa3a02cfb2ff9221560"
   },
   {
     "path": "src/main/resources/assets/hbm_doors/blockstates/vault_door.json",
@@ -153,7 +153,7 @@
   },
   {
     "path": "src/main/resources/assets/hbm_doors/lang/en_us.json",
-    "sha256": "0656e5b2a5b280652162e59f917419b51ecb2e4a49c6867665384ffbdbf6a050"
+    "sha256": "8b8bc2d9ce953dee0039ba838ddb63e5c1594a98ab132814fc06d992a9dbdbb0"
   },
   {
     "path": "src/main/resources/assets/hbm_doors/lang/eo_uy.json",
@@ -964,6 +964,18 @@
     "sha256": "a45b7c44278ae399200d1693c8539a13fc82a440866bb1f55b3cc0380644b1a6"
   },
   {
+    "path": "src/main/resources/assets/hbm_doors/models/block/fusion_hatch_bottom.json",
+    "sha256": "d3ef4b62ca0f9b8af57bbe0978216da91b1836c322d1866eb1b2a3d5f3305727"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/fusion_hatch_open.json",
+    "sha256": "4cf71a5b97b4d3f2d4f734d7567348baecce6f29e8b1ce80c6b050127d8da4bd"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/fusion_hatch_top.json",
+    "sha256": "03ec121e2bec1ee5b17905b7c13ca2503906c70c536aaee0755b9a15b65f0140"
+  },
+  {
     "path": "src/main/resources/assets/hbm_doors/models/block/metal_door_bottom_left.json",
     "sha256": "830e39cdc1d2532d0fae328b03c1ca7326795f44cc1b10bf416e2c2f8b562e86"
   },
@@ -1000,12 +1012,36 @@
     "sha256": "8ff876fc04c1223f3e6260eb6615949f37f5bae8003696116b3247bb3d7f290a"
   },
   {
+    "path": "src/main/resources/assets/hbm_doors/models/block/seal_hatch_bottom.json",
+    "sha256": "576bd6128518f2a9b86e858095db32f1acb3fea5852afd3ccb06b16b292b2e21"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/seal_hatch_open.json",
+    "sha256": "0d33acd4885efe607a00d2ba1149ee69c1578300deb6b288fc918ead0d2c9a7d"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/seal_hatch_top.json",
+    "sha256": "e8ee9708d275f2724b50968e04f9e8606c347db09e759cf077142a664f3c0058"
+  },
+  {
     "path": "src/main/resources/assets/hbm_doors/models/block/trapdoor_steel.json",
     "sha256": "267f5ac4975d793b6810659d73fa37c94f8f6eb5010df3ddf7514ef7002b1f54"
   },
   {
+    "path": "src/main/resources/assets/hbm_doors/models/block/trapdoor_steel_bottom.json",
+    "sha256": "0c226adab2d4d36298e94f9bafffe94b50ea7d8c1b472d7c798eea0fba28eeae"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/trapdoor_steel_open.json",
+    "sha256": "23f15f817dc1d3126eac188cc0a88cfae49e862731f36672b03d02d5ca991b71"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/block/trapdoor_steel_top.json",
+    "sha256": "ca1486e4d38f244d89ecd7c4725667299e895685993ba218e555424bd5e5e463"
+  },
+  {
     "path": "src/main/resources/assets/hbm_doors/models/item/blast_door.json",
-    "sha256": "a8a71b28e6a34fabd07b7f2f930675165108b253d2d60d891b09c5b1c27ca34c"
+    "sha256": "3931e2e2b9201f5192a5ad55c227cf1ecda3d9f5bb826bff0498e795d98fdb8b"
   },
   {
     "path": "src/main/resources/assets/hbm_doors/models/item/cargo_door.json",
@@ -1025,7 +1061,7 @@
   },
   {
     "path": "src/main/resources/assets/hbm_doors/models/item/fusion_hatch.json",
-    "sha256": "c7b8e6f25ea49676bd6abe75d4ab7af35ad062299551153ddebca5cf47eefd9e"
+    "sha256": "d988f537b12457cc1ad859b305bf845c4cc4f11d3d9961424d02bab44020fb99"
   },
   {
     "path": "src/main/resources/assets/hbm_doors/models/item/large_vehicle_door.json",
@@ -1053,7 +1089,7 @@
   },
   {
     "path": "src/main/resources/assets/hbm_doors/models/item/seal_hatch.json",
-    "sha256": "e90f297af44879236c07d414197ea48ad78e68ddabc965d7d7b06aff8daa7e57"
+    "sha256": "fb9eb425ac97dff75402acc95017fcb676c25433b95c2555a1fe0130c0c65a97"
   },
   {
     "path": "src/main/resources/assets/hbm_doors/models/item/secure_access_door.json",
@@ -1077,7 +1113,7 @@
   },
   {
     "path": "src/main/resources/assets/hbm_doors/models/item/trapdoor_steel.json",
-    "sha256": "e37ab9ddbd0ead18d3aa96418add5dca124a3112d8bca7005a3d0031646b156e"
+    "sha256": "5834fb8fab4422a60d16fff96249e3d2ab77ded504173b00471b3eff74248331"
   },
   {
     "path": "src/main/resources/assets/hbm_doors/models/item/vault_door.json",
@@ -1458,5 +1494,197 @@
   {
     "path": "src/main/resources/assets/hbm_doors/textures/item/metal_door.png",
     "sha256": "598bb132e106fc82539c8dc625e4389587547ca521b800f7ae26181436b6acd5"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/advancements/recipes/modular_blast_door.json",
+    "sha256": "544090355cf2f36fa030263f291306772de3b318d85dc26b1426e393c3dc8f82"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/loot_tables/blocks/blast_door.json",
+    "sha256": "da726dd683fcf76baa976227ef715b21b519869836c4a5b152300b812b770143"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/loot_tables/blocks/cargo_door.json",
+    "sha256": "0e4d1941395bbcd4a786d9bc6bcd7a8757837191c9ba7b0f5860d51cbcef5666"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/loot_tables/blocks/door_bunker.json",
+    "sha256": "dede0e1a74f061edf5614c86fd89ae02d733e5a3582aa1b5ee3fc9792bb7c351"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/loot_tables/blocks/door_office.json",
+    "sha256": "b2f8f95494aa13bd7729ffb3c36693a166160975bb719b47d16f83a147104203"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/loot_tables/blocks/fire_door.json",
+    "sha256": "9c535b77d4832a7c63c5534a64d13b9d36a3f5e15d6dfc2c1b65f02118537aa6"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/loot_tables/blocks/fusion_hatch.json",
+    "sha256": "74466d8d68d5e279787c15fcb67119888381f18e09fbf0e7c517aac3ecb40fd5"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/loot_tables/blocks/large_vehicle_door.json",
+    "sha256": "f6eadd381b928a27f24a2574b7b29eec568f9712659ce5fa9e89f4a3f2a6bd77"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/loot_tables/blocks/metal_door.json",
+    "sha256": "2728e4c27b9317b659a8df2daea9dd9af0c3f943bee8ac0023885f0b2ddfe4ea"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/loot_tables/blocks/modular_blast_door.json",
+    "sha256": "66a6506c06d3df91814d387a1b10e80e492801f9e663a3475dc7f2f7a0465176"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/loot_tables/blocks/qe_containment_door.json",
+    "sha256": "07e236d474f1fa75aabec1519e5cff031668942857d53e9b3811ff3d847e4c51"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/loot_tables/blocks/qe_sliding_door.json",
+    "sha256": "80e9b5644135aebe4b06caf9e517c2fd843a08c3a586fa30beef1e5bd9eaa4cf"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/loot_tables/blocks/round_airlock_door.json",
+    "sha256": "9bfa02bf50cf29f7e9f01032812659d7f8b8d3ef4825f9fe621c3b186f457b03"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/loot_tables/blocks/seal_hatch.json",
+    "sha256": "6ddd8036a2718df19c12fdfb0d69bb7e6e5430ce9fc580d8ff6203327dd41475"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/loot_tables/blocks/secure_access_door.json",
+    "sha256": "fd688c5c28946d212357cb42335d066332eb5797c706c071dda850c5b2a76ccf"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/loot_tables/blocks/silo_hatch.json",
+    "sha256": "3390d6391ac7948ef296b4b89cc35bd51aa6fe34fd9b9617db005a762b050d77"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/loot_tables/blocks/silo_hatch_large.json",
+    "sha256": "ad77db2dac0edd1b3a7a579eab52dc2ae76543b95c0f9d2cf1fd4f87aa47cf16"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/loot_tables/blocks/sliding_blast_door.json",
+    "sha256": "843452fa02fa11ea90e02eb12334938fefe0888f3487175354f763343a0bc527"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/loot_tables/blocks/sliding_seal_door.json",
+    "sha256": "710b76641dc5ae545be1588a41a662c1e4f059fa0ffd690d2f7b623c43c42a63"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/loot_tables/blocks/trapdoor_steel.json",
+    "sha256": "b3e2341e61ec2578c59b2677835258f9066c7f412fed6762ebc54c9f70c92e24"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/loot_tables/blocks/vault_door.json",
+    "sha256": "ee7f1a6d469684f945ded8d6fa1c902271e0d9de4dbdb8b04a57e8c6c42ddfbc"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/loot_tables/blocks/water_door.json",
+    "sha256": "37a97ee7ecdee82557b55095feca78101ccc8c4ec80edc15000803521c89614e"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/recipes/blast_door.json",
+    "sha256": "39518dc6edf31894ca43fb68de085206f8b1eb6b4bb72d0dc932f54460f3c681"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/recipes/cargo_door.json",
+    "sha256": "6015accdbe2c923f034f9270ede53a93150881aca14954fef79aa6768afab360"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/recipes/door_bunker.json",
+    "sha256": "a80050a5800f585e4cb6cbee4949e8c40688aaf6c8cf4c3a398eef32b6fd3b1a"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/recipes/door_office.json",
+    "sha256": "a7f07a73dd624915140df9f2cb5668fd8b248a8824c511f42bb55ed66e56f931"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/recipes/fire_door.json",
+    "sha256": "aff69328c370c472e3bfeb1bf61ec9f2354d82034d2603ced7b65824be38b222"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/recipes/fusion_hatch.json",
+    "sha256": "afd2387670e8d726e52dd37e9de824fde07827629540be58d10f3b885ce1019a"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/recipes/large_vehicle_door.json",
+    "sha256": "ae16f60281f94eb3832010b86c6930a9e868c4f297b1518e58915e5e8b55c779"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/recipes/metal_door.json",
+    "sha256": "8f1a4dd112ceb0c9c4d29f4a37f5da1fd1f26aa7b476529058091a6f6304542f"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/recipes/modular_blast_door.json",
+    "sha256": "5f64d80635437e99006534afe52d4ccbf44a923b7ed05d788867b03b96e523dc"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/recipes/qe_containment_door.json",
+    "sha256": "4b71c24647567ddee52a943eae466aabfcc22f0bf78349b53849d0b1cec3d93f"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/recipes/qe_sliding_door.json",
+    "sha256": "73d9ac43d8e54036bd7a4510069c1f60474555070675f9408cd31ab49abc5923"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/recipes/round_airlock_door.json",
+    "sha256": "f0b87a02fa57edfd8c9971eb126105ad4604c1d0c7195463ed35f537689e7259"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/recipes/seal_hatch.json",
+    "sha256": "926eb6d417a12d229ef24a180a49bf2335922172a41efb025d7bfaec08fddd74"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/recipes/secure_access_door.json",
+    "sha256": "28ef1e1b715ef51725ee4ca3615d2ca344cae2b710eef012b9968ca5953b5a7a"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/recipes/silo_hatch.json",
+    "sha256": "26d8c6082f771e4ae39dceb1032addfc5435d794ffc33a19082516396cf13dd9"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/recipes/silo_hatch_large.json",
+    "sha256": "33575314f21c0cb541bc9386dbabe6dd0f1c56ec5613d38b0664cccebfce329c"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/recipes/sliding_blast_door.json",
+    "sha256": "0e3e8faf81c985d48473c4e62c3cba7b05b7c8fa3f5ac6b02e4935d3e0360bc5"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/recipes/sliding_seal_door.json",
+    "sha256": "c88a26005e1eca57a5eca9b66448e3659c78b4c897db07da4d7eaef24da179ea"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/recipes/trapdoor_steel.json",
+    "sha256": "12889e2500c4fde9f635a4b07ca32c7383451eeb275e58a8760e0ef21c751714"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/recipes/vault_door.json",
+    "sha256": "897b7564d9437923d2b8577541afc9f315cdb664625f5dd8a6a5c06fa4baefcf"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/recipes/water_door.json",
+    "sha256": "01597abae65c6c6f1d8d87ed243eddb2b84ba59bf5277fcaf954d37d05f58e8e"
+  },
+  {
+    "path": "src/main/resources/data/minecraft/tags/blocks/doors.json",
+    "sha256": "52f963543212793101626af8407e1c2c24a67d042d59dcad0988617bf9556ac0"
+  },
+  {
+    "path": "src/main/resources/data/minecraft/tags/blocks/mineable/pickaxe.json",
+    "sha256": "0e83367588fcb792ab783defc5f38c55da7ed84a61438e00be925b05ef23752c"
+  },
+  {
+    "path": "src/main/resources/data/minecraft/tags/blocks/wooden_doors.json",
+    "sha256": "d176d8c6cc8d7fa6031e51d8803b36c9523f179a95c86c93c70e6e525dcc9067"
+  },
+  {
+    "path": "src/main/resources/META-INF/mods.toml",
+    "sha256": "c1fcecac64ff9cb4074a755d8dfd30ec4304898e67f9b5d88492a032e95a468e"
+  },
+  {
+    "path": "src/main/resources/pack.mcmeta",
+    "sha256": "a237765321c484ca8e4c95ca9a6cfe85a24f5dab58bdee26eb83b22d43436666"
   }
 ]

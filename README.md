@@ -2,11 +2,15 @@
 
 Minecraft **1.20.1**, Forge **47.4.20**, Java **17**. Install the built JAR in the `mods` folder on both the client and server. HBM, Architectury, Cloth Config, Create and other third-party mods are not required.
 
-Includes all 14 animated door/hatch declarations, the three conventional doors, and four door/hatch-named decorative blocks registered by upstream. The decorative blocks retain their upstream solid-block behavior.
+Includes 14 animated door/hatch types, three conventional doors, and three functional metal hatches. The formerly decorative Blast Door entry now places the modular blast door. Version **1.2.0** fixes model alignment, animations, open-door targeting, collision, and the vault label; see [FIXES-1.2.0.md](FIXES-1.2.0.md).
 
 The new **Modular Sliding Blast Door** from HBM 1.12 forms linked walls of seven-block-tall sections. See [PORT-112.md](PORT-112.md) for its pulse-redstone controls and crafting recipe.
 
 Right-click an animated door or its frame to open/close it. Supply redstone at the controller or any structure part to control it. Sneak-right-click an idle door to cycle through its original models/skins. Placement requires the full structure footprint to be free. Removing any part removes the whole door.
+
+Fusion Hatch, Seal Hatch and Steel Trapdoor now act as single-block metal trapdoors, with hand and redstone controls. They are functional replacements for upstream placeholders, rather than recovered HBM machine hatches. On open QE and sliding steel doors, aim at the frame or upper rail to close them.
+
+When upgrading, remove the previous standalone JAR. Break and replace old **Blast Door cubes** to construct their new multiblock structure; existing animated doors retain their IDs.
 
 All items are in the **HBM Doors** creative tab. Each has a distinct vanilla-material crafting recipe in `src/main/resources/data/hbm_doors/recipes`. The namespace is `hbm_doors`; this does not convert existing HBM worlds or inventories.
 
@@ -18,9 +22,10 @@ Set `JAVA_HOME` to a 64-bit JDK 17, then run:
 gradlew.bat build
 gradlew.bat runGameTestServer
 gradlew.bat runClient -PdoorSmokeTest
+gradlew.bat runClient -PdoorWorldTest
 ```
 
-On Linux/macOS use `bash gradlew` instead. First builds require Internet access for Gradle, Forge and Minecraft dependencies. The production JAR is written to `build/libs/hbm-doors-1.20.1-1.1.0.jar`. Tests live in the separate `gametest` source set and are excluded from this JAR. The optional client smoke test renders an inventory gallery, writes `run/door-gallery.png`, then closes Minecraft.
+On Linux/macOS use `bash gradlew` instead. First builds require Internet access for Gradle, Forge and Minecraft dependencies. The production JAR is written to `build/libs/hbm-doors-1.20.1-1.2.0.jar`. Tests live in the separate `gametest` source set and are excluded from this JAR. The optional client smoke test renders an inventory gallery, writes `run/door-gallery.png`, then closes Minecraft. The world test creates a separate flat test world, places the 11 reported entries, and saves closed/half-open/open screenshots in `run/world-preview`.
 
 See [DEPENDENCY-REPORT.md](DEPENDENCY-REPORT.md) for scope, changes, limitations and validation. [UPSTREAM.txt](UPSTREAM.txt) pins the source commit. [ASSET-MANIFEST.json](ASSET-MANIFEST.json) inventories packaged resources; [UPSTREAM-DEPENDENCIES.json](UPSTREAM-DEPENDENCIES.json) records the original Java import graph.
 

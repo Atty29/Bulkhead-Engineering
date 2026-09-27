@@ -44,8 +44,11 @@ public class AnimatedDoorBlock extends BaseEntityBlock {
  public InteractionResult use(BlockState s,Level l,BlockPos p,Player player,InteractionHand hand,BlockHitResult hit){
   if(l.getBlockEntity(p) instanceof DoorBlockEntity be){if(!l.isClientSide){if(player.isShiftKeyDown())be.cycleVariant(player);else be.toggle();}return InteractionResult.sidedSuccess(l.isClientSide);}return InteractionResult.PASS;
  }
- public VoxelShape getShape(BlockState s,BlockGetter l,BlockPos p,CollisionContext c){return shape(s,l,p,BlockPos.ZERO);}
- public static VoxelShape shape(BlockState s,BlockGetter l,BlockPos p,BlockPos offset){
+ public VoxelShape getShape(BlockState s,BlockGetter l,BlockPos p,CollisionContext c){return outline(s,l,p,BlockPos.ZERO);}
+ public VoxelShape getCollisionShape(BlockState s,BlockGetter l,BlockPos p,CollisionContext c){return shape(s,l,p,BlockPos.ZERO);}
+ public static VoxelShape outline(BlockState s,BlockGetter l,BlockPos p,BlockPos offset){return shapeInternal(s,l,p,offset,true);}
+ public static VoxelShape shape(BlockState s,BlockGetter l,BlockPos p,BlockPos offset){return shapeInternal(s,l,p,offset,false);}
+ private static VoxelShape shapeInternal(BlockState s,BlockGetter l,BlockPos p,BlockPos offset,boolean outline){
   // Neighbor shape queries can occur after the controller state was removed,
   // before its old block entity and linked parts finish being detached.
   if(!(s.getBlock() instanceof AnimatedDoorBlock))return Shapes.empty();
@@ -53,6 +56,19 @@ public class AnimatedDoorBlock extends BaseEntityBlock {
   if(be.isModularBlastDoor())return ModularBlastDoorDecl.shape(be,offset);
   DoorDecl d=be.getDoorDecl();boolean open=be.state==1;
   VoxelShape shape=(open?d.getStructureDefinition().getOpenShapes():d.getStructureDefinition().getClosedShapes()).getOrDefault(offset,Shapes.empty());
+  String id=((AnimatedDoorBlock)s.getBlock()).id;
+  if(id.equals("secure_access_door")){
+   // The original lower full-block row blocked the visibly open, sunken sill.
+   if(open&&offset.getY()==0)shape=Shapes.empty();
+   if(open&&offset.getY()==3)shape=Block.box(0,6,0,16,16,16);
+   if(offset.getY()==4)shape=Shapes.empty();
+  }
+  if(open&&outline&&(id.equals("sliding_seal_door")||id.equals("qe_sliding_door"))){
+   // Retain a clickable top rail and jamb, independently of passage collision.
+   if(id.equals("qe_sliding_door"))shape=offset.getX()==0?Block.box(0,0,6,1,16,10):Block.box(15,0,6,16,16,10);
+   else shape=Shapes.or(Block.box(0,0,6,1,16,10),Block.box(15,0,6,16,16,10));
+   if(offset.getY()==1)shape=Shapes.or(shape,Block.box(0,15,6,16,16,10));
+  }
   final VoxelShape[] result={Shapes.empty()};Direction f=facing(s);
   shape.forAllBoxes((x,y,z,X,Y,Z)->{double a=x-.5,b=z-.5,A=X-.5,B=Z-.5;double loX=a,hiX=A,loZ=b,hiZ=B;
    switch(f){case SOUTH:loX=-A;hiX=-a;loZ=-B;hiZ=-b;break;case WEST:loX=b;hiX=B;loZ=-A;hiZ=-a;break;case EAST:loX=-B;hiX=-b;loZ=a;hiZ=A;break;default:break;}

@@ -16,6 +16,9 @@ import java.util.*;
 @Mod(Doors.ID)
 public class Doors {
  public static final String ID="hbm_doors";
+ private static final BlockSetType STEEL_HATCH=BlockSetType.register(new BlockSetType("hbm_doors:steel",true,SoundType.METAL,
+  BlockSetType.IRON.doorClose(),BlockSetType.IRON.doorOpen(),BlockSetType.IRON.trapdoorClose(),BlockSetType.IRON.trapdoorOpen(),
+  BlockSetType.IRON.pressurePlateClickOff(),BlockSetType.IRON.pressurePlateClickOn(),BlockSetType.IRON.buttonClickOff(),BlockSetType.IRON.buttonClickOn()));
  public static final DeferredRegister<Block> BLOCKS=DeferredRegister.create(ForgeRegistries.BLOCKS,ID);
  public static final DeferredRegister<Item> ITEMS=DeferredRegister.create(ForgeRegistries.ITEMS,ID);
  public static final DeferredRegister<BlockEntityType<?>> ENTITIES=DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES,ID);
@@ -28,7 +31,8 @@ public class Doors {
   register("door_bunker",()->new DoorBlock(BlockBehaviour.Properties.copy(Blocks.NETHERITE_BLOCK).noOcclusion(),BlockSetType.STONE));
   register("door_office",()->new DoorBlock(BlockBehaviour.Properties.copy(Blocks.CHERRY_WOOD).noOcclusion(),BlockSetType.CHERRY));
   register("metal_door",()->new DoorBlock(BlockBehaviour.Properties.copy(Blocks.CHAIN).noOcclusion(),BlockSetType.BIRCH));
-  for(String id:List.of("blast_door","fusion_hatch","seal_hatch","trapdoor_steel"))register(id,()->new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
+  register("blast_door",()->new AnimatedDoorBlock("modular_blast_door"));
+  for(String id:List.of("fusion_hatch","seal_hatch","trapdoor_steel"))register(id,()->new TrapDoorBlock(BlockBehaviour.Properties.copy(Blocks.IRON_TRAPDOOR).noOcclusion(),STEEL_HATCH));
  }
  public static final RegistryObject<BlockEntityType<DoorBlockEntity>> DOOR_ENTITY=ENTITIES.register("door",()->BlockEntityType.Builder.of(DoorBlockEntity::new,DOORS.values().stream().map(RegistryObject::get).filter(b->b instanceof AnimatedDoorBlock).toArray(Block[]::new)).build(null));
  public static final RegistryObject<BlockEntityType<DoorPartEntity>> PART_ENTITY=ENTITIES.register("door_part",()->BlockEntityType.Builder.of(DoorPartEntity::new,PART.get()).build(null));
