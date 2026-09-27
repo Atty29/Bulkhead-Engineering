@@ -1,0 +1,694 @@
+[
+  {
+    "file": "fabric/src/main/java/org/mtr/mod/block/BlockLiftButtons.java",
+    "sha256": "736c804fa1e628438b186853ca60d2cf4d45b74901bf822d5a42ec7b7ce5d696",
+    "imports": [
+      "org.mtr.core.data.Lift",
+      "org.mtr.core.data.LiftDirection",
+      "org.mtr.core.operation.PressLift",
+      "org.mtr.libraries.it.unimi.dsi.fastutil.objects.ObjectOpenHashSet",
+      "org.mtr.mapping.holder.*",
+      "org.mtr.mapping.mapper.BlockEntityExtension",
+      "org.mtr.mapping.mapper.BlockWithEntity",
+      "org.mtr.mapping.mapper.DirectionHelper",
+      "org.mtr.mapping.tool.HolderBase",
+      "org.mtr.mod.Blocks",
+      "org.mtr.mod.Items",
+      "org.mtr.mod.*",
+      "org.mtr.mod.client.MinecraftClientData",
+      "org.mtr.mod.generated.lang.TranslationProvider",
+      "org.mtr.mod.packet.PacketPressLiftButton",
+      "javax.annotation.Nonnull",
+      "java.util.ArrayList",
+      "java.util.List",
+      "java.util.function.Consumer"
+    ]
+  },
+  {
+    "file": "fabric/src/main/java/org/mtr/mod/block/BlockLiftDoor.java",
+    "sha256": "0a5cd6ce97f80551f2144b8214b2d24b543909486eeb886a7846c872011bb074",
+    "imports": [
+      "org.mtr.mapping.holder.BlockPos",
+      "org.mtr.mapping.holder.BlockRenderType",
+      "org.mtr.mapping.holder.BlockState",
+      "org.mtr.mapping.holder.Item",
+      "org.mtr.mapping.mapper.BlockEntityExtension",
+      "org.mtr.mod.BlockEntityTypes",
+      "org.mtr.mod.Items",
+      "javax.annotation.Nonnull"
+    ]
+  },
+  {
+    "file": "fabric/src/main/java/org/mtr/mod/block/BlockLiftDoorOdd.java",
+    "sha256": "1f78fd242535ad25aa9e3bd817316d59843247c5227b03a2b63dc24681a6773f",
+    "imports": [
+      "org.mtr.mapping.holder.*",
+      "org.mtr.mapping.mapper.BlockEntityExtension",
+      "org.mtr.mapping.tool.HolderBase",
+      "org.mtr.mod.BlockEntityTypes",
+      "org.mtr.mod.Items",
+      "javax.annotation.Nonnull",
+      "java.util.List"
+    ]
+  },
+  {
+    "file": "fabric/src/main/java/org/mtr/mod/block/BlockLiftPanelBase.java",
+    "sha256": "83fe51c0859b40b0a6bcc1c2a370a6d7b613368411bcb0ed6c99bc68fbd74158",
+    "imports": [
+      "org.mtr.mapping.holder.*",
+      "org.mtr.mapping.mapper.BlockEntityExtension",
+      "org.mtr.mapping.mapper.BlockExtension",
+      "org.mtr.mapping.mapper.BlockWithEntity",
+      "org.mtr.mapping.mapper.DirectionHelper",
+      "org.mtr.mod.Items",
+      "org.mtr.mod.generated.lang.TranslationProvider",
+      "javax.annotation.Nonnull",
+      "javax.annotation.Nullable",
+      "java.util.List"
+    ]
+  },
+  {
+    "file": "fabric/src/main/java/org/mtr/mod/block/BlockLiftPanelEven1.java",
+    "sha256": "ca1d3ef9448942e1d7b7ca750f9598857d90f9187ca1b60ec1caec6322cc6ba9",
+    "imports": [
+      "org.mtr.mapping.holder.BlockPos",
+      "org.mtr.mapping.holder.BlockState",
+      "org.mtr.mapping.mapper.BlockEntityExtension",
+      "org.mtr.mapping.tool.HolderBase",
+      "org.mtr.mod.BlockEntityTypes",
+      "javax.annotation.Nonnull",
+      "java.util.List"
+    ]
+  },
+  {
+    "file": "fabric/src/main/java/org/mtr/mod/block/BlockLiftPanelEven2.java",
+    "sha256": "d06b83a8be0ee18d0c5de2ef68181a2f6e1e4a927715b3a64b1760a7c852d5f8",
+    "imports": [
+      "org.mtr.mapping.holder.BlockPos",
+      "org.mtr.mapping.holder.BlockState",
+      "org.mtr.mapping.mapper.BlockEntityExtension",
+      "org.mtr.mapping.tool.HolderBase",
+      "org.mtr.mod.BlockEntityTypes",
+      "javax.annotation.Nonnull",
+      "java.util.List"
+    ]
+  },
+  {
+    "file": "fabric/src/main/java/org/mtr/mod/block/BlockLiftPanelOdd1.java",
+    "sha256": "b3ff6d6ee49f57b1eddaed5587d0ac2ee3244ba148c3f56d760c631844980868",
+    "imports": [
+      "org.mtr.mapping.holder.BlockPos",
+      "org.mtr.mapping.holder.BlockState",
+      "org.mtr.mapping.mapper.BlockEntityExtension",
+      "org.mtr.mapping.tool.HolderBase",
+      "org.mtr.mod.BlockEntityTypes",
+      "javax.annotation.Nonnull",
+      "java.util.List"
+    ]
+  },
+  {
+    "file": "fabric/src/main/java/org/mtr/mod/block/BlockLiftPanelOdd2.java",
+    "sha256": "398ff09092ea65bd33a0e1aaf3345d6ea494d8f2d09d2adca6363f3ce4b0f750",
+    "imports": [
+      "org.mtr.mapping.holder.BlockPos",
+      "org.mtr.mapping.holder.BlockState",
+      "org.mtr.mapping.mapper.BlockEntityExtension",
+      "org.mtr.mapping.tool.HolderBase",
+      "org.mtr.mod.BlockEntityTypes",
+      "javax.annotation.Nonnull",
+      "java.util.List"
+    ]
+  },
+  {
+    "file": "fabric/src/main/java/org/mtr/mod/block/BlockLiftTrackBase.java",
+    "sha256": "c7289c022f65a67fcb02ae3207ad9ab648fc0c0e20d7d5872f49fff075874d30",
+    "imports": [
+      "org.mtr.core.tool.Vector",
+      "org.mtr.libraries.it.unimi.dsi.fastutil.objects.ObjectArrayList",
+      "org.mtr.mapping.holder.*",
+      "org.mtr.mapping.mapper.BlockExtension",
+      "org.mtr.mapping.mapper.DirectionHelper",
+      "org.mtr.mapping.tool.HolderBase",
+      "org.mtr.mod.Blocks",
+      "javax.annotation.Nonnull",
+      "java.util.List"
+    ]
+  },
+  {
+    "file": "fabric/src/main/java/org/mtr/mod/block/BlockLiftTrackDiagonal.java",
+    "sha256": "32b85b503d5b2ec8611d1d46e36bb051959e4a5542c451736af739e4ccabb9f1",
+    "imports": [
+      "org.mtr.core.tool.Vector",
+      "org.mtr.libraries.it.unimi.dsi.fastutil.objects.ObjectArrayList",
+      "org.mtr.mapping.holder.*",
+      "org.mtr.mapping.tool.HolderBase",
+      "org.mtr.mod.generated.lang.TranslationProvider",
+      "javax.annotation.Nonnull",
+      "javax.annotation.Nullable",
+      "java.util.List"
+    ]
+  },
+  {
+    "file": "fabric/src/main/java/org/mtr/mod/block/BlockLiftTrackFloor.java",
+    "sha256": "ad54d118273d9f37604c36bbfc51fcdecf2041fc4c54b4d19ddfc3449819846a",
+    "imports": [
+      "org.mtr.libraries.it.unimi.dsi.fastutil.objects.ObjectArrayList",
+      "org.mtr.mapping.holder.*",
+      "org.mtr.mapping.mapper.BlockEntityExtension",
+      "org.mtr.mapping.mapper.BlockWithEntity",
+      "org.mtr.mod.BlockEntityTypes",
+      "org.mtr.mod.Init",
+      "org.mtr.mod.generated.lang.TranslationProvider",
+      "org.mtr.mod.packet.PacketDeleteData",
+      "org.mtr.mod.packet.PacketOpenBlockEntityScreen",
+      "javax.annotation.Nonnull",
+      "javax.annotation.Nullable",
+      "java.util.List"
+    ]
+  },
+  {
+    "file": "fabric/src/main/java/org/mtr/mod/block/BlockLiftTrackHorizontal.java",
+    "sha256": "f0d020f0d79ae51179a0a6511b48f38c2fcfb42c233197f14e152fcd60b289a1",
+    "imports": [
+      "org.mtr.libraries.it.unimi.dsi.fastutil.objects.ObjectArrayList",
+      "org.mtr.mapping.holder.*",
+      "org.mtr.mod.generated.lang.TranslationProvider",
+      "javax.annotation.Nonnull",
+      "javax.annotation.Nullable",
+      "java.util.List"
+    ]
+  },
+  {
+    "file": "fabric/src/main/java/org/mtr/mod/block/BlockLiftTrackVertical.java",
+    "sha256": "8d475db0659930faf47f60df16ed8b7548323d981ab0d3eb9e34dde43e720b5c",
+    "imports": [
+      "org.mtr.libraries.it.unimi.dsi.fastutil.objects.ObjectArrayList",
+      "org.mtr.mapping.holder.*",
+      "org.mtr.mod.generated.lang.TranslationProvider",
+      "javax.annotation.Nonnull",
+      "javax.annotation.Nullable",
+      "java.util.List"
+    ]
+  },
+  {
+    "file": "fabric/src/main/java/org/mtr/mod/item/ItemLiftButtonsLinkModifier.java",
+    "sha256": "dc25ccbadb03f3efb9a9502df3b6aa7d7ffd77d68c49f66d480a60b239ce4785",
+    "imports": [
+      "org.mtr.mapping.holder.*",
+      "org.mtr.mod.block.BlockLiftButtons",
+      "org.mtr.mod.block.BlockLiftPanelBase",
+      "org.mtr.mod.block.BlockLiftTrackFloor"
+    ]
+  },
+  {
+    "file": "fabric/src/main/java/org/mtr/mod/item/ItemLiftRefresher.java",
+    "sha256": "719422c28010525b1f4ed78bf1312f39f066d8b073151f9f32744ecebe5a1eea",
+    "imports": [
+      "org.mtr.core.data.Lift",
+      "org.mtr.core.data.LiftFloor",
+      "org.mtr.core.data.Position",
+      "org.mtr.core.servlet.OperationProcessor",
+      "org.mtr.core.tool.Utilities",
+      "org.mtr.core.tool.Vector",
+      "org.mtr.libraries.it.unimi.dsi.fastutil.objects.ObjectArrayList",
+      "org.mtr.libraries.it.unimi.dsi.fastutil.objects.ObjectOpenHashSet",
+      "org.mtr.mapping.holder.*",
+      "org.mtr.mapping.mapper.DirectionHelper",
+      "org.mtr.mapping.mapper.ItemExtension",
+      "org.mtr.mapping.mapper.TextHelper",
+      "org.mtr.mod.Init",
+      "org.mtr.mod.block.BlockLiftTrackBase",
+      "org.mtr.mod.block.BlockLiftTrackFloor",
+      "org.mtr.mod.client.CustomResourceLoader",
+      "org.mtr.mod.client.MinecraftClientData",
+      "org.mtr.mod.generated.lang.TranslationProvider",
+      "org.mtr.mod.packet.PacketOpenLiftCustomizationScreen",
+      "javax.annotation.Nonnull",
+      "javax.annotation.Nullable"
+    ]
+  },
+  {
+    "file": "fabric/src/main/java/org/mtr/mod/model/ModelLift1.java",
+    "sha256": "c141a7edb264ad1a19bcb7bea2b4c109c42e3d0d8d9b6f04506f6e453c15d7d2",
+    "imports": [
+      "org.mtr.mapping.holder.OverlayTexture",
+      "org.mtr.mapping.mapper.GraphicsHolder",
+      "org.mtr.mapping.mapper.ModelPartExtension",
+      "org.mtr.mod.Keys",
+      "org.mtr.mod.client.DoorAnimationType",
+      "org.mtr.mod.resource.RenderStage"
+    ]
+  },
+  {
+    "file": "fabric/src/main/java/org/mtr/mod/packet/PacketOpenLiftCustomizationScreen.java",
+    "sha256": "1208589a1e2fc36ad2a843f58a756ff9cde7d77c584c3dd07b20dec352329751",
+    "imports": [
+      "org.mtr.mapping.holder.BlockPos",
+      "org.mtr.mapping.registry.PacketHandler",
+      "org.mtr.mapping.tool.PacketBufferReceiver",
+      "org.mtr.mapping.tool.PacketBufferSender"
+    ]
+  },
+  {
+    "file": "fabric/src/main/java/org/mtr/mod/packet/PacketPressLiftButton.java",
+    "sha256": "d681b107d74aaf0fe343a1c02d053c5d4d66a2eb5128fa1515a3402a99f50717",
+    "imports": [
+      "org.mtr.core.operation.PressLift",
+      "org.mtr.core.serializer.JsonReader",
+      "org.mtr.core.serializer.SerializedDataBase",
+      "org.mtr.core.servlet.OperationProcessor",
+      "org.mtr.core.tool.Utilities",
+      "org.mtr.mapping.tool.PacketBufferReceiver",
+      "javax.annotation.Nonnull"
+    ]
+  },
+  {
+    "file": "fabric/src/main/java/org/mtr/mod/packet/PacketUpdateLiftTrackFloorConfig.java",
+    "sha256": "44017d032ad14fdeb42c6d62c1a2ef60eff059a7832d1ce492a241cae2d7eee6",
+    "imports": [
+      "org.mtr.mapping.holder.BlockEntity",
+      "org.mtr.mapping.holder.BlockPos",
+      "org.mtr.mapping.holder.MinecraftServer",
+      "org.mtr.mapping.holder.ServerPlayerEntity",
+      "org.mtr.mapping.registry.PacketHandler",
+      "org.mtr.mapping.tool.PacketBufferReceiver",
+      "org.mtr.mapping.tool.PacketBufferSender",
+      "org.mtr.mod.Init",
+      "org.mtr.mod.block.BlockLiftTrackFloor"
+    ]
+  },
+  {
+    "file": "fabric/src/main/java/org/mtr/mod/packet/PacketUpdateVehiclesLifts.java",
+    "sha256": "d544207d235376a74a2a384892d0a007f2036f4e302e38085f8a707e5fa27a99",
+    "imports": [
+      "org.mtr.core.data.NameColorDataBase",
+      "org.mtr.core.data.PathData",
+      "org.mtr.core.operation.VehicleLiftResponse",
+      "org.mtr.core.serializer.JsonReader",
+      "org.mtr.core.serializer.ReaderBase",
+      "org.mtr.core.serializer.SerializedDataBase",
+      "org.mtr.core.serializer.WriterBase",
+      "org.mtr.core.servlet.OperationProcessor",
+      "org.mtr.core.tool.Utilities",
+      "org.mtr.libraries.it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap",
+      "org.mtr.libraries.it.unimi.dsi.fastutil.longs.LongAVLTreeSet",
+      "org.mtr.libraries.it.unimi.dsi.fastutil.objects.ObjectArrayList",
+      "org.mtr.libraries.it.unimi.dsi.fastutil.objects.ObjectArraySet",
+      "org.mtr.mapping.mapper.EntityHelper",
+      "org.mtr.mapping.tool.PacketBufferReceiver",
+      "org.mtr.mod.client.MinecraftClientData",
+      "org.mtr.mod.data.VehicleExtension",
+      "org.mtr.mod.render.RenderVehicles",
+      "javax.annotation.Nonnull",
+      "java.util.function.Consumer",
+      "java.util.function.Function",
+      "java.util.function.LongConsumer",
+      "java.util.function.ToLongFunction"
+    ]
+  },
+  {
+    "file": "fabric/src/main/java/org/mtr/mod/render/RenderLiftButtons.java",
+    "sha256": "5cdc7a39c6529ad2777812d8ccd9ce6a79595a2ad1ad7899be5e6f7ceb884ac0",
+    "imports": [
+      "org.mtr.core.data.Lift",
+      "org.mtr.core.data.LiftDirection",
+      "org.mtr.libraries.it.unimi.dsi.fastutil.objects.ObjectArrayList",
+      "org.mtr.libraries.it.unimi.dsi.fastutil.objects.ObjectArraySet",
+      "org.mtr.libraries.it.unimi.dsi.fastutil.objects.ObjectObjectImmutablePair",
+      "org.mtr.mapping.holder.*",
+      "org.mtr.mapping.mapper.BlockEntityRenderer",
+      "org.mtr.mapping.mapper.DirectionHelper",
+      "org.mtr.mapping.mapper.GraphicsHolder",
+      "org.mtr.mapping.mapper.PlayerHelper",
+      "org.mtr.mod.Init",
+      "org.mtr.mod.block.BlockLiftButtons",
+      "org.mtr.mod.block.BlockLiftTrackFloor",
+      "org.mtr.mod.block.IBlock",
+      "org.mtr.mod.client.IDrawing",
+      "org.mtr.mod.data.IGui",
+      "org.mtr.mod.item.ItemLiftButtonsLinkModifier",
+      "java.util.Comparator"
+    ]
+  },
+  {
+    "file": "fabric/src/main/java/org/mtr/mod/render/RenderLiftPanel.java",
+    "sha256": "043cd0b25edea9ac2f2e0fac44e17d4b6a90116c783ce54b4eaf7c8e74406656",
+    "imports": [
+      "org.mtr.core.data.Lift",
+      "org.mtr.core.data.LiftDirection",
+      "org.mtr.libraries.it.unimi.dsi.fastutil.objects.ObjectObjectImmutablePair",
+      "org.mtr.mapping.holder.*",
+      "org.mtr.mapping.mapper.BlockEntityRenderer",
+      "org.mtr.mapping.mapper.DirectionHelper",
+      "org.mtr.mapping.mapper.GraphicsHolder",
+      "org.mtr.mapping.mapper.PlayerHelper",
+      "org.mtr.mod.Init",
+      "org.mtr.mod.InitClient",
+      "org.mtr.mod.block.BlockLiftButtons",
+      "org.mtr.mod.block.BlockLiftPanelBase",
+      "org.mtr.mod.block.BlockLiftTrackFloor",
+      "org.mtr.mod.block.IBlock",
+      "org.mtr.mod.client.DynamicTextureCache",
+      "org.mtr.mod.client.IDrawing",
+      "org.mtr.mod.client.MinecraftClientData",
+      "org.mtr.mod.data.IGui",
+      "org.mtr.mod.item.ItemLiftButtonsLinkModifier"
+    ]
+  },
+  {
+    "file": "fabric/src/main/java/org/mtr/mod/render/RenderLifts.java",
+    "sha256": "6388e8c4c7dc7df845912ac98cc63dd40b521d813e9765431a0ab7579b4a4936",
+    "imports": [
+      "com.logisticscraft.occlusionculling.OcclusionCullingInstance",
+      "com.logisticscraft.occlusionculling.util.Vec3d",
+      "org.mtr.core.data.Lift",
+      "org.mtr.core.data.LiftDirection",
+      "org.mtr.core.data.LiftFloor",
+      "org.mtr.core.data.Position",
+      "org.mtr.core.tool.Vector",
+      "org.mtr.libraries.it.unimi.dsi.fastutil.ints.IntObjectImmutablePair",
+      "org.mtr.libraries.it.unimi.dsi.fastutil.objects.ObjectArrayList",
+      "org.mtr.libraries.it.unimi.dsi.fastutil.objects.ObjectBooleanImmutablePair",
+      "org.mtr.libraries.it.unimi.dsi.fastutil.objects.ObjectObjectImmutablePair",
+      "org.mtr.mapping.holder.*",
+      "org.mtr.mapping.mapper.GraphicsHolder",
+      "org.mtr.mapping.mapper.OptimizedRenderer",
+      "org.mtr.mod.Init",
+      "org.mtr.mod.Items",
+      "org.mtr.mod.block.BlockLiftTrackFloor",
+      "org.mtr.mod.client.CustomResourceLoader",
+      "org.mtr.mod.client.IDrawing",
+      "org.mtr.mod.client.MinecraftClientData",
+      "org.mtr.mod.client.VehicleRidingMovement",
+      "org.mtr.mod.data.IGui",
+      "org.mtr.mod.item.ItemLiftRefresher",
+      "org.mtr.mod.model.ModelLift1",
+      "org.mtr.mod.model.ModelSmallCube",
+      "org.mtr.mod.resource.LiftResource",
+      "javax.annotation.Nullable",
+      "java.util.function.Function"
+    ]
+  },
+  {
+    "file": "fabric/src/main/java/org/mtr/mod/resource/LiftResource.java",
+    "sha256": "57f236ba43b6f6159775d9ddf5bc502bb809912f3f26c34aa528f43f025ca0ad",
+    "imports": [
+      "org.mtr.core.serializer.ReaderBase",
+      "org.mtr.mapping.holder.Identifier",
+      "org.mtr.mapping.mapper.TextHelper",
+      "org.mtr.mod.generated.resource.LiftResourceSchema"
+    ]
+  },
+  {
+    "file": "fabric/src/main/java/org/mtr/mod/screen/LiftCustomizationScreen.java",
+    "sha256": "d7de51fb89467db52c4079373d8253f093bb6efb296ce1489421dfdd9b75da4d",
+    "imports": [
+      "org.mtr.core.data.Lift",
+      "org.mtr.core.operation.UpdateDataRequest",
+      "org.mtr.core.tool.Angle",
+      "org.mtr.mapping.holder.*",
+      "org.mtr.mapping.mapper.*",
+      "org.mtr.mod.InitClient",
+      "org.mtr.mod.client.IDrawing",
+      "org.mtr.mod.client.MinecraftClientData",
+      "org.mtr.mod.data.IGui",
+      "org.mtr.mod.generated.lang.TranslationProvider",
+      "org.mtr.mod.packet.PacketUpdateData",
+      "org.mtr.mod.render.RenderLifts"
+    ]
+  },
+  {
+    "file": "fabric/src/main/java/org/mtr/mod/screen/LiftSelectionScreen.java",
+    "sha256": "0203b33e51b23e06fd65806e84a1e4d726b14d5d6bd3c4e9d80d1fcde25ed22d",
+    "imports": [
+      "org.mtr.core.data.Lift",
+      "org.mtr.core.data.LiftDirection",
+      "org.mtr.core.operation.PressLift",
+      "org.mtr.libraries.it.unimi.dsi.fastutil.objects.ObjectArrayList",
+      "org.mtr.libraries.it.unimi.dsi.fastutil.objects.ObjectObjectImmutablePair",
+      "org.mtr.mapping.holder.BlockPos",
+      "org.mtr.mapping.holder.ClientWorld",
+      "org.mtr.mapping.holder.MinecraftClient",
+      "org.mtr.mapping.holder.World",
+      "org.mtr.mapping.mapper.GraphicsHolder",
+      "org.mtr.mod.Init",
+      "org.mtr.mod.InitClient",
+      "org.mtr.mod.client.MinecraftClientData",
+      "org.mtr.mod.data.IGui",
+      "org.mtr.mod.packet.PacketPressLiftButton",
+      "org.mtr.mod.render.RenderLifts"
+    ]
+  },
+  {
+    "file": "fabric/src/main/java/org/mtr/mod/screen/LiftStyleSelectorScreen.java",
+    "sha256": "ddd678ce15998e917251584a6fb20febc74f68b17e3bc756c61b2b079d728f3b",
+    "imports": [
+      "org.mtr.core.data.Lift",
+      "org.mtr.core.operation.UpdateDataRequest",
+      "org.mtr.libraries.it.unimi.dsi.fastutil.longs.LongArrayList",
+      "org.mtr.libraries.it.unimi.dsi.fastutil.objects.ObjectArrayList",
+      "org.mtr.libraries.it.unimi.dsi.fastutil.objects.ObjectImmutableList",
+      "org.mtr.mapping.holder.ClientPlayerEntity",
+      "org.mtr.mapping.holder.MinecraftClient",
+      "org.mtr.mapping.mapper.ScreenExtension",
+      "org.mtr.mod.InitClient",
+      "org.mtr.mod.client.CustomResourceLoader",
+      "org.mtr.mod.client.MinecraftClientData",
+      "org.mtr.mod.packet.PacketUpdateData",
+      "org.mtr.mod.resource.LiftResource",
+      "java.util.Objects"
+    ]
+  },
+  {
+    "file": "fabric/src/main/java/org/mtr/mod/screen/LiftTrackFloorScreen.java",
+    "sha256": "e21203ddcfbcad48bcde2e11fc8febdbef09e626dbc13a11185c5245153caae4",
+    "imports": [
+      "org.mtr.mapping.holder.*",
+      "org.mtr.mapping.mapper.CheckboxWidgetExtension",
+      "org.mtr.mapping.mapper.GraphicsHolder",
+      "org.mtr.mapping.mapper.TextFieldWidgetExtension",
+      "org.mtr.mapping.tool.TextCase",
+      "org.mtr.mod.InitClient",
+      "org.mtr.mod.block.BlockLiftTrackFloor",
+      "org.mtr.mod.client.IDrawing",
+      "org.mtr.mod.data.IGui",
+      "org.mtr.mod.generated.lang.TranslationProvider",
+      "org.mtr.mod.packet.PacketUpdateLiftTrackFloorConfig"
+    ]
+  },
+  {
+    "file": "fabric/src/main/java/org/mtr/mod/block/BlockEscalatorBase.java",
+    "sha256": "ce0bd6bc7d5321665a8a764e8af057e0f1bba95c545c2027ecbf17bdbe63a061",
+    "imports": [
+      "org.mtr.mapping.holder.*",
+      "org.mtr.mapping.mapper.BlockExtension",
+      "org.mtr.mapping.mapper.DirectionHelper",
+      "org.mtr.mod.Items",
+      "javax.annotation.Nonnull"
+    ]
+  },
+  {
+    "file": "fabric/src/main/java/org/mtr/mod/block/BlockEscalatorSide.java",
+    "sha256": "cb35b1f39095ff0a1215af597c4ce05063684ef1b592f4f7f6035bffb0458ee6",
+    "imports": [
+      "org.mtr.mapping.holder.*",
+      "org.mtr.mapping.tool.HolderBase",
+      "javax.annotation.Nonnull",
+      "java.util.List"
+    ]
+  },
+  {
+    "file": "fabric/src/main/java/org/mtr/mod/block/BlockEscalatorStep.java",
+    "sha256": "eb4130a7ba20d852e6d3088670d7ccaf4ad61d9b5b8c35c78b8cb7dfbea85578",
+    "imports": [
+      "org.mtr.mapping.holder.*",
+      "org.mtr.mapping.tool.HolderBase",
+      "javax.annotation.Nonnull",
+      "java.util.List"
+    ]
+  },
+  {
+    "file": "fabric/src/main/java/org/mtr/mod/item/ItemEscalator.java",
+    "sha256": "e336d1a0081f6f737dd6fe0e827618b5f4b197e58d290e1ed7510caf177d0c8f",
+    "imports": [
+      "org.mtr.mapping.holder.*",
+      "org.mtr.mapping.mapper.ItemExtension",
+      "org.mtr.mod.Blocks",
+      "org.mtr.mod.block.BlockEscalatorBase",
+      "org.mtr.mod.block.BlockEscalatorSide",
+      "org.mtr.mod.block.BlockEscalatorStep",
+      "org.mtr.mod.block.IBlock",
+      "javax.annotation.Nonnull"
+    ]
+  },
+  {
+    "file": "fabric/src/main/java/org/mtr/mod/block/BlockPSDAPGDoorBase.java",
+    "sha256": "05d405d5603c514f552caf36d84c8f3132c799dcda9c504cfc81202e0849c7f7",
+    "imports": [
+      "org.mtr.core.data.Vehicle",
+      "org.mtr.core.tool.Utilities",
+      "org.mtr.mapping.holder.*",
+      "org.mtr.mapping.mapper.BlockEntityExtension",
+      "org.mtr.mapping.mapper.BlockWithEntity",
+      "org.mtr.mapping.tool.HolderBase",
+      "org.mtr.mod.data.IGui",
+      "org.mtr.mod.generated.lang.TranslationProvider",
+      "org.mtr.mod.render.RenderVehicleHelper",
+      "javax.annotation.Nonnull",
+      "javax.annotation.Nullable",
+      "java.util.List"
+    ],
+    "role": "Shared helper inspected; replaced or reduced in standalone port"
+  },
+  {
+    "file": "fabric/src/main/java/org/mtr/mod/block/BlockWaterloggable.java",
+    "sha256": "f69e09996942556f6fac7e2d0575ffb487922d30eda41ec718ca53d295ccb1c0",
+    "imports": [
+      "org.mtr.mapping.holder.*",
+      "org.mtr.mapping.mapper.BlockExtension",
+      "org.mtr.mapping.mapper.SlabBlockExtension",
+      "org.mtr.mapping.tool.HolderBase",
+      "javax.annotation.Nonnull",
+      "java.util.List"
+    ],
+    "role": "Shared helper inspected; replaced or reduced in standalone port"
+  },
+  {
+    "file": "fabric/src/main/java/org/mtr/mod/block/TripleHorizontalBlock.java",
+    "sha256": "f94b4125e412f0b34f197c7645c9c0e17c303802d9744e9c6da3e8e8c4350a86",
+    "imports": [
+      "org.mtr.mapping.holder.*",
+      "org.mtr.mapping.mapper.DirectionHelper",
+      "javax.annotation.Nonnull",
+      "javax.annotation.Nullable"
+    ],
+    "role": "Shared helper inspected; replaced or reduced in standalone port"
+  },
+  {
+    "file": "fabric/src/main/java/org/mtr/mod/render/RenderPSDAPGDoor.java",
+    "sha256": "21b1c7f0b600fc2322f32d147acb0a48e8da2d8417bc67b701d32c6742d3bded",
+    "imports": [
+      "org.mtr.mapping.holder.*",
+      "org.mtr.mapping.mapper.BlockEntityRenderer",
+      "org.mtr.mapping.mapper.EntityModelExtension",
+      "org.mtr.mapping.mapper.GraphicsHolder",
+      "org.mtr.mapping.mapper.ModelPartExtension",
+      "org.mtr.mod.Init",
+      "org.mtr.mod.block.*",
+      "org.mtr.mod.data.IGui"
+    ],
+    "role": "Shared helper inspected; replaced or reduced in standalone port"
+  },
+  {
+    "file": "fabric/src/main/java/org/mtr/mod/model/ModelTrainBase.java",
+    "sha256": "f3a95463e37f162c7df7d8ad0aa2811f9181f30a105be6605cf548167b8cf5df",
+    "imports": [
+      "org.mtr.core.data.InterchangeColorsForStationName",
+      "org.mtr.core.data.NameColorDataBase",
+      "org.mtr.libraries.it.unimi.dsi.fastutil.objects.ObjectArrayList",
+      "org.mtr.mapping.holder.EntityAbstractMapping",
+      "org.mtr.mapping.holder.Identifier",
+      "org.mtr.mapping.holder.OverlayTexture",
+      "org.mtr.mapping.mapper.EntityModelExtension",
+      "org.mtr.mapping.mapper.GraphicsHolder",
+      "org.mtr.mapping.mapper.ModelPartExtension",
+      "org.mtr.mod.InitClient",
+      "org.mtr.mod.client.DoorAnimationType",
+      "org.mtr.mod.client.ScrollingText",
+      "org.mtr.mod.data.IGui",
+      "org.mtr.mod.data.VehicleExtension",
+      "org.mtr.mod.render.MainRenderer",
+      "org.mtr.mod.render.QueuedRenderLayer",
+      "org.mtr.mod.render.StoredMatrixTransformations",
+      "org.mtr.mod.resource.RenderStage",
+      "javax.annotation.Nullable",
+      "java.util.ArrayList",
+      "java.util.List",
+      "java.util.function.BiConsumer",
+      "java.util.function.Consumer"
+    ],
+    "role": "Shared helper inspected; replaced or reduced in standalone port"
+  },
+  {
+    "file": "fabric/src/main/java/org/mtr/mod/client/VehicleRidingMovement.java",
+    "sha256": "dea53dee559f96b23e340babf7cbd6b2a1877eca8e54072c36e5ee5bba1f49dd",
+    "imports": [
+      "org.apache.commons.lang3.StringUtils",
+      "org.mtr.core.tool.Utilities",
+      "org.mtr.libraries.it.unimi.dsi.fastutil.ints.IntObjectImmutablePair",
+      "org.mtr.libraries.it.unimi.dsi.fastutil.objects.ObjectArrayList",
+      "org.mtr.libraries.it.unimi.dsi.fastutil.objects.ObjectBooleanImmutablePair",
+      "org.mtr.libraries.it.unimi.dsi.fastutil.objects.ObjectObjectImmutablePair",
+      "org.mtr.mapping.holder.*",
+      "org.mtr.mapping.mapper.EntityHelper",
+      "org.mtr.mod.InitClient",
+      "org.mtr.mod.KeyBindings",
+      "org.mtr.mod.generated.lang.TranslationProvider",
+      "org.mtr.mod.item.ItemDepotDriverKey",
+      "org.mtr.mod.item.ItemDriverKey",
+      "org.mtr.mod.packet.PacketUpdateVehicleRidingEntities",
+      "org.mtr.mod.render.PositionAndRotation",
+      "org.mtr.mod.render.RenderVehicleHelper",
+      "org.mtr.mod.screen.LiftSelectionScreen",
+      "javax.annotation.Nullable",
+      "java.util.Comparator"
+    ],
+    "role": "Shared helper inspected; replaced or reduced in standalone port"
+  },
+  {
+    "file": "fabric/src/main/java/org/mtr/mod/client/MinecraftClientData.java",
+    "sha256": "239006cf89152febd8fade1c464eb477c652d95fba2911ee273cbb2f35f5b87c",
+    "imports": [
+      "com.logisticscraft.occlusionculling.util.Vec3d",
+      "org.mtr.core.data.*",
+      "org.mtr.core.data.Position",
+      "org.mtr.libraries.it.unimi.dsi.fastutil.longs.Long2ObjectAVLTreeMap",
+      "org.mtr.libraries.it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap",
+      "org.mtr.libraries.it.unimi.dsi.fastutil.longs.LongAVLTreeSet",
+      "org.mtr.libraries.it.unimi.dsi.fastutil.longs.LongArrayList",
+      "org.mtr.libraries.it.unimi.dsi.fastutil.objects.*",
+      "org.mtr.mapping.holder.*",
+      "org.mtr.mapping.mapper.EntityHelper",
+      "org.mtr.mod.Init",
+      "org.mtr.mod.block.BlockNode",
+      "org.mtr.mod.data.PersistentVehicleData",
+      "org.mtr.mod.data.VehicleExtension",
+      "org.mtr.mod.screen.DashboardListItem",
+      "javax.annotation.Nullable",
+      "java.util.Map",
+      "java.util.function.Function",
+      "java.util.stream.Collectors"
+    ],
+    "role": "Shared helper inspected; replaced or reduced in standalone port"
+  },
+  {
+    "file": "fabric/src/main/java/org/mtr/mod/client/DynamicTextureCache.java",
+    "sha256": "6399b26e5feeb12b6385c4c4acd8f11fe214efa56175902c6176033d345c8e57",
+    "imports": [
+      "org.mtr.core.servlet.MessageQueue",
+      "org.mtr.libraries.it.unimi.dsi.fastutil.objects.Object2LongArrayMap",
+      "org.mtr.libraries.it.unimi.dsi.fastutil.objects.Object2ObjectLinkedOpenHashMap",
+      "org.mtr.libraries.it.unimi.dsi.fastutil.objects.ObjectArrayList",
+      "org.mtr.libraries.it.unimi.dsi.fastutil.objects.ObjectOpenHashSet",
+      "org.mtr.mapping.holder.*",
+      "org.mtr.mapping.mapper.ResourceManagerHelper",
+      "org.mtr.mod.Init",
+      "org.mtr.mod.config.Config",
+      "org.mtr.mod.config.LanguageDisplay",
+      "org.mtr.mod.data.IGui",
+      "org.mtr.mod.render.MainRenderer",
+      "org.mtr.mod.render.MoreRenderLayers",
+      "javax.annotation.Nullable",
+      "java.awt.*",
+      "java.awt.font.FontRenderContext",
+      "java.awt.font.TextAttribute",
+      "java.awt.geom.AffineTransform",
+      "java.awt.image.BufferedImage",
+      "java.awt.image.DataBufferByte",
+      "java.text.AttributedString",
+      "java.util.Arrays",
+      "java.util.function.Supplier"
+    ],
+    "role": "Shared helper inspected; replaced or reduced in standalone port"
+  }
+]

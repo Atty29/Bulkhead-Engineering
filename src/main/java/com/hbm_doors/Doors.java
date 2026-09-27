@@ -36,10 +36,10 @@ public class Doors {
  }
  public static final RegistryObject<BlockEntityType<DoorBlockEntity>> DOOR_ENTITY=ENTITIES.register("door",()->BlockEntityType.Builder.of(DoorBlockEntity::new,DOORS.values().stream().map(RegistryObject::get).filter(b->b instanceof AnimatedDoorBlock).toArray(Block[]::new)).build(null));
  public static final RegistryObject<BlockEntityType<DoorPartEntity>> PART_ENTITY=ENTITIES.register("door_part",()->BlockEntityType.Builder.of(DoorPartEntity::new,PART.get()).build(null));
- static { TABS.register("doors",()->CreativeModeTab.builder().title(Component.translatable("itemGroup.hbm_doors")).icon(()->new ItemStack(DOORS.get("vault_door").get())).displayItems((p,o)->DOORS.values().forEach(b->o.accept(b.get()))).build()); }
+ static { TABS.register("doors",()->CreativeModeTab.builder().title(Component.translatable("itemGroup.hbm_doors")).icon(()->new ItemStack(DOORS.get("vault_door").get())).displayItems((p,o)->{DOORS.values().forEach(b->o.accept(b.get()));com.hbm_doors.mobility.Mobility.creative(o);}).build()); }
  private static void register(String id,java.util.function.Supplier<Block> factory){
   RegistryObject<Block> b=BLOCKS.register(id,factory);DOORS.put(id,b);
   ITEMS.register(id,()->b.get() instanceof AnimatedDoorBlock ? new DoorItem(b.get()) : new BlockItem(b.get(),new Item.Properties()));
  }
- public Doors(){net.minecraftforge.fml.ModLoadingContext.get().registerConfig(net.minecraftforge.fml.config.ModConfig.Type.SERVER,DoorConfig.SPEC);var bus=FMLJavaModLoadingContext.get().getModEventBus();BLOCKS.register(bus);ITEMS.register(bus);ENTITIES.register(bus);TABS.register(bus);ModSounds.REG.register(bus);}
+ public Doors(){net.minecraftforge.fml.ModLoadingContext.get().registerConfig(net.minecraftforge.fml.config.ModConfig.Type.SERVER,DoorConfig.SPEC);var bus=FMLJavaModLoadingContext.get().getModEventBus();com.hbm_doors.mobility.Mobility.init(bus);BLOCKS.register(bus);ITEMS.register(bus);ENTITIES.register(bus);TABS.register(bus);ModSounds.REG.register(bus);}
 }

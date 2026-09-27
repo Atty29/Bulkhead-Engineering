@@ -1,8 +1,8 @@
 # HBM Doors Standalone
 
-Minecraft **1.20.1**, Forge **47.4.20**, Java **17**. Install the built JAR in the `mods` folder on both the client and server. HBM, Architectury, Cloth Config, Create and other third-party mods are not required.
+Minecraft **1.20.1**, Forge **47.4.20**, Java **17**. Install the built JAR in the `mods` folder on both the client and server. HBM, MTR, Architectury, Cloth Config, Create and other third-party mods are not required.
 
-Includes 14 animated door/hatch types, three conventional doors, and three functional metal hatches. The formerly decorative Blast Door entry now places the modular blast door. Version **1.3.0** adds the global redstone-only setting described below. Version 1.2.0 fixes model alignment, animations, open-door targeting, collision, and the vault label; see [FIXES-1.2.0.md](FIXES-1.2.0.md).
+Includes 14 animated door/hatch types, three conventional doors, and three functional metal hatches. The formerly decorative Blast Door entry now places the modular blast door. Version **2.0.0** adds MTR lifts and escalators; see [MTR-PORT.md](MTR-PORT.md) for setup and port differences. Version **1.3.0** adds the global redstone-only setting described below. Version 1.2.0 fixes model alignment, animations, open-door targeting, collision, and the vault label; see [FIXES-1.2.0.md](FIXES-1.2.0.md).
 
 The new **Modular Sliding Blast Door** from HBM 1.12 forms linked walls of seven-block-tall sections. See [PORT-112.md](PORT-112.md) for its pulse-redstone controls and crafting recipe.
 
@@ -40,12 +40,15 @@ gradlew.bat build
 gradlew.bat runGameTestServer
 gradlew.bat runClient -PdoorSmokeTest
 gradlew.bat runClient -PdoorWorldTest
+gradlew.bat runClient -PmobilitySmokeTest
 ```
 
-On Linux/macOS use `bash gradlew` instead. First builds require Internet access for Gradle, Forge and Minecraft dependencies. The production JAR is written to `build/libs/hbm-doors-1.20.1-1.3.0.jar`. Tests live in the separate `gametest` source set and are excluded from this JAR. The optional client smoke test renders an inventory gallery, writes `run/door-gallery.png`, then closes Minecraft. The world test creates a separate flat test world, places the 11 reported entries, and saves closed/half-open/open screenshots in `run/world-preview`.
+On Linux/macOS use `bash gradlew` instead. First builds require Internet access for Gradle, Forge and Minecraft dependencies. The production JAR is written to `build/libs/hbm-doors-1.20.1-2.0.0.jar`. Tests live in the separate `gametest` source set and are excluded from this JAR. The optional client smoke test renders an inventory gallery, writes `run/door-gallery.png`, then closes Minecraft. The world test creates a separate flat test world, places the 11 reported entries, and saves closed/half-open/open screenshots in `run/world-preview`.
 
 See [DEPENDENCY-REPORT.md](DEPENDENCY-REPORT.md) for scope, changes, limitations and validation. [UPSTREAM.txt](UPSTREAM.txt) pins the source commit. [ASSET-MANIFEST.json](ASSET-MANIFEST.json) inventories packaged resources; [UPSTREAM-DEPENDENCIES.json](UPSTREAM-DEPENDENCIES.json) records the original Java import graph.
 
 This is an independent extraction, not an official HBM release. Original code/assets remain credited to the HBM-Modernized contributors and their upstream authors. Distributed under the repository's GPLv3 license; see [LICENSE](LICENSE) and [NOTICE](NOTICE).
 
 ![Modular blast door closed, halfway open and open](docs/modular-blast-door-preview.png)
+
+![MTR lifts and escalators in the standalone pack](docs/lifts-escalators-preview.png)

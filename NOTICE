@@ -17,3 +17,12 @@ by the HBM-Modernized project is implied.
 Version 1.1.0 includes the modular blast door from Hamster-Systems HBM 1.12.
 Original HBM contributors retain authorship of its models, textures and sounds.
 See UPSTREAM-112.txt and licenses/ for provenance and license copies.
+
+Version 2.0.0 includes lift and escalator models/textures and adapted model
+code from Minecraft Transit Railway, Copyright (c) 2022 Jonathan Ho, MIT.
+Source: https://github.com/Minecraft-Transit-Railway/Minecraft-Transit-Railway
+Commit: 739dba4488fd17aaee9a601276387e315876f39e
+The MIT notice is preserved in licenses/MTR-MIT.txt. New Forge lift route,
+entity, collision, networking, UI and integration code replaces MTR's
+shared railway simulator. See MTR-PORT.md for differences.
+No endorsement by Minecraft Transit Railway is implied.

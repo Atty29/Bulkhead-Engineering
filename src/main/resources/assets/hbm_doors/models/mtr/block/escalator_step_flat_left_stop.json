@@ -1,0 +1,6 @@
+{
+  "parent": "hbm_doors:mtr/block/escalator_step_flat_left_base",
+  "textures": {
+    "step": "hbm_doors:mtr/block/escalator_stop"
+  }
+}

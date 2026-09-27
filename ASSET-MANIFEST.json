@@ -20,6 +20,14 @@
     "sha256": "cd25ac6ba1c3420dac6c47cb67b13ae84dee7a26cb9bf5bdf1fe28299da04b9d"
   },
   {
+    "path": "src/main/resources/assets/hbm_doors/blockstates/escalator_side.json",
+    "sha256": "2b5a8b444321047f9fcf2157d54ad93a04c18e7800169621b055513e5954bb57"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/blockstates/escalator_step.json",
+    "sha256": "e4e34d5eb958e841139b9677b20a6b4d364b88aaeb77808e2b20420efa90b44c"
+  },
+  {
     "path": "src/main/resources/assets/hbm_doors/blockstates/fire_door.json",
     "sha256": "cd25ac6ba1c3420dac6c47cb67b13ae84dee7a26cb9bf5bdf1fe28299da04b9d"
   },
@@ -30,6 +38,50 @@
   {
     "path": "src/main/resources/assets/hbm_doors/blockstates/large_vehicle_door.json",
     "sha256": "cd25ac6ba1c3420dac6c47cb67b13ae84dee7a26cb9bf5bdf1fe28299da04b9d"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/blockstates/lift_buttons_1.json",
+    "sha256": "0104d29c3d85c2c2da20f996dc65c99df26d6d85b9013348af169cac84d8211b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/blockstates/lift_door_1.json",
+    "sha256": "191a9c30f9b864467d0fa3428056adb0fd830e40103281c2399f438571b80c73"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/blockstates/lift_door_odd_1.json",
+    "sha256": "f97f2e2d83cf4d790c7f74dea95217173ac75e85e1683033994b82cf2a3720a7"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/blockstates/lift_panel_even_1.json",
+    "sha256": "0d6d11266488f0a8e0b08429ecd216796a41c8ec415cbe1cf2f14248d2683d2c"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/blockstates/lift_panel_even_2.json",
+    "sha256": "b21ccf0b7254474677f99ab58f1bd0de342a8590cf4462c6125e8e36f8350e30"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/blockstates/lift_panel_odd_1.json",
+    "sha256": "ebdb32f8f5e8f6b7d653bac4f36689fcc6e8af872b5926e4f93473f8a87d7028"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/blockstates/lift_panel_odd_2.json",
+    "sha256": "369042d014e4eca6f488b86d8ee7f909c4ac440e58ae13fe595f9279ba76e8ca"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/blockstates/lift_track_1.json",
+    "sha256": "7d17d1d5f407d13ee6221f10313ec49b7cbe12a938211b09697a4747e4a7ca84"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/blockstates/lift_track_diagonal_1.json",
+    "sha256": "a0c0a9ee5115782f264b84c3429c6477fad34ad626b6fb31c1be9f3b74474ef7"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/blockstates/lift_track_floor_1.json",
+    "sha256": "bde173af8abad8e08fee6b9910621bf1fe897f7eac6da0d30b338d7e3a70bcdc"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/blockstates/lift_track_horizontal_1.json",
+    "sha256": "8456d5f6bfcc0afbc938fc68a59a1073f5bb350d49526c935f06e46ee6de7d0c"
   },
   {
     "path": "src/main/resources/assets/hbm_doors/blockstates/metal_door.json",
@@ -153,7 +205,7 @@
   },
   {
     "path": "src/main/resources/assets/hbm_doors/lang/en_us.json",
-    "sha256": "8b8bc2d9ce953dee0039ba838ddb63e5c1594a98ab132814fc06d992a9dbdbb0"
+    "sha256": "8b3bb38db8c3912a7abe55e150acf3a88a379481a979814a11c50b7f70d7b02b"
   },
   {
     "path": "src/main/resources/assets/hbm_doors/lang/eo_uy.json",
@@ -1056,6 +1108,10 @@
     "sha256": "b027b66d763e71aa654b12ac40897fa23491f3c57a578128842a09c7cfcc6b96"
   },
   {
+    "path": "src/main/resources/assets/hbm_doors/models/item/escalator.json",
+    "sha256": "55d6c11a5d7d8e7e1712c197ad123056b5caa1c459c67901d51341077c26de5d"
+  },
+  {
     "path": "src/main/resources/assets/hbm_doors/models/item/fire_door.json",
     "sha256": "21bbb88c7ca9c3abd258dc0e04a6c8a86119dfbb86216ea443fc80bd04b950e5"
   },
@@ -1066,6 +1122,74 @@
   {
     "path": "src/main/resources/assets/hbm_doors/models/item/large_vehicle_door.json",
     "sha256": "b3c7789e91d679b32da06fe4bd3eb94313ffb0e7a585d4a6f65cdcbe6967292b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/item/lift_buttons_1.json",
+    "sha256": "e124e2fc537114f30de9b590b3da063e01c4bf6b86c57e9dc0a1181d3bd0df7d"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/item/lift_buttons_link_connector.json",
+    "sha256": "34a1ffb23220483b83e95a64bf31500bd4ffa8e1d9b38b82588f899eb2d07761"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/item/lift_buttons_link_connector_selected.json",
+    "sha256": "366f282eb01f831eb6c4ba8825513e95fdc381fae0b4efc16093cf59ed06d5aa"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/item/lift_buttons_link_remover.json",
+    "sha256": "89e3a4ce81d2481ee6e258b94a8955d87f23527fcca22257ae228f5935c2564f"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/item/lift_buttons_link_remover_selected.json",
+    "sha256": "96b274d68555371e8542d7893cb6d8be788101609d1fa23356f81762dbc4f262"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/item/lift_door_1.json",
+    "sha256": "cfea44ecc3fc44e9398a822352075957c89f5d4443b415daaa6611778f8e2b98"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/item/lift_door_odd_1.json",
+    "sha256": "c27fdcce612909c8a8de243654e1b0a3eea5fa760ad3c22a4b11720c762050a1"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/item/lift_panel_even_1.json",
+    "sha256": "ffb7225acbe087e9239845b1019ae1296209d5443442166fdcc9cddd0332d687"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/item/lift_panel_even_2.json",
+    "sha256": "fcb35bbd20d7180cd5037cffd41c27410ba98211a225fcbb912aeab13878d9a3"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/item/lift_panel_odd_1.json",
+    "sha256": "919eed1cf38450db2b738a76fe654375ddeff3c689e44aa3be982392a378e70a"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/item/lift_panel_odd_2.json",
+    "sha256": "2b9a5dd1d9761d5b97569b39ab8e5ad92658aa82ad44891eb5835653548d04e9"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/item/lift_refresher.json",
+    "sha256": "e04c33ff4176dd541b9e869210df0122b22d60ff8196998816151c77401c7082"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/item/lift_track_1.json",
+    "sha256": "9102bd97ca2da367711b6f9aabd323b888e6c23cf270679387f4c332031c3407"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/item/lift_track_diagonal_1.json",
+    "sha256": "19302dd7f0af9995899881e7b49a72f3da22f36e9b85f869ad79186f62f38abd"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/item/lift_track_floor_1.json",
+    "sha256": "000d81708825dd3b9c9f06b25b5bf33a16fe1aa1896f4a6a92efd0c17793bb2d"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/item/lift_track_horizontal_1.json",
+    "sha256": "5bbd2bfd3e1e1afd3e5736d190b5c750fb34ecd79ca513bff3ec71572a55a0fb"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/item/lift_wrench.json",
+    "sha256": "b0805662184f48eaa11943f56010ad3615c2065351ba1ecccacf4deb6be688d9"
   },
   {
     "path": "src/main/resources/assets/hbm_doors/models/item/metal_door.json",
@@ -1122,6 +1246,238 @@
   {
     "path": "src/main/resources/assets/hbm_doors/models/item/water_door.json",
     "sha256": "86512abdd9a47a34bc8445fc6fb111e0dd5cc11dbe9bfcc4b2a9155c288d7588"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/escalator_side_flat.json",
+    "sha256": "f1380178895a7a362a8a61696f8d9535de42fa4c4be09d4b808f573b6a172ce1"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/escalator_side_landing_left.json",
+    "sha256": "2080f9eed221f91c41c81bc00ee9b4fade0fe831bc520fd238f9b94aa7e678ca"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/escalator_side_landing_right.json",
+    "sha256": "893bf546e75e7b863f92d2afaf80469c9f36a0b076793553116c3205a2d805af"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/escalator_side_slope_left.json",
+    "sha256": "8571ee6b95eec38b3632f7ca283eb227f4fe6dddfecbce9cf7758ea27226bc7e"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/escalator_side_slope_right.json",
+    "sha256": "321c5345ab1c2602950102f58c9690aaf64bf8223444753916d7032ef7fc0279"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/escalator_side_transition_bottom_left.json",
+    "sha256": "fae6691f730e35ba2a9998f600bf83400bbcaa81e71f7918c029a3223e00ac76"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/escalator_side_transition_bottom_right.json",
+    "sha256": "270e714c1bbd5d9baade69de682455d164fcfd4a5ee10b2f82e5fbd416ed8515"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/escalator_side_transition_top_left.json",
+    "sha256": "0e680c35e7df21b1a4853de96a1b5cec1ac788c2bcae072d68aba122f48bec85"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/escalator_side_transition_top_right.json",
+    "sha256": "177e37633ecea935b0f9a899c361a08535d834b275faf65a978c22b856a572d9"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/escalator_step_flat_left_base.json",
+    "sha256": "4adf2cea268441bad4b9b3bd6e98a3a6676e7859219442e7c7e8e9c9b5009b78"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/escalator_step_flat_left_down.json",
+    "sha256": "4b6741ff4bbbba021066be2108a84697901f44d009d655046a63219f2430798d"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/escalator_step_flat_left_stop.json",
+    "sha256": "21cf6ed7768ee82cc59698fa02ff88644701e74169bd8f94c7974b485817bfdf"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/escalator_step_flat_left_up.json",
+    "sha256": "9040f2f26cbe31400847610dc26813378d894450a036f693ed27886901b3e37f"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/escalator_step_flat_right_base.json",
+    "sha256": "17f25823a6547fea2f26fe483282b9587a0ae12c841f05b9dd7e737bb3ad97c8"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/escalator_step_flat_right_down.json",
+    "sha256": "0fff942e8ec5b36727489a40e05395685790d5698dbb75a431a9f3fe02d97e0b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/escalator_step_flat_right_stop.json",
+    "sha256": "d9ecbc25436986969b1409d586794b664c45c2ed32d2c2c4f46fa0464bd65acc"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/escalator_step_flat_right_up.json",
+    "sha256": "dfa35d09720a269d782074f36f426036d6f101f8954a6b0fd4de65f200d2b387"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/escalator_step_landing.json",
+    "sha256": "c56176dc38cc82039a64fbc982c330389d71b0036734d8d5017cbddc957db8ef"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/escalator_step_slope_left_base.json",
+    "sha256": "afce01e89a4d936ad38f60bb20acf6d9801e7d0687a6a8c32b4e37a25f7da299"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/escalator_step_slope_left_down.json",
+    "sha256": "c9a81bfffbf4436e3f336c7ddac0fcc1c1962f5c96ff25a537231d9493268e7c"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/escalator_step_slope_left_stop.json",
+    "sha256": "72a352d87906902860a27f7080539fcb73fe6df1a6411b8e381038180db8b637"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/escalator_step_slope_left_up.json",
+    "sha256": "2f00862b89361dcafd8cde73a0293253994a07b39673708d4cc981d997f31347"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/escalator_step_slope_right_base.json",
+    "sha256": "42e1822a18924e102f39fa42c80d4b2b9924d637c2ac07ea48d87353d78af6f9"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/escalator_step_slope_right_down.json",
+    "sha256": "bcc156dc40308e3d40c4245373f44f7ad09988f321dad316d92d9aa052de3053"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/escalator_step_slope_right_stop.json",
+    "sha256": "3570a72581efe07017f51a985105c7182ccfe7c07722f6dc8703ce5b1890e733"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/escalator_step_slope_right_up.json",
+    "sha256": "2bccd620255e981b6ba0b7b90a6e3000d5ab5490d9d6de3122294b2bb66b16c5"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/escalator_step_transition_bottom_left_base.json",
+    "sha256": "1b57c12bddf1554d4b6e41f5a2d2690cf14d94ccad2563b80f903660a89c7649"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/escalator_step_transition_bottom_left_down.json",
+    "sha256": "8cc66788260caa4197bbdbfc8c90be30a38f5d0b50e86a46f23677a81106030e"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/escalator_step_transition_bottom_left_stop.json",
+    "sha256": "0859fe0385649f1b5cb192132f05e06c0ec9dad55e6444e5198fd00f762f8fb4"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/escalator_step_transition_bottom_left_up.json",
+    "sha256": "60c9e60224f187695752e7d0a224c680aa90c740e356bab7ef447a18dad79340"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/escalator_step_transition_bottom_right_base.json",
+    "sha256": "1ba988f7ef43795bf319f4a5ac3869f19088a62b423cc2d5fd0ec2ad71e5d3e0"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/escalator_step_transition_bottom_right_down.json",
+    "sha256": "1f4ea7cc9eed0d0ef63bcc8e826134c75f9474767d49ceba56c97faad8996510"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/escalator_step_transition_bottom_right_stop.json",
+    "sha256": "5525626c926fda0ab0277527d10775f9113e9f4be948d5095b842a39504aaf0f"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/escalator_step_transition_bottom_right_up.json",
+    "sha256": "cade108efb333c727af80a66ebffc46d0dd3075059e50675d850762a3f0a9ace"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/lift_buttons_1.json",
+    "sha256": "2a84585221c9f9cca41097f0d577aba9582423bc4574021173838e73421fcee1"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/lift_door_edge_left.json",
+    "sha256": "224b80168191be53e0db8edc56289260b2ce175e3a88defc0a7dbdde09f910b1"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/lift_door_edge_left_odd.json",
+    "sha256": "2ff3c35831c00460e278b838ffe2a50b2474ddf37ece6cb6d76e11fa411b4840"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/lift_door_edge_right.json",
+    "sha256": "5fa7e3acec0a0c8320f5e724061b00ca968cb045a940e170599caa7c421db09c"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/lift_door_edge_right_odd.json",
+    "sha256": "d664edd77a07cc7f2a5e57428931e520b508bab0c7bacac37093a8b8d3a6bf0a"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/lift_panel_even_1_left.json",
+    "sha256": "7071110e750c3968fa74f220e645679f7755654d2a9ae5342f7f28942f7d9f32"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/lift_panel_even_1_right.json",
+    "sha256": "8705bb2859cce766580a137ff7850092e4d34f2bfa64bf92cbe5ba05b8bb32e1"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/lift_panel_even_2_left.json",
+    "sha256": "b1517b79f8268dc103b0208d623667452321d08e7934ac29b50368d4a7047a41"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/lift_panel_even_2_right.json",
+    "sha256": "bb3d6c581826f88ec66a787e1d30dacec6a82c68f6233fd6e604ec48c472ae57"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/lift_panel_odd_1_left.json",
+    "sha256": "2414b473b3c16b02ee331b59cc7611e2852c5b5d04a4d16f308be872febb5afd"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/lift_panel_odd_1_middle.json",
+    "sha256": "db1a2ace4e15cad461e0b56d4a8acae65f0c8d5af0ef4aeeba4e4ab7e790d2af"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/lift_panel_odd_1_right.json",
+    "sha256": "d0821a5e8a0c1dfe9be5caba54672b4863524390c159785eb5315a1fdfbecf39"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/lift_panel_odd_2_left.json",
+    "sha256": "41eb844388a109fef42fb82426816f8cd4e6080d973d622919fa8107ad4a8173"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/lift_panel_odd_2_middle.json",
+    "sha256": "b584b547a51e7f09f71e03a3e7c61bc0af99ccccd54dbce1b6d57ad589680c5b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/lift_panel_odd_2_right.json",
+    "sha256": "e969ebabd5ce8f7bc7988d9f06a05af8fef5b4828f7c445fb7944a578f0482c6"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/lift_track_diagonal_bottom_1.json",
+    "sha256": "05c1c60b9b2e7cca5eb68eaa70461350e2fbcc9453a4f9826db7decc372654de"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/lift_track_diagonal_left_1.json",
+    "sha256": "10978d7e3e2c72bfed39a3de0a9c8ec8eaa47bd5cba9acc2e7fe14f9606f79a1"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/lift_track_diagonal_right_1.json",
+    "sha256": "96ffa153d8407ea08b5a6fb962b5d74f9a47fac1cefab6e9f4116fa8d7503b29"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/lift_track_diagonal_top_1.json",
+    "sha256": "a5bc61c55db0b435a6d0d018673add8fe2d89c48a06578a92c4df6fe1f4d656b"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/lift_track_floor_1.json",
+    "sha256": "1ef58869d8192fd05d37f225f08be0ea1ca8427ec63d4cfa40089be0de25f7ea"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/lift_track_horizontal_1.json",
+    "sha256": "c77018e14be10aaeb16537a426d535cfe7c122329a6d14b3a5ab64d8352bb4d3"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/block/lift_track_vertical_1.json",
+    "sha256": "bc333f3ad4a158666728032ea0aecc03a64ab74fd8a16113b9029f5a83fd732c"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/item/lift_buttons_link_connector_selected.json",
+    "sha256": "366f282eb01f831eb6c4ba8825513e95fdc381fae0b4efc16093cf59ed06d5aa"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/models/mtr/item/lift_buttons_link_remover_selected.json",
+    "sha256": "96b274d68555371e8542d7893cb6d8be788101609d1fa23356f81762dbc4f262"
   },
   {
     "path": "src/main/resources/assets/hbm_doors/sounds/block/door/alarm_6.ogg",
@@ -1496,6 +1852,126 @@
     "sha256": "598bb132e106fc82539c8dc625e4389587547ca521b800f7ae26181436b6acd5"
   },
   {
+    "path": "src/main/resources/assets/hbm_doors/textures/mtr/block/black.png",
+    "sha256": "a395f454bb91f320eb8d05f9bcfad389070f3aa5207817ae44010f8c388eded2"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/mtr/block/escalator.png",
+    "sha256": "859df5ff3b14f09ec3ab6e33a2a732f01decf752c728e5656d3ee4932616f7b0"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/mtr/block/escalator_down.png",
+    "sha256": "6157f009d153028200ec4e07c47e1943e5e72aa5c11d620bd459a0e32437a4b2"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/mtr/block/escalator_down.png.mcmeta",
+    "sha256": "203324d536442afecdce15f5bae3d63965cd599e836a15a290096a5b24c70ddc"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/mtr/block/escalator_stop.png",
+    "sha256": "40d437905ccb0fa428f9dd1386c19f12fcf33b605fe0d6a5dd687c9d6760d253"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/mtr/block/escalator_up.png",
+    "sha256": "34ee06af94e63754de7561d340d5912c8830c7d5f004e30708e01879adae7d51"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/mtr/block/escalator_up.png.mcmeta",
+    "sha256": "63f2357267cdcc1e99eda7f930ab023cb59a53d5852d6c03f5e29816d50a450e"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/mtr/block/lift_door_bottom_left_1.png",
+    "sha256": "018b09e767b9df4fcf35d737c51e86a6765e67c60b9e316004ba5d63fd328835"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/mtr/block/lift_door_bottom_right_1.png",
+    "sha256": "b040cf7cf9aa1d1caff7b9dab4836dc665a39911d3942181c1c42249cab3d427"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/mtr/block/lift_door_top_left_1.png",
+    "sha256": "73bae61f2689bd6257a86bf5f64aa27ace70a02eb4ec497bfe6e602d66f1ac69"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/mtr/block/lift_door_top_right_1.png",
+    "sha256": "8f551c4d0f3770500cc8bb14c571cdc5e1d4af52fb039e2185b19687f07d05e2"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/mtr/block/metal.png",
+    "sha256": "c82f3ef879ca206b7552f0f54a7ddd3800c170a58a5ad140892007e71ccec725"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/mtr/block/sign/circle.png",
+    "sha256": "ec150dd487a12b28c6b76864f1b5284bcbee7e52821a6fd6ba2085d1d515c6a7"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/mtr/item/escalator.png",
+    "sha256": "c255f14f9e3de33a0246fc878517e70b6fc3e43ee3bf71e8decae4a752399c32"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/mtr/item/lift_buttons_1.png",
+    "sha256": "dfb27ddf6ca5098b57afe320df314cd1837106499cb317212a87abecfd919354"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/mtr/item/lift_buttons_link.png",
+    "sha256": "d527985f6916f8956061c52d612aaa1a220cc48a9c75fbbe01843dec3fa84d70"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/mtr/item/lift_door_even_1.png",
+    "sha256": "3bf914efbc45ebb8f4a5d4e1b3213998b49a98456f452e7978f2a8c45389f990"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/mtr/item/lift_door_odd_1.png",
+    "sha256": "70262399481897480f95efeb30750e5bb61b3f4c2d01d8598bbb77617f1ad711"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/mtr/item/lift_panel_even_1.png",
+    "sha256": "825d9148fe166f3be497bd563b0f1ebef71c3be4d620bee32c62acb9b0cbe48d"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/mtr/item/lift_panel_even_2.png",
+    "sha256": "f1e198bf34201a7b4b6bd9f42e1839073c3bad9d25f5e2f4dcace796d870cd9c"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/mtr/item/lift_panel_odd_1.png",
+    "sha256": "24b2af46c399e74160e5126279b2359cdf112695d393acd3d791337ac8693a36"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/mtr/item/lift_panel_odd_2.png",
+    "sha256": "e2c54d7d7267ed16f6ab853ffd815f18754f49be682b0c3bf9ce3bd25f979368"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/mtr/item/lift_refresher.png",
+    "sha256": "ff45eae255766d44821b31011464966d244b6ef422a1e5f334c79e97c58fbba6"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/mtr/item/rail_action_selected.png",
+    "sha256": "c2a7d6fa16d6fae440ec881a70651bece94ceb84831db15737403a798d0125d7"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/mtr/item/rail_action_selected.png.mcmeta",
+    "sha256": "2f8dc93085f26c02eb06a1f6f1fca47de9e5770455428b7c4ac015db1f0c8981"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/mtr/item/rail_remover.png",
+    "sha256": "22f4be2e4d048887e74e4b90c29844d2feae04a2e123cf088e43924e2ecbbea4"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/mtr/item/rail_remover_selected.png",
+    "sha256": "ed57c6d5b29619068cc367fbfcfe8c1a6c7dbc11fa12a1a2fe2a8cdd6b856c01"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/mtr/item/rail_remover_selected.png.mcmeta",
+    "sha256": "2f8dc93085f26c02eb06a1f6f1fca47de9e5770455428b7c4ac015db1f0c8981"
+  },
+  {
+    "path": "src/main/resources/assets/hbm_doors/textures/mtr/vehicle/lift_1.png",
+    "sha256": "8bc502d87f4ad36ee44d0d4a738ad89efa857766b935b87fcff153c57bc2f5ca"
+  },
+  {
+    "path": "src/main/resources/assets/minecraft/atlases/blocks.json",
+    "sha256": "58b344423863da94834ec321704cac5cb64a18ce4fdb41235c2580459f90ee80"
+  },
+  {
     "path": "src/main/resources/data/hbm_doors/advancements/recipes/modular_blast_door.json",
     "sha256": "544090355cf2f36fa030263f291306772de3b318d85dc26b1426e393c3dc8f82"
   },
@@ -1516,6 +1992,14 @@
     "sha256": "b2f8f95494aa13bd7729ffb3c36693a166160975bb719b47d16f83a147104203"
   },
   {
+    "path": "src/main/resources/data/hbm_doors/loot_tables/blocks/escalator_side.json",
+    "sha256": "58de0407c7f249d62b8e83a85fbb5b2752576abe5a03735512d6886ef9a97f5e"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/loot_tables/blocks/escalator_step.json",
+    "sha256": "58de0407c7f249d62b8e83a85fbb5b2752576abe5a03735512d6886ef9a97f5e"
+  },
+  {
     "path": "src/main/resources/data/hbm_doors/loot_tables/blocks/fire_door.json",
     "sha256": "9c535b77d4832a7c63c5534a64d13b9d36a3f5e15d6dfc2c1b65f02118537aa6"
   },
@@ -1526,6 +2010,50 @@
   {
     "path": "src/main/resources/data/hbm_doors/loot_tables/blocks/large_vehicle_door.json",
     "sha256": "f6eadd381b928a27f24a2574b7b29eec568f9712659ce5fa9e89f4a3f2a6bd77"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/loot_tables/blocks/lift_buttons_1.json",
+    "sha256": "911ce0e7a3e5b35e0577d2632c4735e35be0dfedd3633285b8da106d25323e8b"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/loot_tables/blocks/lift_door_1.json",
+    "sha256": "85abb71daf9b6d24049b90750e81fe9268dc69ca8023c822ff66b6bd9131138c"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/loot_tables/blocks/lift_door_odd_1.json",
+    "sha256": "59fac56daf619651ab23296db11736672bc590df0d212c9393ec55645a2377f6"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/loot_tables/blocks/lift_panel_even_1.json",
+    "sha256": "31c45f0f20f065a5cf727b65c234a145d7c2dd65e5405944083df922574eec01"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/loot_tables/blocks/lift_panel_even_2.json",
+    "sha256": "86eb2428593d436e22c9f715c02c5f406ccee327e74d7045f712598945835eb3"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/loot_tables/blocks/lift_panel_odd_1.json",
+    "sha256": "6ee0cdbb3d0892dfa10936bd1f6e697f4822ac7bace5a68ba33e5ab36a9e7b28"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/loot_tables/blocks/lift_panel_odd_2.json",
+    "sha256": "20ae7e651d9ce9dc7305fb5818e48a7fc8bc9b41adfa79227f9bf6e0cca1b87f"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/loot_tables/blocks/lift_track_1.json",
+    "sha256": "a604b754ee9933b7e59c47ad53f9ba4d48938d8f885c881ff6da658baa6192af"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/loot_tables/blocks/lift_track_diagonal_1.json",
+    "sha256": "d52b980aaaa233599ed1520cadbf34e02a64a8acad6f9bf24de13934c6f5effa"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/loot_tables/blocks/lift_track_floor_1.json",
+    "sha256": "6121c69c9c495ed10b3ebd86053efcffd6bcd214140e2a22ea9bb9e202fe323b"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/loot_tables/blocks/lift_track_horizontal_1.json",
+    "sha256": "d279db53f60490abcabb5ba1b692a2dd528b619bb824bb527939cb7a47e05537"
   },
   {
     "path": "src/main/resources/data/hbm_doors/loot_tables/blocks/metal_door.json",
@@ -1600,6 +2128,10 @@
     "sha256": "a7f07a73dd624915140df9f2cb5668fd8b248a8824c511f42bb55ed66e56f931"
   },
   {
+    "path": "src/main/resources/data/hbm_doors/recipes/escalator.json",
+    "sha256": "170dff4fc56bca7faa635af51219cb89883d0b18ca0b1b6502dbb7c54344bf7e"
+  },
+  {
     "path": "src/main/resources/data/hbm_doors/recipes/fire_door.json",
     "sha256": "aff69328c370c472e3bfeb1bf61ec9f2354d82034d2603ced7b65824be38b222"
   },
@@ -1610,6 +2142,66 @@
   {
     "path": "src/main/resources/data/hbm_doors/recipes/large_vehicle_door.json",
     "sha256": "ae16f60281f94eb3832010b86c6930a9e868c4f297b1518e58915e5e8b55c779"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/recipes/lift_buttons_1.json",
+    "sha256": "4ac9556d3068a0f86e47e900abd1f1bc552b7a42b3626f898f70fda7165b22e2"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/recipes/lift_buttons_link_connector.json",
+    "sha256": "3a3214e9a7d00cf3073a99ac42e8de03d04843c55287363a9c3c029ece743e90"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/recipes/lift_buttons_link_remover.json",
+    "sha256": "60d0ec09bbd159d8052583131e4c6732bd8f04e2a85c50d3cbacf887b0be1f4f"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/recipes/lift_door_1.json",
+    "sha256": "208b616da256659344a67f0a9b489b8d5b08b0523a28b66cb6ac20c5f52adc18"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/recipes/lift_door_odd_1.json",
+    "sha256": "80f02e4c3e8125085b8d5bdda1947ac7413ccf24c89bc34544b5371f4756a1c6"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/recipes/lift_panel_even_1.json",
+    "sha256": "64d68dcd0fef93c9b3bcb63f8297036a0770730803d797dc5487f236b285c9d3"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/recipes/lift_panel_even_2.json",
+    "sha256": "342004ef04f2fa44a6659d3c7a6ce555bb91725b13be5fb143f61fdb30887b7b"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/recipes/lift_panel_odd_1.json",
+    "sha256": "1eb18dc6847c2ce70fcb39e9a99a32a23b7f5ce024f4ebfaf975f0cf65f24f72"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/recipes/lift_panel_odd_2.json",
+    "sha256": "1f67ac7341041842031803bfa1fa5d612822a2b0b764629df2de496890445a45"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/recipes/lift_refresher.json",
+    "sha256": "570258808eff126363958f80a4b07765759f47089367f035c435d63a1b8b92e8"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/recipes/lift_track_1.json",
+    "sha256": "c3ded6957c25953f5ca4a589315dcbfd5f8ac99816adb7f61b6cfffa95fa9a36"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/recipes/lift_track_diagonal_1.json",
+    "sha256": "8c05ae3dbd5671459b1645264263967a0b3723c650d3d4e427ee007b0e9120cb"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/recipes/lift_track_floor_1.json",
+    "sha256": "8484662cc9300fa71e35811caa43627277aee04d2dbb394f1fa1ecd2d5c1c26f"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/recipes/lift_track_horizontal_1.json",
+    "sha256": "3e00a67e14bc63d38c5ee1a29e7900a7013cea08e11bbe848e9714e0f7679d1a"
+  },
+  {
+    "path": "src/main/resources/data/hbm_doors/recipes/lift_wrench.json",
+    "sha256": "fe22106c83d3879cc686dddfc35679c373d285d40f6190022e2ab388120801fc"
   },
   {
     "path": "src/main/resources/data/hbm_doors/recipes/metal_door.json",
@@ -1673,7 +2265,7 @@
   },
   {
     "path": "src/main/resources/data/minecraft/tags/blocks/mineable/pickaxe.json",
-    "sha256": "0e83367588fcb792ab783defc5f38c55da7ed84a61438e00be925b05ef23752c"
+    "sha256": "d6d609793f85ed9ccfb26666d399ab7064a99461a5325fa04f09aab6e4de7135"
   },
   {
     "path": "src/main/resources/data/minecraft/tags/blocks/wooden_doors.json",
@@ -1681,7 +2273,7 @@
   },
   {
     "path": "src/main/resources/META-INF/mods.toml",
-    "sha256": "c846381a644accfca430f3238b002804b66bc9f7132d038bc966bea77735e488"
+    "sha256": "c78b7892a0980ab1999896587f25ed64838723e0014832b52908357c4064c758"
   },
   {
     "path": "src/main/resources/pack.mcmeta",

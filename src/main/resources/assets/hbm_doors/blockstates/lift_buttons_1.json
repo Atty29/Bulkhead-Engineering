@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "hbm_doors:mtr/block/lift_buttons_1"
+    },
+    "facing=east": {
+      "model": "hbm_doors:mtr/block/lift_buttons_1",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "hbm_doors:mtr/block/lift_buttons_1",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "hbm_doors:mtr/block/lift_buttons_1",
+      "y": 270
+    }
+  }
+}

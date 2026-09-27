@@ -1,0 +1,5 @@
+Minecraft Transit Railway
+https://github.com/Minecraft-Transit-Railway/Minecraft-Transit-Railway
+Commit: 739dba4488fd17aaee9a601276387e315876f39e
+MIT License, Copyright (c) 2022 Jonathan Ho.
+Models, textures and adapted lift/escalator code; see licenses/MTR-MIT.txt.

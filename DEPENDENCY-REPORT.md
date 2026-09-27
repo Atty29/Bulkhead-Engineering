@@ -1,3 +1,7 @@
+## 2.0.0 lifts and escalators
+
+[MTR-PORT.md](MTR-PORT.md) documents the added MTR assets, lift/escalator systems, runtime replacements, setup instructions, and behavioral differences. No additional runtime mod is required. See [VALIDATION-2.0.0.md](VALIDATION-2.0.0.md) for current checks.
+
 ## 1.3.0 global controls
 
 [REDSTONE-ONLY.md](REDSTONE-ONLY.md) documents the new global server configuration. Redstone-only mode defaults to enabled for every HBM door/hatch entry. No dependencies or assets were added. Earlier descriptions of hand controls apply with `redstoneOnly = false`.

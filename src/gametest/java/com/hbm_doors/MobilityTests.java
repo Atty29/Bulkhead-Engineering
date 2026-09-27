@@ -1,0 +1,50 @@
+package com.hbm_doors;
+import com.hbm_doors.mobility.*;
+import net.minecraft.core.*;
+import net.minecraft.gametest.framework.*;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.phys.*;
+import net.minecraftforge.gametest.*;
+import net.minecraftforge.common.util.FakePlayerFactory;
+@GameTestHolder("hbm_doors") @PrefixGameTestTemplate(false)
+public class MobilityTests {
+ private static net.minecraft.world.level.block.state.BlockState block(String id){return Mobility.BLOCKS.get(id).get().defaultBlockState();}
+ private static LiftCarEntity setup(GameTestHelper h,BlockPos p){var l=h.getLevel();for(int y=0;y<=6;y++)l.setBlock(p.above(y),block(y==0||y==6?"lift_track_floor_1":"lift_track_1"),3);var route=LiftRoute.discover(l,p);h.assertTrue(route.stops().size()==2&&route.blocks().size()==7,"vertical route includes both floors");var car=Mobility.LIFT_CAR.get().create(l);car.initialize(route,Direction.SOUTH);l.addFreshEntity(car);for(var f:car.floors()){var be=(LiftStationEntity)l.getBlockEntity(f);be.cabin=car.getUUID();be.cabinId=car.getId();}return car;}
+ @GameTest(template="empty",timeoutTicks=400)
+ public static void liftTravelSaveAndRedstone(GameTestHelper h){var l=h.getLevel();var p=h.absolutePos(new BlockPos(10,8,10));var car=setup(h,p);var base=car.position();var station=(LiftStationEntity)l.getBlockEntity(p);station.floorName="G";station.description="Ground lobby";car.refreshNames();h.assertTrue(car.floorName(0).equals("G")&&car.config().getList("descriptions",8).getString(0).equals("Ground lobby"),"floor names and descriptions reach cabin data");h.assertTrue(car.request(1)&&!car.request(99),"bounded floor selection");
+  for(int i=0;i<75;i++)car.tick();h.assertTrue(car.moving()&&car.getY()>base.y,"lift closes then travels");CompoundTag saved=new CompoundTag();car.saveWithoutId(saved);var restored=Mobility.LIFT_CAR.get().create(l);restored.load(saved);h.assertTrue(restored.moving()&&Math.abs(restored.cursor-car.cursor)<.001,"in-flight save retains motion");car.discard();l.addFreshEntity(restored);for(var f:restored.floors()){var be=(LiftStationEntity)l.getBlockEntity(f);be.cabin=restored.getUUID();be.cabinId=restored.getId();}
+  for(int i=0;i<200;i++)restored.tick();h.assertTrue(restored.floor()==1&&restored.door()>.99&&Math.abs(restored.getY()-base.y-6)<.01,"lift arrives and opens at upper floor");
+  h.assertTrue(((LiftStationEntity)l.getBlockEntity(p)).car()==restored,"reloaded lift resolves from floor marker");l.setBlock(p.relative(Direction.NORTH),Blocks.REDSTONE_BLOCK.defaultBlockState(),3);h.assertTrue(((LiftStationEntity)l.getBlockEntity(p)).powered,"floor receives redstone neighbor update");for(int i=0;i<200;i++)restored.tick();h.assertTrue(restored.floor()==0&&Math.abs(restored.getY()-base.y)<.01,"redstone call returns lift; floor="+restored.floor()+", cursor="+restored.cursor+", fault="+restored.fault);
+  var cfg=restored.config().copy();cfg.putDouble("height",Double.NaN);restored.configure(cfg);h.assertTrue(Double.isFinite(restored.height()),"reject non-finite dimensions");restored.discard();h.succeed();
+ }
+ @GameTest(template="empty",timeoutTicks=200)
+ public static void landingDoorsAndObstruction(GameTestHelper h){var l=h.getLevel();var p=h.absolutePos(new BlockPos(10,8,10));var car=setup(h,p);var doorPos=p.offset(4,0,3);var block=(LiftFixtureBlock)Mobility.BLOCKS.get("lift_door_odd_1").get();var state=block.defaultBlockState();l.setBlock(doorPos,state,3);block.setPlacedBy(l,doorPos,state,null,ItemStack.EMPTY);
+  for(int x=0;x<3;x++)for(int y=0;y<2;y++){var pos=doorPos.offset(x,y,0);var be=(LiftStationEntity)l.getBlockEntity(pos);be.links.add(p);for(int t=0;t<15;t++)LiftStationEntity.tick(l,pos,be.getBlockState(),be);h.assertTrue(be.doorProgress>.99&&be.getBlockState().getCollisionShape(l,pos).isEmpty(),"docked landing door clears collision");}
+  var obstruction=BlockPos.containing(car.position()).above(2);l.setBlock(obstruction,Blocks.STONE.defaultBlockState(),3);car.request(1);double initial=car.cursor;for(int i=0;i<100;i++)car.tick();h.assertTrue(car.cursor==initial,"obstruction prevents cabin movement");l.removeBlock(obstruction,false);for(int i=0;i<200;i++)car.tick();h.assertTrue(car.floor()==1,"removing obstruction resumes lift");
+  var be=(LiftStationEntity)l.getBlockEntity(doorPos);for(int t=0;t<15;t++)LiftStationEntity.tick(l,doorPos,state,be);h.assertTrue(be.doorProgress==0&&!state.getCollisionShape(l,doorPos).isEmpty(),"landing door shuts after departure");l.removeBlock(doorPos.above().east(),false);for(int x=0;x<3;x++)for(int y=0;y<2;y++)h.assertTrue(l.isEmptyBlock(doorPos.offset(x,y,0)),"no orphan door parts");car.discard();h.succeed();
+ }
+ @GameTest(template="empty",timeoutTicks=300)
+ public static void passengerAndCabinCollision(GameTestHelper h){var l=h.getLevel();var p=h.absolutePos(new BlockPos(10,8,10));var car=setup(h,p);car.tick();var pig=net.minecraft.world.entity.EntityType.PIG.create(l);pig.setNoAi(true);pig.setPos(car.getX()+.25,car.getY(),car.getZ());l.addFreshEntity(pig);double start=pig.getY();
+  var side=new AABB(car.getX()+1.3,car.getY()+.2,car.getZ()-.2,car.getX()+1.5,car.getY()+1.5,car.getZ()+.2);h.assertTrue(!l.noCollision(pig,side),"cabin side wall has collision");
+  car.request(1);for(int i=0;i<75;i++){car.tick();car.positionRider(pig);}
+  h.assertTrue(pig.getVehicle()==car&&pig.getY()>start+.5,"passenger is carried upward");
+  for(int i=0;i<150;i++){car.tick();if(pig.getVehicle()==car)car.positionRider(pig);}h.assertTrue(!pig.isPassenger()&&Math.abs(pig.getY()-start-6)<.2,"passenger exits at destination floor");
+  car.discard();h.assertTrue(l.getEntitiesOfClass(LiftBarrierEntity.class,side.inflate(10)).stream().noneMatch(b->!b.isRemoved()),"cabin removal cleans collision entities");pig.discard();h.succeed();
+ }
+ @GameTest(template="empty",timeoutTicks=240)
+ public static void escalatorCarriesEntityUpstairs(GameTestHelper h){var l=h.getLevel();var p=h.absolutePos(new BlockPos(10,8,10));for(int row=0;row<6;row++)for(int x=0;x<2;x++)for(int y=0;y<2;y++){var q=p.offset(x,Math.max(0,Math.min(row-1,3))+y,-row);var b=y==0?Mobility.ESCALATOR_STEP.get():Mobility.ESCALATOR_SIDE.get();l.setBlock(q,b.defaultBlockState().setValue(EscalatorBlock.SIDE,x==0?EscalatorBlock.Side.LEFT:EscalatorBlock.Side.RIGHT),3);}
+  var pig=new net.minecraft.world.entity.animal.Pig(net.minecraft.world.entity.EntityType.PIG,l){{goalSelector.removeAllGoals(g->true);targetSelector.removeAllGoals(g->true);}};pig.setPos(p.getX()+1,p.getY()+.94,p.getZ()+.5);l.addFreshEntity(pig);h.runAfterDelay(65,()->{h.assertTrue(pig.getY()>p.getY()+2&&pig.getZ()<p.getZ()-2,"escalator carries entity upstairs: "+pig.position());pig.discard();h.succeed();});
+ }
+ @GameTest(template="empty",timeoutTicks=200)
+ public static void cornerRouteAndRotatedFixtures(GameTestHelper h){var l=h.getLevel();var p=h.absolutePos(new BlockPos(10,8,10));l.setBlock(p,block("lift_track_floor_1"),3);l.setBlock(p.above(),block("lift_track_1"),3);l.setBlock(p.above(2),block("lift_track_diagonal_1").setValue(LiftTrackBlock.SIDE,EscalatorBlock.Side.RIGHT),3);l.setBlock(p.above(2).east(),block("lift_track_horizontal_1"),3);l.setBlock(p.above(2).east(2),block("lift_track_floor_1"),3);h.assertTrue(LiftRoute.discover(l,p).blocks().size()==5,"corner joins vertical and horizontal routes");
+  for(Direction f:Direction.Plane.HORIZONTAL){var q=p.offset(8,0,8);var b=(LiftFixtureBlock)Mobility.BLOCKS.get("lift_door_odd_1").get();var state=b.defaultBlockState().setValue(LiftFixtureBlock.FACING,f);l.setBlock(q,state,3);b.setPlacedBy(l,q,state,null,ItemStack.EMPTY);var middle=q.relative(f.getClockWise()).above();h.assertTrue(b.root(middle,l.getBlockState(middle)).equals(q),"rotated door root "+f);l.removeBlock(middle,false);for(int x=0;x<3;x++)for(int y=0;y<2;y++)h.assertTrue(l.isEmptyBlock(q.relative(f.getClockWise(),x).above(y)),"rotated door cleanup "+f);}h.succeed();
+ }
+ @GameTest(template="empty",timeoutTicks=200)
+ public static void routesAndEscalators(GameTestHelper h){var l=h.getLevel();var p=h.absolutePos(new BlockPos(10,8,10));for(int x=0;x<5;x++)l.setBlock(p.east(x),block(x==0||x==4?"lift_track_floor_1":"lift_track_horizontal_1"),3);h.assertTrue(LiftRoute.discover(l,p).stops().size()==2,"horizontal lift route");l.setBlock(p.above(),block("lift_track_1"),3);l.setBlock(p.below(),block("lift_track_1"),3);boolean rejected=false;try{LiftRoute.discover(l,p);}catch(IllegalArgumentException expected){rejected=true;}h.assertTrue(rejected,"branch rejected");
+  var q=p.offset(0,0,8);var player=FakePlayerFactory.getMinecraft(l);player.setYRot(180);player.setItemInHand(InteractionHand.MAIN_HAND,new ItemStack(Mobility.ESCALATOR.get(),2));var hit=new BlockHitResult(Vec3.atCenterOf(q),Direction.UP,q,false);var use=new net.minecraft.world.item.context.UseOnContext(player,InteractionHand.MAIN_HAND,hit);Mobility.ESCALATOR.get().useOn(use);h.assertTrue(l.getBlockState(q).is(Mobility.ESCALATOR_STEP.get())&&l.getBlockState(q.east().above()).is(Mobility.ESCALATOR_SIDE.get()),"paired steps and railings placed");
+  player.setItemInHand(InteractionHand.MAIN_HAND,new ItemStack(Mobility.WRENCH.get()));l.getBlockState(q).use(l,player,InteractionHand.MAIN_HAND,hit);h.assertTrue(!l.getBlockState(q).getValue(EscalatorBlock.DIRECTION)&&l.getBlockState(q).getValue(EscalatorBlock.STATUS),"reverse");l.getBlockState(q).use(l,player,InteractionHand.MAIN_HAND,hit);h.assertTrue(!l.getBlockState(q).getValue(EscalatorBlock.STATUS),"stop");l.getBlockState(q).use(l,player,InteractionHand.MAIN_HAND,hit);h.assertTrue(l.getBlockState(q).getValue(EscalatorBlock.STATUS)&&l.getBlockState(q).getValue(EscalatorBlock.DIRECTION),"forward");l.removeBlock(q.east().above(),false);for(var part:new BlockPos[]{q,q.east(),q.above(),q.east().above()})h.assertTrue(l.isEmptyBlock(part),"escalator cleanup");h.succeed();
+ }
+}

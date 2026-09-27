@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "hbm_doors:mtr/item/lift_buttons_link",
+    "layer1": "hbm_doors:mtr/item/rail_action_selected"
+  }
+}

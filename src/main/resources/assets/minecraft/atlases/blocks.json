@@ -1,0 +1,14 @@
+{
+  "sources": [
+    {
+      "type": "minecraft:directory",
+      "source": "mtr/block",
+      "prefix": "mtr/block/"
+    },
+    {
+      "type": "minecraft:directory",
+      "source": "mtr/item",
+      "prefix": "mtr/item/"
+    }
+  ]
+}
