@@ -41,5 +41,5 @@ public class Doors {
   RegistryObject<Block> b=BLOCKS.register(id,factory);DOORS.put(id,b);
   ITEMS.register(id,()->b.get() instanceof AnimatedDoorBlock ? new DoorItem(b.get()) : new BlockItem(b.get(),new Item.Properties()));
  }
- public Doors(){net.minecraftforge.fml.ModLoadingContext.get().registerConfig(net.minecraftforge.fml.config.ModConfig.Type.SERVER,DoorConfig.SPEC);var bus=FMLJavaModLoadingContext.get().getModEventBus();com.bulkheadengineering.mobility.Mobility.init(bus);BLOCKS.register(bus);ITEMS.register(bus);ENTITIES.register(bus);TABS.register(bus);ModSounds.REG.register(bus);}
+ public Doors(){DoorNetwork.init();net.minecraftforge.fml.ModLoadingContext.get().registerConfig(net.minecraftforge.fml.config.ModConfig.Type.SERVER,DoorConfig.SPEC);var bus=FMLJavaModLoadingContext.get().getModEventBus();com.bulkheadengineering.mobility.Mobility.init(bus);BLOCKS.register(bus);ITEMS.register(bus);ENTITIES.register(bus);TABS.register(bus);ModSounds.REG.register(bus);}
 }
