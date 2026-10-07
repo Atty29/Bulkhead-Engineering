@@ -25,12 +25,26 @@ public class DoorPartBlock extends BaseEntityBlock {
   if(!l.isClientSide&&l.getBlockEntity(p) instanceof DoorPartEntity part&&part.controller!=null){BlockPos ctrl=part.controller;part.controller=null;if(l.getBlockState(ctrl).getBlock() instanceof AnimatedDoorBlock)l.destroyBlock(ctrl,!player.isCreative()&&player.hasCorrectToolForDrops(l.getBlockState(ctrl)));}
   super.playerWillDestroy(l,p,s,player);
  }
- public VoxelShape getShape(BlockState s,BlockGetter l,BlockPos p,CollisionContext c){
-  if(l.getBlockEntity(p) instanceof DoorPartEntity be&&be.controller!=null)return AnimatedDoorBlock.outline(l.getBlockState(be.controller),l,be.controller,be.local);return Shapes.empty();
+ private VoxelShape linkedShape(BlockGetter level,BlockPos partPos,boolean outline){
+  if(level.getBlockEntity(partPos) instanceof DoorPartEntity part&&part.controller!=null){
+   BlockState controllerState=level.getBlockState(part.controller);
+   if(controllerState.getBlock() instanceof AnimatedDoorBlock){
+    // Derive the local coordinate from the actual world position instead of
+    // trusting the copied block-entity 'local' value. This keeps collision
+    // correct even if a client receives the part before its BE data packet.
+    BlockPos worldDelta=partPos.subtract(part.controller);
+    BlockPos local=AnimatedDoorBlock.unrotate(worldDelta,AnimatedDoorBlock.facing(controllerState));
+    return outline
+     ?AnimatedDoorBlock.outline(controllerState,level,part.controller,local)
+     :AnimatedDoorBlock.shape(controllerState,level,part.controller,local);
+   }
+  }
+  // A linked multiblock part must never become a temporary walk-through block
+  // while controller data is loading/syncing. Solid fallback is the safe state.
+  return Shapes.block();
  }
- public VoxelShape getCollisionShape(BlockState s,BlockGetter l,BlockPos p,CollisionContext c){
-  if(l.getBlockEntity(p) instanceof DoorPartEntity be&&be.controller!=null)return AnimatedDoorBlock.shape(l.getBlockState(be.controller),l,be.controller,be.local);return Shapes.empty();
- }
+ public VoxelShape getShape(BlockState s,BlockGetter l,BlockPos p,CollisionContext c){return linkedShape(l,p,true);}
+ public VoxelShape getCollisionShape(BlockState s,BlockGetter l,BlockPos p,CollisionContext c){return linkedShape(l,p,false);}
  public InteractionResult use(BlockState s,Level l,BlockPos p,Player player,InteractionHand hand,BlockHitResult hit){
   if(l.getBlockEntity(p) instanceof DoorPartEntity be&&be.controller!=null){BlockState ctrl=l.getBlockState(be.controller);return ctrl.use(l,player,hand,new BlockHitResult(hit.getLocation(),hit.getDirection(),be.controller,hit.isInside()));}return InteractionResult.PASS;
  }
