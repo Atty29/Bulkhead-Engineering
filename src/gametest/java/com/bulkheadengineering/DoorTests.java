@@ -32,6 +32,19 @@ public class DoorTests {
   h.assertTrue(count==60,"all 15 door entries in four orientations");h.succeed();
  }
  @GameTest(template="empty",timeoutTicks=200)
+ public static void secureAccessFrameCollision(GameTestHelper h){
+  var level=h.getLevel();BlockPos p=h.absolutePos(new BlockPos(10,5,10));AnimatedDoorBlock block=(AnimatedDoorBlock)Doors.DOORS.get("secure_access_door").get();BlockState s=block.defaultBlockState();
+  level.setBlock(p,s,3);block.setPlacedBy(level,p,s,null,ItemStack.EMPTY);DoorBlockEntity be=(DoorBlockEntity)level.getBlockEntity(p);
+  h.assertTrue(!AnimatedDoorBlock.shape(s,level,p,new BlockPos(2,1,0)).isEmpty(),"secure access right jamb collides closed");
+  h.assertTrue(!AnimatedDoorBlock.shape(s,level,p,new BlockPos(-2,2,0)).isEmpty(),"secure access left jamb collides closed");
+  be.state=1;
+  h.assertTrue(!AnimatedDoorBlock.shape(s,level,p,new BlockPos(2,1,0)).isEmpty(),"secure access right jamb collides open");
+  h.assertTrue(!AnimatedDoorBlock.shape(s,level,p,new BlockPos(-2,2,0)).isEmpty(),"secure access left jamb collides open");
+  h.assertTrue(!AnimatedDoorBlock.shape(s,level,p,new BlockPos(0,4,0)).isEmpty(),"secure access header collides open");
+  h.assertTrue(AnimatedDoorBlock.shape(s,level,p,new BlockPos(0,1,0)).isEmpty(),"secure access centre passage clears open");
+  level.removeBlock(p,false);h.succeed();
+ }
+ @GameTest(template="empty",timeoutTicks=200)
  public static void redstoneAndPartRemoval(GameTestHelper h){
   var level=h.getLevel();BlockPos p=h.absolutePos(new BlockPos(10,5,10));AnimatedDoorBlock block=(AnimatedDoorBlock)Doors.DOORS.get("sliding_seal_door").get();BlockState s=block.defaultBlockState();
   level.setBlock(p,s,3);block.setPlacedBy(level,p,s,null,ItemStack.EMPTY);DoorBlockEntity be=(DoorBlockEntity)level.getBlockEntity(p);
