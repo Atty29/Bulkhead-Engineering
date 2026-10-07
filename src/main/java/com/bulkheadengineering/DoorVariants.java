@@ -1,23 +1,108 @@
 package com.bulkheadengineering;
+
 import java.util.*;
 import com.bulkheadengineering.legacy.client.model.variant.*;
-public class DoorVariants {
- public record Variant(String name,String model,boolean legacy,String skin) {
+
+public final class DoorVariants {
+ public record Variant(String name,String model,boolean legacy,String skin,boolean configurableText) {
+  public Variant(String name,String model,boolean legacy,String skin){this(name,model,legacy,skin,false);}
   public DoorModelSelection selection(){return legacy?DoorModelSelection.legacy():DoorModelSelection.modern(skin);}
  }
+ private DoorVariants(){}
+
+ public static Variant variant(String id,int index){
+  List<Variant> variants=forDoor(id);
+  return variants.get(Math.floorMod(index,variants.size()));
+ }
+
+ public static boolean supportsText(String id,int index){return variant(id,index).configurableText();}
+
  public static List<Variant> forDoor(String id){return switch(id){
-case "large_vehicle_door" -> List.of(new Variant("Standard","bulkheadengineering:block/doors/large_vehicle_door_modern",false,"default"),new Variant("Rad","bulkheadengineering:block/doors/large_vehicle_door_modern_rad",false,"rad"),new Variant("Clear","bulkheadengineering:block/doors/large_vehicle_door_modern_clean",false,"clear"),new Variant("Legacy","bulkheadengineering:block/doors/large_vehicle_door_legacy",true,"default"));
-case "round_airlock_door" -> List.of(new Variant("Standard","bulkheadengineering:block/doors/round_airlock_door_modern",false,"default"),new Variant("Clean","bulkheadengineering:block/doors/round_airlock_door_modern_clean",false,"clean"),new Variant("Green","bulkheadengineering:block/doors/round_airlock_door_modern_green",false,"green"),new Variant("Legacy","bulkheadengineering:block/doors/round_airlock_door_legacy",true,"default"));
-case "fire_door" -> List.of(new Variant("Standard","bulkheadengineering:block/doors/fire_door_modern",false,"default"),new Variant("Black","bulkheadengineering:block/doors/fire_door_modern_black",false,"black"),new Variant("Orange","bulkheadengineering:block/doors/fire_door_modern_orange",false,"orange"),new Variant("Trefoil","bulkheadengineering:block/doors/fire_door_modern_trefoil",false,"trefoil"),new Variant("Yellow","bulkheadengineering:block/doors/fire_door_modern_yellow",false,"yellow"),new Variant("Legacy","bulkheadengineering:block/doors/fire_door_legacy",true,"default"));
-case "sliding_blast_door" -> List.of(new Variant("Standard","bulkheadengineering:block/doors/sliding_blast_door_modern",false,"default"),new Variant("Variant 1","bulkheadengineering:block/doors/sliding_blast_door_modern_variant1",false,"variant1"),new Variant("Variant 2","bulkheadengineering:block/doors/sliding_blast_door_modern_variant2",false,"variant2"),new Variant("Legacy","bulkheadengineering:block/doors/sliding_blast_door_legacy",true,"default"));
-case "sliding_seal_door" -> List.of(new Variant("Standard","bulkheadengineering:block/doors/sliding_seal_door_modern",false,"default"),new Variant("Legacy","bulkheadengineering:block/doors/sliding_seal_door_legacy",true,"default"));
-case "secure_access_door" -> List.of(new Variant("Standard","bulkheadengineering:block/doors/secure_access_door_modern",false,"default"),new Variant("Gray","bulkheadengineering:block/doors/secure_access_door_modern_gray",false,"gray"),new Variant("Black","bulkheadengineering:block/doors/secure_access_door_modern_black",false,"black"),new Variant("Yellow","bulkheadengineering:block/doors/secure_access_door_modern_yellow",false,"yellow"),new Variant("Legacy","bulkheadengineering:block/doors/secure_access_door_legacy",true,"default"));
-case "qe_sliding_door" -> List.of(new Variant("Standard","bulkheadengineering:block/doors/qe_sliding_door_modern",false,"default"),new Variant("Legacy","bulkheadengineering:block/doors/qe_sliding_door_legacy",true,"default"));
-case "qe_containment_door" -> List.of(new Variant("Standard","bulkheadengineering:block/doors/qe_containment_door_modern",false,"default"),new Variant("Trefoil","bulkheadengineering:block/doors/qe_containment_door_modern_trefoil",false,"trefoil"),new Variant("Trefoil Yellow","bulkheadengineering:block/doors/qe_containment_door_modern_trefoil_yellow",false,"trefoil_yellow"),new Variant("Legacy","bulkheadengineering:block/doors/qe_containment_door_legacy",true,"default"));
-case "water_door" -> List.of(new Variant("Standard","bulkheadengineering:block/doors/water_door_modern",false,"default"),new Variant("Clean","bulkheadengineering:block/doors/water_door_clean",false,"clean"),new Variant("Legacy","bulkheadengineering:block/doors/water_door_legacy",true,"default"));
-case "silo_hatch" -> List.of(new Variant("Default","bulkheadengineering:block/doors/silo_hatch",false,"default"));
-case "silo_hatch_large" -> List.of(new Variant("Default","bulkheadengineering:block/doors/silo_hatch_large",false,"default"));
-case "vault_door" -> List.of(new Variant("skin_101","bulkheadengineering:block/doors/vault_door_skin_101",false,"skin_101"),new Variant("Vault 87","bulkheadengineering:block/doors/vault_door_skin_87",false,"default"),new Variant("Vault 106","bulkheadengineering:block/doors/vault_door_skin_106",false,"skin_106"),new Variant("Vault 2","bulkheadengineering:block/doors/vault_door_skin_2",false,"skin_2"),new Variant("Vault 99","bulkheadengineering:block/doors/vault_door_skin_99",false,"skin_99"),new Variant("Vault 81","bulkheadengineering:block/doors/vault_door_skin_81",false,"skin_81"),new Variant("Vault 111","bulkheadengineering:block/doors/vault_door_skin_111",false,"skin_111"),new Variant("Legacy","bulkheadengineering:block/doors/vault_door",true,"default"));
-case "cargo_door" -> List.of(new Variant("Default","bulkheadengineering:block/doors/cargo_door",false,"default"));
-case "modular_blast_door" -> List.of(new Variant("Original 1.12","bulkheadengineering:block/doors/modular_blast_door",false,"default"));
-default -> throw new IllegalArgumentException(id);};}}
+  case "large_vehicle_door" -> List.of(
+   new Variant("Standard","bulkheadengineering:block/doors/large_vehicle_door_modern",false,"default"),
+   new Variant("Rad","bulkheadengineering:block/doors/large_vehicle_door_modern_rad",false,"rad"),
+   new Variant("Clear","bulkheadengineering:block/doors/large_vehicle_door_modern_clean",false,"clear"),
+   new Variant("SGC Blue","bulkheadengineering:block/doors/large_vehicle_door_modern",false,"sgc_blue",true),
+   new Variant("Legacy","bulkheadengineering:block/doors/large_vehicle_door_legacy",true,"default"));
+
+  case "round_airlock_door" -> List.of(
+   new Variant("Standard","bulkheadengineering:block/doors/round_airlock_door_modern",false,"default"),
+   new Variant("Clean","bulkheadengineering:block/doors/round_airlock_door_modern_clean",false,"clean"),
+   new Variant("Green","bulkheadengineering:block/doors/round_airlock_door_modern_green",false,"green"),
+   new Variant("SGC Blue","bulkheadengineering:block/doors/round_airlock_door_modern",false,"sgc_blue",true),
+   new Variant("Legacy","bulkheadengineering:block/doors/round_airlock_door_legacy",true,"default"));
+
+  case "fire_door" -> List.of(
+   new Variant("Standard","bulkheadengineering:block/doors/fire_door_modern",false,"default"),
+   new Variant("Black","bulkheadengineering:block/doors/fire_door_modern_black",false,"black"),
+   new Variant("Orange","bulkheadengineering:block/doors/fire_door_modern_orange",false,"orange"),
+   new Variant("Trefoil","bulkheadengineering:block/doors/fire_door_modern_trefoil",false,"trefoil"),
+   new Variant("Yellow","bulkheadengineering:block/doors/fire_door_modern_yellow",false,"yellow"),
+   new Variant("SGC Blue","bulkheadengineering:block/doors/fire_door_modern",false,"sgc_blue",true),
+   new Variant("Legacy","bulkheadengineering:block/doors/fire_door_legacy",true,"default"));
+
+  case "sliding_blast_door" -> List.of(
+   new Variant("Standard","bulkheadengineering:block/doors/sliding_blast_door_modern",false,"default"),
+   new Variant("Variant 1","bulkheadengineering:block/doors/sliding_blast_door_modern_variant1",false,"variant1"),
+   new Variant("Variant 2","bulkheadengineering:block/doors/sliding_blast_door_modern_variant2",false,"variant2"),
+   new Variant("SGC Blue","bulkheadengineering:block/doors/sliding_blast_door_modern",false,"sgc_blue",true),
+   new Variant("Legacy","bulkheadengineering:block/doors/sliding_blast_door_legacy",true,"default"));
+
+  case "sliding_seal_door" -> List.of(
+   new Variant("Standard","bulkheadengineering:block/doors/sliding_seal_door_modern",false,"default"),
+   new Variant("SGC Blue","bulkheadengineering:block/doors/sliding_seal_door_modern",false,"sgc_blue",true),
+   new Variant("Legacy","bulkheadengineering:block/doors/sliding_seal_door_legacy",true,"default"));
+
+  case "secure_access_door" -> List.of(
+   new Variant("Standard","bulkheadengineering:block/doors/secure_access_door_modern",false,"default"),
+   new Variant("Gray","bulkheadengineering:block/doors/secure_access_door_modern_gray",false,"gray"),
+   new Variant("Black","bulkheadengineering:block/doors/secure_access_door_modern_black",false,"black"),
+   new Variant("Yellow","bulkheadengineering:block/doors/secure_access_door_modern_yellow",false,"yellow"),
+   new Variant("SGC Blue","bulkheadengineering:block/doors/secure_access_door_modern",false,"sgc_blue",true),
+   new Variant("Legacy","bulkheadengineering:block/doors/secure_access_door_legacy",true,"default"));
+
+  case "qe_sliding_door" -> List.of(
+   new Variant("Standard","bulkheadengineering:block/doors/qe_sliding_door_modern",false,"default"),
+   new Variant("SGC Blue","bulkheadengineering:block/doors/qe_sliding_door_modern",false,"sgc_blue",true),
+   new Variant("Legacy","bulkheadengineering:block/doors/qe_sliding_door_legacy",true,"default"));
+
+  case "qe_containment_door" -> List.of(
+   new Variant("Standard","bulkheadengineering:block/doors/qe_containment_door_modern",false,"default"),
+   new Variant("Trefoil","bulkheadengineering:block/doors/qe_containment_door_modern_trefoil",false,"trefoil"),
+   new Variant("Trefoil Yellow","bulkheadengineering:block/doors/qe_containment_door_modern_trefoil_yellow",false,"trefoil_yellow"),
+   new Variant("SGC Blue","bulkheadengineering:block/doors/qe_containment_door_modern",false,"sgc_blue",true),
+   new Variant("Legacy","bulkheadengineering:block/doors/qe_containment_door_legacy",true,"default"));
+
+  case "water_door" -> List.of(
+   new Variant("Standard","bulkheadengineering:block/doors/water_door_modern",false,"default"),
+   new Variant("Clean","bulkheadengineering:block/doors/water_door_clean",false,"clean"),
+   new Variant("SGC Blue","bulkheadengineering:block/doors/water_door_modern",false,"sgc_blue",true),
+   new Variant("Legacy","bulkheadengineering:block/doors/water_door_legacy",true,"default"));
+
+  case "silo_hatch" -> List.of(
+   new Variant("Default","bulkheadengineering:block/doors/silo_hatch",false,"default"));
+
+  case "silo_hatch_large" -> List.of(
+   new Variant("Default","bulkheadengineering:block/doors/silo_hatch_large",false,"default"));
+
+  case "vault_door" -> List.of(
+   new Variant("Vault 101","bulkheadengineering:block/doors/vault_door_skin_101",false,"skin_101"),
+   new Variant("Vault 87","bulkheadengineering:block/doors/vault_door_skin_87",false,"default"),
+   new Variant("Vault 106","bulkheadengineering:block/doors/vault_door_skin_106",false,"skin_106"),
+   new Variant("Vault 2","bulkheadengineering:block/doors/vault_door_skin_2",false,"skin_2"),
+   new Variant("Vault 99","bulkheadengineering:block/doors/vault_door_skin_99",false,"skin_99"),
+   new Variant("Vault 81","bulkheadengineering:block/doors/vault_door_skin_81",false,"skin_81"),
+   new Variant("Vault 111","bulkheadengineering:block/doors/vault_door_skin_111",false,"skin_111"),
+   new Variant("SGC Blue","bulkheadengineering:block/doors/vault_door_skin_101",false,"sgc_blue",true),
+   new Variant("Legacy","bulkheadengineering:block/doors/vault_door",true,"default"));
+
+  case "cargo_door" -> List.of(
+   new Variant("Default","bulkheadengineering:block/doors/cargo_door",false,"default"),
+   new Variant("SGC Blue","bulkheadengineering:block/doors/cargo_door",false,"sgc_blue",true));
+
+  case "modular_blast_door" -> List.of(
+   new Variant("Original 1.12","bulkheadengineering:block/doors/modular_blast_door",false,"default"));
+
+  default -> throw new IllegalArgumentException(id);
+ }; }
+}
