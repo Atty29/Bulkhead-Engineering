@@ -7,6 +7,8 @@ import net.minecraft.world.item.ItemStack;
 /** Read-only ownership resolution shared by Pick Block and information overlays. */
 public final class DoorTarget {
  public static final String STYLE="DoorVariant";
+ public static final String LABEL_MAIN="DoorLabelMain";
+ public static final String LABEL_SUB="DoorLabelSub";
  private DoorTarget(){}
  public static DoorBlockEntity resolve(BlockGetter level,BlockPos pos){
   if(level instanceof Level world&&!world.hasChunkAt(pos))return null;
@@ -22,5 +24,7 @@ public final class DoorTarget {
  }
  public static int style(AnimatedDoorBlock block,int value){return Math.floorMod(value,DoorVariants.forDoor(block.id).size());}
  public static int style(AnimatedDoorBlock block,ItemStack stack){return style(block,stack.hasTag()?stack.getTag().getInt(STYLE):0);}
- public static ItemStack pick(BlockGetter level,BlockPos pos){var door=resolve(level,pos);if(door==null)return ItemStack.EMPTY;var block=(AnimatedDoorBlock)door.getBlockState().getBlock();var result=new ItemStack(block);int variant=style(block,door.variant);if(variant!=0)result.getOrCreateTag().putInt(STYLE,variant);return result;}
+ public static String labelMain(ItemStack stack){return stack.hasTag()&&stack.getTag().contains(LABEL_MAIN)?DoorLabels.clean(stack.getTag().getString(LABEL_MAIN),DoorLabels.MAIN_MAX):DoorLabels.DEFAULT_MAIN;}
+ public static String labelSub(ItemStack stack){return stack.hasTag()&&stack.getTag().contains(LABEL_SUB)?DoorLabels.clean(stack.getTag().getString(LABEL_SUB),DoorLabels.SUB_MAX):DoorLabels.DEFAULT_SUB;}
+ public static ItemStack pick(BlockGetter level,BlockPos pos){var door=resolve(level,pos);if(door==null)return ItemStack.EMPTY;var block=(AnimatedDoorBlock)door.getBlockState().getBlock();var result=new ItemStack(block);int variant=style(block,door.variant);if(variant!=0)result.getOrCreateTag().putInt(STYLE,variant);if(DoorVariants.supportsText(block.id,variant)){var tag=result.getOrCreateTag();tag.putString(LABEL_MAIN,door.labelMain);tag.putString(LABEL_SUB,door.labelSub);}return result;}
 }
