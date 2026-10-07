@@ -26,6 +26,7 @@ public class AnimatedDoorBlock extends BaseEntityBlock {
  public BlockEntity newBlockEntity(BlockPos p,BlockState s){return new DoorBlockEntity(p,s);}
  public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level l,BlockState s,BlockEntityType<T> t){return createTickerHelper(t,Doors.DOOR_ENTITY.get(),DoorBlockEntity::tick);}
  public static BlockPos rotate(BlockPos p,Direction f){return switch(f){case SOUTH->new BlockPos(-p.getX(),p.getY(),-p.getZ());case WEST->new BlockPos(p.getZ(),p.getY(),-p.getX());case EAST->new BlockPos(-p.getZ(),p.getY(),p.getX());default->p;};}
+ public static BlockPos unrotate(BlockPos p,Direction f){return switch(f){case SOUTH->new BlockPos(-p.getX(),p.getY(),-p.getZ());case WEST->new BlockPos(-p.getZ(),p.getY(),p.getX());case EAST->new BlockPos(p.getZ(),p.getY(),-p.getX());default->p;};}
  public static Direction facing(BlockState s){return s.getValue(FACING);}
  public Set<BlockPos> offsets(){return decl().getStructureDefinition().getClosedShapes().keySet();}
  public BlockState getStateForPlacement(BlockPlaceContext c){
