@@ -1,5 +1,5 @@
 plugins { id 'java'; id 'net.minecraftforge.gradle' version '6.0.54' }
-version='2.2.0-dev-sgc1'
+version='2.2.0-dev-sgc2'
 group='com.bulkheadengineering'
 base { archivesName='bulkhead-engineering-1.20.1' }
 java.toolchain.languageVersion=JavaLanguageVersion.of(17)
