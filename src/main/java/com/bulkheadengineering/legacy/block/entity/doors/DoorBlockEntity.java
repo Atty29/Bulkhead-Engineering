@@ -13,6 +13,8 @@ import net.minecraft.world.phys.AABB;
 public class DoorBlockEntity extends BlockEntity {
  public byte state=0;private int openTicks=0;private int previousTicks=0;private boolean powered=false;
  public int variant=0;
+ public String labelMain=DoorLabels.DEFAULT_MAIN;
+ public String labelSub=DoorLabels.DEFAULT_SUB;
  public DoorBlockEntity(BlockPos p,BlockState s){super(Doors.DOOR_ENTITY.get(),p,s);}
  public DoorDecl getDoorDecl(){return ((AnimatedDoorBlock)getBlockState().getBlock()).decl();}
  public int getOpenTicks(){return openTicks;}
@@ -36,6 +38,14 @@ public class DoorBlockEntity extends BlockEntity {
  private void sound(SoundEvent s){if(s!=null&&level!=null)level.playSound(null,worldPosition,s,SoundSource.BLOCKS,getDoorDecl().getSoundVolume(),isModularBlastDoor()&&s==getDoorDecl().getOpenSoundStart()?.75f:1);}
  private void move(boolean open){state=(byte)(open?3:2);sound(open?getDoorDecl().getOpenSoundStart():getDoorDecl().getCloseSoundStart());sync();}
  public void cycleVariant(Player player){if(state>1)return;variant=(variant+1)%DoorVariants.forDoor(((AnimatedDoorBlock)getBlockState().getBlock()).id).size();sync();player.displayClientMessage(net.minecraft.network.chat.Component.literal("Door style: "+DoorVariants.forDoor(((AnimatedDoorBlock)getBlockState().getBlock()).id).get(variant).name()),true);}
+ public void applyConfiguration(int newVariant,String mainText,String subText){
+  if(state>1)return;
+  AnimatedDoorBlock block=(AnimatedDoorBlock)getBlockState().getBlock();
+  variant=DoorTarget.style(block,newVariant);
+  labelMain=DoorLabels.clean(mainText,DoorLabels.MAIN_MAX);
+  labelSub=DoorLabels.clean(subText,DoorLabels.SUB_MAX);
+  sync();
+ }
  public static void tick(Level l,BlockPos p,BlockState s,DoorBlockEntity b){
   b.previousTicks=b.openTicks;
   if(l.isClientSide)Client.tick(b);
@@ -55,8 +65,8 @@ public class DoorBlockEntity extends BlockEntity {
   }
  }
  public void sync(){setChanged();if(level!=null)level.sendBlockUpdated(worldPosition,getBlockState(),getBlockState(),3);}
- protected void saveAdditional(CompoundTag t){super.saveAdditional(t);t.putByte("state",state);t.putInt("ticks",openTicks);t.putBoolean("powered",powered);t.putInt("variant",variant);}
- public void load(CompoundTag t){super.load(t);state=t.getByte("state");openTicks=t.getInt("ticks");previousTicks=openTicks;powered=t.getBoolean("powered");variant=t.getInt("variant");}
+ protected void saveAdditional(CompoundTag t){super.saveAdditional(t);t.putByte("state",state);t.putInt("ticks",openTicks);t.putBoolean("powered",powered);t.putInt("variant",variant);t.putString("labelMain",labelMain);t.putString("labelSub",labelSub);}
+ public void load(CompoundTag t){super.load(t);state=t.getByte("state");openTicks=t.getInt("ticks");previousTicks=openTicks;powered=t.getBoolean("powered");variant=t.getInt("variant");labelMain=t.contains("labelMain")?DoorLabels.clean(t.getString("labelMain"),DoorLabels.MAIN_MAX):DoorLabels.DEFAULT_MAIN;labelSub=t.contains("labelSub")?DoorLabels.clean(t.getString("labelSub"),DoorLabels.SUB_MAX):DoorLabels.DEFAULT_SUB;}
  public CompoundTag getUpdateTag(){return saveWithoutMetadata();}
  public ClientboundBlockEntityDataPacket getUpdatePacket(){return ClientboundBlockEntityDataPacket.create(this);}
  public AABB getRenderBoundingBox(){return new AABB(worldPosition).inflate(16);}
