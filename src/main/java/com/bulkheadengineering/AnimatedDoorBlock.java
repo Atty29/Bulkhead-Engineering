@@ -37,14 +37,14 @@ public class AnimatedDoorBlock extends BaseEntityBlock {
  }
  public void setPlacedBy(Level l,BlockPos p,BlockState s,LivingEntity e,ItemStack stack){
   if(l.isClientSide)return;
-  if(l.getBlockEntity(p) instanceof DoorBlockEntity door){door.variant=DoorTarget.style(this,stack);door.sync();}
+  if(l.getBlockEntity(p) instanceof DoorBlockEntity door){door.variant=DoorTarget.style(this,stack);door.labelMain=DoorTarget.labelMain(stack);door.labelSub=DoorTarget.labelSub(stack);door.sync();}
   for(BlockPos o:offsets())if(!o.equals(BlockPos.ZERO)){
    BlockPos q=p.offset(rotate(o,facing(s)));l.setBlock(q,Doors.PART.get().defaultBlockState(),3);
    if(l.getBlockEntity(q) instanceof DoorPartEntity part){part.controller=p;part.local=o;part.setChanged();l.sendBlockUpdated(q,l.getBlockState(q),l.getBlockState(q),3);}
   }
  }
  public InteractionResult use(BlockState s,Level l,BlockPos p,Player player,InteractionHand hand,BlockHitResult hit){
-  if(l.getBlockEntity(p) instanceof DoorBlockEntity be){if(!l.isClientSide){if(player.isShiftKeyDown())be.cycleVariant(player);else if(!DoorConfig.REDSTONE_ONLY.get())be.toggle();}return InteractionResult.sidedSuccess(l.isClientSide);}return InteractionResult.PASS;
+  if(l.getBlockEntity(p) instanceof DoorBlockEntity be){if(player.isShiftKeyDown())return InteractionResult.sidedSuccess(l.isClientSide);if(!l.isClientSide&&!DoorConfig.REDSTONE_ONLY.get())be.toggle();return InteractionResult.sidedSuccess(l.isClientSide);}return InteractionResult.PASS;
  }
  public VoxelShape getShape(BlockState s,BlockGetter l,BlockPos p,CollisionContext c){return outline(s,l,p,BlockPos.ZERO);}
  public VoxelShape getCollisionShape(BlockState s,BlockGetter l,BlockPos p,CollisionContext c){return shape(s,l,p,BlockPos.ZERO);}
