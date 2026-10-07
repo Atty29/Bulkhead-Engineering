@@ -19,14 +19,31 @@ public class DoorRenderer implements BlockEntityRenderer<DoorBlockEntity> {
  private static final Map<String,Model> CACHE=new HashMap<>();
  private record Vertex(float x,float y,float z,float u,float v,float nx,float ny,float nz){}
  private record Face(String material,Vertex[] vertices){}
- private static class Model {
-  Map<String,List<Face>> parts=new LinkedHashMap<>();
-  Map<String,String> textures=new HashMap<>();
-  List<String> roots=new ArrayList<>();
-  DaeModel dae;
+ private static class Bounds {
   float minX=Float.POSITIVE_INFINITY,minY=Float.POSITIVE_INFINITY,minZ=Float.POSITIVE_INFINITY;
   float maxX=Float.NEGATIVE_INFINITY,maxY=Float.NEGATIVE_INFINITY,maxZ=Float.NEGATIVE_INFINITY;
   void include(Vector3f p){minX=Math.min(minX,p.x);minY=Math.min(minY,p.y);minZ=Math.min(minZ,p.z);maxX=Math.max(maxX,p.x);maxY=Math.max(maxY,p.y);maxZ=Math.max(maxZ,p.z);}
+  void include(Bounds b){if(b==null||!Float.isFinite(b.minX))return;minX=Math.min(minX,b.minX);minY=Math.min(minY,b.minY);minZ=Math.min(minZ,b.minZ);maxX=Math.max(maxX,b.maxX);maxY=Math.max(maxY,b.maxY);maxZ=Math.max(maxZ,b.maxZ);}
+ }
+ private static class Model {
+  Map<String,List<Face>> parts=new LinkedHashMap<>();
+  Map<String,String> textures=new HashMap<>();
+  Map<String,Bounds> bounds=new HashMap<>();
+  List<String> roots=new ArrayList<>();
+  DaeModel dae;
+  void include(String part,Vector3f p){bounds.computeIfAbsent(part,k->new Bounds()).include(p);}
+  Bounds doorBounds(){
+   Bounds result=new Bounds();
+   for(var e:bounds.entrySet()){
+    String n=e.getKey().toLowerCase(java.util.Locale.ROOT);
+    if(n.contains("door")&&!n.contains("frame"))result.include(e.getValue());
+   }
+   if(!Float.isFinite(result.minX))for(var e:bounds.entrySet()){
+    String n=e.getKey().toLowerCase(java.util.Locale.ROOT);
+    if(!n.contains("frame")&&!n.equals("base")&&!n.contains("lock")&&!n.equals("label"))result.include(e.getValue());
+   }
+   return result;
+  }
  }
  public DoorRenderer(BlockEntityRendererProvider.Context c){}
  public static void clear(){CACHE.clear();DaeModel.allModels.clear();SgcSkinTextures.clear();}
@@ -73,7 +90,7 @@ public class DoorRenderer implements BlockEntityRenderer<DoorBlockEntity> {
       case "g":if(!hasObject)group=a[1];break;
       case "usemtl":material=a[1];break;
       case "f":
-       Vertex[] face=new Vertex[a.length-1];for(int i=1;i<a.length;i++){String[] index=a[i].split("/",-1);float[] p=pos.get(index(index[0],pos.size()));float[] u=index.length>1&&!index[1].isEmpty()?uv.get(index(index[1],uv.size())):new float[2];float[] n=index.length>2&&!index[2].isEmpty()?norm.get(index(index[2],norm.size())):new float[]{0,1,0};Vector3f point=meshTransform.transformPosition(new Vector3f(p[0],p[1],p[2]));m.include(point);Vector3f normal=meshTransform.transformDirection(new Vector3f(n[0],n[1],n[2])).normalize();face[i-1]=new Vertex(point.x,point.y,point.z,u[0],1-u[1],normal.x,normal.y,normal.z);}
+       Vertex[] face=new Vertex[a.length-1];for(int i=1;i<a.length;i++){String[] index=a[i].split("/",-1);float[] p=pos.get(index(index[0],pos.size()));float[] u=index.length>1&&!index[1].isEmpty()?uv.get(index(index[1],uv.size())):new float[2];float[] n=index.length>2&&!index[2].isEmpty()?norm.get(index(index[2],norm.size())):new float[]{0,1,0};Vector3f point=meshTransform.transformPosition(new Vector3f(p[0],p[1],p[2]));m.include(group,point);Vector3f normal=meshTransform.transformDirection(new Vector3f(n[0],n[1],n[2])).normalize();face[i-1]=new Vertex(point.x,point.y,point.z,u[0],1-u[1],normal.x,normal.y,normal.z);}
        // RenderType consumes quads; repeat each triangle's third vertex.
        for(int i=1;i<face.length-1;i++)m.parts.computeIfAbsent(group,k->new ArrayList<>()).add(new Face(group.equalsIgnoreCase("Label")&&m.textures.containsKey("label")?"label":material,new Vertex[]{face[0],face[i],face[i+1],face[i+1]}));break;
      }
@@ -99,7 +116,7 @@ public class DoorRenderer implements BlockEntityRenderer<DoorBlockEntity> {
    Set<String> children=new HashSet<>();for(String name:m.roots)children.addAll(Arrays.asList(d.getChildren(name,variant.selection())));
    for(String name:m.roots)if(!children.contains(name))part(name,false,d,variant,m,be.animation(partial),pose,new PoseStack(),buffers,light,overlay,0);
   }
-  if(variant.configurableText()&&be.getOpenTicks()==0&&m.dae==null)renderSgcLabel(be,m,pose,buffers,light);
+  if(variant.configurableText()&&be.getOpenTicks()==0&&m.dae==null)renderSgcFacade(be,m,pose,buffers,light);
   pose.popPose();
  }
  private static void part(String name,boolean child,DoorDecl d,DoorVariants.Variant v,Model m,float time,PoseStack world,PoseStack p,MultiBufferSource b,int light,int overlay,int depth){
@@ -114,7 +131,8 @@ public class DoorRenderer implements BlockEntityRenderer<DoorBlockEntity> {
    if(id.equals("sliding_seal_door"))polygon=clip(polygon,2,-1,.5001f);
    if(id.equals("secure_access_door"))polygon=clip(polygon,1,-1,4.0001f);
    VertexConsumer vc=b.getBuffer(RenderType.entityCutoutNoCull(texture(m,face.material,v)));
-   for(int i=1;i<polygon.size()-1;i++)for(Vertex vertex:new Vertex[]{polygon.get(0),polygon.get(i),polygon.get(i+1),polygon.get(i+1)})emit(vertex,world,vc,light,overlay);
+   int[] tint=v.configurableText()?sgcTint(name):new int[]{255,255,255};
+   for(int i=1;i<polygon.size()-1;i++)for(Vertex vertex:new Vertex[]{polygon.get(0),polygon.get(i),polygon.get(i+1),polygon.get(i+1)})emit(vertex,world,vc,light,overlay,tint[0],tint[1],tint[2]);
   }
   for(String sub:d.getChildren(name,v.selection()))part(sub,true,d,v,m,time,world,p,b,light,overlay,depth+1);p.popPose();
  }
@@ -137,55 +155,95 @@ public class DoorRenderer implements BlockEntityRenderer<DoorBlockEntity> {
   return new ResourceLocation(r.getNamespace(),"textures/"+r.getPath()+".png");
  }
  private static ResourceLocation texture(Model m,String material,DoorVariants.Variant variant){
-  ResourceLocation source=texture(m,material);
-  return variant.configurableText()?SgcSkinTextures.get(source):source;
+  if(variant.configurableText())return new ResourceLocation("minecraft","textures/block/white_concrete.png");
+  return texture(m,material);
  }
- private static void emit(Vertex v,PoseStack p,VertexConsumer c,int light,int overlay){
-  c.vertex(p.last().pose(),v.x,v.y,v.z).color(255,255,255,255).uv(v.u,v.v).overlayCoords(overlay).uv2(light).normal(p.last().normal(),v.nx,v.ny,v.nz).endVertex();
+ private static int[] sgcTint(String part){
+  String n=part.toLowerCase(java.util.Locale.ROOT);
+  if(n.contains("frame")||n.equals("base"))return new int[]{210,210,192};
+  if(n.contains("lock")||n.contains("bolt")||n.contains("spinny"))return new int[]{42,48,54};
+  return new int[]{91,132,168};
+ }
+ private static void emit(Vertex v,PoseStack p,VertexConsumer c,int light,int overlay){emit(v,p,c,light,overlay,255,255,255);}
+ private static void emit(Vertex v,PoseStack p,VertexConsumer c,int light,int overlay,int red,int green,int blue){
+  c.vertex(p.last().pose(),v.x,v.y,v.z).color(red,green,blue,255).uv(v.u,v.v).overlayCoords(overlay).uv2(light).normal(p.last().normal(),v.nx,v.ny,v.nz).endVertex();
  }
 
  /**
-  * The sign plate is measured from the actual transformed OBJ bounds rather than
-  * from the multiblock footprint. It therefore sits a few millimetres above the
-  * door skin instead of floating half a block in front of it.
+  * Draws the SGC face as a flush skin on the actual moving door surface.
+  * The old source texture is completely hidden: cream structural frame,
+  * blue-grey panel face, recessed panel lines, hazard threshold and the
+  * two editable text fields. Nothing is positioned from the multiblock
+  * footprint, so the sign no longer floats in front of thick frames.
   */
- private static void renderSgcLabel(DoorBlockEntity be,Model m,PoseStack pose,MultiBufferSource buffers,int light){
-  if(!Float.isFinite(m.minX)||!Float.isFinite(m.minY)||!Float.isFinite(m.minZ))return;
-  float spanX=m.maxX-m.minX,spanY=m.maxY-m.minY,spanZ=m.maxZ-m.minZ;
+ private static void renderSgcFacade(DoorBlockEntity be,Model m,PoseStack pose,MultiBufferSource buffers,int light){
+  Bounds b=m.doorBounds();
+  if(!Float.isFinite(b.minX)||!Float.isFinite(b.minY)||!Float.isFinite(b.minZ))return;
+  float minY=Math.max(0,b.minY),maxY=b.maxY;
+  float spanX=b.maxX-b.minX,spanY=maxY-minY,spanZ=b.maxZ-b.minZ;
   if(spanY<.75f)return;
-
   boolean normalX=spanX<spanZ;
-  float horizontal=normalX?spanZ:spanX;
-  float centerH=normalX?(m.minZ+m.maxZ)*.5f:(m.minX+m.maxX)*.5f;
-  float centerY=m.minY+spanY*.54f;
-  float width=Math.max(.82f,Math.min(horizontal*.54f,3.6f));
-  float height=Math.max(.62f,Math.min(spanY*.28f,1.35f));
-  float gap=.008f;
+  float width=normalX?spanZ:spanX;
+  float centerH=normalX?(b.minZ+b.maxZ)*.5f:(b.minX+b.maxX)*.5f;
+  float centerY=(minY+maxY)*.5f;
+  float face=normalX?b.maxX:b.maxZ;
+  float back=normalX?b.minX:b.minZ;
+  float gap=.0015f;
 
   if(normalX){
-   renderLabelFace(pose,buffers,be.labelMain,be.labelSub,m.maxX+gap,centerY,centerH,90,width,height,light,true);
-   renderLabelFace(pose,buffers,be.labelMain,be.labelSub,m.minX-gap,centerY,centerH,-90,width,height,light,true);
+   renderFacadeFace(pose,buffers,be.labelMain,be.labelSub,face+gap,centerY,centerH,90,width,spanY,light);
+   renderFacadeFace(pose,buffers,be.labelMain,be.labelSub,back-gap,centerY,centerH,-90,width,spanY,light);
   }else{
-   renderLabelFace(pose,buffers,be.labelMain,be.labelSub,centerH,centerY,m.maxZ+gap,0,width,height,light,false);
-   renderLabelFace(pose,buffers,be.labelMain,be.labelSub,centerH,centerY,m.minZ-gap,180,width,height,light,false);
+   renderFacadeFace(pose,buffers,be.labelMain,be.labelSub,centerH,centerY,face+gap,0,width,spanY,light);
+   renderFacadeFace(pose,buffers,be.labelMain,be.labelSub,centerH,centerY,back-gap,180,width,spanY,light);
   }
  }
 
- private static void renderLabelFace(PoseStack pose,MultiBufferSource buffers,String main,String sub,float a,float y,float b,float yaw,float width,float height,int light,boolean normalX){
+ private static void renderFacadeFace(PoseStack pose,MultiBufferSource buffers,String main,String sub,float x,float y,float z,float yaw,float width,float height,int light){
   pose.pushPose();
-  if(normalX)pose.translate(a,y,b);else pose.translate(a,y,b);
+  pose.translate(x,y,z);
   pose.mulPose(Axis.YP.rotationDegrees(yaw));
+  ResourceLocation white=new ResourceLocation("minecraft","textures/block/white_concrete.png");
+  VertexConsumer panel=buffers.getBuffer(RenderType.entityCutoutNoCull(white));
 
-  ResourceLocation panelTexture=new ResourceLocation("minecraft","textures/block/white_concrete.png");
-  VertexConsumer panel=buffers.getBuffer(RenderType.entityCutoutNoCull(panelTexture));
+  float hw=width*.5f,hh=height*.5f;
+  float edge=Math.max(.018f,Math.min(width,height)*.018f);
+  float line=Math.max(.012f,Math.min(width,height)*.012f);
 
-  // Recessed dark surround, pale main plate and darker secondary strip.
-  panelQuad(pose,panel,-width*.52f,-height*.52f,width*.52f,height*.52f,0,35,43,51,light);
-  panelQuad(pose,panel,-width*.49f,-height*.06f,width*.49f,height*.47f,.0015f,94,132,164,light);
-  panelQuad(pose,panel,-width*.44f,-height*.43f,width*.44f,-height*.13f,.0025f,74,105,132,light);
+  // SGC blue panel with a dark recessed perimeter.
+  panelQuad(pose,panel,-hw,-hh,hw,hh,0,28,35,42,light);
+  panelQuad(pose,panel,-hw+edge,-hh+edge,hw-edge,hh-edge,.0002f,99,143,180,light);
 
-  drawLabelLine(pose,buffers,main,height*.19f,width*.90f,height*.43f,true,light,.006f);
-  drawLabelLine(pose,buffers,sub,-height*.28f,width*.78f,height*.23f,false,light,.007f);
+  // Reference-image panel grid: narrow side columns and broad centre panels.
+  float left=-hw+width*.185f,right=hw-width*.185f;
+  panelQuad(pose,panel,left-line*.5f,-hh+edge,left+line*.5f,hh-edge,.0004f,38,55,70,light);
+  panelQuad(pose,panel,right-line*.5f,-hh+edge,right+line*.5f,hh-edge,.0004f,38,55,70,light);
+  for(float fy:new float[]{-.30f,.02f,.33f}){
+   float yy=fy*height;
+   panelQuad(pose,panel,-hw+edge,yy-line*.5f,hw-edge,yy+line*.5f,.0004f,38,55,70,light);
+  }
+
+  // Bottom black/yellow threshold stripe.
+  float stripeY=-hh+edge;
+  float stripeH=Math.max(.055f,height*.055f);
+  panelQuad(pose,panel,-hw+edge,stripeY,hw-edge,stripeY+stripeH,.0007f,24,24,22,light);
+  int stripes=14;
+  float sw=(width-2*edge)/stripes;
+  for(int i=0;i<stripes;i+=2){
+   float x0=-hw+edge+i*sw;
+   slantedQuad(pose,panel,x0,stripeY,x0+sw,stripeY+stripeH,.0009f,220,171,18,light,sw*.32f);
+  }
+
+  // Flush label areas inspired by the supplied SGC reference.
+  float signW=Math.min(width*.50f,3.7f);
+  float mainH=Math.min(height*.245f,1.15f);
+  float subH=Math.min(height*.095f,.42f);
+  float signY=height*.035f;
+  panelQuad(pose,panel,-signW*.5f,signY-mainH*.10f,signW*.5f,signY+mainH*.90f,.0010f,116,157,191,light);
+  panelQuad(pose,panel,-signW*.43f,signY-mainH*.34f-subH,signW*.43f,signY-mainH*.34f,.0011f,101,143,177,light);
+
+  drawLabelLine(pose,buffers,main,signY+mainH*.39f,signW*.90f,mainH*.68f,true,light,.0020f);
+  drawLabelLine(pose,buffers,sub,signY-mainH*.34f-subH*.50f,signW*.72f,subH*.76f,false,light,.0021f);
   pose.popPose();
  }
 
@@ -194,17 +252,22 @@ public class DoorRenderer implements BlockEntityRenderer<DoorBlockEntity> {
   for(float[] v:new float[][]{{x0,y0,0,1},{x1,y0,1,1},{x1,y1,1,0},{x0,y1,0,0}})
    c.vertex(last.pose(),v[0],v[1],z).color(r,g,b,255).uv(v[2],v[3]).overlayCoords(net.minecraft.client.renderer.texture.OverlayTexture.NO_OVERLAY).uv2(light).normal(last.normal(),0,0,1).endVertex();
  }
+ private static void slantedQuad(PoseStack pose,VertexConsumer c,float x0,float y0,float x1,float y1,float z,int r,int g,int b,int light,float slant){
+  var last=pose.last();
+  for(float[] v:new float[][]{{x0,y0,0,1},{x1,y0,1,1},{x1+slant,y1,1,0},{x0+slant,y1,0,0}})
+   c.vertex(last.pose(),v[0],v[1],z).color(r,g,b,255).uv(v[2],v[3]).overlayCoords(net.minecraft.client.renderer.texture.OverlayTexture.NO_OVERLAY).uv2(light).normal(last.normal(),0,0,1).endVertex();
+ }
 
  private static void drawLabelLine(PoseStack pose,MultiBufferSource buffers,String text,float y,float maxWidth,float maxHeight,boolean main,int light,float z){
   if(text==null||text.isEmpty())return;
   var font=Minecraft.getInstance().font;
   int pixels=Math.max(1,font.width(text));
   float scale=Math.min(maxWidth/pixels,maxHeight/font.lineHeight);
-  scale=Math.min(scale,main?.085f:.055f);
+  scale=Math.min(scale,main?.115f:.066f);
   pose.pushPose();
   pose.translate(0,y,z);
   pose.scale(scale,-scale,scale);
-  font.drawInBatch(text,-pixels/2f,-font.lineHeight/2f,0xFFF5F8FA,false,pose.last().pose(),buffers,net.minecraft.client.gui.Font.DisplayMode.POLYGON_OFFSET,0,light);
+  font.drawInBatch(text,-pixels/2f,-font.lineHeight/2f,0xFFF6F7F3,false,pose.last().pose(),buffers,net.minecraft.client.gui.Font.DisplayMode.POLYGON_OFFSET,0,light);
   pose.popPose();
  }
  private static void dae(DaeNode n,DaeAnimation clip,float time,PoseStack p,MultiBufferSource b,int light,int overlay,Model m){
