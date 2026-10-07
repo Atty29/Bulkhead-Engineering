@@ -91,6 +91,7 @@ public class DoorRenderer implements BlockEntityRenderer<DoorBlockEntity> {
    Set<String> children=new HashSet<>();for(String name:m.roots)children.addAll(Arrays.asList(d.getChildren(name,variant.selection())));
    for(String name:m.roots)if(!children.contains(name))part(name,false,d,variant,m,be.animation(partial),pose,new PoseStack(),buffers,light,overlay,0);
   }pose.popPose();
+  if(variant.configurableText()&&be.getOpenTicks()==0)renderSgcLabel(be,pose,buffers);
  }
  private static void part(String name,boolean child,DoorDecl d,DoorVariants.Variant v,Model m,float time,PoseStack world,PoseStack p,MultiBufferSource b,int light,int overlay,int depth){
   if(d instanceof ModularBlastDoorDecl&&!ModularBlastDoorDecl.visible(name,time))return;
@@ -104,7 +105,9 @@ public class DoorRenderer implements BlockEntityRenderer<DoorBlockEntity> {
    if(id.equals("sliding_seal_door"))polygon=clip(polygon,2,-1,.5001f);
    if(id.equals("secure_access_door"))polygon=clip(polygon,1,-1,4.0001f);
    VertexConsumer vc=b.getBuffer(RenderType.entityCutoutNoCull(texture(m,face.material)));
-   for(int i=1;i<polygon.size()-1;i++)for(Vertex vertex:new Vertex[]{polygon.get(0),polygon.get(i),polygon.get(i+1),polygon.get(i+1)})emit(vertex,world,vc,light,overlay);
+   boolean sgcBlue=v.configurableText()&&sgcTintPart(name);
+   int red=sgcBlue?112:255,green=sgcBlue?148:255,blue=sgcBlue?178:255;
+   for(int i=1;i<polygon.size()-1;i++)for(Vertex vertex:new Vertex[]{polygon.get(0),polygon.get(i),polygon.get(i+1),polygon.get(i+1)})emit(vertex,world,vc,light,overlay,red,green,blue);
   }
   for(String sub:d.getChildren(name,v.selection()))part(sub,true,d,v,m,time,world,p,b,light,overlay,depth+1);p.popPose();
  }
@@ -121,7 +124,60 @@ public class DoorRenderer implements BlockEntityRenderer<DoorBlockEntity> {
   for(Vertex next:polygon){float nd=distance(next,axis,sign,limit);if((pd>=0)!=(nd>=0))out.add(mix(prev,next,pd/(pd-nd)));if(nd>=0)out.add(next);prev=next;pd=nd;}return out;
  }
  private static ResourceLocation texture(Model m,String material){String value=m.textures.getOrDefault(material,m.textures.getOrDefault("default",m.textures.get("particle")));if(value==null)throw new IllegalStateException("Missing texture for "+material);ResourceLocation r=id(value);return new ResourceLocation(r.getNamespace(),"textures/"+r.getPath()+".png");}
- private static void emit(Vertex v,PoseStack p,VertexConsumer c,int light,int overlay){c.vertex(p.last().pose(),v.x,v.y,v.z).color(255,255,255,255).uv(v.u,v.v).overlayCoords(overlay).uv2(light).normal(p.last().normal(),v.nx,v.ny,v.nz).endVertex();}
+ private static boolean sgcTintPart(String name){
+  String n=name.toLowerCase(java.util.Locale.ROOT);
+  return !n.contains("frame")&&!n.equals("base")&&!n.contains("lock")&&!n.equals("label");
+ }
+ private static void emit(Vertex v,PoseStack p,VertexConsumer c,int light,int overlay){emit(v,p,c,light,overlay,255,255,255);}
+ private static void emit(Vertex v,PoseStack p,VertexConsumer c,int light,int overlay,int red,int green,int blue){c.vertex(p.last().pose(),v.x,v.y,v.z).color(red,green,blue,255).uv(v.u,v.v).overlayCoords(overlay).uv2(light).normal(p.last().normal(),v.nx,v.ny,v.nz).endVertex();}
+
+ private static void renderSgcLabel(DoorBlockEntity be,PoseStack pose,MultiBufferSource buffers){
+  DoorDecl d=be.getDoorDecl();
+  if(d.getStructureDefinition()==null||d.getStructureDefinition().getClosedShapes().isEmpty())return;
+  int minX=Integer.MAX_VALUE,maxX=Integer.MIN_VALUE,minY=Integer.MAX_VALUE,maxY=Integer.MIN_VALUE,minZ=Integer.MAX_VALUE,maxZ=Integer.MIN_VALUE;
+  for(var p:d.getStructureDefinition().getClosedShapes().keySet()){
+   minX=Math.min(minX,p.getX());maxX=Math.max(maxX,p.getX());
+   minY=Math.min(minY,p.getY());maxY=Math.max(maxY,p.getY());
+   minZ=Math.min(minZ,p.getZ());maxZ=Math.max(maxZ,p.getZ());
+  }
+  if(maxY-minY<1)return;
+  float centerX=(minX+maxX+1)/2f;
+  float centerY=(minY+maxY+1)/2f;
+  float width=Math.max(.9f,(maxX-minX+1)*.62f);
+  float height=Math.max(.72f,(maxY-minY+1)*.34f);
+  Direction facing=AnimatedDoorBlock.facing(be.getBlockState());
+  float angle=switch(facing){case SOUTH->180;case WEST->90;case EAST->-90;default->0;};
+
+  pose.pushPose();
+  pose.translate(.5,0,.5);
+  pose.mulPose(Axis.YP.rotationDegrees(angle));
+  renderLabelFace(pose,buffers,be.labelMain,be.labelSub,centerX,centerY,.531f,width,height,false);
+  renderLabelFace(pose,buffers,be.labelMain,be.labelSub,centerX,centerY,-.531f,width,height,true);
+  pose.popPose();
+ }
+
+ private static void renderLabelFace(PoseStack pose,MultiBufferSource buffers,String main,String sub,float centerX,float centerY,float z,float width,float height,boolean back){
+  pose.pushPose();
+  pose.translate(centerX,centerY,z);
+  if(back)pose.mulPose(Axis.YP.rotationDegrees(180));
+  drawLabelLine(pose,buffers,main,height*.18f,width*.92f,height*.46f,true);
+  drawLabelLine(pose,buffers,sub,-height*.28f,width*.88f,height*.25f,false);
+  pose.popPose();
+ }
+
+ private static void drawLabelLine(PoseStack pose,MultiBufferSource buffers,String text,float y,float maxWidth,float maxHeight,boolean main){
+  if(text==null||text.isEmpty())return;
+  var font=Minecraft.getInstance().font;
+  int pixels=Math.max(1,font.width(text));
+  float scale=Math.min(maxWidth/pixels,maxHeight/font.lineHeight);
+  scale=Math.min(scale,main?.075f:.05f);
+  pose.pushPose();
+  pose.translate(0,y,0);
+  pose.scale(scale,-scale,scale);
+  int background=main?0x884D789A:0x885D84A2;
+  font.drawInBatch(text,-pixels/2f,-font.lineHeight/2f,0xFFFFFFFF,false,pose.last().pose(),buffers,net.minecraft.client.gui.Font.DisplayMode.POLYGON_OFFSET,background,LightTexture.FULL_BRIGHT);
+  pose.popPose();
+ }
  private static void dae(DaeNode n,DaeAnimation clip,float time,PoseStack p,MultiBufferSource b,int light,int overlay,Model m){
   p.pushPose();p.mulPoseMatrix(n.localMatrix(time,clip));if(n.mesh!=null){DaeMesh mesh=n.mesh;VertexConsumer c=b.getBuffer(RenderType.entityCutoutNoCull(texture(m,"default")));
    for(int[] tri:mesh.tris)for(int j:new int[]{0,1,2,2}){int pi=tri[j*3]*3,ni=tri[j*3+1]*3,ui=tri[j*3+2]*2;emit(new Vertex(mesh.positions[pi],mesh.positions[pi+1],mesh.positions[pi+2],ui>=0?mesh.uvs[ui]:0,ui>=0?1-mesh.uvs[ui+1]:0,ni>=0?mesh.normals[ni]:0,ni>=0?mesh.normals[ni+1]:1,ni>=0?mesh.normals[ni+2]:0),p,c,light,overlay);}
