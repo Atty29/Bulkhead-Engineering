@@ -51,6 +51,10 @@ public class AnimatedDoorBlock extends BaseEntityBlock {
  public VoxelShape getCollisionShape(BlockState s,BlockGetter l,BlockPos p,CollisionContext c){return shape(s,l,p,BlockPos.ZERO);}
  public static VoxelShape outline(BlockState s,BlockGetter l,BlockPos p,BlockPos offset){return shapeInternal(s,l,p,offset,true);}
  public static VoxelShape shape(BlockState s,BlockGetter l,BlockPos p,BlockPos offset){return shapeInternal(s,l,p,offset,false);}
+ static boolean isSgcSecureAccess(BlockState s,BlockGetter l,BlockPos p){
+  return s.getBlock() instanceof AnimatedDoorBlock block&&block.id.equals("secure_access_door")
+   &&l.getBlockEntity(p) instanceof DoorBlockEntity be&&DoorVariants.variant(block.id,be.variant).skin().equals("sgc_blue");
+ }
  private static VoxelShape shapeInternal(BlockState s,BlockGetter l,BlockPos p,BlockPos offset,boolean outline){
   // Neighbor shape queries can occur after the controller state was removed,
   // before its old block entity and linked parts finish being detached.
@@ -61,14 +65,18 @@ public class AnimatedDoorBlock extends BaseEntityBlock {
   VoxelShape shape=(open?d.getStructureDefinition().getOpenShapes():d.getStructureDefinition().getClosedShapes()).getOrDefault(offset,Shapes.empty());
   String id=((AnimatedDoorBlock)s.getBlock()).id;
   if(id.equals("secure_access_door")){
-   // The access door has a permanent structural frame. The old special-case
-   // removed the whole lower/outer collision while open, which made the visible
-   // edge blocks walk-through. Keep the two jamb columns and header solid while
-   // only the central 3-wide x 4-high passage clears.
-   boolean jamb=Math.abs(offset.getX())==2;
-   boolean header=offset.getY()==4;
-   if(jamb||header)shape=Shapes.block();
-   else if(open)shape=Shapes.empty();
+   if(isSgcSecureAccess(s,l,p)){
+    // Only SGC Blue has this full structural frame and clear central passage.
+    if(d.getStructureDefinition().getClosedShapes().containsKey(offset)){
+     if(Math.abs(offset.getX())==2||offset.getY()==4)shape=Shapes.block();
+     else if(open)shape=Shapes.empty();
+    }
+   }else{
+    // Preserve the pre-SGC collision profile for every other skin.
+    if(open&&offset.getY()==0)shape=Shapes.empty();
+    if(open&&offset.getY()==3)shape=Block.box(0,6,0,16,16,16);
+    if(offset.getY()==4)shape=Shapes.empty();
+   }
   }
   if(open&&outline&&(id.equals("sliding_seal_door")||id.equals("qe_sliding_door"))){
    // Retain a clickable top rail and jamb, independently of passage collision.

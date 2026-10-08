@@ -29,19 +29,17 @@ public class DoorPartBlock extends BaseEntityBlock {
   if(level.getBlockEntity(partPos) instanceof DoorPartEntity part&&part.controller!=null){
    BlockState controllerState=level.getBlockState(part.controller);
    if(controllerState.getBlock() instanceof AnimatedDoorBlock){
-    // Derive the local coordinate from the actual world position instead of
-    // trusting the copied block-entity 'local' value. This keeps collision
-    // correct even if a client receives the part before its BE data packet.
-    BlockPos worldDelta=partPos.subtract(part.controller);
-    BlockPos local=AnimatedDoorBlock.unrotate(worldDelta,AnimatedDoorBlock.facing(controllerState));
+    // Scope position-derived collision to SGC Secure Access; other skins retain
+    // their original stored-offset behavior.
+    BlockPos local=AnimatedDoorBlock.isSgcSecureAccess(controllerState,level,part.controller)
+     ?AnimatedDoorBlock.unrotate(partPos.subtract(part.controller),AnimatedDoorBlock.facing(controllerState)):part.local;
     return outline
      ?AnimatedDoorBlock.outline(controllerState,level,part.controller,local)
      :AnimatedDoorBlock.shape(controllerState,level,part.controller,local);
    }
   }
-  // A linked multiblock part must never become a temporary walk-through block
-  // while controller data is loading/syncing. Solid fallback is the safe state.
-  return Shapes.block();
+  // Without controller data the variant is unknown: preserve the original fallback.
+  return Shapes.empty();
  }
  public VoxelShape getShape(BlockState s,BlockGetter l,BlockPos p,CollisionContext c){return linkedShape(l,p,true);}
  public VoxelShape getCollisionShape(BlockState s,BlockGetter l,BlockPos p,CollisionContext c){return linkedShape(l,p,false);}
