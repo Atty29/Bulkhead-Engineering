@@ -44,9 +44,11 @@ public class DoorBlockEntity extends BlockEntity {
   variant=DoorTarget.style(block,newVariant);
   labelMain=DoorLabels.clean(mainText,DoorLabels.MAIN_MAX);
   labelSub=DoorLabels.clean(subText,DoorLabels.SUB_MAX);
+  if(level!=null)SgcSecureAccessParts.repair(level,worldPosition);
   sync();
  }
  public static void tick(Level l,BlockPos p,BlockState s,DoorBlockEntity b){
+  if(!l.isClientSide&&l.getGameTime()%20==0)SgcSecureAccessParts.repair(l,p);
   b.previousTicks=b.openTicks;
   if(l.isClientSide)Client.tick(b);
   if(!l.isClientSide&&(b.isModularBlastDoor()||l.getGameTime()%2==0)){

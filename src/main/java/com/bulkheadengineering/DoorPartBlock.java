@@ -38,7 +38,15 @@ public class DoorPartBlock extends BaseEntityBlock {
      :AnimatedDoorBlock.shape(controllerState,level,part.controller,local);
    }
   }
-  // Without controller data the variant is unknown: preserve the original fallback.
+  // Recover only an unlinked SGC part; preserve other variants and explicit ownership.
+  if(!(level.getBlockEntity(partPos) instanceof DoorPartEntity part)||part.controller==null){
+   BlockPos controller=SgcSecureAccessParts.findController(level,partPos);
+   if(controller!=null){
+    BlockState state=level.getBlockState(controller);
+    BlockPos local=AnimatedDoorBlock.unrotate(partPos.subtract(controller),AnimatedDoorBlock.facing(state));
+    return outline?AnimatedDoorBlock.outline(state,level,controller,local):AnimatedDoorBlock.shape(state,level,controller,local);
+   }
+  }
   return Shapes.empty();
  }
  public VoxelShape getShape(BlockState s,BlockGetter l,BlockPos p,CollisionContext c){return linkedShape(l,p,true);}

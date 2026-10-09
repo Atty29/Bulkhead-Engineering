@@ -87,6 +87,74 @@ public class DoorTests {
   h.succeed();
  }
  @GameTest(template="empty",timeoutTicks=200)
+ public static void sgcSecureAccessMissingPartLinks(GameTestHelper h){
+  var level=h.getLevel();BlockPos p=h.absolutePos(new BlockPos(10,5,10));
+  AnimatedDoorBlock block=(AnimatedDoorBlock)Doors.DOORS.get("secure_access_door").get();
+  var variants=DoorVariants.forDoor(block.id);
+  int sgc=java.util.stream.IntStream.range(0,variants.size()).filter(i->variants.get(i).skin().equals("sgc_blue")).findFirst().orElseThrow();
+  for(Direction facing:Direction.Plane.HORIZONTAL){
+   var s=block.defaultBlockState().setValue(AnimatedDoorBlock.FACING,facing);
+   level.setBlock(p,s,3);block.setPlacedBy(level,p,s,null,ItemStack.EMPTY);
+   var be=(DoorBlockEntity)level.getBlockEntity(p);
+   // Reproduce an existing door whose child links were lost before selecting SGC.
+   for(BlockPos o:block.offsets())if(!o.equals(BlockPos.ZERO)){
+    var part=(DoorPartEntity)level.getBlockEntity(p.offset(AnimatedDoorBlock.rotate(o,facing)));
+    part.load(new net.minecraft.nbt.CompoundTag());
+   }
+   be.applyConfiguration(sgc,be.labelMain,be.labelSub);
+   for(boolean open:new boolean[]{false,true}){
+    be.state=(byte)(open?1:0);
+    for(int x=-2;x<=2;x++)for(int y=1;y<=3;y++){
+     BlockPos o=new BlockPos(x,y,0),q=p.offset(AnimatedDoorBlock.rotate(o,facing));
+     // Simulate child update data arriving after controller data on the client.
+     ((DoorPartEntity)level.getBlockEntity(q)).controller=null;
+     var body=new net.minecraft.world.phys.AABB(q.getX()+.25,q.getY()+.1,q.getZ()+.25,q.getX()+.75,q.getY()+.9,q.getZ()+.75);
+     boolean passage=open&&Math.abs(x)<2;
+     h.assertTrue(level.noCollision(body)==passage,"SGC missing-link physical collision "+facing+" open="+open+" "+o);
+    }
+   }
+   // Restore ownership before normal multiblock cleanup.
+   for(BlockPos o:block.offsets())if(!o.equals(BlockPos.ZERO)){
+    var part=(DoorPartEntity)level.getBlockEntity(p.offset(AnimatedDoorBlock.rotate(o,facing)));part.controller=p;part.local=o;
+   }
+   level.removeBlock(p,false);
+  }
+  h.succeed();
+ }
+ @GameTest(template="empty",timeoutTicks=100)
+ public static void sgcSecureAccessRepairsSavedDoor(GameTestHelper h){
+  var level=h.getLevel();BlockPos p=h.absolutePos(new BlockPos(10,5,10));
+  AnimatedDoorBlock block=(AnimatedDoorBlock)Doors.DOORS.get("secure_access_door").get();
+  var s=block.defaultBlockState();level.setBlock(p,s,3);block.setPlacedBy(level,p,s,null,ItemStack.EMPTY);
+  var be=(DoorBlockEntity)level.getBlockEntity(p);var variants=DoorVariants.forDoor(block.id);
+  int sgc=java.util.stream.IntStream.range(0,variants.size()).filter(i->variants.get(i).skin().equals("sgc_blue")).findFirst().orElseThrow();
+  BlockPos hole=p.offset(-2,1,0),unlinked=p.offset(2,1,0),occupied=p.offset(-1,1,0),foreign=p.offset(1,1,0);
+  for(BlockPos q:java.util.List.of(hole,occupied)){
+   ((DoorPartEntity)level.getBlockEntity(q)).controller=null;level.removeBlock(q,false);
+  }
+  level.setBlock(occupied,Blocks.GOLD_BLOCK.defaultBlockState(),3);
+  ((DoorPartEntity)level.getBlockEntity(unlinked)).controller=null;
+  BlockPos other=p.offset(12,0,0);((DoorPartEntity)level.getBlockEntity(foreign)).controller=other;
+  SgcSecureAccessParts.repair(level,p);
+  h.assertTrue(level.isEmptyBlock(hole)&&((DoorPartEntity)level.getBlockEntity(unlinked)).controller==null,"standard skin does not repair or adopt parts");
+  // Simulate loading an existing saved SGC door, rather than fresh placement/configuration.
+  var tag=be.saveWithoutMetadata();tag.putInt("variant",sgc);be.load(tag);
+  h.runAfterDelay(25,()->{
+   h.assertTrue(level.getBlockEntity(hole) instanceof DoorPartEntity,"loaded SGC door repairs missing blocks automatically");
+   for(BlockPos q:java.util.List.of(hole,unlinked)){
+    var part=(DoorPartEntity)level.getBlockEntity(q);
+    h.assertTrue(p.equals(part.controller),"SGC repair restores ownership");
+    h.assertTrue(!level.getBlockState(q).getCollisionShape(level,q).isEmpty(),"repaired SGC side collides");
+    var restored=new DoorPartEntity(q,part.getBlockState());restored.load(part.getUpdateTag());
+    h.assertTrue(p.equals(restored.controller)&&part.local.equals(restored.local),"repaired link survives save/client update");
+   }
+   h.assertTrue(level.getBlockState(occupied).is(Blocks.GOLD_BLOCK),"repair preserves player blocks");
+   h.assertTrue(other.equals(((DoorPartEntity)level.getBlockEntity(foreign)).controller),"repair preserves foreign ownership");
+   ((DoorPartEntity)level.getBlockEntity(foreign)).controller=p;
+   level.removeBlock(p,false);level.removeBlock(occupied,false);h.succeed();
+  });
+ }
+ @GameTest(template="empty",timeoutTicks=200)
  public static void redstoneAndPartRemoval(GameTestHelper h){
   var level=h.getLevel();BlockPos p=h.absolutePos(new BlockPos(10,5,10));AnimatedDoorBlock block=(AnimatedDoorBlock)Doors.DOORS.get("sliding_seal_door").get();BlockState s=block.defaultBlockState();
   level.setBlock(p,s,3);block.setPlacedBy(level,p,s,null,ItemStack.EMPTY);DoorBlockEntity be=(DoorBlockEntity)level.getBlockEntity(p);
